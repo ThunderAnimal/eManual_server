@@ -1,38 +1,58 @@
 var express = require('express');
 var path = require('path');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('connect-flash');
 var favicon = require('serve-favicon');
+
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var config = require("config");
 var session = require('express-session');
-var mongoose = require('mongoose');
+
+var config = require("config");
+
+var policy = require('./app/moduls/routePolicy');
+
 
 //Set Up Server
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+if(config.util.getEnv('NODE_ENV') !== 'test') {
+    app.use(logger('dev'));
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(session({
     secret: config.server.secret,
     name: 'eManual',
     resave: true,
     saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use("/assets", express.static(path.join(__dirname, "public")));
 
-//don't show the log when it is test
-if(config.util.getEnv('NODE_ENV') !== 'test') {
-    app.use(logger('dev'));
-}
+//Passport Strategy
+require('./app/moduls/passportStrategy')(passport);
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+    done(null, obj);
+});
 
 //Connect Databse
 mongoose.connect(config.database.connectionURL);
@@ -57,8 +77,8 @@ app.use(function (req, res, next) {
 
 
 //Define Routes Policy
-app.use(allowAccessAllowOrigin);
-app.all('/api/v1/*', isAuthorized);
+app.use(policy.allowAccessAllowOrigin);
+app.all('/api/v1/*', policy.isAuthorized);
 //Routes
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
@@ -81,18 +101,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-function allowAccessAllowOrigin  (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-}
-
-function isAuthorized(req, res, next){
-  var err = new Error('Not Authorized');
-  err.status = 401;
-
-  next(err);
-}
 
 module.exports = app;

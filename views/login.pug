@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 Login
+    if (message.length > 0)
+        p=message
+    form(action="/auth/login" method="post")
+        div
+            input(type="text" name="email" placeholder="E-Mail")
+        div
+            input(type="password" name="password" placeholder="Password")
+        button(type="submit") Login

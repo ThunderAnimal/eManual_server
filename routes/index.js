@@ -1,12 +1,28 @@
 var express = require('express');
 var router = express.Router();
 
+var policy = require('../app/moduls/routePolicy');
 
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Hey', message: 'Hello there!'});
+// HOME PAGE (start page)
+router.get('/', function(req, res) {
+    res.render('index', { title: 'Hey', message: req.flash('errorMessage')});
 });
-router.get('/favicon.ico', function(req, res) {
-    res.sendStatus(204);
+
+//DASHBOARD (secure)
+router.get('/dashboard', policy.isLoggedIn, function (req,res) {
+    res.send("HELLO WORLD - DASHBOARD");
+    //TODO render Dashboad file
+});
+
+//LOGIN PAGE
+router.get('/login', function(req, res){
+   res.render('login', {message: req.flash('loginMessage') });
+});
+
+//LOGOUT
+router.get('/logout', function(req, res){
+   req.logout();
+   res.redirect('/');
 });
 
 module.exports = router;
