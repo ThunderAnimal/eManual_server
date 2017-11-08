@@ -1,7 +1,5 @@
-//Created by insanemac on 08.11.17.
-html
-    head
-        link(rel="stylesheet", href="assets/css/style.css")
-        title!= title
-    body
-        h1!= message
+extends layout
+
+block content
+    h1= title
+    p Welcome to #{title}
