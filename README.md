@@ -38,6 +38,14 @@ Available Startup-Parameters:
 * DATABASE_URL
 * SECRET
 
+## Testing
+* start Test Manual
+```
+npm test
+```
+* autmotic Tets on each push in git with the plugin pre-push:
+https://www.npmjs.com/package/pre-push
+
 ## Install
 
 ### MongoDB

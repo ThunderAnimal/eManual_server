@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha --timeout 10000"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -21,5 +22,14 @@
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-rc.4",
     "serve-favicon": "~2.4.5"
-  }
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.4.2",
+    "pre-push": "^0.1.1"
+  },
+  "pre-push": [
+    "test"
+  ]
 }
