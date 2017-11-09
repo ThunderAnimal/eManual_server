@@ -3,7 +3,6 @@
 /**
  * Module dependencies.
  */
-var debug = require('debug')('dong-server:server');
 var http = require('http');
 var config = require('config');
 var chalk = require('chalk');
