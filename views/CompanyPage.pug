@@ -1,5 +1,65 @@
 extends layout
 
+block stylesheet
+    link(rel="stylesheet", href="assets/css/CompanyCss.css")
+
+
 block content
-    h1= title
-    p Welcome to #{title}
+    #wrapper
+        #top-space
+
+        a.mobilemenu(href='#sidebar')
+            i.icon-reorder
+        #sidebar
+            #main-nav
+                #nav-container
+                    #profile.clearfix
+                        .portrate.hidden-xs
+                        .title
+                            h2 Member Since
+                            h3 2017
+                    ul#navigation
+                        li
+                            a(href='#Dashboard')
+                                .icon.icon-user
+                                .text Dashboard
+                        li
+                            a(href='#Manual')
+                                .icon.icon-book
+                                .text Manual
+                        li
+                            a(href='#......')
+                                .icon.icon-edit
+                                .text ......
+                        li
+                            a(href='#......')
+                                .icon.icon-time
+                                .text ......
+                        li
+                            a(href='#......')
+                                .icon.icon-picture
+                                .text ......
+                        li
+                            a(href='#Settings')
+                                .icon.icon-calendar
+                                .text Settings
+                        li.external
+                            a(href='#Logout')
+                                .icon.icon-download-alt
+                                .text Logout
+            .social-icons
+                ul
+                    li
+                        a(href='#')
+                            i.icon-facebook
+                    li
+                        a(href='#')
+                            i.icon-twitter
+                    li
+                        a(href='#')
+                            i.icon-linkedin
+        #main
+
+block javascript
+
+
