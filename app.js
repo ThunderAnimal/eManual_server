@@ -78,6 +78,9 @@ app.use(function (req, res, next) {
 
 //Define Routes Policy
 app.use(policy.allowAccessAllowOrigin);
+if (config.util.getEnv('NODE_ENV') === 'production'){
+    app.all('*', policy.ensureSecure);
+}
 app.all('/api/v1/*', policy.isAuthorized);
 //Routes
 app.use('/', require('./routes/index'));

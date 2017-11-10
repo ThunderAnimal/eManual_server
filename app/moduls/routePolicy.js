@@ -7,6 +7,13 @@ exports.allowAccessAllowOrigin = function(req, res, next) {
     next();
 };
 
+exports.ensureSecure = function(req, res, next){
+        if(req.secure){
+            return next();
+        }
+        res.redirect('https://' + req.hostname + req.url);
+};
+
 exports.isAuthorized= function(req, res, next){
     if (req.isAuthenticated())
         return next();
