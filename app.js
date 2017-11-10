@@ -9,6 +9,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var httpsRedirect = require('express-https-redirect');
 
 var config = require("config");
 
@@ -79,7 +80,7 @@ app.use(function (req, res, next) {
 //Define Routes Policy
 app.use(policy.allowAccessAllowOrigin);
 if (config.util.getEnv('NODE_ENV') === 'production'){
-    app.all('*', policy.ensureSecure);
+    app.use('/', httpsRedirect());
 }
 app.all('/api/v1/*', policy.isAuthorized);
 //Routes
