@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha --timeout 10000"
+    "test": "mocha --timeout 10000",
+    "db:setup" : "node ./bin/fillDatabase"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
