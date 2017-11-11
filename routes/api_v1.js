@@ -6,4 +6,9 @@ router.get('/representives', function (req, res, next) {
     res.send({data: "0"});
 });
 
+router.post('/representives/create', function (req, res, next) {
+    //TODO GET DATA FROM DATABASE
+    console.log("hi");
+    res.send({name:"Bob"});
+});
 module.exports = router;
