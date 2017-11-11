@@ -10,8 +10,7 @@ router.get('/', function(req, res) {
 
 //DASHBOARD (secure)
 router.get('/dashboard', policy.isLoggedIn, function (req,res) {
-    res.render('CompanyPage',{ title: 'Company Page'})
-    //TODO render Dashboad file
+    res.render('CompanyPage',{ title: 'Company Page'});
 });
 
 //LOGIN PAGE

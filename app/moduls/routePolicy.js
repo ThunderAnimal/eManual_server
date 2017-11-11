@@ -1,6 +1,8 @@
 var jwt = require('jsonwebtoken');
 var config = require("config");
 
+var authManager = require('./authManager');
+
 exports.allowAccessAllowOrigin = function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -27,25 +29,41 @@ exports.isAuthorized= function(req, res, next){
                 message: "Not Authorized. Invalid Token!"
             });
         }else{
-            //TODO Check the DB if is the user exists
-            /*userManager.isLastLoginCorrect(new Date(decoded.login_at), decoded._id, function (ok) {
-                if(!ok){
-                    return res.status(401).send({
-                        status: 401,
-                        message: "Not Authorized. Old Token!"
-                    });
-                } else{
-                    req.user = decoded;
-                    return next();
-                }
-            });*/
-            return next();
+            authManager.verifyUser(decoded._id, decoded.model, decoded.login_at, function (user) {
+               if(!user){
+                   return res.status(401).send({
+                       status: 401,
+                       message: "Not Authorized. Old Token!"
+                   });
+               }
+               req.user = user;
+               return next();
+            });
         }
     });
 };
 
-exports.isLoggedIn = function(req, res, next) {
+exports.onlyCompanyAllowed = function(req, res, next){
+    if(authManager.isUserCompany(req.user))
+        return next();
 
+    return res.status(403).send({
+        status: 403,
+        message: "Forbidden! Only Company is allowed to access."
+    });
+};
+
+exports.onlyRepresentativeAllowed = function(req, res, next){
+    if(authManager.isUserRepresentative(req.user))
+        return next();
+
+    return res.status(403).send({
+        status: 403,
+        message: "Forbidden! Only Representative of a Company is allowed to access."
+    });
+};
+
+exports.isLoggedIn = function(req, res, next) {
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();

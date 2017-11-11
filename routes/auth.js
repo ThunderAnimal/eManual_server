@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var jwt = require('jsonwebtoken');
+
+var authManager = require('../app/moduls/authManager');
 
 router.post('/login', passport.authenticate('local-login', {
     failureRedirect : '/login',
@@ -11,8 +12,17 @@ router.post('/login', passport.authenticate('local-login', {
             req.flash('loginMessage', 'Oops! Something went wrong.');
             return res.redirect('/login');
         }
-        //TODO later check type of user an decide redirect
-        res.redirect('/dashboard');
+
+        if(authManager.isUserCompany(req.user)){
+            res.redirect('/dashboard');
+        }else if(authManager.isUserRepresentative(req.user)){
+            //TODO define PAGE
+            res.sendStatus(200);
+        }else{
+            //TODO define PAGE
+            res.sendStatus(200);
+        }
+
     });
 
 router.post('/login_api', passport.authenticate('api-login'),
@@ -21,8 +31,7 @@ router.post('/login_api', passport.authenticate('api-login'),
             return res.send({token: null});
         }
 
-        //TODO generate jwt token from user
-        res.send({token: "1234567890"});
+        res.send({token: authManager.generateJWT(req.user)});
     });
 
 module.exports = router;
