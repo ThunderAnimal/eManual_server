@@ -56,7 +56,9 @@ passport.deserializeUser(function(obj, done) {
 });
 
 //Connect Databse
-mongoose.connect(config.database.connectionURL);
+mongoose.connect(config.database.connectionURL, { useMongoClient: true });
+mongoose.Promise = global.Promise;
+
 var db = mongoose.connection;
 
 db.on('error', function (error) {
