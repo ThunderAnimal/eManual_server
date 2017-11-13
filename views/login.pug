@@ -1,22 +1,49 @@
 extends layout
 
 block main
-    div(class="content")
-        div(class="login-box")
-            div(class="logo")
-                h2 eManual
-
-            if (message.length > 0)
-                p=message
-            form(action="/auth/login" method="post" class="login-form")
-                div(class="input-field")
-                    input(name="email" id="email" type="text")
-                    label(for="email") E-Mail
-                div(class="input-field")
-                    input(name="password" id="password" type="text")
-                    label(for="password") Password
-
-                button(type="submit" class="btn waves-effect waves-light") Login
+    .login-wrap
+        .login-html
+            input#tab-1.sign-in(type='radio', name='tab', checked='')
+            label.tab(for='tab-1') Sign In
+            input#tab-2.sign-up(type='radio', name='tab')
+            label.tab(for='tab-2') Sign Up
+            form.login-form(action="/auth/login" method="post" class="login-form")
+                .sign-in-htm
+                    .group
+                        label.label(for='user') E-Mail
+                        input#user.input(type='text' name='email' required=)
+                    .group
+                        label.label(for='pass') Password
+                        input#pass.input(type='password', data-type='password' name='password' required=)
+                    .group
+                        input#check(type='checkbox', checked='')
+                        label(for='check')
+                            span Keep me Signed in
+                    .group
+                        if (message.length > 0)
+                            p(class="login-error center")=message
+                        input.button(type='submit', value='Sign In')
+                    .hr
+                    .foot-lnk
+                        a(href='#forgot') Forgot Password?
+                .sign-up-htm
+                    .group
+                        label.label(for='user') Username
+                        input#user.input(type='text')
+                    .group
+                        label.label(for='pass') Password
+                        input#pass.input(type='password', data-type='password')
+                    .group
+                        label.label(for='pass') Repeat Password
+                        input#pass.input(type='password', data-type='password')
+                    .group
+                        label.label(for='pass') Email Address
+                        input#pass.input(type='text')
+                    .group
+                        input.button(type='submit', value='Sign Up')
+                    .hr
+                    .foot-lnk
+                        label(for='tab-1') Already Member?
 
 block stylesheet
     link(rel="stylesheet" href="assets/css/login.css")
