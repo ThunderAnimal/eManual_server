@@ -105,8 +105,6 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 #main {
     position: absolute;
     left: 250px;
-    padding-right: 150px;
-    padding-left: 150px;
     right: 0;
     top: 150px;
     bottom: 0;
@@ -134,7 +132,6 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
     width: 125px;
     margin: 0 auto;
     height: 125px;
-    border-radius: 50%;
 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -212,7 +209,7 @@ ul#navigation li .icon img{
     bottom: 0;
     left: 0;
     width: 100%;
-    background: lightsalmon;
+    background: #f6755e;
     width: 250px;
     z-index: 2;
     height: 45px;
@@ -245,24 +242,30 @@ ul#navigation li .icon img{
 
 /* main part
  **************************************************/
+
 div#welcome{
     text-align: center;
+    background-color: #e1e1e1;
 }
 p.welcome{
-    padding: 8% 0;
-    color: orangered;
+    padding: 3% 0;
+    color: #f6755e;
     font-size:40px;
     letter-spacing: 30px;
     margin: auto;
 }
 div#info{
+    padding-top: 5%;
+    padding-right: 10%;
+    padding-left: 10%;
     overflow: auto;
 }
 div#info div{
-    padding-left: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
     float:left;
     height:25%;
-    width: 20%;
+    width: 25%;
 }
 div#info p{
     margin: 10px;
@@ -270,18 +273,24 @@ div#info p{
     text-align: center;
 }
 div#info p.N{
-    color:skyblue;
+    color: #25a2c3;
 }
 div#createRepr{
+    padding-right: 10%;
+    padding-left: 10%;
     padding-top: 8%;
     text-align: right;
 }
 div#separateContext{
+    padding-right: 10%;
+    padding-left: 10%;
     text-align: center;
     width: auto;
 }
 div#separateContext div#line{
     height: 0;
+    padding-right: 10%;
+    padding-left: 10%;
     border: 1px solid red;
 }
 div#separateContext div#textContent{
@@ -289,13 +298,15 @@ div#separateContext div#textContent{
 }
 div#separateContext div#textContent p{
     font-size: 20px;
-    color:skyblue;
-    width: 200px;
+    color:#25a2c3;
+    width: 220px;
     margin-left: auto;
     margin-right: auto;
     background-color: white;
 }
 div#LOR{
+    padding-right: 10%;
+    padding-left: 10%;
     height: 100px;
     width: auto;
 }
@@ -315,7 +326,7 @@ div#LOR ul li #pic{
     text-align: right;
     height: 100%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 0 8px rgba(82, 168, 236, 0.6);
-    background-color: gray;
+    background-color: #e1e1e1;
     border-radius: 3px;
     border: 1px solid rgb(86, 180, 239);
 }
