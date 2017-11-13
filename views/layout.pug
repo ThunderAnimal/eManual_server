@@ -1,12 +1,25 @@
 doctype html
 html
     head
-        title= eManual
-        link(rel="stylesheet", href="../assets/css/style.css")
-        block stylesheet
-    body
-        block sidebar
-        block main
+        title="eManual"
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet" href="assets/css/materialize.css")
+        link(rel="stylesheet" href="assets/css/fonts.css")
 
-        script(src='../assets/js/jquery-3.2.1.min.js')
+        block stylesheet
+
+    body
+        header
+            block header
+
+        main
+            block sidebar
+            block main
+
+        footer
+            block footer
+
+        script(src='assets/js/jquery-3.2.1.min.js')
+        script(src='assets/js/materialize.min.js')
         block javascript
