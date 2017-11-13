@@ -43,9 +43,9 @@ exports.findUser = function(email, done){
 
 exports.checkPassword = function(user, password){
     if (user instanceof Company) {
-        return user.password = password;
+        return user.password === password;
     }else if (user instanceof Representative){
-        return user.password = password;
+        return user.password === password;
     }
     return false;
 };

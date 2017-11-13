@@ -36,7 +36,7 @@ describe('Authentification REST API', function(){
         it('Wrong password - it should get a 401 Unauthorized status', function (done) {
             utils.chai.request(utils.server)
                 .post('/auth/login_api')
-                .send({"email":"a@b.com","password":"1233"})
+                .send({"email":"admin@sony.com","password":"1233"})
                 .end(function (err, res) {
                     res.should.have.status(401);
                     done();
