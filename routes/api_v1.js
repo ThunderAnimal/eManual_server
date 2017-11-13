@@ -10,12 +10,11 @@ router.get('/representives', policy.onlyCompanyAllowed, function (req, res, next
     res.send({data: req.user.name});
 });
 
-router.post('/representives/create', policy.onlyCompanyAllowed, function (req, res, next) {
+router.post('/representatives/create', policy.onlyCompanyAllowed, function (req, res, next) {
     //How to get the id from the company
-    console.log(req.user.id);
-
+    console.log(req.body);
     //TODO GET DATA FROM DATABASE
     console.log("hi");
-    res.send({name:"Bob"});
+    res.redirect("/company/dashboard");
 });
 module.exports = router;

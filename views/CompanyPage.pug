@@ -1,10 +1,10 @@
 extends layout
 
 block stylesheet
-    link(rel="stylesheet", href="assets/css/CompanyCss.css")
+    link(rel="stylesheet", href="../assets/css/CompanyCss.css")
 
 
-block content
+block sidebar
     #wrapper
         #top-space
 
@@ -22,12 +22,12 @@ block content
                         li
                             a(href='#Dashboard')
                                 .icon.icon-dashboard
-                                    img(src='assets/img/dashboard.png', alt='dash', height='35', width='35')
+                                    img(src='../assets/img/dashboard.png', alt='dash', height='35', width='35')
                                 .text Dashboard
                         li
                             a(href='#Manual')
                                 .icon.icon-manual
-                                    img(src='assets/img/manuals.png', alt='dash', height='35', width='35')
+                                    img(src='../assets/img/manuals.png', alt='dash', height='35', width='35')
                                 .text Manual
                         li
                             a(href='#......')
@@ -44,12 +44,12 @@ block content
                         li
                             a(href='#Settings')
                                 .icon.icon-setting
-                                    img(src='assets/img/settings.png', alt='dash', height='35', width='35')
+                                    img(src='../assets/img/settings.png', alt='dash', height='35', width='35')
                                 .text Settings
                         li.external
                             a(href='#Logout')
                                 .icon.icon-logout
-                                    img(src='assets/img/logout.png', alt='dash', height='35', width='35')
+                                    img(src='../assets/img/logout.png', alt='dash', height='35', width='35')
                                 .text Logout
             .social-icons
                 ul
@@ -62,34 +62,10 @@ block content
                     li
                         a(href='#')
                             i.icon-linkedin
-        #main
-            #welcome
-                p.welcome WELCOME
-            #info
-                #Manual
-                    p.N 0
-                    p.T Product Manuals
-                #Repr
-                    p.N 0
-                    p.T Representatives
-                #View
-                    p.N 0
-                    p.T Total Views
-                #Com
-                    p.N 0
-                    p.T Total Comments
-            #createRepr
-                img.addRep(src='assets/img/AddRep.png', alt='dash', height='35', width='35')
-            #separateContext
-                p.LOR ------------------------------List of Representatives------------------------------
-            #LOR
-                template#RepNameTemp
-                    li
-                        p
-                ul#RepUL
 
+block main
 
 block javascript
-    script(src='assets/js/companyPageControl.js')
+    script(src='../assets/js/companyPageControl.js')
 
 

@@ -9,10 +9,13 @@ router.get('/', function(req, res) {
 });
 
 //DASHBOARD (secure)
-router.get('/dashboard', policy.isLoggedIn, function (req,res) {
-    res.render('CompanyPage',{ title: 'Company Page'});
+router.get('/company/dashboard', policy.isLoggedIn, function (req,res) {
+    res.render('dashboard');
 });
 
+router.get('/company/createRep', policy.isLoggedIn, function (req,res) {
+    res.render('CompanyPage');
+});
 //LOGIN PAGE
 router.get('/login', function(req, res){
    res.render('login', {message: req.flash('loginMessage') });
