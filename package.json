@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "./bin/build-css &  node ./bin/www",
     "test": "mocha --timeout 10000",
-    "db:setup": "node ./bin/fillDatabase"
+    "db:setup": "node ./bin/fillDatabase",
+    "build-css": "./bin/build-css",
+    "watch-css": "./bin/watch-css"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -29,6 +31,8 @@
     "chai": "^4.0.2",
     "chai-http": "^3.0.0",
     "mocha": "^3.4.2",
+    "node-sass": "^4.6.1",
+    "nodemon": "^1.12.1",
     "pre-push": "^0.1.1"
   },
   "pre-push": [
