@@ -14,7 +14,6 @@ router.get('/company/dashboard', policy.isLoggedIn, function (req,res) {
 });
 
 router.get('/company/createRep', policy.isLoggedIn, function (req,res) {
-    console.log("wtf")
     res.render('createRep');
 });
 //LOGIN PAGE
