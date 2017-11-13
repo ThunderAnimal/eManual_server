@@ -4,11 +4,14 @@
 reqGet({method:"GET",url:"/api/v1/representives"})
     .then(function (data) {
         var json = JSON.parse(data);
-        document.querySelector("div#Repr p.N").innerText= json.data;
+        if(document.querySelector("div#Repr p.N") != null){
+            document.querySelector("div#Repr p.N").innerText= json.data;
+        }
+
         console.log(data);
     });
 
-document.querySelector("img.addRep").onclick = function () {
+/*document.querySelector("img.addRep").onclick = function () {
     var represent = {
         login:"testCase",
         password:"caseTest",
@@ -16,8 +19,8 @@ document.querySelector("img.addRep").onclick = function () {
         company:"0"
     };
     var json = JSON.stringify(represent);
-    reqPost({method:"POST",url:"/api/v1/representives/create",json:json}).then(function (data) {
-        var json = JSON.parse(data);
+    reqPost({method:"POST",url:"/api/v1/representatives/create",json:json}).then(function (data) {
+        //var json = JSON.parse(data);
         var RepNameTemp = document.getElementById('RepNameTemp'),
             ul = document.getElementById('RepUL'),
             clonedTemplate = RepNameTemp.content.cloneNode(true);
@@ -25,6 +28,7 @@ document.querySelector("img.addRep").onclick = function () {
         ul.appendChild(clonedTemplate);
     })
 };
+*/
 
 function reqGet(config) {
     return new Promise(function (resolve, reject) {

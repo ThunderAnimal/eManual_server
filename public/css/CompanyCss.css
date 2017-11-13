@@ -242,7 +242,7 @@ ul#navigation li .icon img{
 /* main part
  **************************************************/
 p.welcome{
-    padding: 50px 0;
+    padding: 8% 0;
     text-align: center;
     color: orangered;
     font-size:40px;
@@ -255,7 +255,7 @@ div#info{
     overflow: auto;
 }
 div#info div{
-    padding-left: 50px;
+    padding-left: 5%;
     float:left;
     height:25%;
     width: 20%;

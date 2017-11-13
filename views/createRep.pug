@@ -1,0 +1,21 @@
+extends CompanyPage
+
+block main
+    #main
+        #repField
+            p Ugly but used so real data can be send, fix when page is done
+            form(action='../api/v1/representatives/create', method='POST')
+                |   Login:
+                br
+                input(type='text', name='Login', value='')
+                br
+                |   Password:
+                br
+                input(type='text', name='Password', value='')
+                br
+                |   Name:
+                br
+                input(type='text', name='Name', value='')
+                br
+                br
+                input(type='submit', value='Submit')

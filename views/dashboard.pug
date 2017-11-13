@@ -19,24 +19,8 @@ block main
                     p.N 0
                     p.T Total Comments
             #createRepr
-                img.addRep(src='../assets/img/AddRep.png', alt='dash', height='35', width='35')
-            #repField
-                p Ugly but used so real data can be send, fix when page is done
-                form(action='../api/v1/representatives/create', method='POST')
-                    |   Login:
-                    br
-                    input(type='text', name='Login', value='')
-                    br
-                    |   Password:
-                    br
-                    input(type='text', name='Password', value='')
-                    br
-                    |   Name:
-                    br
-                    input(type='text', name='Name', value='')
-                    br
-                    br
-                    input(type='submit', value='Submit')
+                a(href='/company/createRep')
+                    img.addRep(src='../assets/img/AddRep.png', alt='dash', height='35', width='35')
             #separateContext
                 p.LOR ------------------------------List of Representatives------------------------------
             #LOR
