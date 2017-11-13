@@ -255,7 +255,7 @@ div#info{
     overflow: auto;
 }
 div#info div{
-    padding-left: 5%;
+    padding-left: 3%;
     float:left;
     height:25%;
     width: 20%;
@@ -269,14 +269,44 @@ div#info p.N{
     color:skyblue;
 }
 div#createRepr{
-    padding-top: 100px;
+    padding-top: 5%;
     text-align: right;
 }
 div#separateContext{
     text-align: center;
+    width: auto;
+}
+div#separateContext div#line{
+    height: 0;
+    border: 1px solid red;
+}
+div#separateContext div#textContent{
+    margin-top: -35px;
+}
+div#separateContext div#textContent p{
+    font-size: 20px;
+    color:skyblue;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+div#LOR{
+    width: auto;
 }
 div#LOR ul li{
     list-style-type: none;
     padding-left: 50px;
+    width: 15%;
+    height: 25%;
     float: left;
+}
+div#LOR ul li #pic{
+    height: 50px;
+    border: 1px solid blue;
+}
+div#LOR ul li p{
+    text-align: center;
+    margin: 0;
+    height: auto;
 }

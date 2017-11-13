@@ -7,7 +7,13 @@ reqGet({method:"GET",url:"/api/v1/representives"})
         if(document.querySelector("div#Repr p.N") != null){
             document.querySelector("div#Repr p.N").innerText= json.data;
         }
-
+        if(document.getElementById('RepUL') != null){
+            var RepNameTemp = document.getElementById('RepNameTemp'),
+                ul = document.getElementById('RepUL'),
+                clonedTemplate = RepNameTemp.content.cloneNode(true);
+            clonedTemplate.querySelector("p").innerText = "Bob";
+            ul.appendChild(clonedTemplate);
+        }
         console.log(data);
     });
 
@@ -21,11 +27,7 @@ reqGet({method:"GET",url:"/api/v1/representives"})
     var json = JSON.stringify(represent);
     reqPost({method:"POST",url:"/api/v1/representatives/create",json:json}).then(function (data) {
         //var json = JSON.parse(data);
-        var RepNameTemp = document.getElementById('RepNameTemp'),
-            ul = document.getElementById('RepUL'),
-            clonedTemplate = RepNameTemp.content.cloneNode(true);
-        clonedTemplate.querySelector("p").innerText = "Bob";
-        ul.appendChild(clonedTemplate);
+
     })
 };
 */
