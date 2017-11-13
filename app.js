@@ -15,7 +15,6 @@ var config = require("config");
 
 var policy = require('./app/moduls/routePolicy');
 
-
 //Set Up Server
 var app = express();
 

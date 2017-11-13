@@ -1,17 +1,18 @@
 //TODO need to find a way to seprate ajax and controller.
 //var ajax = require("./ajax");
+var Rep;
 
-reqGet({method:"GET",url:"/api/v1/representives"})
+reqGet({method:"GET",url:"/api/v1/representatives"})
     .then(function (data) {
         var json = JSON.parse(data);
-        if(document.querySelector("div#Repr p.N") != null){
+        if(document.querySelector("div#Repr p.N") !== null){
             document.querySelector("div#Repr p.N").innerText= json.data;
         }
-        if(document.getElementById('RepUL') != null){
+        if(document.getElementById('RepUL') !== null){
             var RepNameTemp = document.getElementById('RepNameTemp'),
                 ul = document.getElementById('RepUL'),
                 clonedTemplate = RepNameTemp.content.cloneNode(true);
-            clonedTemplate.querySelector("p").innerText = "Bob";
+            clonedTemplate.querySelector("p").innerText = "Bob Will";
             ul.appendChild(clonedTemplate);
         }
         console.log(data);

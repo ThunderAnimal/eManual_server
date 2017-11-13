@@ -1,13 +1,13 @@
 extends layout
 
 block stylesheet
-    link(rel="stylesheet", href="../assets/css/CompanyCss.css")
+    link(rel="stylesheet", href="/assets/css/CompanyCss.css")
 
 
 block sidebar
     #wrapper
         #top-space
-
+            p.logo eManual
         a.mobilemenu(href='#sidebar')
             i.icon-reorder
         #sidebar
@@ -22,12 +22,12 @@ block sidebar
                         li
                             a(href='#Dashboard')
                                 .icon.icon-dashboard
-                                    img(src='../assets/img/dashboard.png', alt='dash', height='35', width='35')
+                                    img(src='/assets/img/dashboard.png', alt='dash', height='35', width='35')
                                 .text Dashboard
                         li
                             a(href='#Manual')
                                 .icon.icon-manual
-                                    img(src='../assets/img/manuals.png', alt='dash', height='35', width='35')
+                                    img(src='/assets/img/manuals.png', alt='dash', height='35', width='35')
                                 .text Manual
                         li
                             a(href='#......')
@@ -44,12 +44,12 @@ block sidebar
                         li
                             a(href='#Settings')
                                 .icon.icon-setting
-                                    img(src='../assets/img/settings.png', alt='dash', height='35', width='35')
+                                    img(src= '/assets/img/settings.png', alt='dash', height='35', width='35')
                                 .text Settings
                         li.external
                             a(href='#Logout')
                                 .icon.icon-logout
-                                    img(src='../assets/img/logout.png', alt='dash', height='35', width='35')
+                                    img(src='/assets/img/logout.png', alt='dash', height='35', width='35')
                                 .text Logout
             .social-icons
                 ul
@@ -66,6 +66,6 @@ block sidebar
 block main
 
 block javascript
-    script(src='../assets/js/companyPageControl.js')
+    script(src='/assets/js/companyPageControl.js')
 
 
