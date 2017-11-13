@@ -1,9 +1,14 @@
 extends layout
 
-block main
-    h1= title
-    p Welcome to #{title}
-    a(href='/login') Login
+block header
+    div.navbar-fixed
+        nav#header
+            div.nav-wrapper
+                a.brand-logo(href="#") eManual
+                ul.right
+                    li
+                        a.button.alt(href='/login') Log in
 
-    if (message.length > 0)
-        p=message
+
+block stylesheet
+    link(rel="stylesheet" href="assets/css/index.css")
