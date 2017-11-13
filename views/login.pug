@@ -1,12 +1,22 @@
 extends layout
 
 block main
-    h1 Login
-    if (message.length > 0)
-        p=message
-    form(action="/auth/login" method="post")
-        div
-            input(type="text" name="email" placeholder="E-Mail")
-        div
-            input(type="password" name="password" placeholder="Password")
-        button(type="submit") Login
+    div(class="content")
+        div(class="login-box")
+            div(class="logo")
+                h2 eManual
+
+            if (message.length > 0)
+                p=message
+            form(action="/auth/login" method="post" class="login-form")
+                div(class="input-field")
+                    input(name="email" id="email" type="text")
+                    label(for="email") E-Mail
+                div(class="input-field")
+                    input(name="password" id="password" type="text")
+                    label(for="password") Password
+
+                button(type="submit" class="btn waves-effect waves-light") Login
+
+block stylesheet
+    link(rel="stylesheet" href="assets/css/login.css")
