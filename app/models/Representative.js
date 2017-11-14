@@ -12,5 +12,4 @@ var representativeSchema = mongoose.Schema({
     }
 });
 
-let Representative = mongoose.model("Representative",representativeSchema);
-module.exports = {Representative: Representative};
+module.exports = mongoose.model("Representative",representativeSchema);

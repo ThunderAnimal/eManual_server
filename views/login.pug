@@ -1,32 +1,40 @@
 extends layout
 
+
+block stylesheet
+    link(rel="stylesheet" href="assets/css/login.css")
+
 block main
-    .login-wrap
-        .login-html
-            input#tab-1.sign-in(type='radio', name='tab', checked='')
-            label.tab(for='tab-1') Sign In
-            input#tab-2.sign-up(type='radio', name='tab')
-            label.tab(for='tab-2') Sign Up
-            form.login-form(action="/auth/login" method="post" class="login-form")
-                .sign-in-htm
-                    .group
-                        label.label(for='user') E-Mail
-                        input#user.input(type='text' name='email' required=)
-                    .group
-                        label.label(for='pass') Password
-                        input#pass.input(type='password', data-type='password' name='password' required=)
-                    .group
-                        input#check(type='checkbox', checked='')
-                        label(for='check')
-                            span Keep me Signed in
-                    .group
-                        if (message.length > 0)
-                            p(class="login-error center")=message
-                        input.button(type='submit', value='Sign In')
-                    .hr
-                    .foot-lnk
-                        a(href='#forgot') Forgot Password?
-                .sign-up-htm
+    div.content
+        div.login-box
+            ul.tabs
+                li.tab
+                    a(href='#sign_in' class="active") Sign in
+                li.tab
+                    a(href='#sign_up') Sign up
+
+
+            div#sign_in.col.s12
+                form.login-form(action="/auth/login" method="post" class="login-form")
+                        .group
+                            label.label(for='user') E-MAIL
+                            input#user.input(type='text' name='email' required)
+                        .group
+                            label.label(for='pass') PASSWORD
+                            input#pass.input(type='password', data-type='password' name='password' required)
+                        .group
+                            input#check(type='checkbox' class="filled-in")
+                            label(for='check')
+                                span Keep me Signed in
+                        .group
+                            if (message.length > 0)
+                                p(class="login-error center")=message
+                            input.button(type='submit', value='Sign In')
+                        .hr
+                        .foot-lnk
+                            a(href='#forgot') Forgot Password?
+            div#sign_up.col.s12(style="display:none")
+                form.login-form(action="/auth/create" method="post" class="login-form")
                     .group
                         label.label(for='user') Username
                         input#user.input(type='text')
@@ -43,7 +51,7 @@ block main
                         input.button(type='submit', value='Sign Up')
                     .hr
                     .foot-lnk
-                        label(for='tab-1') Already Member?
+                        a#navigate_sign_in(href="#sign_in") Already Member?
 
-block stylesheet
-    link(rel="stylesheet" href="assets/css/login.css")
+block javascript
+    script(src='/assets/js/login.js')
