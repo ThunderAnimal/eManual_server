@@ -60,7 +60,7 @@ describe('Routes Policy REST API', function(){
                 .get('/api/v1/representatives' +'?token=' + token_company)
                 .end(function (err, res) {
                     res.should.have.status(200);
-                    res.body.should.be.a('object');
+                    res.body.should.be.a('array');
                     done();
                 });
         });
@@ -83,7 +83,6 @@ describe('Routes Policy REST API', function(){
                 .get('/api/v1/representatives' +'?token=' + token_company)
                 .end(function (err, res) {
                     res.should.have.status(200);
-                    res.body.should.be.a('object');
                     done();
                 });
         });
