@@ -5,7 +5,8 @@ var policy = require('../app/moduls/routePolicy');
 var context;
 
 
-router.get('/representatives', policy.onlyCompanyAllowed, function (req, res, next) {
+router.route('/representatives', policy.onlyCompanyAllowed)
+    .get( function (req, res, next) {
     // //How to get the id from the company
     // console.log(req.user._id);
 
@@ -19,9 +20,7 @@ router.get('/representatives', policy.onlyCompanyAllowed, function (req, res, ne
     }).catch(function(){
         console.log("Catching some exception");
     });
-});
-
-router.post('/representatives/create', policy.onlyCompanyAllowed, function (req, res, next) {
+}).post(function (req, res, next) {
     //How to get the id from the company;
     var NewRep = new rep({
         login : req.body.login,
@@ -30,11 +29,11 @@ router.post('/representatives/create', policy.onlyCompanyAllowed, function (req,
         company: req.user._id
     });
 
-    //TODO
-    //is rest-api so should send back an success or error
-    //and the client sould handle the redirect or showing error
-    NewRep.save().then(function () {
-        res.redirect("/company/dashboard");
+    NewRep.save().then(function (err,result) {
+        if(err){
+            res.send(err);
+        }else {
+        }
     });
 
 });
