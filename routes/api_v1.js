@@ -14,7 +14,7 @@ router.post('/representatives/create', policy.onlyCompanyAllowed, function (req,
     //How to get the id from the company
     console.log(req.body);
 
-    var NewRep = new rep.Representative({
+    var NewRep = new rep({
         login : req.body.login,
         password: req.body.password,
         name: req.body.name,
