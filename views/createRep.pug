@@ -1,21 +1,32 @@
 extends CompanyPage
 
+block append stylesheet
+    link(rel="stylesheet", href="/assets/css/createRep.css")
+
 block main
     #main
-        #repField
-            p Ugly but used so real data can be send, fix when page is done
-            form(action='../api/v1/representatives/create', method='POST')
-                |   Login:
-                br
-                input(type='text', name='login', value='')
-                br
-                |   Password:
-                br
-                input(type='text', name='password', value='')
-                br
-                |   Name:
-                br
-                input(type='text', name='name', value='')
-                br
-                br
-                input(type='submit', value='Submit')
+        #welcome
+            p.welcome Add New Representative
+        .content
+            form(action='/api/v1/representatives/create', method='POST')
+                div.row
+                    div.col.l7.s12
+                        div(class="input-field")
+                            input(name="name" id="name" type="text" required="true")
+                            label(for="password") Name
+                        div(class="input-field")
+                            input(name="login" id="login" type="text" required="true")
+                            label(for="login") E-Mail
+                        div(class="input-field")
+                            input(name="password" id="password" type="text" required="true")
+                            label(for="password") Password
+
+                    div.col.l4.offset-l1.s12
+                        div.photobox-wrapper
+                            div.photobox.z-depth-2
+                                <a class="btn-floating waves-effect waves-light materialize-red"><i class="material-icons">add</i></a>
+                div.row
+                    div.col.l7.s12
+                        div.buttons.center
+                            button(type="submit" class="waves-effect waves-light btn") Add
+                            a(href="../company/dashboard" class="waves-effect waves-light btn materialize-red") Cancel
