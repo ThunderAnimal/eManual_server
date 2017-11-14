@@ -311,11 +311,12 @@ div#LOR{
     width: auto;
 }
 div#LOR ul{
-    height: 100%;
+    height: 120%;
     width: auto;
 }
 div#LOR ul li{
     list-style-type: none;
+    padding-top: 2%;
     padding-left: 5%;
     padding-right: 5%;
     width: 20%;

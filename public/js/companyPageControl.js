@@ -4,18 +4,24 @@ var Rep;
 
 reqGet({method:"GET",url:"/api/v1/representatives"})
     .then(function (data) {
+        var context = data;
+        var repNumber = 0;
         var json = JSON.parse(data);
-        if(document.querySelector("div#Repr p.N") !== null){
-            document.querySelector("div#Repr p.N").innerText= json.data;
-        }
+        console.log(json);
+
         if(document.getElementById('RepUL') !== null){
-            var RepNameTemp = document.getElementById('RepNameTemp'),
-                ul = document.getElementById('RepUL'),
-                clonedTemplate = RepNameTemp.content.cloneNode(true);
-            clonedTemplate.querySelector("p").innerText = "Bob Will";
-            ul.appendChild(clonedTemplate);
+            json.forEach(function (representative) {
+                repNumber++;
+                var RepNameTemp = document.getElementById('RepNameTemp'),
+                    ul = document.getElementById('RepUL'),
+                    clonedTemplate = RepNameTemp.content.cloneNode(true);
+                clonedTemplate.querySelector("p").innerText = representative.name;
+                ul.appendChild(clonedTemplate);
+            });
         }
-        console.log(data);
+        if(document.querySelector("div#Repr p.N") !== null){
+            document.querySelector("div#Repr p.N").innerText= repNumber;
+        }
     });
 
 /*document.querySelector("img.addRep").onclick = function () {

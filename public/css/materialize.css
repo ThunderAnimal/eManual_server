@@ -3619,7 +3619,7 @@ small {
     position: absolute;
     bottom: 0;
     height: 2px;
-    background-color: #fab3a7;
+    background-color: #f6755f;
     will-change: left, right; }
 
 @media only screen and (max-width: 992px) {
@@ -4952,8 +4952,8 @@ form p:last-child {
   top: 0;
   width: 20px;
   height: 20px;
-  border: 2px solid #25a2c3;
-  background-color: #25a2c3;
+  border: 2px solid #f6755f;
+  background-color: #f6755f;
   z-index: 0; }
 
 [type="checkbox"].filled-in.tabbed:focus + label:after {
@@ -6031,7 +6031,7 @@ input[type=range]:focus::-ms-fill-upper {
   .tap-target-wrapper.open .tap-target-wave::after {
     visibility: visible;
     animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-    transition: opacity .3s, transform .3s, visibility 0s 1s; }
+    transition: opacity .3s, transform .3s, visibility 0s 1s; }
 
 .tap-target {
   position: absolute;
@@ -6066,7 +6066,7 @@ input[type=range]:focus::-ms-fill-upper {
     transition: transform .3s; }
   .tap-target-wave::after {
     visibility: hidden;
-    transition: opacity .3s, transform .3s, visibility 0s;
+    transition: opacity .3s, transform .3s, visibility 0s;
     z-index: -1; }
 
 .tap-target-origin {

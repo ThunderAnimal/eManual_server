@@ -35,7 +35,7 @@ describe('Routes Policy REST API', function(){
     describe('/GET Secure API - token needed', function () {
         it('without token - it should get a 401 status', function (done) {
             utils.chai.request(utils.server)
-                .get('/api/v1/representives')
+                .get('/api/v1/representatives')
                 .end(function (err, res) {
                     res.should.have.status(401);
                     res.body.should.be.a('object');
@@ -46,7 +46,7 @@ describe('Routes Policy REST API', function(){
         });
         it('invalid token - it should get a 401 status', function (done) {
             utils.chai.request(utils.server)
-                .get('/api/v1/representives' +'?token=' + "1234567890")
+                .get('/api/v1/representatives' +'?token=' + "1234567890")
                 .end(function (err, res) {
                     res.should.have.status(401);
                     res.body.should.be.a('object');
@@ -57,7 +57,7 @@ describe('Routes Policy REST API', function(){
         });
         it('valid token - it should get a 200 status', function (done) {
             utils.chai.request(utils.server)
-                .get('/api/v1/representives' +'?token=' + token_company)
+                .get('/api/v1/representatives' +'?token=' + token_company)
                 .end(function (err, res) {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -69,7 +69,7 @@ describe('Routes Policy REST API', function(){
     describe('/GET Secure API Company -  Company token needed', function () {
         it('Representative Token - it should get a 403 status', function (done) {
             utils.chai.request(utils.server)
-                .get('/api/v1/representives' +'?token=' + token_representative)
+                .get('/api/v1/representatives' +'?token=' + token_representative)
                 .end(function (err, res) {
                     res.should.have.status(403);
                     res.body.should.be.a('object');
@@ -80,7 +80,7 @@ describe('Routes Policy REST API', function(){
         });
         it('Company Token - is should get a 200 status', function (done) {
             utils.chai.request(utils.server)
-                .get('/api/v1/representives' +'?token=' + token_company)
+                .get('/api/v1/representatives' +'?token=' + token_company)
                 .end(function (err, res) {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
