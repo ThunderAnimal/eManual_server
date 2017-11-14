@@ -3085,8 +3085,8 @@ nav ul a span.badge {
         left: 100%; } }
 
 nav {
-  color: #fff;
-  background-color: #f6755f;
+  color: #f6755f;
+  background-color: #fff;
   width: 100%;
   height: 56px;
   line-height: 56px; }
@@ -3099,7 +3099,7 @@ nav {
       position: relative;
       line-height: normal; }
   nav a {
-    color: #fff; }
+    color: #f6755f; }
   nav i,
   nav [class^="mdi-"], nav [class*="mdi-"],
   nav i.material-icons {
@@ -3124,15 +3124,17 @@ nav {
       line-height: 56px; }
   nav .brand-logo {
     position: absolute;
-    color: #fff;
+    color: #f6755f;
     display: inline-block;
     font-size: 2.1rem;
-    padding: 0; }
+    padding-left: 1em; }
     nav .brand-logo.center {
+      padding: 0;
       left: 50%;
       transform: translateX(-50%); }
     @media only screen and (max-width: 992px) {
       nav .brand-logo {
+        padding: 0;
         left: 50%;
         transform: translateX(-50%); }
         nav .brand-logo.left, nav .brand-logo.right {
@@ -3166,7 +3168,7 @@ nav {
     nav ul a {
       transition: background-color .3s;
       font-size: 1rem;
-      color: #fff;
+      color: #f6755f;
       display: block;
       padding: 0 15px;
       cursor: pointer; }
@@ -3201,7 +3203,7 @@ nav {
         color: rgba(255, 255, 255, 0.7);
         transition: color .3s; }
       nav .input-field label.active i {
-        color: #fff; }
+        color: #f6755f; }
 
 .navbar-fixed {
   position: relative;
