@@ -7,7 +7,8 @@
     "test": "mocha --timeout 10000",
     "db:setup": "node ./bin/fillDatabase",
     "build-css": "./bin/build-css",
-    "watch-css": "./bin/watch-css"
+    "watch-css": "./bin/watch-css",
+    "create-acc": "node ./bin/Company_account.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -24,6 +25,7 @@
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "prompt": "^1.0.0",
     "pug": "^2.0.0-rc.4",
     "serve-favicon": "~2.4.5"
   },
