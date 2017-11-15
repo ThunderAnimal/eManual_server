@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
     res.render('index', { title: 'Hey', message: req.flash('errorMessage')});
 });
 
-//DASHBOARD (secure)
+//DASHBOARD - Company
 router.get('/company/dashboard', policy.isLoggedIn, function (req,res) {
     res.render('dashboard');
 });
@@ -16,6 +16,15 @@ router.get('/company/dashboard', policy.isLoggedIn, function (req,res) {
 router.get('/company/createRep', policy.isLoggedIn, function (req,res) {
     res.render('createRep');
 });
+
+//DASHBOARD - Representatives
+router.get('/representatives/dashboard', policy.isLoggedIn, function(req,res){
+    res.render('RepresentativesPage');
+});
+router.get('/representatives/createProduct', policy.isLoggedIn, function (req,res) {
+    res.render('createProduct');
+});
+
 //LOGIN PAGE
 router.get('/login', function(req, res){
    res.render('login', {message: req.flash('loginMessage') });

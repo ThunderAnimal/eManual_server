@@ -16,8 +16,7 @@ router.post('/login', passport.authenticate('local-login', {
         if(authManager.isUserCompany(req.user)){
             res.redirect('/company/dashboard');
         }else if(authManager.isUserRepresentative(req.user)){
-            //TODO define PAGE
-            res.sendStatus(200);
+            res.redirect('/representatives/dashboard');
         }else{
             //TODO define PAGE
             res.sendStatus(200);
