@@ -11,9 +11,6 @@ router.route('/representatives', policy.onlyCompanyAllowed)
     // console.log(req.user._id);
 
     rep.find({"company": req.user._id},{name:1},function (err, data) {
-        data.forEach(function(item){
-            console.log(item.name);
-        });
         context = data;
     }).then(function (resolve, reject) {
             res.send(context);
