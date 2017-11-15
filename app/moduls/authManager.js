@@ -120,6 +120,16 @@ exports.verifyUser = function(id, model, login_at, done){
     }
 };
 
+exports.getCompanyId = function(user){
+    if(this.isUserCompany(user)){
+        return user._id;
+    }else if(this.isUserRepresentative(user)){
+        return user.company;
+    }else{
+        return null;
+    }
+};
+
 exports.isUserCompany = function(user){
     return user.model === Company.collection.collectionName;
 };

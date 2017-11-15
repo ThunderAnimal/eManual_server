@@ -3,6 +3,10 @@ var router = express.Router();
 var rep = require('../app/models/Representative');
 var policy = require('../app/moduls/routePolicy');
 
+var upload = require('../app/moduls/fileUpload');
+
+var productManager = require('../app/moduls/ProductManager');
+
 
 //API representatives
 router.route('/representatives')
@@ -37,5 +41,10 @@ router.route('/representatives')
     });
 
 //API Products
+router.get('/products', productManager.getAll);
+router.get('/product/:_id', productManager.getOne);
+router.post('/product', policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resoruces'}]), productManager.create);
+router.put('/product/:_id', policy.onlyRepresentativeAllowed, productManager.update);
+router.delete('/product/:_id', policy.onlyRepresentativeAllowed, productManager.delete);
 
 module.exports = router;
