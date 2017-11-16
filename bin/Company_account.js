@@ -14,22 +14,22 @@ mongoose.Promise = global.Promise;
 //
 // Get two properties from the user: username and email
 //
-prompt.get(['username', 'email','password'], function (err, result) {
+prompt.get(['company_name', 'email','password'], function (err, result) {
     //
     // Log the results.
     //
     console.log('Command-line input received:');
-    console.log('  username: ' + result.username);
-    console.log('  email: ' + result.email);
-    console.log('password:'+ result.password);
+    console.log('   company-name: ' + result.company_name);
+    console.log('   email: ' + result.email);
+    console.log('   password:'+ result.password);
 
     var company = new CompanyModel({
         login: result.email,
         password: result.password,
-        name: result.username
+        name: result.company_name
     });
     company.save(function(){
-        console.log("The account is now created.")
+        console.log("The account is now created.");
         process.exit(0);
     });
 
