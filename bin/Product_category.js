@@ -20,4 +20,5 @@ prompt.get('categoryName',function (err,result) {
         console.log("The category is now created.")
         process.exit(0);
     });
+
 });
