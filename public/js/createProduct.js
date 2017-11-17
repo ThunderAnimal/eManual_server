@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+    $('select').material_select();
+    getCategorieData();
+
     var func_finish = function(){
         $('#btnCreateProduct').removeClass('disabled');
         $('div.loader').hide();
@@ -24,3 +27,19 @@ $(document).ready(function(){
         }
     });
 });
+
+var getCategorieData = function(){
+    $.get('api/v1/categories', function(result){
+        renderCategorieData(result);
+    });
+};
+
+var renderCategorieData = function(data){
+    var list = $('#categories');
+
+    for(var i = 0; i < data.length; i++){
+        list.append("<option value='" + data[i]._id + "' id='" + data[i]._id + "'>" + data[i].name  + "</option>");
+    }
+    list.material_select();
+
+};
