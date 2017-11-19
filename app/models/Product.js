@@ -7,8 +7,14 @@ var mongoose=require('mongoose');
 
 var productsSchema = mongoose.Schema({
     productName: String,
-    companyName: String,
-    categories: [String],
+    companyName: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company'
+    },
+    categories: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
+    }],
     productImages: [String],
     productResources: [String]
 });
