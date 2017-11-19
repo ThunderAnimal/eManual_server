@@ -4,6 +4,7 @@ var config = require("config");
 var CompanyModel = require('../app/models/Company');
 var RepresentativeModel = require('../app/models/Representative');
 var CategoryModel = require('../app/models/Category');
+var ProductModel = require('../app/models/Product');
 
 var dropData = function (done) {
     CompanyModel.remove({}, function(){
@@ -74,6 +75,28 @@ var createCategories = function(done){
     });
 };
 
+var createProduct = function (done){
+    var product1 = new ProductModel({
+        productName: "Sennheiser CX 275 S In -Ear Universal Mobile Headphone With Mic",
+        companyName: "Sennheiser",
+        categories: [
+            "Audio HeadPhones",
+            "Headsets",
+            "Mobile Accessories"
+        ],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/71PnRf3bfNL._SL1500_.jpg",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/231395302"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=SJ1icC_rfSM"
+        ]
+    });
+    product1.save(function(){
+        done();
+    });
+};
+
 mongoose.connect(config.database.connectionURL, { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
@@ -85,9 +108,11 @@ dropData(function () {
     console.log("Add Data");
     createData(function(){
         createCategories(function () {
-            console.log("---");
-            console.log("Finished");
-            process.exit(0);
+            createProduct(function() {
+                console.log("---");
+                console.log("Finished");
+                process.exit(0);
+            });
         });
     });
 });
