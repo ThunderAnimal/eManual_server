@@ -7,7 +7,7 @@ var mongoose=require('mongoose');
 
 var productsSchema = mongoose.Schema({
     productName: String,
-    companyName: {
+    company_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Company'
     },
