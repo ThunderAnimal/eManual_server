@@ -1,5 +1,5 @@
 var authManager = require("./authManager");
-
+var uploadUser = require("./uploadUser");
 var productModel = require("../models/Product");
 
 exports.getOne = function(req, res, next) {
@@ -12,9 +12,12 @@ exports.getAll = function(req, res, next){
 
 exports.create = function(req, res, next){
     const companyId = authManager.getCompanyId(req.user);
-
     const images = req.files.image;
     const resources = req.files.resoruces;
+    console.log('before');
+    uploadUser(images[0]).then(function (err, result) {
+        console.log(res);
+    });
 
     console.log(companyId);
     console.log(req.files);
