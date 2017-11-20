@@ -3,9 +3,10 @@ const restify = require("restify");
 const uuidv4 = require("uuid/v4");
 const Storage = require("@google-cloud/storage");
 const CLOUD_BUCKET = "product_resources";
+
 const storage = Storage({
     projectId: 'angelic-hold-186609',
-    keyFilename: 'C:/Users/pc/Documents/GitHub/eManual_server/My First Project-844704f257d4.json'
+    keyFilename: __dirname.substring(0,__dirname.length-10)+'My First Project-844704f257d4.json'
 })
 
 const bucket = storage.bucket(CLOUD_BUCKET);
@@ -13,6 +14,7 @@ const bucket = storage.bucket(CLOUD_BUCKET);
 const uploadUser = (content, cb) => {
 
     const filesList = content;
+    var count=0;
     var imgUrl=[];
     var resUrl=[];
     var urlList = [];
@@ -31,6 +33,7 @@ const uploadUser = (content, cb) => {
                 console.log(err)
             })
             .on('finish', () => {
+                count++;
                 var fileUrl = `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`;
                 console.log(fileUrl);
                 if(fileUrl.endsWith("jpg"||"png"||"jpeg"||"gif"||"tiff")){

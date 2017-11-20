@@ -11,16 +11,19 @@ exports.getAll = function(req, res, next){
 };
 
 exports.create = function(req, res, next){
+    /*
+    var pathname = window.location.pathname;
+    var keyPath = pathname.substring(0,pathname.length-20);
+    console.log(keyPath);
+    */
+
     const companyId = authManager.getCompanyId(req.user);
     const files = req.files;
     const images = req.files.image;
-    const resources = req.files.resoruces;
+    const resources = req.files.resources;
     const total = images.concat(resources);
 
     uploadUser(total ,function (extUrl) {
-
-        console.log("hi");
-        console.log(extUrl);
 
         var product = new productModel({
             productName : req.body.name,

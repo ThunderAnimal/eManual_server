@@ -30,6 +30,7 @@ module.exports = {
 router.route('/representatives')
     .all(policy.onlyCompanyAllowed)
     .get( function (req, res, next) {
+
         rep.find({"company": req.user._id},{name:1},function (err, data) {
             if(err){
                 console.log(err);
@@ -61,7 +62,7 @@ router.route('/representatives')
 //API Products
 router.get('/products', productManager.getAll);
 router.get('/product/:_id', productManager.getOne);
-router.post('/product', policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resoruces'}]), productManager.create);
+router.post('/product', policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.create);
 router.put('/product/:_id', policy.onlyRepresentativeAllowed, productManager.update);
 router.delete('/product/:_id', policy.onlyRepresentativeAllowed, productManager.delete);
 
