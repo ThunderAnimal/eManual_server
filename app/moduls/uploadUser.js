@@ -5,16 +5,18 @@ const Storage = require("@google-cloud/storage");
 const CLOUD_BUCKET = "product_resources";
 const storage = Storage({
     projectId: 'angelic-hold-186609',
-    keyFilename: '/path/to/file/downloaded/in/step/3'
+    keyFilename: 'C:/Users/pc/Documents/GitHub/eManual_server/My First Project-844704f257d4.json'
 })
+
 const bucket = storage.bucket(CLOUD_BUCKET);
 
-const uploadUser = (req, res) => {
+const uploadUser = (req, cb) => {
 
     const file = req;
-    console.log(file.mimetype);
-    const gcsname = uuidv4() + file.name;
+    const gcsname = uuidv4() + file.filename;
     const files = bucket.file(gcsname);
+    console.log(req);
+    console.log(gcsname);
 
     fs.createReadStream(file.path)
         .pipe(files.createWriteStream({
@@ -23,13 +25,11 @@ const uploadUser = (req, res) => {
             }
         }))
         .on("error", (err) => {
-        console.log('Internal Error')
+        console.log(err)
 })
 .on('finish', () => {
-        res.json({
-        success: true,
-        fileUrl: `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`
-    })
+        var fileUrl = `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`;
+        cb(fileUrl);
 });
 };
 

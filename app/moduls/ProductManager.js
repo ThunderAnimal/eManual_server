@@ -14,14 +14,15 @@ exports.create = function(req, res, next){
     const companyId = authManager.getCompanyId(req.user);
     const images = req.files.image;
     const resources = req.files.resoruces;
-    console.log('before');
-    uploadUser(images[0]).then(function (err, result) {
-        console.log(res);
+    var temp = res;
+    uploadUser(images[0],function (extUrl) {
+        console.log(extUrl);
     });
-
+    /*
     console.log(companyId);
     console.log(req.files);
     console.log(req.body);
+    */
 
     //TODO Strore the uplaod files somwhere and save the link in the mongodb as well
     var dummyImgageRefList = [];

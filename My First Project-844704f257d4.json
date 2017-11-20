@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "angelic-hold-186609",
+  "private_key_id": "844704f257d46184f29e507404762ebeec1a48b5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDa0paM5UJXR2gf\niGTqttFHahStMRITj21JjqKU+oiCfXoPrHZc7WIKF5fmIuxYPAl/yM+iyOiAAep1\nvWEErFUsfCsKuucE5xS3fYbrEcMW2//6veYx5Iij5aVu1in0OViGkMPwDzkFF/F4\nt5i/kKvIaLYNUlIRXeOEuaeFnoF39ExLwiend0nAxl/K1I9NS8yrAtL2qvJH/IzN\nSbapHN4GBqWjakvQx5F0qxnOmoysuuRDLK7z7zK96BnzdZEfW1sB2IKbR7x9uKhw\nmnzIYFkXUadL8M+rtPMeBOvT6a1mWBLVumhiPp0sHO1CnDDgKlOy1h7Zqn+85P4X\ns0djtOojAgMBAAECggEADn0+OcMecvAH/XqHECGd1ug3yUYEB+aJ2oKG0m2KZ3WO\nhQYq6jlPshJg3Py4AJmtGVh/IyzBdGRsFXK+P1R36VOpd/LrRCBW91Vo/xy0ecmE\neCJl4SzcPVoB68ZjjcfUTEi+qKEhaextcUxa4Whfb4w7bcNjKsI4Q/wVExxtPzd/\nDeHXx/15BiVq+3S69X+Xlj0u0SfQwhJgZYfteFWVuy0XT97qLSKUb85eSC9gHhe/\ntxuNSF/Ob2SppBkzaEKn/Z3koMOpWFkk3F/gpKEKz2/JY0T1+l1XOV3miBIBXLVs\nS5+MLQvnNMVM7QXuHEDZPuRwTaLYTNps/WWsWPoahQKBgQD14j982ozD7wlA9K2+\nhTRecsa1yAr5+12g4XaVykaRki983vb9m8WY9KDUpbvzud/WLw9X6zAEhXvnDB0x\nuXV58EsaGWpj5+IDhtfOHEkMt3sqeoL+jg635zywBox7Thl64ahzfTdWWOb2qb7q\nEw4CCsAMvHG/94bADBLPvKIS1wKBgQDj01IEkW+rRdcg97xPCuXmomBzSroq+x0y\nqMKUsA1seGS2rV7rr5R5uyIRkTB2O7C9Jg/s8I3uwv3KnkMihQNU03+l/4g2dRGJ\nTaao3GzA0+aaXsj51M3AWVCwul27CMWCn+0J8xf07rsKMXVLJ+c5sPQq8h5af3K4\n4RVRapRFlQKBgQDCPWTiANRKxD6PLbtDUn84TXtkhw8Ew+oG+ZVwZ0awIMea4ZhE\naBYE6ttSoUqFE0UcMjjwvz5DlB95Ojyl11hSZ90sVP+SxM/q8U7x565deWS2/ekV\npqtB5E4w0DuR/PRr+m/ULArXD4wFN7s1tq/ONSfZ59QETkoI1IDX0rBGKQKBgQDF\nz6rsCnciB+7lUhSvsK+zFBOYpy6DuSs93CeuwDm3j8Uqk9fR3c6V73SCOkUQs30e\njljPioJB6A5CCi4SX9lnooe30uorFnSWedSV02Wd+57DND9eJHZNZ39XI0nU5qXP\naBqBRA/t/AZssEq+abQrdEhcrYLLYtNyUQSYf2ikDQKBgHg04xsZS8IzZ85dBH9f\nZsuAaTDGziM+s+piyDS2hNfMe808xN3KrZSMKuH5cChAPmlMxEgu//uqrXykfb4L\na+yp2J/4+gj7yQVzteUAUtCjWBFF8U9PRUd/J0lyTv00OXQhOIPl447/n5eI7a9i\nh+FcN6vccZoE5NiBqGPFU4jA\n-----END PRIVATE KEY-----\n",
+  "client_email": "admin-480@angelic-hold-186609.iam.gserviceaccount.com",
+  "client_id": "104670303055815500078",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/admin-480%40angelic-hold-186609.iam.gserviceaccount.com"
+}
