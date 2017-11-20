@@ -1,42 +1,44 @@
-extends layout
+extends RepresentativesPage
 
 block append stylesheet
     link(rel="stylesheet", href="/assets/css/createRep.css")
 
 block main
-    .content
-        form#formCreateProduct(method="POST" action='/api/v1/product' enctype="multipart/form-data")
-            div.row
-                div.col.s12
-                    div(class="input-field")
-                        input(name="name" id="name" type="text" required="true")
-                        label(for="name") Name
+    #main
+        #company-logo
+            .company-logo
+        .content
+            form#formCreateProduct(method="POST" action='/api/v1/product' enctype="multipart/form-data")
+                div.row
+                    div.col.s12
+                        div(class="input-field")
+                            input(name="name" id="name" type="text" required="true")
+                            label(for="name") Name
 
-                    div(class="input-field")
-                        select(name="categories" id="categories" required="true" multiple="true")
-                            option(value="" disabled) Choose your categories
-                        label Category
+                        div(class="input-field")
+                            select(name="categories" id="categories" required="true" multiple="true")
+                                option(value="" disabled) Choose your categories
+                            label Category
 
-                    div(class="input-field file-field")
-                        div.btn
-                            span Image
-                            input(name="image" id="image" type="file" multiple="true" required="true")
-                        div.file-path-wrapper
-                            input(class="file-path validate" type="text" placeholder="Upload one or more images")
-                    div(class="input-field file-field")
-                        div.btn
-                            span Resources
-                            input(name="resources" id="resources" type="file" multiple="true" required="true")
-                        div.file-path-wrapper
-                            input(class="file-path validate" type="text" placeholder="Upload one or more recourse")
-
-            div.row
-                div.col.s12
-                    div.loader(style="display:none")
-                        div.progress
-                            div.indeterminate
-                    div.buttons.center
-                        button#btnCreateProduct(type="submit" class="waves-effect waves-light btn") Add
+                        div(class="input-field file-field")
+                            div.btn
+                                span Image
+                                input(name="image" id="image" type="file" multiple="true" required="true")
+                            div.file-path-wrapper
+                                input(class="file-path validate" type="text" placeholder="Upload one or more images")
+                        div(class="input-field file-field")
+                            div.btn
+                                span Resources
+                                input(name="resources" id="resources" type="file" multiple="true" required="true")
+                            div.file-path-wrapper
+                                input(class="file-path validate" type="text" placeholder="Upload one or more recourse")
+                div.row
+                    div.col.s12
+                        div.loader(style="display:none")
+                            div.progress
+                                div.indeterminate
+                        div.buttons.center
+                            button#btnCreateProduct(type="submit" class="waves-effect waves-light btn") Add
 
 block append javascript
     script(src='/assets/js/createProduct.js')
