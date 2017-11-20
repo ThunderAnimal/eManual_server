@@ -1,5 +1,4 @@
 const fs = require("fs");
-const restify = require("restify");
 const uuidv4 = require("uuid/v4");
 const Storage = require("@google-cloud/storage");
 const CLOUD_BUCKET = "product_resources";
@@ -7,7 +6,7 @@ const CLOUD_BUCKET = "product_resources";
 const storage = Storage({
     projectId: 'angelic-hold-186609',
     keyFilename: __dirname.substring(0,__dirname.length-10)+'My First Project-844704f257d4.json'
-})
+});
 
 const bucket = storage.bucket(CLOUD_BUCKET);
 
