@@ -14,8 +14,6 @@ const uploadUser = (content, cb) => {
 
     const filesList = content;
     var count=0;
-    var imgUrl=[];
-    var resUrl=[];
     var urlList = [];
 
     for(var i = 0; i < filesList.length; i++){
@@ -34,15 +32,8 @@ const uploadUser = (content, cb) => {
             .on('finish', () => {
                 count++;
                 var fileUrl = `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`;
-                console.log(fileUrl);
-                if(fileUrl.endsWith("jpg"||"png"||"jpeg"||"gif"||"tiff")){
-                    imgUrl.push(fileUrl);
-                }else{
-                    resUrl.push(fileUrl);
-                }
+                urlList.push(fileUrl);
                 if(filesList.length === count){
-                    urlList.push(imgUrl);
-                    urlList.push(resUrl);
                     cb(urlList);
                 }
             });

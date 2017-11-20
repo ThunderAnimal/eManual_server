@@ -11,59 +11,52 @@ exports.getAll = function(req, res, next){
 };
 
 exports.create = function(req, res, next){
-    /*
-    var pathname = window.location.pathname;
-    var keyPath = pathname.substring(0,pathname.length-20);
-    console.log(keyPath);
-    */
 
     const companyId = authManager.getCompanyId(req.user);
-    const files = req.files;
     const images = req.files.image;
     const resources = req.files.resources;
-    const total = images.concat(resources);
 
-    uploadUser(total ,function (extUrl) {
 
-        var product = new productModel({
-            productName : req.body.name,
-            company_id: companyId,
-            categories: req.body.categories,
-            productImages: extUrl[0],
-            productResources: extUrl[1]
-        });
+    var uplaodImgaes = function(images ,done){
+        if(images){
+            uploadUser(images, function (extUrl) {
+                done(extUrl);
+            });
+        }else{
+            done([]);
+        }
+    };
 
-        product.save(function (err, result) {
-            if(err){
-                console.log(err);
-                res.status(500).send({_error: true, err: err});
-            }else{
-                res.status(201).send(result);
-            }
+    var uploadResources = function(resources, done){
+        if(resources){
+            uploadUser(resources, function (extUrl) {
+                done(extUrl);
+            });
+        }else{
+            done([]);
+        }
+    };
+
+    uplaodImgaes(images, function(imageUrls){
+        uploadResources(resources, function(resourceUrls){
+            var product = new productModel({
+                productName : req.body.name,
+                company_id: companyId,
+                categories: req.body.categories,
+                productImages: imageUrls,
+                productResources: resourceUrls
+            });
+
+            product.save(function (err, result) {
+                if(err){
+                    console.log(err);
+                    res.status(500).send({_error: true, err: err});
+                }else{
+                    res.status(201).send(result);
+                }
+            });
         });
     });
-    /*
-    console.log(companyId);
-    console.log(req.files);
-    console.log(req.body);
-
-
-    //TODO Strore the uplaod files somwhere and save the link in the mongodb as well
-    var dummyImgageRefList = [];
-    var dummyResourcesRefList = [];
-    if(images){
-        for(var i = 0; i < images.length; i++){
-            dummyImgageRefList.push(images[i].originalname);
-        }
-    }
-
-    if(resources){
-        for(var j = 0; j < resources.length; j++){
-            dummyResourcesRefList.push(resources[j].originalname);
-        }
-    }
-    */
-
 };
 
 exports.update = function(req, res, next){
