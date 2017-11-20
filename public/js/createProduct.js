@@ -13,7 +13,8 @@ $(document).ready(function(){
         success: function (res) {
             func_finish();
             console.log(res);
-            alert("success");
+            $('#formCreateProduct').trigger("reset");
+            Materialize.toast('Product added!!!', 4000);
 
         },
         error: function (err) {
