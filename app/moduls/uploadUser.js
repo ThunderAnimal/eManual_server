@@ -10,27 +10,41 @@ const storage = Storage({
 
 const bucket = storage.bucket(CLOUD_BUCKET);
 
-const uploadUser = (req, cb) => {
+const uploadUser = (content, cb) => {
 
-    const file = req;
-    const gcsname = uuidv4() + file.filename;
-    const files = bucket.file(gcsname);
-    console.log(req);
-    console.log(gcsname);
+    const filesList = content;
+    var imgUrl=[];
+    var resUrl=[];
+    var urlList = [];
 
-    fs.createReadStream(file.path)
-        .pipe(files.createWriteStream({
-            metadata: {
-                contentType: file.mimetype
-            }
-        }))
-        .on("error", (err) => {
-        console.log(err)
-})
-.on('finish', () => {
-        var fileUrl = `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`;
-        cb(fileUrl);
-});
+    for(var i = 0; i < filesList.length; i++){
+        const gcsname = uuidv4() +'_'+filesList[i].originalname;
+        const files = bucket.file(gcsname);
+
+        fs.createReadStream(filesList[i].path)
+            .pipe(files.createWriteStream({
+                metadata: {
+                    contentType: filesList[i].mimetype
+                }
+            }))
+            .on("error", (err) => {
+                console.log(err)
+            })
+            .on('finish', () => {
+                var fileUrl = `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`;
+                console.log(fileUrl);
+                if(fileUrl.endsWith("jpg"||"png"||"jpeg"||"gif"||"tiff")){
+                    imgUrl.push(fileUrl);
+                }else{
+                    resUrl.push(fileUrl);
+                }
+                if(filesList.length === count){
+                    urlList.push(imgUrl);
+                    urlList.push(resUrl);
+                    cb(urlList);
+                }
+            });
+    }
 };
 
 module.exports = uploadUser;

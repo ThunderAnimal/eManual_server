@@ -12,17 +12,38 @@ exports.getAll = function(req, res, next){
 
 exports.create = function(req, res, next){
     const companyId = authManager.getCompanyId(req.user);
+    const files = req.files;
     const images = req.files.image;
     const resources = req.files.resoruces;
-    var temp = res;
-    uploadUser(images[0],function (extUrl) {
+    const total = images.concat(resources);
+
+    uploadUser(total ,function (extUrl) {
+
+        console.log("hi");
         console.log(extUrl);
+
+        var product = new productModel({
+            productName : req.body.name,
+            company_id: companyId,
+            categories: req.body.categories,
+            productImages: extUrl[0],
+            productResources: extUrl[1]
+        });
+
+        product.save(function (err, result) {
+            if(err){
+                console.log(err);
+                res.status(500).send({_error: true, err: err});
+            }else{
+                res.status(201).send(result);
+            }
+        });
     });
     /*
     console.log(companyId);
     console.log(req.files);
     console.log(req.body);
-    */
+
 
     //TODO Strore the uplaod files somwhere and save the link in the mongodb as well
     var dummyImgageRefList = [];
@@ -38,23 +59,8 @@ exports.create = function(req, res, next){
             dummyResourcesRefList.push(resources[j].originalname);
         }
     }
+    */
 
-    var product = new productModel({
-        productName : req.body.name,
-        company_id: companyId,
-        categories: req.body.categories,
-        productImages: dummyImgageRefList,
-        productResources: dummyResourcesRefList
-    });
-
-    product.save(function (err, result) {
-        if(err){
-            console.log(err);
-            res.status(500).send({_error: true, err: err});
-        }else{
-            res.status(201).send(result);
-        }
-    });
 };
 
 exports.update = function(req, res, next){
