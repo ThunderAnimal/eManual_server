@@ -1,0 +1,331 @@
+body {
+    font-size: 16px;
+    font-weight: 400;
+    background: #4D4D4D;
+}
+
+a,a:hover,a:focus {
+    text-decoration: none;
+    outline: 0;
+}
+
+
+/* mobile menu
+ **************************************************/
+.mobilemenu {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+    font-size: 30px;
+    padding: 2px 10px;
+    background: #2b2b2b;
+    display: block;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    display: none;
+}
+
+.mobilemenu:hover,.mobilemenu:focus {
+    color: #fff;
+}
+
+/* layout
+ **************************************************/
+#top-space{
+    top:0;
+    left:0;
+    right:0;
+    width: auto;
+   // height:30%;
+    text-align: left;
+    vertical-align: top;
+    position: absolute;
+    overflow: hidden;
+    background-image: url(../img/homepage-top-image.png);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
+    background-position: 0 -30px;
+}
+#top-space p.logo{
+    font-size: 400%;
+    color: white;
+    height: 140px;
+    box-sizing: border-box;
+    margin: 0!important;
+    padding: 40px 0 0 20px!important;
+}
+#main-nav {
+    text-align: left;
+    vertical-align: top;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 240px;
+    background: #2b2b2b;
+    position: absolute;
+    left: 0;
+    top: 140px;
+    bottom: 45px;
+    overflow-y: hidden;
+}
+
+#main {
+    position: absolute;
+    left: 240px;
+    right: 0;
+    top: 140px;
+    bottom: 0;
+    background: #fefefe;
+    overflow: auto;
+}
+
+/* sidebar
+ **************************************************/
+#nav-container {
+    position: relative;
+   // padding-bottom: 75px;
+    bottom: 0;
+    height: 100%;
+}
+
+#profile {
+    text-align: center;
+    padding: 25px 10px;
+    position: relative;
+}
+
+#welcome-repr h2{
+    font-weight: 300;
+    color: #f6755e;
+    font-family: Raleway;
+    font-size: 40px;
+    text-align: center;
+    margin: 0!important;
+    padding: 30px 0 0 0;
+}
+
+#profile .portrate {
+    background-image: url(../img/logo-sony.png);
+    width: 125px;
+    margin: 0 auto;
+    height: 125px;
+    border-radius: 50%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+#profile .title h2 {
+    font-size: 28px;
+    font-weight: 300;
+    color: #fff;
+    margin: 20px 0 10px 0;
+    font-family: Source Sans Pro;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+ul#navigation {
+    padding: 0;
+    margin: 0;
+}
+
+ul#navigation li {
+    display: block;
+    float: none;
+    clear: both;
+    background: #303030;
+    border-top: 1px solid #373737;
+    border-bottom: 1px solid #2B2B2B;
+
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    -o-transition: background 0.5s;
+    -ms-transition: background 0.5s;
+    transition: background 0.5s;
+}
+
+ul#navigation li a {
+    color: #ccc;
+    font-size: 14px;
+}
+
+ul#navigation li:hover,ul#navigation li:focus {
+    background: #363636;
+}
+
+ul#navigation li:hover a,ul#navigation li:focus a {
+    color: #f7f7f7;
+}
+
+ul#navigation li .text {
+    padding-left: 5%;
+    margin-left: 50px;
+    line-height: 42px;
+
+    -webkit-box-shadow: -3px 0 5px -4px #000;
+    box-shadow: -3px 0 5px -4px #000;
+}
+
+ul#navigation li .icon {
+    float: left;
+    width: 50px;
+    text-align: center;
+}
+
+ul#navigation li .icon img{
+    padding: 4px 0;
+}
+
+.social-icons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 240px;
+    background: #f6755e;
+    z-index: 2;
+    height: 45px;
+}
+
+.social-icons ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.social-icons li {
+    float: left;
+    width: 33%;
+    padding: 10px;
+    text-align: center;
+}
+
+.social-icons a {
+    color: #ccc;
+}
+
+.social-icons a:hover,.social-icons a:focus {
+    color: #fff;
+}
+
+.social-icons i {
+    font-size: 16px;
+}
+
+/* main part
+ **************************************************/
+
+div#company-logo{
+    text-align: center;
+    width: 100%;
+    height: 185px;
+    padding: 27px 0;
+}
+#company-logo .company-logo{
+    background-image: url(../img/logo-sony.png);
+    width: 125px;
+    height: 125px;
+    color: #25a2c3;
+    margin: auto;
+    border: 2px solid #25a2c3;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+div#manuals-list{
+    padding: 3% 10% 1% 10%;
+    overflow: auto;
+}
+div#manuals-list #manuals-list-title{
+    width: 100%;
+    text-align: center;
+    float: left;
+    font-size: 24px;
+    color: #e7434e;
+    font-weight: 300;
+    font-family: 'Raleway', 'Open Sans', sans-serif;
+}
+
+div#createRepr{
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 8%;
+    text-align: right;
+}
+div#separateContext{
+    padding-right: 10%;
+    padding-left: 10%;
+    text-align: center;
+    width: auto;
+}
+div#separateContext div#line{
+    height: 0;
+    padding-right: 10%;
+    padding-left: 10%;
+    border: 1px solid #b9b9b9;
+}
+
+div#LOM{
+    padding-right: 10%;
+    padding-left: 10%;
+    height: 100px;
+    width: auto;
+}
+div#LOM ul{
+    height: 120%;
+    width: auto;
+}
+
+div#LOM ul li #product-item {
+    height: 120px;
+    width: 100%;
+}
+
+div#LOM ul li #product-item > div{
+    display: inline-block;
+    vertical-align: top;
+}
+
+div#LOM ul li .product-pic{
+    height: 100%;
+    padding: 10px;
+    width: 14%;
+}
+
+div#LOM ul li .product-pic .pic{
+    text-align: right;
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+}
+
+div#LOM ul li .product-info{
+    width: 75%;
+    height: 100%;
+    padding: 20px 10px;
+}
+
+div#LOM ul li .product-info h3{
+    color: #25a2c3;
+    font-family: "Open Sans";
+    font-size: 18px;
+    margin: 0!important;
+}
+
+div#LOM ul li .product-info p{
+    color: #515151;
+    font-family: "Open Sans";
+    font-size: 14px;
+}
+
+div#LOM ul li .product-edit, div#LOM ul li .product-delete {
+    width: 5%;
+    text-align: center;
+}

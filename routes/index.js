@@ -19,7 +19,7 @@ router.get('/company/createRep', policy.isLoggedIn, function (req,res) {
 
 //DASHBOARD - Representatives
 router.get('/representatives/dashboard', policy.isLoggedIn, function(req,res){
-    res.render('RepresentativesPage');
+    res.render('RepresentativeDashboard');
 });
 router.get('/representatives/createProduct', policy.isLoggedIn, function (req,res) {
     res.render('createProduct');

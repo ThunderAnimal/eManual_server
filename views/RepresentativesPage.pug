@@ -1,4 +1,54 @@
 extends layout
 
+block stylesheet
+    link(rel="stylesheet", href="/assets/css/representative.css")
+
+block sidebar
+    #wrapper
+        #top-space
+            p.logo eManual
+        a.mobilemenu(href='#sidebar')
+            i.icon-reorder
+        #sidebar
+            #main-nav
+                #nav-container
+                    #welcome-repr
+                        h2 welcome
+                    #profile.clearfix
+                        .portrate.hidden-xs
+                        .title
+                            h2 name
+                    ul#navigation
+                        li
+                            a(href='#Dashboard')
+                                .icon.icon-dashboard
+                                    img(src='/assets/img/dashboard.png', alt='dash', height='35', width='35')
+                                .text Dashboard
+                        li
+                            a(href='#Manual')
+                                .icon.icon-manual
+                                    img(src='/assets/img/manuals.png', alt='dash', height='35', width='35')
+                                .text Manual
+                        li
+                            a(href='#Settings')
+                                .icon.icon-setting
+                                    img(src= '/assets/img/settings.png', alt='dash', height='35', width='35')
+                                .text Settings
+                        li.external
+                            a(href='/logout')
+                                .icon.icon-logout
+                                    img(src='/assets/img/logout.png', alt='dash', height='35', width='35')
+                                .text Logout
+            .social-icons
+                ul
+                    li
+                        a(href='#')
+                            i.icon-facebook
+                    li
+                         a(href='#')
+                            i.icon-twitter
+                    li
+                         a(href='#')
+                             i.icon-linkedin
 block main
-    a(href='/representatives/createProduct' class="btn") Add Product
+    //a(href='/representatives/createProduct' class="btn") Add Product
