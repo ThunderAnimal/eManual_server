@@ -39,7 +39,7 @@ a,a:hover,a:focus {
     left:0;
     right:0;
     width: auto;
-   // height:30%;
+    height:120px;
     text-align: left;
     vertical-align: top;
     position: absolute;
@@ -47,15 +47,23 @@ a,a:hover,a:focus {
     background-image: url(../img/homepage-top-image.png);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
     background-position: 0 -30px;
+    display: flex;
+    align-items: center;
+
 }
 #top-space p.logo{
     font-size: 400%;
     color: white;
-    height: 140px;
+    //height: 140px;
     box-sizing: border-box;
     margin: 0!important;
     padding: 40px 0 0 20px!important;
 }
+
+#top-space img.logo-pic{
+    margin-left: 20px;
+}
+
 #main-nav {
     text-align: left;
     vertical-align: top;
@@ -63,20 +71,20 @@ a,a:hover,a:focus {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    width: 240px;
+    width: 220px;
     background: #2b2b2b;
     position: absolute;
     left: 0;
-    top: 140px;
+    top: 120px;
     bottom: 45px;
     overflow-y: hidden;
 }
 
 #main {
     position: absolute;
-    left: 240px;
+    left: 220px;
     right: 0;
-    top: 140px;
+    top: 120px;
     bottom: 0;
     background: #fefefe;
     overflow: auto;
@@ -101,14 +109,14 @@ a,a:hover,a:focus {
     font-weight: 300;
     color: #f6755e;
     font-family: Raleway;
-    font-size: 40px;
+    font-size: 2em;
     text-align: center;
     margin: 0!important;
     padding: 30px 0 0 0;
 }
 
 #profile .portrate {
-    background-image: url(../img/logo-sony.png);
+    background-image: url(../img/representative-placeholder.jpg);
     width: 125px;
     margin: 0 auto;
     height: 125px;
@@ -120,11 +128,11 @@ a,a:hover,a:focus {
 }
 
 #profile .title h2 {
-    font-size: 28px;
+    font-size: 1.4em;
     font-weight: 300;
     color: #fff;
     margin: 20px 0 10px 0;
-    font-family: Source Sans Pro;
+    font-family: Source Sans Pro, sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -185,7 +193,7 @@ ul#navigation li .icon img{
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 240px;
+    width: 220px;
     background: #f6755e;
     z-index: 2;
     height: 45px;
@@ -237,25 +245,25 @@ div#company-logo{
     -moz-background-size: cover;
     background-size: cover;
 }
-div#manuals-list{
+div#manuals-list-header{
     padding: 3% 10% 1% 10%;
     overflow: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
-div#manuals-list #manuals-list-title{
+div#manuals-list-header #manuals-list-title{
     width: 100%;
     text-align: center;
     float: left;
-    font-size: 24px;
+    font-size: 22px;
     color: #e7434e;
     font-weight: 300;
     font-family: 'Raleway', 'Open Sans', sans-serif;
 }
 
-div#createRepr{
-    padding-right: 10%;
-    padding-left: 10%;
-    padding-top: 8%;
-    text-align: right;
+div#createProd{
+    padding: 3px;
 }
 div#separateContext{
     padding-right: 10%;
@@ -284,11 +292,10 @@ div#LOM ul{
 div#LOM ul li #product-item {
     height: 120px;
     width: 100%;
-}
-
-div#LOM ul li #product-item > div{
-    display: inline-block;
-    vertical-align: top;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 div#LOM ul li .product-pic{
