@@ -1,6 +1,6 @@
-var authManager = require("./authManager");
-var uploadUser = require("./uploadUser");
-var productModel = require("../models/Product");
+const authManager = require("./authManager");
+const uploadUser = require("./uploadUser");
+const productModel = require("../models/Product");
 
 exports.getOne = function(req, res, next) {
     next(new Error('not implemented'));
@@ -17,7 +17,7 @@ exports.create = function(req, res, next){
     const resources = req.files.resources;
 
 
-    var uplaodImgaes = function(images ,done){
+    const uplaodImgaes = function(images ,done){
         if(images){
             uploadUser(images, function (extUrl) {
                 done(extUrl);
@@ -27,7 +27,7 @@ exports.create = function(req, res, next){
         }
     };
 
-    var uploadResources = function(resources, done){
+    const uploadResources = function(resources, done){
         if(resources){
             uploadUser(resources, function (extUrl) {
                 done(extUrl);
@@ -39,7 +39,7 @@ exports.create = function(req, res, next){
 
     uplaodImgaes(images, function(imageUrls){
         uploadResources(resources, function(resourceUrls){
-            var product = new productModel({
+            const product = new productModel({
                 productName : req.body.name,
                 company_id: companyId,
                 categories: req.body.categories,

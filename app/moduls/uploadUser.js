@@ -10,13 +10,30 @@ const storage = Storage({
 
 const bucket = storage.bucket(CLOUD_BUCKET);
 
-const uploadUser = (content, cb) => {
+const delteFiles = function(files){
+    for(let i = 0; i < files.length; i++){
+        fs.unlink(files[i].path, function (err) {
+            if(err){
+                console.log(err)
+            }
+        });
+    }
+};
+
+const uploadUser = function (content, cb) {
 
     const filesList = content;
-    var count=0;
-    var urlList = [];
+    let count = 0;
+    let urlList = [];
 
-    for(var i = 0; i < filesList.length; i++){
+    let isFinish = function(){
+        if(filesList.length === count){
+            delteFiles(filesList);
+            cb(urlList);
+        }
+    };
+
+    for(let i = 0; i < filesList.length; i++){
         const gcsname = uuidv4() +'_'+filesList[i].originalname;
         const files = bucket.file(gcsname);
 
@@ -26,16 +43,20 @@ const uploadUser = (content, cb) => {
                     contentType: filesList[i].mimetype
                 }
             }))
-            .on("error", (err) => {
-                console.log(err)
-            })
-            .on('finish', () => {
+            .on("error", function (err) {
                 count++;
-                var fileUrl = `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`;
+
+                console.log(err);
+
+                isFinish();
+            })
+            .on('finish',function () {
+                count++;
+
+                const fileUrl = `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`;
                 urlList.push(fileUrl);
-                if(filesList.length === count){
-                    cb(urlList);
-                }
+
+                isFinish();
             });
     }
 };
