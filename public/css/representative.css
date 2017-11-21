@@ -44,12 +44,11 @@ a,a:hover,a:focus {
     vertical-align: top;
     position: absolute;
     overflow: hidden;
-    background-image: url(../img/homepage-top-image.png);
+    background-image: url(../img/header-all-pages.png);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
-    background-position: 0 -30px;
+    background-size: 100%;
     display: flex;
     align-items: center;
-
 }
 #top-space p.logo{
     font-size: 400%;
@@ -302,6 +301,7 @@ div#LOM ul li .product-pic{
     height: 100%;
     padding: 10px;
     width: 14%;
+    min-width: 100px;
 }
 
 div#LOM ul li .product-pic .pic{
