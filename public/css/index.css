@@ -23,6 +23,12 @@ header nav .brand-logo{
     padding-left: 0.5em;
 }
 
+header nav .brand-logo img{
+    margin-top: 10px;
+    max-height: 70px;
+    margin-left: 10px;
+}
+
 header nav .button{
     margin-top: 1.2em;
     margin-right: 2em;
