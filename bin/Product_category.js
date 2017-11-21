@@ -16,8 +16,13 @@ prompt.get('categoryName',function (err,result) {
     var category = new CategoryModel({
         name: result.categoryName
     });
-    category.save(function(){
-        console.log("The category is now created.")
+    category.save(function(err){
+        if(err){
+            console.log(err.message);
+        }else{
+            console.log("The category is now created.");
+        }
+
         process.exit(0);
     });
 
