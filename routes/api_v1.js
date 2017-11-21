@@ -8,24 +8,7 @@ var upload = require('../app/moduls/fileUpload');
 var categoryModel = require('../app/models/Category');
 
 var productManager = require('../app/moduls/ProductManager');
-/*
-server.post("/user/upload", User.uploadUser);
 
-import getUsers from "../app/moduls/getUsers";
-import getUser from "../app/moduls/getUser";
-import postUser from "../app/moduls/postUser";
-import putUser from "../app/moduls/putUser";
-import deleteUser from "../app/moduls/deleteUser";
-
-module.exports = {
-    getUser,
-    getUsers,
-    postUser,
-    putUser,
-    deleteUser,
-    uploadUser,
-};
-*/
 //API representatives
 router.route('/representatives')
     .all(policy.onlyCompanyAllowed)
