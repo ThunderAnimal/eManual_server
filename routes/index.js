@@ -19,10 +19,10 @@ router.get('/company/createRep', policy.isLoggedIn, function (req,res) {
 
 //DASHBOARD - Representatives
 router.get('/representatives/dashboard', policy.isLoggedIn, function(req,res){
-    res.render('RepresentativeDashboard');
+    res.render('RepresentativeDashboard', {name: req.user.name});
 });
 router.get('/representatives/createProduct', policy.isLoggedIn, function (req,res) {
-    res.render('createProduct');
+    res.render('createProduct', {name: req.user.name});
 });
 
 //LOGIN PAGE

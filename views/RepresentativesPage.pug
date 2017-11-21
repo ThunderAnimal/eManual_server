@@ -6,18 +6,19 @@ block stylesheet
 block sidebar
     #wrapper
         #top-space
-            p.logo MANUALPIK
+            //p.logo MANUALPIK
+            img.logo-pic(src='/assets/img/logo.png', alt='dash', height='80')
         a.mobilemenu(href='#sidebar')
             i.icon-reorder
         #sidebar
             #main-nav
                 #nav-container
                     #welcome-repr
-                        h2 welcome
+                        h2 Welcome
                     #profile.clearfix
                         .portrate.hidden-xs
                         .title
-                            h2 name
+                            h2=name
                     ul#navigation
                         li
                             a(href='/representatives/dashboard')
@@ -25,10 +26,10 @@ block sidebar
                                     img(src='/assets/img/dashboard.png', alt='dash', height='35', width='35')
                                 .text Dashboard
                         li
-                            a(href='/representatives/createProduct')
+                            a(href='#')
                                 .icon.icon-manual
                                     img(src='/assets/img/manuals.png', alt='dash', height='35', width='35')
-                                .text Add Product
+                                .text .......
                         li
                             a(href='#Settings')
                                 .icon.icon-setting
