@@ -26,8 +26,8 @@ exports.findUser = function(email, done){
             }
         });
     };
-    var findConsumer = function(user, done){
-        Consumer.findOne({username: user}, function (err, result) {
+    var findConsumer = function(email, done){
+        Consumer.findOne({email: email}, function (err, result) {
             if(err){
                 console.log(err);
                 done(null);
