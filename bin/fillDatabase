@@ -56,47 +56,193 @@ var createData = function(done){
 };
 
 var createCategories = function(done){
-    var cat1 = new CategoryModel({
-        name: "TV"
-    });
-    var cat2 = new CategoryModel({
-        name : "DVD-Player"
-    });
-    var cat3 = new CategoryModel({
-        name : "Hifi-System"
-    });
 
-    cat1.save(function () {
-        cat2.save(function () {
-            cat3.save(function () {
+   var cat = [
+        "Televisions",
+            "LED",
+            "OLED",
+            "Flat",
+            "Curved",
+            "TV Accessories",
+                "Cables",
+                "Cast Devices",
+
+        "Home Entertainment Systems",	"Bestsellers",
+            "Home Theater",
+            "Televisions",
+            "Speakers",
+                "Bluetooth Speakers",
+                "Bookshelf Speakers",
+                "Ceiling and In Wall Speakers",
+                "Centre Speakers",
+                "Outdoor Speakers",
+                "Satellite Speakers",
+                "Soundbar Speakers",
+                "Speaker Systems",
+                "Subwoofers",
+                "Tower Speakers",
+            "Sound Bars",
+            "DVD Players and Recorders",
+            "Streaming Media Players",
+            "Set Top Boxes",
+
+        "Projectors",
+            "Projector Accessories",
+                "Cables",
+                "Projector Screens",
+                "Projector Bags & Cases",
+                "Projector Lamps",
+                "Projector Lenses",
+                "Projector Mounts",
+                "Projector Stands",
+
+        "Modems and Routers",
+            "Modems",
+            "Routers",
+            "Data Cards and Dongles",
+            "Wireless USB Adaptors",
+            "Switch",
+            "Repeaters",
+
+        "Headphones",
+            "In Ear",
+            "On Ear",
+            "Over Ear",
+            "Noice Cancelling",
+            "Sports and Fitness",
+            "Tangle Free Cord",
+            "With Microphone",
+            "Withouth Microphone",
+
+        "MP3, Media Players & Accessories",
+            "Media Player Accessories",
+            "Boomboxes",
+            "DVD And Blu Ray Players",
+            "MP3 & MP4 Players",
+
+        "Audio & Video Accessories",
+            "3D Glasses",
+            "Cables",
+            "Headphones",
+            "Headphone Accessories",
+            "Projector Accessories",
+            "Remote Controls",
+            "TV Mounts & Stands",
+            "Turntable Cartridges & Needles",
+            "Video Converters",
+
+        "Cameras",
+            "Camera Accessories",
+                "Batteries & Charges",
+                "Caliberation Charts & Grey Cards",
+                "Camcorder & Video Accessories",
+                "Case & Bag Accessories",
+                "Cases & Bags",
+                "Cleaners",
+                "Digital Camera Accessories",
+                "Filters",
+                "Flash Accessories",
+                "Lens Accessories",
+                "Photo Studio & Lightning",
+                "Telescope Accessories",
+                "Tripod & Monopod Accessories",
+            "Action Cameras",
+            "Binoculars",
+            "Camcorders",
+            "Digital Cameras",
+            "Digital Picture Frames",
+            "Film Cameras",
+            "Flashes",
+            "Survelliance Cameras",
+            "Tripods & Monopods",
+            "Underwater Video & Photography",
+            "Video Projectors",
+
+        "DSLR Cameras",
+
+        "Camera Accessories",
+
+        "Musical Instruments & Professional Audio",
+            "Bass Guitars & Gear",
+            "DJ & VJ Equipment",
+            "Drums & Percussion",
+            "Guitars & Gear",
+            "Karaoke Equipment",
+            "Microphone",
+            "PA & Stage",
+            "Piano & Keyboard",
+            "Recording & Computer",
+            "String Instruments",
+            "Synthesizer & Sampler",
+            "Wind Instruments",
+
+        "Gaming Consoles",
+
+        "Heating & Cooling Appliances",
+            "Air Coolers",
+            "Air Purifiers",
+            "Dehumidifiers",
+            "Fans",
+            "Humidifiers",
+            "Room Heaters",
+            "Water Heaters",
+
+        "Air Conditioners",
+            "Window AC",
+            "Split AC",
+
+        "Refrigerators",
+            "Multi Door",
+            "Side By Side",
+            "Standard Double Door",
+            "Standard Single Door",
+
+        "Washing Machines",
+            "Top Loading",
+            "Front Loading",
+            "Fully Automatic",
+            "Semi Automatic",
+
+        "Kitchen & Home Appliances",
+            "Mixer Grinders",
+            "Juicers",
+            "Food Processors",
+            "Rice & Pasta Cookers",
+            "Induction Cookers",
+            "Espresso Machines",
+            "Over Toaster Grills",
+            "Kettles",
+            "Toasters",
+            "Sandwich Makers",
+            "Stand Mixers",
+    ];
+
+    var temp = [];
+
+    function increment (j){
+        j+=1;
+        return j;
+    }
+
+    function addCategories(x){
+        if (x === cat.length-1){
+            temp[0] = new CategoryModel({
+                name: cat[x]
+            });
+            temp[0].save(function(){
+                console.log("One");
                 done();
             });
-        });
-    });
+        }
+        else {
+            temp[1] = new CategoryModel({
+                name: cat[x]
+            });
+            temp[1].save(addCategories(increment(x)));
+        }
+    }
+    addCategories(0);
 };
-
-var createProduct = function (done){
-    var product1 = new ProductModel({
-        productName: "Sennheiser CX 275 S In -Ear Universal Mobile Headphone With Mic",
-        companyName: "Sennheiser",
-        categories: [
-            "Audio HeadPhones",
-            "Headsets",
-            "Mobile Accessories"
-        ],
-        productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/71PnRf3bfNL._SL1500_.jpg",
-            "https://johnlewis.scene7.com/is/image/JohnLewis/231395302"
-        ],
-        productResources: [
-            "https://www.youtube.com/watch?v=SJ1icC_rfSM"
-        ]
-    });
-    product1.save(function(){
-        done();
-    });
-};
-
 mongoose.connect(config.database.connectionURL, { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
@@ -108,11 +254,10 @@ dropData(function () {
     console.log("Add Data");
     createData(function(){
         createCategories(function () {
-            createProduct(function() {
+
                 console.log("---");
                 console.log("Finished");
                 process.exit(0);
-            });
         });
     });
 });
