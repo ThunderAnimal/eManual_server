@@ -17,7 +17,7 @@ block main
             div#sign_in.col.s12
                 form.login-form(action="/auth/login" method="post" class="login-form")
                         .group
-                            label.label(for='user') E-MAIL
+                            label.label(for='user') Login
                             input#user.input(type='text' name='email' required)
                         .group
                             label.label(for='pass') PASSWORD
@@ -34,19 +34,19 @@ block main
                         .foot-lnk
                             a(href='#forgot') Forgot Password?
             div#sign_up.col.s12(style="display:none")
-                form.login-form(action="/auth/create" method="post" class="login-form")
+                form#signUp.login-form(action="/auth/create" method="post" class="login-form")
                     .group
                         label.label(for='user') Username
-                        input#user.input(type='text')
+                        input#user.input(type='text',name = 'user' required)
                     .group
                         label.label(for='pass') Password
-                        input#pass.input(type='password', data-type='password')
+                        input#pass.input(type='password', name='pass' data-type='password' required)
                     .group
                         label.label(for='pass') Repeat Password
-                        input#pass.input(type='password', data-type='password')
+                        input#pass.input(type='password',name='repass', data-type='password' required)
                     .group
                         label.label(for='pass') Email Address
-                        input#pass.input(type='text')
+                        input#pass.input(type='text',name ='email' required)
                     .group
                         input.button(type='submit', value='Sign Up')
                     .hr

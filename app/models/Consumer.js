@@ -4,9 +4,9 @@ var mongoose = require("mongoose");
 
 var consumerSchema = mongoose.Schema({
 
-    username:{type: String,requires:true},
+    username:{type: String,unique:true,requires:true},
     password:{type:String,requires:true},
-    email: {type: String,requires:true}
+    email: {type: String,unique:true,requires:true}
 
 });
 

@@ -6,7 +6,7 @@ var policy = require('../app/moduls/routePolicy');
 var upload = require('../app/moduls/fileUpload');
 
 var categoryModel = require('../app/models/Category');
-var customerManager = require('../app/moduls/CustomerManager');
+var consumerManager = require('../app/moduls/ConsumerManager');
 var productManager = require('../app/moduls/ProductManager');
 
 //API representatives
@@ -43,7 +43,7 @@ router.route('/representatives')
     });
 
 //API Customer
-router.post('/customer',customerManager.create);
+
 
 //API Products
 router.get('/products', productManager.getAll);

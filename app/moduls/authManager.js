@@ -3,6 +3,7 @@ var config = require("config");
 
 var Company = require('../models/Company');
 var Representative = require('../models/Representative');
+var Consumer = require('../models/Consumer');
 
 exports.findUser = function(email, done){
     var findCompany = function(email, done){
@@ -25,6 +26,16 @@ exports.findUser = function(email, done){
             }
         });
     };
+    var findConsumer = function(user, done){
+        Consumer.findOne({username: user}, function (err, result) {
+            if(err){
+                console.log(err);
+                done(null);
+            }else{
+                done(result);
+            }
+        });
+    };
 
     findCompany(email, function(result){
         if(result){
@@ -34,7 +45,13 @@ exports.findUser = function(email, done){
                 if(result){
                     done(result);
                 }else{
-                    done(null);
+                    findConsumer(email, function(result){
+                        if(result){
+                            done(result);
+                        }else{
+                            done(null);
+                        }
+                    });
                 }
             });
         }
@@ -45,6 +62,8 @@ exports.checkPassword = function(user, password){
     if (user instanceof Company) {
         return user.password === password;
     }else if (user instanceof Representative){
+        return user.password === password;
+    }else if (user instanceof Consumer){
         return user.password === password;
     }
     return false;
@@ -57,6 +76,8 @@ exports.loginUser = function (user) {
         userJSON.model = Company.collection.collectionName;
     }else if(user instanceof Representative){
         userJSON.model = Representative.collection.collectionName;
+    }else if(user instanceof Consumer){
+        userJSON.model = Consumer.collection.collectionName;
     }else{
         var err = new Error('Model not Found');
         console.log(err);
@@ -97,6 +118,17 @@ exports.verifyUser = function(id, model, login_at, done){
         });
     };
 
+    var findConsumer = function(id, done){
+        Consumer.findOne({_id: id}, function (err, result) {
+            if(err){
+                console.log(err);
+                done(null);
+            }else{
+                done(result);
+            }
+        });
+    };
+
     var setupUser = function(user){
         if(!user)
             return done(null);
@@ -113,6 +145,8 @@ exports.verifyUser = function(id, model, login_at, done){
         findCompany(id, setupUser);
     }else if(model === Representative.collection.collectionName){
         findRepresentative(id, setupUser);
+    }else if(model === Consumer.collection.collectionName){
+        findConsumer(id, setupUser);
     }else{
         var err = new Error('Model not Found');
         console.log(err);
@@ -135,4 +169,7 @@ exports.isUserCompany = function(user){
 };
 exports.isUserRepresentative = function(user){
     return user.model === Representative.collection.collectionName;
+};
+exports.isUserConsumer= function(user){
+    return user.model === Consumer.collection.collectionName;
 };

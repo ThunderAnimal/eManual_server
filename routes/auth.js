@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+var consumerManager = require('../app/moduls/ConsumerManager');
 var authManager = require('../app/moduls/authManager');
 
 router.post('/login', passport.authenticate('local-login', {
@@ -17,12 +18,16 @@ router.post('/login', passport.authenticate('local-login', {
             res.redirect('/company/dashboard');
         }else if(authManager.isUserRepresentative(req.user)){
             res.redirect('/representatives/dashboard');
+        }else if(authManager.isUserConsumer(req.user)){
+            res.redirect('/consumer');
         }else{
             //TODO define PAGE
             res.sendStatus(200);
         }
 
     });
+
+router.post('/create',consumerManager.create);
 
 router.post('/login_api', passport.authenticate('api-login'),
     function(req, res){
