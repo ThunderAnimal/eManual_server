@@ -217,29 +217,24 @@ var createCategories = function(done){
             "Stand Mixers",
     ];
 
-    var temp = [];
 
-    function increment (j){
+   function increment (j){
         j+=1;
         return j;
     }
 
     function addCategories(x){
-        if (x === cat.length-1){
-            temp[0] = new CategoryModel({
-                name: cat[x]
-            });
-            temp[0].save(function(){
-                console.log("One");
+        const cat_entity = new CategoryModel({
+            name: cat[x]
+        });
+        cat_entity.save(function(err, result){
+            if (x === cat.length-1){
                 done();
-            });
-        }
-        else {
-            temp[1] = new CategoryModel({
-                name: cat[x]
-            });
-            temp[1].save(addCategories(increment(x)));
-        }
+            }else{
+                addCategories(increment(x));
+            }
+
+        });
     }
     addCategories(0);
 };
