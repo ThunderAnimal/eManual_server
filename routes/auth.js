@@ -1,14 +1,16 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
 
-var consumerManager = require('../app/moduls/ConsumerManager');
-var authManager = require('../app/moduls/authManager');
+const consumerManager = require('../app/moduls/ConsumerManager');
+const authManager = require('../app/moduls/authManager');
+
+router.post('/create',consumerManager.create);
 
 router.post('/login', passport.authenticate('local-login', {
     failureRedirect : '/login',
     failureFlash : true }),
-    function(req, res){
+    function(req, res, next){
         if(!req.user){
             req.flash('loginMessage', 'Oops! Something went wrong.');
             return res.redirect('/login');
@@ -21,13 +23,11 @@ router.post('/login', passport.authenticate('local-login', {
         }else if(authManager.isUserConsumer(req.user)){
             res.redirect('/consumer');
         }else{
-            //TODO define PAGE
-            res.sendStatus(200);
+            let err = new Error("Not Redirect after Login defined");
+            err.status = 500;
+            next(err);
         }
-
     });
-
-router.post('/create',consumerManager.create);
 
 router.post('/login_api', passport.authenticate('api-login'),
     function(req, res){
@@ -36,6 +36,45 @@ router.post('/login_api', passport.authenticate('api-login'),
         }
 
         res.send({token: authManager.generateJWT(req.user)});
+    });
+
+
+router.get('/google', passport.authenticate('google-oauth', { scope: ['profile', 'email'] }));
+
+router.get('/google/callback', passport.authenticate('google-oauth', {
+    failureRedirect: '/login',
+    failureFlash : true }),
+    function(req, res) {
+        if(!req.user){
+            req.flash('loginMessage', 'Oops! Something went wrong.');
+        }
+
+        if(authManager.isUserConsumer(req.user)){
+            res.redirect('/consumer');
+        }else{
+            let err = new Error("Not Redirect after Login defined");
+            err.status = 500;
+            next(err);
+        }
+    });
+
+router.get('/facebook', passport.authenticate('facebook-oauth', { scope: ['email', 'public_profile'] }));
+
+router.get('/facebook/callback', passport.authenticate('facebook-oauth', {
+    failureRedirect: '/login',
+    failureFlash : true}),
+    function(req, res) {
+        if(!req.user){
+            req.flash('loginMessage', 'Oops! Something went wrong.');
+        }
+
+        if(authManager.isUserConsumer(req.user)){
+            res.redirect('/consumer');
+        }else{
+            let err = new Error("Not Redirect after Login defined");
+            err.status = 500;
+            next(err);
+        }
     });
 
 module.exports = router;

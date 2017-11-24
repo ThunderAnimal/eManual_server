@@ -18,3 +18,45 @@ exports.create = function (req, res, next) {
     });
 
 };
+
+exports.findOrCreateGoogle = function(profile, accessToken, done){
+    const email = profile.emails[0].value;
+    const username = profile.name.givenName;
+    const img = profile.photos[0].value;
+    consumerModel.findOne({email : email}, function(err, result){
+        if(!result){
+            let consumer = new consumerModel({
+                username: username,
+                password: accessToken,
+                email: email,
+                image: img
+            });
+            consumer.save(done);
+        }else{
+            result.username = username;
+            result.image = img;
+            result.save(done);
+        }
+    });
+};
+
+exports.findOrCreateFacebook = function(profile, accessToken, done){
+    const email = profile.emails[0].value;
+    const username = profile.name.givenName;
+    const img = profile.photos[0].value;
+    consumerModel.findOne({email : email}, function(err, result){
+        if(!result){
+            let consumer = new consumerModel({
+                username: username,
+                password: accessToken,
+                email: email,
+                image: img
+            });
+            consumer.save(done);
+        }else{
+            result.username = username;
+            result.image = img;
+            result.save(done);
+        }
+    });
+};

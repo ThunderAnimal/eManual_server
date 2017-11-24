@@ -27,7 +27,7 @@ router.get('/representatives/createProduct', policy.isLoggedIn, function (req,re
 
 //Consumer
 router.get('/consumer', policy.isLoggedIn, function (req,res) {
-    res.render('ConsumerPage');
+    res.render('ConsumerPage', {name: req.user.username});
 });
 //LOGIN PAGE
 router.get('/login', function(req, res){

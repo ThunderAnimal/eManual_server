@@ -1,6 +1,12 @@
-var LocalStrategy   = require('passport-local').Strategy;
+const LocalStrategy   = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 
-var authManager = require('./authManager');
+const config = require("config");
+const utils = require("./utils");
+
+const authManager = require('./authManager');
+const consumerManager = require('./ConsumerManager');
 
 module.exports = function(passport) {
     passport.use('local-login', new LocalStrategy({
@@ -36,5 +42,42 @@ module.exports = function(passport) {
                 return done(null, authManager.loginUser(user));
             });
         }));
+
+    passport.use('google-oauth', new GoogleStrategy({
+            clientID: config.oauth.google.client_id,
+            clientSecret: config.oauth.google.client_secret,
+            callbackURL:  utils.getServerUrl(config.server.adresse, config.server.port) + "/auth/google/callback"
+        },
+        function(accessToken, refreshToken, profile, done) {
+            consumerManager.findOrCreateGoogle(profile, accessToken, function(err, user){
+                if(err)
+                    return done(err, false);
+
+                if(!user)
+                   return done(null, false);
+
+               return done(null, authManager.loginUser(user));
+            });
+        }
+    ));
+
+    passport.use('facebook-oauth', new FacebookStrategy({
+            clientID: config.oauth.facebook.client_id,
+            clientSecret: config.oauth.facebook.client_secret,
+            callbackURL: utils.getServerUrl(config.server.adresse, config.server.port) + "/auth/facebook/callback",
+            profileFields: ['id', 'emails', 'name', 'displayName', 'picture.type(large)']
+        },
+        function(accessToken, refreshToken, profile, done) {
+            consumerManager.findOrCreateFacebook(profile, accessToken, function(err, user){
+                if(err)
+                    return done(err, false);
+
+                if(!user)
+                    return done(null, false);
+
+                return done(null, authManager.loginUser(user));
+            });
+        }
+    ));
 
 };

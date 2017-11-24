@@ -30,6 +30,12 @@ block main
                             if (message.length > 0)
                                 p(class="login-error center")=message
                             input.button(type='submit', value='Sign In')
+
+                        .oauth-buttons
+                            .group
+                                a(href="/auth/google" class="loginBtn loginBtn--google") Sign In with Google
+                            .group
+                                a(href="/auth/facebook" class="loginBtn loginBtn--facebook") Sign In with Facebook
                         .hr
                         .foot-lnk
                             a(href='#forgot') Forgot Password?
