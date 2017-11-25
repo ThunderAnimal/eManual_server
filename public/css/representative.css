@@ -39,7 +39,7 @@ a,a:hover,a:focus {
     left:0;
     right:0;
     width: auto;
-    height:120px;
+    height: 16%;
     text-align: left;
     vertical-align: top;
     position: absolute;
@@ -53,7 +53,6 @@ a,a:hover,a:focus {
 #top-space p.logo{
     font-size: 400%;
     color: white;
-    //height: 140px;
     box-sizing: border-box;
     margin: 0!important;
     padding: 40px 0 0 20px!important;
@@ -70,23 +69,24 @@ a,a:hover,a:focus {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    width: 220px;
+    width: 15%;
     background: #2b2b2b;
     position: absolute;
     left: 0;
-    top: 120px;
+    top: 16%;
     bottom: 45px;
     overflow-y: hidden;
 }
 
 #main {
-    position: absolute;
-    left: 220px;
+    position: fixed;
     right: 0;
-    top: 120px;
-    bottom: 0;
+    top: 16%;
+    left: 15%;
     background: #fefefe;
     overflow: auto;
+    width: 85%;
+    height: 100%;
 }
 
 /* sidebar
@@ -142,7 +142,6 @@ ul#navigation {
 }
 
 ul#navigation li {
-    display: block;
     float: none;
     clear: both;
     background: #303030;
@@ -159,6 +158,8 @@ ul#navigation li {
 ul#navigation li a {
     color: #ccc;
     font-size: 14px;
+    display: flex;
+    flex-direction: row;
 }
 
 ul#navigation li:hover,ul#navigation li:focus {
@@ -171,7 +172,6 @@ ul#navigation li:hover a,ul#navigation li:focus a {
 
 ul#navigation li .text {
     padding-left: 5%;
-    margin-left: 50px;
     line-height: 42px;
 
     -webkit-box-shadow: -3px 0 5px -4px #000;
@@ -179,20 +179,19 @@ ul#navigation li .text {
 }
 
 ul#navigation li .icon {
-    float: left;
     width: 50px;
     text-align: center;
-}
-
-ul#navigation li .icon img{
-    padding: 4px 0;
+    font-size: 180%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .social-icons {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 220px;
+    width: 15%;
     background: #f6755e;
     z-index: 2;
     height: 45px;
@@ -245,7 +244,7 @@ div#company-logo{
     background-size: cover;
 }
 div#manuals-list-header{
-    padding: 3% 10% 1% 10%;
+    padding: 3% 10% 0.5% 10%;
     overflow: auto;
     display: flex;
     flex-direction: row;
@@ -263,6 +262,7 @@ div#manuals-list-header #manuals-list-title{
 
 div#createProd{
     padding: 3px;
+    font-size: 150%;
 }
 div#separateContext{
     padding-right: 10%;
@@ -289,19 +289,22 @@ div#LOM ul{
 }
 
 div#LOM ul li #product-item {
-    height: 120px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding: 10px;
 }
 
 div#LOM ul li .product-pic{
     height: 100%;
     padding: 10px;
-    width: 14%;
+    width: 13%;
     min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 div#LOM ul li .product-pic .pic{
@@ -314,7 +317,7 @@ div#LOM ul li .product-pic .pic{
 }
 
 div#LOM ul li .product-info{
-    width: 75%;
+    width: 77%;
     height: 100%;
     padding: 20px 10px;
 }
