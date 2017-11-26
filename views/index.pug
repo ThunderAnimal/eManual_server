@@ -9,7 +9,19 @@ block header
                 ul.right
                     li
                         a.button.alt(href='/login') Log in
-
+            div
+                a(class='dropdown-button btn' href='#' data-activates='dropdown1') categories
+                ul(id='dropdown1' class='dropdown-content')
+                    li
+                        a(href="#!") one
+                    li
+                        a(href="#!") two
+                    li
+                        a(href="#!") three
+                    li
+                        a(href="#!") four
 
 block stylesheet
     link(rel="stylesheet" href="assets/css/index.css")
+block javascript
+    script(src='/assets/js/index.js')

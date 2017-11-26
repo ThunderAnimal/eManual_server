@@ -39,5 +39,10 @@ router.get('/logout', function(req, res){
    req.logout();
    res.redirect('/');
 });
+router.get('/category',function (req,res) {
+    console.log(req.query);
+    res.render('categories');
+
+});
 
 module.exports = router;
