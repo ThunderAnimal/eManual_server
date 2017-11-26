@@ -35,10 +35,26 @@ const createCompanys= function(done){
         name: "Samsung"
     });
 
+    const company4 = new CompanyModel({
+        login: "admin@google.com",
+        password: "1234",
+        name: "Google"
+    });
+
+    const company5 = new CompanyModel({
+        login: "admin@amazon.com",
+        password: "1234",
+        name: "Amazon"
+    });
+
     company1.save(function() {
         company2.save(function () {
            company3.save(function () {
-               done([company1, company2, company3]);
+               company4.save(function(){
+                   company5.save(function(){
+                       done([company1, company2, company3, company4, company5]);
+                   });
+               });
            });
         });
     });
@@ -98,11 +114,12 @@ const createCategories = function(done){
             "OLED",
             "Flat",
             "Curved",
+            "Smart",
             "TV Accessories",
                 "Cables",
                 "Cast Devices",
-
-        "Home Entertainment Systems",	"Bestsellers",
+        "Bestsellers",
+        "Home Entertainment Systems",
             "Home Theater",
             "Televisions",
             "Speakers",
@@ -122,6 +139,10 @@ const createCategories = function(done){
             "Set Top Boxes",
 
         "Projectors",
+            "Gaming Projectors",
+            "Business & Education Projectors",
+            "Home Theater",
+            "Portable",
             "Projector Accessories",
                 "Cables",
                 "Projector Screens",
@@ -280,18 +301,27 @@ const createCategories = function(done){
 const createProducts = function (companies, categories, done) {
     let companySamsung;
     let companySony;
+    let companyGoogle, companyAmazon;
     for(let i = 0; i < companies.length; i++){
         if(companies[i].name === "Samsung"){
             companySamsung = companies[i];
         }else if(companies[i].name === "Sony"){
             companySony = companies[i];
         }
+        else if (companies[i].name === "Google"){
+            companyGoogle = companies[i];
+        }
+        else if (companies[i].name === "Amazon"){
+            companyAmazon = companies[i];
+        }
     }
 
     let categoryTv;
     let categoryCabel;
     let categoryProjector;
-
+    let categoryLED, categoryOLED, categoryFLAT, categoryCastDevices, categorySmart, categoryTVAccessories, categoryBestsellers;
+    let categoryGamingProjectors, categoryBusinessProjectors, categoryHomeTheater, categoryPortable, categoryProjectorAcc;
+    let categoryHomeEntertainmentSystems, categorySpeakers, categoryBluetoothSpeakers, categoryBookshelfSpeakers, categoryCeilingSpeakers, categoryCentreSpeakers, categoryOutdoorSpeakers, categorySoundBars;
     for(let k = 0; k < categories.length; k++){
         if(categories[k].name === "Televisions"){
             categoryTv = categories[k];
@@ -300,12 +330,75 @@ const createProducts = function (companies, categories, done) {
         }else if(categories[k].name === "Projectors"){
             categoryProjector = categories[k];
         }
+        else if(categories[k].name === "LED"){
+            categoryLED = categories[k];
+        }
+        else if(categories[k].name === "OLED"){
+            categoryOLED = categories[k];
+        }
+        else if(categories[k].name === "Flat"){
+            categoryFLAT = categories[k];
+        }
+        else if(categories[k].name === "TV Accessories"){
+            categoryTVAccessories = categories[k];
+        }
+        else if(categories[k].name === "Cast Devices"){
+            categoryCastDevices = categories[k];
+        }
+        else if(categories[k].name === "Smart"){
+            categorySmart = categories[k];
+        }
+        else if(categories[k].name === "Bestsellers"){
+            categoryBestsellers = categories[k];
+        }
+        else if(categories[k].name === "TV Accessories"){
+            categoryTVAccessories = categories[k];
+        }
+        else if(categories[k].name === "Gaming Projectors"){
+            categoryGamingProjectors = categories[k];
+        }
+        else if(categories[k].name === "Business & Education Projectors"){
+            categoryBusinessProjectors = categories[k];
+        }
+        else if(categories[k].name === "Home Theater"){
+            categoryHomeTheater = categories[k];
+        }
+        else if(categories[k].name === "Portable"){
+            categoryPortable = categories[k];
+        }
+        else if(categories[k].name === "Projector Accessories"){
+            categoryProjectorAcc = categories[k];
+        }
+        else if(categories[k].name === "Home Entertainment Systems"){
+            categoryHomeEntertainmentSystems = categories[k];
+        }
+        else if(categories[k].name === "Speakers"){
+            categorySpeakers = categories[k];
+        }
+        else if(categories[k].name === "Bluetooth Speakers"){
+            categoryBluetoothSpeakers = categories[k];
+        }
+        else if(categories[k].name === "Bookshelf Speakers"){
+            categoryBookshelfSpeakers = categories[k];
+        }
+        else if(categories[k].name === "Ceiling and In Wall Speakers"){
+            categoryCeilingSpeakers = categories[k];
+        }
+        else if(categories[k].name === "Centre Speakers"){
+            categoryCentreSpeakers = categories[k];
+        }
+        else if(categories[k].name === "Outdoor Speakers"){
+            categoryOutdoorSpeakers = categories[k];
+        }
+        else if(categories[k].name === "Sound Bars"){
+            categorySoundBars = categories[k];
+        }
     }
 
     const productSamsungTv = new ProductModel({
         productName : "SamsungTV55",
         company_id: companySamsung._id,
-        categories: [categoryTv],
+        categories: [categoryTv, categoryOLED, categoryFLAT, categoryBestsellers],
         productImages: [
             "https://storage.googleapis.com/product_resources/5c379607-0992-4b86-bf2e-baf9c3f5aada_41fcmkyAH8L._SL1000_.jpg",
             "https://storage.googleapis.com/product_resources/a3b8737b-ca30-4ed6-8cdb-3d58ce0a17b4_41ZTemqcTbL.jpg",
@@ -321,7 +414,7 @@ const createProducts = function (companies, categories, done) {
     const productSonyHdmiCabel = new ProductModel({
         productName : "HDMI Cabel",
         company_id: companySamsung._id,
-        categories: [categoryTv , categoryCabel],
+        categories: [categoryTv , categoryCabel, categoryTVAccessories],
         productImages: [
             "https://storage.googleapis.com/product_resources/8d16bae2-7e79-4bca-8714-d9188bf45d56_hdmi.jpeg"
         ],
@@ -331,7 +424,7 @@ const createProducts = function (companies, categories, done) {
     const productSonyTv = new ProductModel({
         productName : "Sony KDL-32WD755",
         company_id: companySony._id,
-        categories: [categoryTv],
+        categories: [categoryTv, categoryLED],
         productImages: [
             "https://storage.googleapis.com/product_resources/0db29e7e-8b70-449e-a51a-a7c635020626_71FDTYs2kYL._SL1000_.jpg",
             "https://storage.googleapis.com/product_resources/ba8e7bfe-05c5-4622-9d7c-f5233d4a79c1_518auH+ElmL._SL1344_.jpg",
@@ -351,7 +444,7 @@ const createProducts = function (companies, categories, done) {
     const productSamsungProjector = new ProductModel({
         productName : "Flux Supa Projector",
         company_id: companySamsung._id,
-        categories: [categoryProjector],
+        categories: [categoryProjector, categoryBusinessProjectors],
         productImages: [
             "https://storage.googleapis.com/product_resources/12c09990-50d7-4f38-b76f-364627fc53df_908sama800.1.jpg"
         ],
@@ -360,7 +453,224 @@ const createProducts = function (companies, categories, done) {
         ]
     });
 
-    const batchInsert = [productSamsungTv, productSonyHdmiCabel, productSonyTv, productSamsungProjector];
+    const productProjectorCable = new ProductModel({
+        productName: "Pnp 5M Hdmi Cable For Laptop, Tv, Projector, Plasma, Led And Lcd (Black)",
+        company_id: companySamsung._id,
+        categories: [categoryProjector, categoryCabel, categoryProjectorAcc],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/41hmeP3dn7L.jpg"
+        ],
+        productResources: [
+            "http://www.inkwelleditorial.com/pdfSample.pdf"
+        ]
+    });
+
+
+    const productGoogleChromeCast = new ProductModel({
+        productName: "Google Chromecast 2 Digital HDMI Media Video Streamer 2nd Generation",
+        company_id: companyGoogle._id,
+        categories: [categoryTVAccessories, categoryCastDevices, categoryBestsellers],
+        productImages: [
+            "https://i.ebayimg.com/images/g/~5AAAOSw44BYFsnR/s-l500.jpg",
+            "https://i.ebayimg.com/images/g/WHUAAOSwal5YFsnU/s-l500.jpg",
+            "https://i.ebayimg.com/images/g/Sf8AAOSwcLxYFsnZ/s-l500.jpg",
+            "https://i.ebayimg.com/images/g/f-kAAOSwW9NZ4MHI/s-l500.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=17VQK6jBfQg"
+        ]
+    });
+
+    const productAmazonFire = new ProductModel({
+        productName: "Amazon Fire TV Stick with Voice Remote | Streaming Media Player",
+        company_id: companyAmazon._id,
+        categories: [categoryTVAccessories, categoryCastDevices],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/51aGXs%2BjLuL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/713gVB-Q8gL._SX522_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=3t7lvG4piXE"
+        ]
+    });
+
+    const productSamsungTV2 = new ProductModel({
+        productName: "Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV",
+        company_id: companySamsung._id,
+        categories: [categoryTv, categoryLED, categorySmart, categoryFLAT],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/51R7%2ByL8UUL.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=DEFEbwdpK_k"
+        ]
+    });
+
+    const productSonyTV2 = new ProductModel({
+        productName: "Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV",
+        company_id: companySony._id,
+        categories: [categoryTv, categoryOLED, categorySmart, categoryFLAT],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/712rZWrEs8L._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/51zq9faRJRL._SX522_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=78nnlgKFsGs"
+        ]
+    });
+
+    const productProjector1 = new ProductModel({
+        productName: "Sony DBPOWER T20 1500 Lumens LCD Mini Projector",
+        company_id: companySony._id,
+        categories: [categoryProjector,categoryGamingProjectors],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/61FtfuuaQxL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/61IiZ4WIt1L._SX522_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=D7omM-Qcvls"
+        ]
+    });
+
+    const productProjector3 = new ProductModel({
+        productName: "Samsung LG Electronics PF1000UW Ultra Short Throw Smart Home Theater Projector",
+        company_id: companySamsung._id,
+        categories: [categoryProjector, categoryHomeTheater],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/91trLemmjSL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/91LFsCxqr%2BL._SX522_.jpg",
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=pHmRwYvw7jw"
+        ]
+    });
+
+    const productProjector4 = new ProductModel({
+        productName: "Sony VPLHW65ES 1080p 3D SXRD Home Theater Projector (2015 Model)",
+        company_id: companySony._id,
+        categories: [categoryProjector, categoryPortable],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/81gv14OZo5L._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/81alhav1aYL._SX522_.jpg",
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=THkvd8ByNX4"
+        ]
+    });
+
+    const productProjector5 = new ProductModel({
+        productName: "LG Electronics HF80JA Laser Smart Home Theater Projector (2017 Model)",
+        company_id: companySony._id,
+        categories: [categoryProjector, categoryGamingProjectors, categoryPortable],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/81rD%2BfKHZ1L._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/81gOetrqSNL._SX522_.jpg",
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=x_f6vm-tTXY"
+        ]
+    });
+
+    const productSpeaker1 = new ProductModel({
+        productName: "Echo Dot - Voice control your music, Get news, weather & more",
+        company_id: companyAmazon._id,
+        categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryBluetoothSpeakers],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/51xareNhn3L._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/61snM2%2B59SL._SX522_.jpg",
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=vVYcOi8R8dg"
+        ]
+    });
+
+    const productSpeaker2 = new ProductModel({
+        productName: "Logitech Z120 Stereo Speaker (Black and White)\n",
+        company_id: companySony._id,
+        categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryBookshelfSpeakers],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/81VfSYq1dwL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/71NtTz8MxUL._SX522_.jpg",
+        ],
+        productResources: [
+            "http://static.highspeedbackbone.net/pdf/Logitech-X-230-PC-Speaker-Manual.pdf"
+        ]
+    });
+
+    const productSpeaker3 = new ProductModel({
+        productName: "Boston Acoustics HSi 250 In-Ceiling Speaker (White)",
+        company_id: companySamsung._id,
+        categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCeilingSpeakers],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/8129s7pyEYL._SX522_.jpg",
+        ],
+        productResources: [
+            "http://static.highspeedbackbone.net/pdf/Boston_Acoustics_CRC_Speaker-Manual.pdf"
+        ]
+    });
+
+    const productSpeaker4 = new ProductModel({
+        productName: "Boston Acoustics A 225C Dual 5.25\" Woofer 2-Way Center Channel Speaker - Gloss Black",
+        company_id: companyGoogle._id,
+        categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCentreSpeakers],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/818lK-Re8sL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/81SgApJskvL._SX522_.jpg"
+        ],
+        productResources: [
+            "http://static.highspeedbackbone.net/pdf/Boston_Acoustics_CRC_Speaker-Manual.pdf"
+        ]
+    });
+
+    const productSpeaker5 = new ProductModel({
+        productName: "OFFBEAT ® - ECHO 10W outdoor Bluetooth speaker",
+        company_id: companySony._id,
+        categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryOutdoorSpeakers],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/91ZrgKSDdIL._SY679_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/919CoKR3fbL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/81d-KYE6IEL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/91N3Cu8OujL._SX522_.jpg"
+        ],
+        productResources: [
+            "https://www.massfidelity.com/media/files/Core_instructions_2015_11_22.pdf"
+        ]
+    });
+
+    const productSpeaker6 = new ProductModel({
+        productName: "Sony HT-RT3 Sound Bar Home Theatre System (Black)",
+        company_id: companySamsung._id,
+        categories: [categoryHomeEntertainmentSystems, categorySoundBars],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/61A5aYmKtfL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/71Ui6dzgBBL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/71EXF1ltkHL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/71EXF1ltkHL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/31yuXsHq%2BOL.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=Ok-p8VY7DsU"
+        ]
+    });
+
+    const productHDMI2 = new ProductModel({
+        productName: "WireSwipe HDMI Male to HDMI Male Cable (Black)",
+        company_id: companySony._id,
+        categories: [categoryTVAccessories, categoryCabel, categoryProjectorAcc],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/717ACbKJ44L._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/41bTZR4-SuL.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=yIwwW98yc5c"
+        ]
+    });
+
+
+
+
+    const batchInsert = [productHDMI2, productSpeaker6, productSpeaker5, productSpeaker4, productSpeaker3, productSpeaker2, productSpeaker1, productProjector5, productProjector4, productProjector3, productProjector1, productSonyTV2, productSamsungTV2, productAmazonFire, productGoogleChromeCast, productSamsungTv, productSonyHdmiCabel, productSonyTv, productSamsungProjector, productProjectorCable];
     ProductModel.collection.insert(batchInsert, function(){
         done(batchInsert);
     });
