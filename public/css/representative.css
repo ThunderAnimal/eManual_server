@@ -39,27 +39,33 @@ a,a:hover,a:focus {
     left:0;
     right:0;
     width: auto;
-    height: 16%;
+    height: 7.5em;
     text-align: left;
     vertical-align: top;
     position: absolute;
     overflow: hidden;
-    background-image: url(../img/header-all-pages.png);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
+    //background-image: url(../img/header-all-pages.png);
+    background: linear-gradient(to right, #7dc7da, #faac9e);
     background-size: 100%;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
+    display: flex;
+    align-items: flex-start;
+    border-bottom: solid 4px #6c8790;
+    box-sizing: border-box;
+}
+
+#top-space-nav-bar {
+    height: 5.7em;
+    width: 100%;
+    background: #fefefe;
     display: flex;
     align-items: center;
-}
-#top-space p.logo{
-    font-size: 400%;
-    color: white;
-    box-sizing: border-box;
-    margin: 0!important;
-    padding: 40px 0 0 20px!important;
+    justify-content: flex-start;
 }
 
 #top-space img.logo-pic{
     margin-left: 20px;
+    height: 70px;
 }
 
 #main-nav {
@@ -73,7 +79,7 @@ a,a:hover,a:focus {
     background: #2b2b2b;
     position: absolute;
     left: 0;
-    top: 16%;
+    top: 7.5em;
     bottom: 45px;
     overflow-y: hidden;
 }
@@ -81,7 +87,7 @@ a,a:hover,a:focus {
 #main {
     position: fixed;
     right: 0;
-    top: 16%;
+    top: 7.5em;
     left: 15%;
     background: #fefefe;
     overflow: auto;
@@ -173,7 +179,7 @@ ul#navigation li:hover a,ul#navigation li:focus a {
 ul#navigation li .text {
     padding-left: 5%;
     line-height: 42px;
-
+    width: 100%;
     -webkit-box-shadow: -3px 0 5px -4px #000;
     box-shadow: -3px 0 5px -4px #000;
 }
@@ -185,6 +191,14 @@ ul#navigation li .icon {
     align-items: center;
     display: flex;
     justify-content: center;
+}
+
+.sidebar-active{
+    background: #25a2c3;
+}
+
+.sidebar-active .icon {
+    color: #25a2c3;
 }
 
 .social-icons {
