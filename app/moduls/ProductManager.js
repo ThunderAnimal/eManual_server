@@ -30,7 +30,7 @@ exports.getAllInCategories = function(cat_list, done){
     if(cat_list.length === 0){
         query_products = {};
     }else{
-        query_products = {"categories": {"$in" : cat_list}};
+        query_products = {"categories": {"$all" : cat_list}};
     }
 
     productModel.find(query_products, function (err, result) {
