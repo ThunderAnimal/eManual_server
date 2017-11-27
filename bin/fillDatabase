@@ -286,7 +286,12 @@ const createCategories = function(done){
             name: cat[x]
         });
         cat_entity.save(function(err, result){
-            categories.push(cat_entity);
+            if(err){
+                console.log("Duplicate Entry!");
+            }else{
+                categories.push(cat_entity);
+            }
+
             if (x === cat.length-1){
                 done(categories);
             }else{

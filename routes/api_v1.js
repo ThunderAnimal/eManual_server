@@ -48,13 +48,23 @@ router.route('/representatives')
 //API Products
 router.get('/products', productManager.getAll);
 router.get('/product/:_id', productManager.getOne);
-router.post('/product', policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.create);
+router.post('/product', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.create);
 router.put('/product/:_id', policy.onlyRepresentativeAllowed, productManager.update);
 router.delete('/product/:_id', policy.onlyRepresentativeAllowed, productManager.delete);
 
 
 //API Categories
 router.get('/categories', function(req, res){
+    categoryModel.find({},function (err, result) {
+        if(err){
+            console.log(err);
+            res.status(500).send(err);
+        }else{
+            res.status(200).send(result);
+        }
+    });
+});
+router.get('/categories_top', function(req, res){
     categoryModel.find({},function (err, result) {
         if(err){
             console.log(err);
