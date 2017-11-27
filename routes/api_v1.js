@@ -62,12 +62,11 @@ router.get('/categories_top', categoryManager.getTopWithCounter);
 
 //API Combined
 router.get('/dir_products', function(req, res){
-
     let cat_list;
-    if(!req.body.categorie_list){
+    if(!req.query.categorie_list){
         cat_list = [];
     }else{
-        cat_list = req.body.categorie_list;
+        cat_list = req.query.categorie_list;
     }
 
     productManager.getAllInCategories(cat_list, function (err, product_result) {
