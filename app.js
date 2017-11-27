@@ -36,12 +36,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-
-// some testing by PJ =========
-var tempManager = require ('./app/moduls/tempManager');
-app.get('/testCategories', tempManager.doSomething);
-//==================
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
