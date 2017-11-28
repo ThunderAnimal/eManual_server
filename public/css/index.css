@@ -14,7 +14,7 @@ header {
 header nav{
     background: #fff;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
-    height: 12%;
+    height: 6em;
     line-height: 6em;
 }
 
