@@ -1,5 +1,58 @@
 extends layout
 
+block stylesheet
+    link(rel="stylesheet", href="/assets/css/userpage.css")
+
+block header
+    #wrapper
+        #top-space
+            nav#top-space-nav-bar
+                img.logo-pic(src='/assets/img/logo.png', alt='dash')
+
 block main
-    p Hi
-        span=name
+    #user-header
+        #user-background
+            #username
+                p.name JOHN MCCAIN
+                p.email (johnmccain@email.com)
+            #edit-button
+        #user-header-content
+            #useravatar
+                img(src='/assets/img/representative-placeholder.jpg', alt='dash')
+                a.waves-effect.waves-circle.waves-light.btn-floating.secondary-content(href='#')
+                    i.material-icons add
+            #userinfo
+                p Member Since November 2017
+            #changepass-button
+                p Change password
+                    a.fa.fa-lock(href='#')
+            #deleteaccount-button
+                p Delete account
+                    a.fa.fa-trash-o(href='#')
+    #user-content
+        #user-content-tabs
+            .nav-content
+                ul.tabs.tabs-transparent
+                    li.tab
+                        a.active(href='#uploaded') Uploaded
+                    li.tab
+                        a(href='#bookmarks') Bookmarks
+                    li.tab
+                        a(href='#comments') Comments
+            #uploaded.col.s12
+                #LOM
+                    ul#manualUl
+                        li
+                            #product-item
+                                .product-pic
+                                    img.pic(src='../assets/img/product-placeholder.png', alt='delete', height='20', width='20')
+                                .product-info
+                                    h3 Product Title - Model
+                                    p lorem ipsum dolor sit amet. lorem ipsum dolor sit amet, ipsum dolor sit amet, lorem ipsum dolor sit amet
+                                .product-edit
+                                    img.edit(src='../assets/img/Edit.png', alt='edit', height='20', width='20')
+                                .product-delete
+                                    img.delete(src='../assets/img/delete.png', alt='delete', height='20', width='20')
+            #bookmarks.col.s12 Test 2
+            #comments.col.s12 Test 3
+

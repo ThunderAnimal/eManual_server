@@ -1,3 +1,3 @@
-$("#navigation li).click(function() {
+$("#navigation li").click(function() {
     $( this ).addClass("sidebar-active");
 });

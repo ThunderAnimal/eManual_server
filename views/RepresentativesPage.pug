@@ -20,7 +20,7 @@ block sidebar
                         .title
                             h2=name
                     ul#navigation
-                        li
+                        li.sidebar-active
                             a(href='/representatives/dashboard')
                                 .icon.icon-dashboard
                                     .fa.fa-address-card-o
@@ -40,16 +40,5 @@ block sidebar
                                 .icon.icon-logout
                                     .fa.fa-sign-out
                                 .text Logout
-            .social-icons
-                ul
-                    li
-                        a(href='#')
-                            i.icon-facebook
-                    li
-                         a(href='#')
-                            i.icon-twitter
-                    li
-                         a(href='#')
-                             i.icon-linkedin
 block main
     //a(href='/representatives/createProduct' class="btn") Add Product

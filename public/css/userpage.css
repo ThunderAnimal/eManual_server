@@ -1,0 +1,240 @@
+body {
+    font-size: 16px;
+    font-weight: 400;
+    background: #4D4D4D;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 15vh;
+}
+
+a,a:hover,a:focus {
+    text-decoration: none;
+    outline: 0;
+}
+
+main {
+    background: #fff;
+    height: 100%;
+}
+
+/* layout
+ **************************************************/
+#top-space{
+    top:0;
+    left:0;
+    right:0;
+    width: auto;
+    height: 15vh;
+    text-align: left;
+    vertical-align: top;
+    position: absolute;
+    overflow: hidden;
+//background-image: url(../img/header-all-pages.png);
+    background: linear-gradient(to right, #7dc7da, #faac9e);
+    background-size: 100%;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
+    display: flex;
+    align-items: flex-start;
+    border-bottom: solid 4px #6c8790;
+    box-sizing: border-box;
+}
+
+#top-space-nav-bar {
+    height: 12vh;
+    width: 100%;
+    background: #fefefe;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: none;
+}
+
+#top-space img.logo-pic{
+    margin-left: 2vw;
+    height: 60%;
+}
+
+#user-header {
+    width: 100%;
+    height: 22vh;
+    background: #fff;
+    font-size: 0.95em;
+}
+
+#user-background {
+    background: #acaaaa;
+    height: 63%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#user-header-content {
+    height: 37%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#username{
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+}
+
+#username .name{
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0;
+}
+
+#username .email{
+    padding: 0 0 0 5px;
+    font-size: 0.9em;
+    margin: 0;
+}
+
+#useravatar {
+    padding: 0 10px;
+}
+
+#useravatar img {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin: -50% 0 0 0;
+    border: 2px solid #25a2c3;
+}
+
+#useravatar a {
+    position: absolute;
+    margin: 1.5% 0 0 -2%;
+}
+
+#userinfo {
+    width: 30%;
+    height: 100%;
+    padding: 0 20px;
+}
+
+#changepass-button, #deleteaccount-button {
+    vertical-align: top;
+    padding: 0 20px;
+}
+
+#changepass-button a, #deleteaccount-button a{
+    font-size: 1.1em;
+    margin: 0 0 0 10px;
+}
+
+#user-content {
+    min-height: 63vh;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#user-content-tabs {
+    width: 60vw;
+    margin-top: 40px;
+
+}
+
+.nav-content {
+    border-bottom: solid 1px #4d4d4d;
+    margin-bottom: 20px;
+}
+
+#user-content-tabs .tabs {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+#user-content-tabs .tab {
+    line-height: 1em;
+    height: 100%;
+    border-bottom: solid 2px #4d4d4d;
+    padding: 3px 0;
+    margin-right: 10px;
+}
+
+#user-content-tabs .tab a {
+    color: #4d4d4d;
+    text-transform: capitalize;
+    font-weight: 600;
+    height: 100%;
+}
+
+#user-content-tabs .tab .active {
+   color: #f6755e;
+}
+
+div#LOM{
+    padding-right: 10%;
+    padding-left: 10%;
+    height: 100px;
+    width: auto;
+}
+div#LOM ul{
+    height: 120%;
+    width: auto;
+}
+
+div#LOM ul li #product-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+div#LOM ul li .product-pic{
+    height: 100%;
+    padding: 10px;
+    width: 13%;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#LOM ul li .product-pic .pic{
+    text-align: right;
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+}
+
+div#LOM ul li .product-info{
+    width: 77%;
+    height: 100%;
+    padding: 20px 10px;
+}
+
+div#LOM ul li .product-info h3{
+    color: #25a2c3;
+    font-family: "Open Sans";
+    font-size: 18px;
+    margin: 0!important;
+}
+
+div#LOM ul li .product-info p{
+    color: #515151;
+    font-family: "Open Sans";
+    font-size: 14px;
+}
+
+div#LOM ul li .product-edit, div#LOM ul li .product-delete {
+    width: 5%;
+    text-align: center;
+}
