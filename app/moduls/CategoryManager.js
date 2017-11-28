@@ -50,15 +50,23 @@ exports.getTopWithCounter = function(req, res, next){
                     console.log(err);
                     counter += 1;
                     helperAddCategoryNames(counter);
-                }else{
-                    finalCatArray.push({
-                        _id: cat._id,
-                        name: cat.name,
-                        count: 0
-                    });
+                    return;
+                }
+
+                if(!cat){
+                    console.log("Categorie not found!");
                     counter += 1;
                     helperAddCategoryNames(counter);
+                    return;
                 }
+
+                finalCatArray.push({
+                    _id: cat._id,
+                    name: cat.name,
+                    count: 0
+                });
+                counter += 1;
+                helperAddCategoryNames(counter);
             });
         };
 
