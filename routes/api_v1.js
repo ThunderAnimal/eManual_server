@@ -77,13 +77,9 @@ router.get('/dir_products', function(req, res){
         categoryManager.getAllFromProducts(product_result, function (cat_result) {
 
             //REMOVE CATEGORIES FROM CALL
-            for(let k = 0; k < cat_result.length; k++){
-                for(let j = 0; j < cat_list.length; j++) {
-                    if (cat_result[k]._id.toString() === cat_list[j].toString()) {
-                        cat_result.splice(k, 1);
-                    }
-                }
-            }
+            cat_result = cat_result.filter(function(value){
+                return cat_list.indexOf(value._id.toString()) === -1;
+            });
 
             res.status(200).send({productList: product_result, categoryList: cat_result});
         });
