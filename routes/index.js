@@ -82,6 +82,19 @@ router.get('/category',function (req,res) {
     });
 });
 
+//PRDOUCTS
+router.get('/product', function (req, res, next) {
+    const _id = req.query.id;
+
+    if(!_id){
+        const err = new Error("Missing Product-Id");
+        err.status = 400;
+        next(err);
+    }else{
+        res.render('detailProduct', {id: _id});
+    }
+});
+
 //LOGIN PAGE
 router.get('/login', function(req, res){
    res.render('login', {message: req.flash('loginMessage') });
