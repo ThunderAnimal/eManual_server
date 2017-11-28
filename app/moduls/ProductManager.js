@@ -13,6 +13,19 @@ exports.getOne = function(req, res) {
     });
 };
 
+exports.getCompanyProduct = function(req, res){
+    const companyID = authManager.getCompanyId(req.user);
+
+    productModel.find({company_id: companyID}, function(err, result) {
+        if(err){
+            console.log(err);
+            res.status(500).send(err);
+        }else{
+            res.status(200).send(result);
+        }
+    });
+};
+
 exports.getAll = function(req, res){
     productModel.find({}, function(err, result) {
         if(err){
