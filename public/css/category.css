@@ -68,3 +68,42 @@ button.alt:active,
 .content{
     margin-top: 40px;
 }
+.category-header h2{
+    font-size: 2.28rem;
+    color: #303030;
+}
+
+.category-header .breadcrumb{
+     color: #25a2c3;
+}
+
+.category-header .breadcrumb:before{
+    margin-top: -5px;
+    color: #4D4D4D;
+}
+
+.category-header .breadcrumb:hover{
+    color: #f6755f;
+    cursor: pointer;
+}
+
+.category-header .breadcrumb:last-child{
+    color: #f6755f;
+}
+
+.category-header .breadcrumb:last-child:hover{
+    cursor: default;
+}
+
+#cat_list .collection-header h4{
+    font-size: 2.28rem;
+    color: #303030;
+}
+
+#cat_list a.collection-item{
+    color: #000000;
+}
+
+#cat_list a.collection-item:hover{
+    cursor: pointer;
+}

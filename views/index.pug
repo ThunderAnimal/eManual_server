@@ -23,17 +23,11 @@ block header
                     else
                         li
                             a.button.alt(href='/login') Log in
-            div
-                a(class='dropdown-button btn' href='#' data-activates='dropdown1') categories
+            .container
+                a(id="btn_cat" class='dropdown-button btn materialize-red' href='#' data-activates='dropdown1') categories
                 ul(id='dropdown1' class='dropdown-content')
-                    li
-                        a(href="#!") one
-                    li
-                        a(href="#!") two
-                    li
-                        a(href="#!") three
-                    li
-                        a(href="#!") four
+block main
+
 
 block stylesheet
     link(rel="stylesheet" href="assets/css/index.css")

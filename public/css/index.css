@@ -77,3 +77,16 @@ button.alt:active,
 .button.alt:active {
     background-color: rgba(144, 144, 144, 0.2);
 }
+
+#btn_cat{
+    position: absolute;
+    top: 90px;
+    margin-left: 60px;
+    min-width: 200px;
+}
+#dropdown1{
+    margin-left: 60px;
+    margin-top: 40px;
+    min-width: 150px;
+}
+

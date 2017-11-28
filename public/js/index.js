@@ -19,5 +19,5 @@ var renderCategorieData = function(data){
 
 
   }
-  list.append("<li id=''><a href='/category'>show all</a></li>")
+  list.append("<li id=''><a class='center-align' href='/category' style='color: #000000'>show all</a></li>")
 };
