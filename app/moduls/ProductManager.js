@@ -2,13 +2,42 @@ const authManager = require("./authManager");
 const uploadUser = require("./uploadUser");
 const productModel = require("../models/Product");
 
-exports.getOne = function(req, res, next) {
-    next(new Error('not implemented'));
+exports.getOne = function(req, res) {
+    productModel.findOne({_id : req.params.id}, function(err, result) {
+        if(err){
+            console.log(err);
+            res.status(500).send(err);
+        }else{
+            res.status(200).send(result);
+        }
+    });
 };
 
-exports.getAll = function(req, res, next){
-    next(new Error('not implemented'));
+exports.getAll = function(req, res){
+    productModel.find({}, function(err, result) {
+        if(err){
+            console.log(err);
+            res.status(500).send(err);
+        }else{
+            res.status(200).send(result);
+        }
+    });
 };
+
+exports.getAllInCategories = function(cat_list, done){
+    let query_products;
+
+    if(cat_list.length === 0){
+        query_products = {};
+    }else{
+        query_products = {"categories": {"$all" : cat_list}};
+    }
+
+    productModel.find(query_products, function (err, result) {
+        done(err, result);
+    });
+};
+
 
 exports.create = function(req, res, next){
 

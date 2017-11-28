@@ -165,11 +165,20 @@ exports.getCompanyId = function(user){
 };
 
 exports.isUserCompany = function(user){
+    if(!user)
+        return false;
+
     return user.model === Company.collection.collectionName;
 };
 exports.isUserRepresentative = function(user){
+    if(!user)
+        return false;
+
     return user.model === Representative.collection.collectionName;
 };
 exports.isUserConsumer= function(user){
+    if(!user)
+        return false;
+
     return user.model === Consumer.collection.collectionName;
 };

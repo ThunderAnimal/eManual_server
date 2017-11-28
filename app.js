@@ -36,7 +36,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -83,7 +82,6 @@ app.use(policy.allowAccessAllowOrigin);
 if (config.util.getEnv('NODE_ENV') === 'production'){
     app.use('/', httpsRedirect());
 }
-app.all('/api/v1/*', policy.isAuthorized);
 //Routes
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
