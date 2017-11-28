@@ -3,9 +3,33 @@ var router = express.Router();
 
 var policy = require('../app/moduls/routePolicy');
 
+const authManager = require('../app/moduls/authManager');
+
 // HOME PAGE (start page)
 router.get('/', function(req, res) {
-    res.render('index', { title: 'Hey', message: req.flash('errorMessage')});
+
+    let profileUrl;
+    let name;
+    let image;
+
+    if(authManager.isUserCompany(req.user)){
+        profileUrl = "/company/dashboard";
+        name = req.user.name;
+    } else if(authManager.isUserRepresentative(req.user)){
+        profileUrl = "/representatives/dashboard";
+        name = req.user.name;
+    } else if(authManager.isUserConsumer(req.user)){
+        profileUrl = "/consumer";
+        name = req.user.username;
+        image = req.user.image;
+    }
+    res.render('index', {isLoggedIn: req.isAuthenticated(),
+                        user: {
+                            name: name,
+                            profileUrl: profileUrl,
+                            image: image
+                        }
+        });
 });
 
 //DASHBOARD - Company
@@ -29,6 +53,35 @@ router.get('/representatives/createProduct', policy.isLoggedIn, function (req,re
 router.get('/consumer', policy.isLoggedIn, function (req,res) {
     res.render('ConsumerPage', {name: req.user.username});
 });
+
+//Browse Category
+router.get('/category',function (req,res) {
+
+    let profileUrl;
+    let name;
+    let image;
+
+    if(authManager.isUserCompany(req.user)){
+        profileUrl = "/company/dashboard";
+        name = req.user.name;
+    } else if(authManager.isUserRepresentative(req.user)){
+        profileUrl = "/representatives/dashboard";
+        name = req.user.name;
+    } else if(authManager.isUserConsumer(req.user)){
+        profileUrl = "/consumer";
+        name = req.user.username;
+        image = req.user.image;
+    }
+
+    res.render('categories', {isLoggedIn: req.isAuthenticated(),
+        user: {
+            name: name,
+            profileUrl: profileUrl,
+            image: image
+        }
+    });
+});
+
 //LOGIN PAGE
 router.get('/login', function(req, res){
    res.render('login', {message: req.flash('loginMessage') });
@@ -38,11 +91,6 @@ router.get('/login', function(req, res){
 router.get('/logout', function(req, res){
    req.logout();
    res.redirect('/');
-});
-router.get('/category',function (req,res) {
-    console.log(req.query);
-    res.render('categories');
-
 });
 
 module.exports = router;

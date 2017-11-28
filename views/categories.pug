@@ -1,7 +1,31 @@
 extends  layout
-block main
 
-    .row
+block header
+    div.navbar-fixed
+        nav#header
+            div.nav-wrapper.container
+                a.brand-logo(href="#")
+                    img(src="assets/img/logo.png")
+                ul.right
+                    if isLoggedIn
+                        li
+                            img(src=user.image class="circle responsive-img" style="max-height: 60px; margin-top: 10px; margin-right: 10px")
+                        li
+                            a.button.alt.dropdown-button(href='' data-activates='dropdown_user')="Welcome, " + user.name
+                                <i class="material-icons right" style="margin-top:-8px">arrow_drop_down</i>
+
+                        ul(id='dropdown_user' class='dropdown-content' style='margin-top: 70px')
+                            li
+                                a(href=user.profileUrl) Profile
+                            li.divider
+                            li
+                                a(href="/logout" style="color: #f6755f") Logout
+                    else
+                        li
+                            a.button.alt(href='/login') Log in
+
+block main
+    .row.content
         .col.s3
             div#cat_list.collection.with-header
 
@@ -9,5 +33,7 @@ block main
             #product_block
 
 
+block stylesheet
+    link(rel="stylesheet" href="assets/css/category.css")
 block javascript
     script(src='/assets/js/category.js')

@@ -3,12 +3,26 @@ extends layout
 block header
     div.navbar-fixed
         nav#header
-            div.nav-wrapper
+            div.nav-wrapper.container
                 a.brand-logo(href="#")
                     img(src="assets/img/logo.png")
                 ul.right
-                    li
-                        a.button.alt(href='/login') Log in
+                    if isLoggedIn
+                        li
+                            img(src=user.image class="circle responsive-img" style="max-height: 60px; margin-top: 10px; margin-right: 10px")
+                        li
+                            a.button.alt.dropdown-button(href='' data-activates='dropdown_user')="Welcome, " + user.name
+                                <i class="material-icons right" style="margin-top:-8px">arrow_drop_down</i>
+
+                        ul(id='dropdown_user' class='dropdown-content' style='margin-top: 70px')
+                            li
+                                a(href=user.profileUrl) Profile
+                            li.divider
+                            li
+                                a(href="/logout" style="color: #f6755f") Logout
+                    else
+                        li
+                            a.button.alt(href='/login') Log in
             div
                 a(class='dropdown-button btn' href='#' data-activates='dropdown1') categories
                 ul(id='dropdown1' class='dropdown-content')

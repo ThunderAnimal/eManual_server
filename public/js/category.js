@@ -27,7 +27,7 @@ var renderData = function(data){
     var product_block = $("#product_block");
 
     cat_list.empty();
-    cat_list.append('<li class="collection-header"><h4>Categories</h4></li>');
+    cat_list.append('<div class="collection-header"><h4>Categories</h4></div>');
     for(var i = 0; i < cats.length; i++){
         cat_list.append('<a id="' + cats[i]._id + '" class="collection-item">' + cats[i].name  + '<span class="badge">'+cats[i].count+'</span></a>')
     }
