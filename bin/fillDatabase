@@ -5,15 +5,48 @@ const CompanyModel = require('../app/models/Company');
 const RepresentativeModel = require('../app/models/Representative');
 const CategoryModel = require('../app/models/Category');
 const ProductModel = require('../app/models/Product');
+const ConsumerModel = require('../app/models/Consumer');
 
 const dropData = function (done) {
     CompanyModel.remove({}, function () {
         RepresentativeModel.remove({}, function () {
             CategoryModel.remove({}, function () {
-                ProductModel.remove({}, done);
+                ProductModel.remove({}, function(){
+                    ConsumerModel.remove({}, done);
+                });
             });
         });
     });
+};
+
+const createConsumer = function(done){
+
+    CategoryModel.findOne({"name": "Televisions"}, function(err, data){
+        if (err){
+            console.log("Some Error: "+err);
+        }
+        else{
+            ProductModel.findOne({"categories": data._id}, function(err, data2){
+                if(err){
+                    console.log("Some Error: "+err);
+                }
+                else{
+                    const consumer1 = new ConsumerModel({
+                        username: "doncorleone",
+                        password: "1234",
+                        email: "don@godfather.com",
+                        image: "https://duckduckgo.com/i/6351f747.jpg",
+                        products: [data2._id]
+                    });
+
+                    consumer1.save(function(){
+                        done(consumer1);
+                    })
+                }
+            });
+        }
+    });
+
 };
 
 const createCompanys= function(done){
@@ -697,11 +730,14 @@ dropData(function () {
        }
        createCategories(function(categories){
           createProducts(companies, categories, function () {
-              console.log("---");
-              console.log("Finished");
-              setTimeout(function(){
-                  process.exit(0);
-              }, 2000);
+              createConsumer(function(){
+                  console.log("---");
+                  console.log("Finished");
+                  setTimeout(function(){
+                      process.exit(0);
+                  }, 2000);
+              });
+
           });
        });
     });
