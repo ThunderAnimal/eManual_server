@@ -10,5 +10,14 @@ var getProductData = function(){
 };
 
 var renderProducts = function(data){
-    console.log(data);
+    var temp = document.getElementById('productTemp'),
+        ul = document.getElementById('manualUl');
+    for(var product in data){
+        var clonedTemplate = temp.content.cloneNode(true);
+
+        clonedTemplate.querySelector("h3").innerText = data[product].productName;
+        clonedTemplate.querySelector('.pic').src = data[product].productImages[0];
+
+        ul.appendChild(clonedTemplate);;
+    }
 }
