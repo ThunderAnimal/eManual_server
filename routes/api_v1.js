@@ -40,6 +40,7 @@ router.route('/representatives')
 
 //API Products
 router.get('/products', productManager.getAll);
+router.get('/company_product',policy.isAuthorized,policy.onlyRepresentativeAllowed,productManager.getCompanyProduct);
 router.get('/product/:id', productManager.getOne);
 router.post('/product', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.create);
 router.put('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllowed, productManager.update);

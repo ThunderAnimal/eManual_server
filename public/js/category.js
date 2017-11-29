@@ -90,13 +90,13 @@ var renderData = function(data){
     product_block.empty();
     for(var k = 0; k < products.length; k++){
         product_block.append("<div class=\"col s6 m4 l3\">\n" +
-            "            <div class=\"card\">\n" +
+            "            <div class=\"card small\">\n" +
             "            <div class=\"card-image\">\n" +
-            "            <img src=\"" + products[k].productImages[0] + "\">\n" +
+            "            <img class='' src=\"" + products[k].productImages[0] + "\">\n" +
             "            <a class=\"btn-floating halfway-fab waves-effect waves-light materialize-red\"><i class=\"material-icons\">add</i></a>\n" +
             "            </div>\n" +
             "            <div class=\"card-content\">\n" +
-            "            <p>"+ products[k].productName +"</p>\n" +
+            "            <p><a href='/product?id=" + products[k]._id +"'>"+ products[k].productName +"</a></p>\n" +
             "            </div>\n" +
             "            </div>\n" +
             "            </div>\n")

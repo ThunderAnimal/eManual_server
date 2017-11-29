@@ -1,0 +1,11 @@
+extends layout
+
+block main
+    div#product_id(data-id=id)
+    .container
+        h2 Product Detail
+        h4#product_name
+        img#product_image
+
+block append javascript
+    script(src='/assets/js/detailProduct.js')
