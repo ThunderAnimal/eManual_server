@@ -47,12 +47,72 @@ const createCompanys= function(done){
         name: "Amazon"
     });
 
+	const company6 = new CompanyModel({
+        login: "admin@dell.com",
+        password: "1234",
+        name: "Dell"
+    });
+
+    const company7 = new CompanyModel({
+        login: "admin@twinstar .com",
+        password: "1234",
+        name: "TwinStar"
+    });
+
+    const company8 = new CompanyModel({
+            login: "admin@microsoft.com",
+            password: "1234",
+            name: "Microsoft"
+        });
+    const company9 = new CompanyModel({
+            login: "admin@logitech.com",
+            password: "1234",
+            name: "Logitech"
+               });
+     const company10 = new CompanyModel({
+                  login: "admin@bushnell.com",
+                  password: "1234",
+                  name: "Bushnell"
+                });
+     const company11 = new CompanyModel({
+           login: "admin@miluotech.com",
+           password: "1234",
+           name: "MiluoTech"
+           });
+     const company12 = new CompanyModel({
+                      login: "admin@teslong.com",
+                      password: "1234",
+                      name: "Teslong"
+                      });
+
+     const company13 = new CompanyModel({
+               login: "admin@apollo.com",
+               password: "1234",
+               name: "Apollo"
+               });
+
     company1.save(function() {
         company2.save(function () {
            company3.save(function () {
                company4.save(function(){
                    company5.save(function(){
-                       done([company1, company2, company3, company4, company5]);
+					   company6.save(function(){
+					    company7.save(function(){
+					     company8.save(function(){
+					        company9.save(function(){
+					        company10.save(function(){
+					          company11.save(function(){
+					           company12.save(function(){
+					            company13.save(function(){
+                                    done([company1, company2, company3, company4, company5, company6,company7,company8,company9,company10,company11,company12,company13]);
+                                    });
+                                    });
+                                 });
+                                });
+                               });
+                            });
+                         });
+					   });
                    });
                });
            });
@@ -306,7 +366,7 @@ const createCategories = function(done){
 const createProducts = function (companies, categories, done) {
     let companySamsung;
     let companySony;
-    let companyGoogle, companyAmazon;
+    let companyGoogle, companyAmazon, companyDell,companyTwinStar,companyMicrosoft,companyLogitech,companyBushnell,companyMiluoTech,companyTeslong,companyApollo;
     for(let i = 0; i < companies.length; i++){
         if(companies[i].name === "Samsung"){
             companySamsung = companies[i];
@@ -319,13 +379,39 @@ const createProducts = function (companies, categories, done) {
         else if (companies[i].name === "Amazon"){
             companyAmazon = companies[i];
         }
+		 else if (companies[i].name === "Dell"){
+            companyDell = companies[i];
+        }
+         else if (companies[i].name === "TwinStar"){
+                companyTwinStar = companies[i];
+          }
+         else if (companies[i].name === "Microsoft"){
+              companyMicrosoft = companies[i];
+          }
+          else if (companies[i].name === "Logitech"){
+              companyLogitech = companies[i];
+          }
+          else if (companies[i].name === "Bushnell"){
+                 companyBushnell = companies[i];
+          }
+          else if (companies[i].name === "MiluoTech"){
+             companyMiluoTech = companies[i];
+           }
+           else if (companies[i].name === "Teslong"){
+                        companyTeslong = companies[i];
+          }
+          else if (companies[i].name === "Apollo"){
+                 companyApollo = companies[i];
+          }
+
+
     }
 
     let categoryTv;
     let categoryCabel;
     let categoryProjector;
     let categoryLED, categoryOLED, categoryFLAT, categoryCastDevices, categorySmart, categoryTVAccessories, categoryBestsellers;
-    let categoryGamingProjectors, categoryBusinessProjectors, categoryHomeTheater, categoryPortable, categoryProjectorAcc;
+    let categoryGamingProjectors, categoryBusinessProjectors, categoryHomeTheater, categoryPortable, categoryProjectorAcc, categoryHeadphones,categoryCamera;
     let categoryHomeEntertainmentSystems, categorySpeakers, categoryBluetoothSpeakers, categoryBookshelfSpeakers, categoryCeilingSpeakers, categoryCentreSpeakers, categoryOutdoorSpeakers, categorySoundBars;
     for(let k = 0; k < categories.length; k++){
         if(categories[k].name === "Televisions"){
@@ -397,6 +483,12 @@ const createProducts = function (companies, categories, done) {
         }
         else if(categories[k].name === "Sound Bars"){
             categorySoundBars = categories[k];
+        }
+		 else if(categories[k].name === "Headphones"){
+            categoryHeadphones = categories[k];   //categoryHeadphones._id
+        }
+        else if(categories[k].name === "Cameras"){
+                    categoryCamera = categories[k];   //categoryCamera._id
         }
     }
 
@@ -577,6 +669,36 @@ const createProducts = function (companies, categories, done) {
         ]
     });
 
+
+const productProjector6 = new ProductModel({
+        productName: "Apollo Horizon 2 Overhead Projector, 15 x 14 x 27 Inches, Open Head (V16000M)",
+        company_id: companyApollo._id,
+        //,Business & Education Projectors
+        categories: [categoryProjector],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/61VZdTVJaWL._SL1300_.jpg",
+
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=hcPHhpXWVys"
+        ]
+    });
+
+const productProjector7 = new ProductModel({
+        productName: "Apollo Overhead Projector, 15 x 14 x 27 Inches, Closed Head (V16002M)",
+        company_id: companyApollo._id,
+        //,Business & Education Projectors
+        categories: [categoryProjector],
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/31H2gnShkiL.jpg",
+
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=hcPHhpXWVys"
+        ]
+    });
+
+
     const productSpeaker1 = new ProductModel({
         productName: "Echo Dot - Voice control your music, Get news, weather & more",
         company_id: companyAmazon._id,
@@ -673,9 +795,142 @@ const createProducts = function (companies, categories, done) {
     });
 
 
+ const productHeadPhones = new ProductModel({
+        productName: "Dell Performance USB Headset (AE2)",
+        company_id: companyDell._id,
+        categories: [categoryHeadphones],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/61KmB2THvpL._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/511JRZ3pXeL._SX522_.jpg",
+			"https://images-na.ssl-images-amazon.com/images/I/61wAYkiXPqL._SX522_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=kLyYGjbi7vM"
+        ]
+    });
+
+const productCamera = new ProductModel({
+        productName: "60mm Compact Refractor AstroVenture Telescope ",
+        company_id: companyTwinStar._id,
+        categories: [categoryCamera],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/61aUx2rts4L._SX522_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/71wV1Z1aE2L._SL1500_.jpg",
+			"https://images-na.ssl-images-amazon.com/images/I/71OKYFIu1RL._SL1500_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=dX8I9SC11vM"
+        ]
+    });
+
+const productCamera2 = new ProductModel({
+        productName: "Microsoft LifeCam HD-3000",
+        company_id: companyMicrosoft._id,
+        categories: [categoryCamera],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/61YZvhIV2dL._SL1000_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/61xOYeUSN8L._SL1000_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=xSNxLfwHS1I"
+        ]
+    });
+
+    const productCamera3 = new ProductModel({
+            productName: "Logitech HD Webcam C310",
+            company_id: companyLogitech._id,
+            categories: [categoryCamera],  //the category variable
+            productImages: [
+                "https://images-na.ssl-images-amazon.com/images/I/41QNcbkM9OL.jpg",
+                "https://images-na.ssl-images-amazon.com/images/I/81RWpOQo1qL._SL1500_.jpg"
+            ],
+            productResources: [
+                "https://www.youtube.com/watch?v=IRXDXRZc9Rg"
+            ]
+        });
+
+    const productCamera4 = new ProductModel({
+            productName: "Bushnell Legend Ultra HD Monocular, Black, 10 x 42-mm",
+            company_id: companyBushnell._id,
+            categories: [categoryCamera],  //the category variable
+            productImages: [
+                "https://images-na.ssl-images-amazon.com/images/I/910uWOypCIL._SL1500_.jpg",
+                "https://images-na.ssl-images-amazon.com/images/I/519NW5HTB4L.jpg"
+            ],
+            productResources: [
+                "https://www.youtube.com/watch?v=j0Gfjwd7K0Y"
+            ]
+        });
+
+    const productCamera5 = new ProductModel({
+            productName: "Miluo Tech 16x52 Dual Focus Monocular Telescope /Monocular Scope for Hunting, Camping, Surveillance",
+            company_id: companyMiluoTech._id,
+            categories: [categoryCamera],  //the category variable
+            productImages: [
+                "https://images-na.ssl-images-amazon.com/images/I/61I%2Bbr1Cs5L._SL1500_.jpg",
+                "https://images-na.ssl-images-amazon.com/images/I/61Kc-4iIGiL._SL1308_.jpg"
+            ],
+            productResources: [
+                "https://www.youtube.com/watch?v=HEKdhscWBzU"
+            ]
+        });
+
+      const productCamera6 = new ProductModel({
+                    productName: "Bushnell Trophy Cam HD Essential E2 12MP Trail Camera",
+                    company_id: companyBushnell._id,
+                    categories: [categoryCamera],  //the category variable
+                    productImages: [
+                        "https://images-na.ssl-images-amazon.com/images/I/51E9DNupkJL.jpg",
+                        "https://images-na.ssl-images-amazon.com/images/I/81OtXblbltL._SL1500_.jpg"
+                    ],
+                    productResources: [
+                        "https://www.youtube.com/watch?v=B-wUgdfduXw"
+                    ]
+                });
+
+            const productCamera7= new ProductModel({
+                              productName: "Bushnell Trophy Cam HD Aggressor 14MP Wireless Trail Camera",
+                              company_id: companyBushnell._id,
+                              categories: [categoryCamera],  //the category variable
+                              productImages: [
+                                  "https://images-na.ssl-images-amazon.com/images/I/A1RUKRdLlKL._SL1500_.jpg",
+                                  "https://images-na.ssl-images-amazon.com/images/I/A1WFrUtuO1L._SL1500_.jpg"
+                              ],
+                              productResources: [
+                                  "https://www.amazon.com/Bushnell-Trophy-Aggressor-Wireless-Camera/dp/B01D0JTRGU/ref=pd_bxgy_200_img_2?_encoding=UTF8&psc=1&refRID=04JXN6BY0JE58KV7M66D"
+                              ]
+                          });
+
+             const productCamera8= new ProductModel({
+                                          productName: "Barrel Borescope, Teslong Rifle Barrel Endoscope Inspection Camera with 5.5mm Diameter, Short Focus Camera, 24 Inch Rod and 3.5 Inch LCD ",
+                                          company_id: companyTeslong._id,
+                                          categories: [categoryCamera],  //the category variable
+                                          productImages: [
+                                              "https://images-na.ssl-images-amazon.com/images/I/61vPWse8ZvL._SL1001_.jpg",
+                                              "https://images-na.ssl-images-amazon.com/images/I/61vTpdQZNOL._SL1001_.jpg"
+                                          ],
+                                          productResources: [
+                                              "https://www.youtube.com/watch?v=KOo__ePq1fo"
+                                          ]
+                                      });
+
+              const productCamera9= new ProductModel({
+                                                        productName: "Digital Endoscope, Teslong 0.21inch Semi Rigid Industrial Endoscope  ",
+                                                        company_id: companyTeslong._id,
+                                                        categories: [categoryCamera],  //the category variable
+                                                        productImages: [
+                                                            "https://images-na.ssl-images-amazon.com/images/I/71RIP0D9uPL._SL1500_.jpg",
+                                                            "https://images-na.ssl-images-amazon.com/images/I/818KXU7RtaL._SL1500_.jpg",
+                                                            "https://images-na.ssl-images-amazon.com/images/I/71--F%2B2RtHL._SL1500_.jpg"
+                                                        ],
+                                                        productResources: [
+                                                            "https://www.youtube.com/watch?v=W_sTSFhdakw"
+                                                        ]
+                                                    });
 
 
-    const batchInsert = [productHDMI2, productSpeaker6, productSpeaker5, productSpeaker4, productSpeaker3, productSpeaker2, productSpeaker1, productProjector5, productProjector4, productProjector3, productProjector1, productSonyTV2, productSamsungTV2, productAmazonFire, productGoogleChromeCast, productSamsungTv, productSonyHdmiCabel, productSonyTv, productSamsungProjector, productProjectorCable];
+
+    const batchInsert = [productProjector7,productProjector6, productCamera9,productCamera8,productCamera7,productCamera6,productCamera5,productCamera4,productCamera3,productCamera2,productCamera,productHeadPhones, productHDMI2, productSpeaker6, productSpeaker5, productSpeaker4, productSpeaker3, productSpeaker2, productSpeaker1, productProjector5, productProjector4, productProjector3, productProjector1, productSonyTV2, productSamsungTV2, productAmazonFire, productGoogleChromeCast, productSamsungTv, productSonyHdmiCabel, productSonyTv, productSamsungProjector, productProjectorCable];
     ProductModel.collection.insert(batchInsert, function(){
         done(batchInsert);
     });
