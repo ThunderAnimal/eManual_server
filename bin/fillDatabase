@@ -20,7 +20,8 @@ const dropData = function (done) {
 };
 
 const createConsumer = function(done){
-
+   /* Randomly picking the first Product which is under the category "television", and adding that product under
+    Our sample consume, Don Corleone!*/
     CategoryModel.findOne({"name": "Televisions"}, function(err, data){
         if (err){
             console.log("Some Error: "+err);
