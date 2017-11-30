@@ -13,12 +13,15 @@ block main
     #user-header
         #user-background
             #username
-                p.name JOHN MCCAIN
-                p.email (johnmccain@email.com)
+                p.name= user.username
+                p.email="(" + user.email + ")"
             #edit-button
         #user-header-content
             #useravatar
-                img(src='/assets/img/representative-placeholder.jpg', alt='dash')
+                if(user.image)
+                    img(src=user.image, alt='dash')
+                else
+                    img(src='/assets/img/representative-placeholder.jpg', alt='dash')
                 a.waves-effect.waves-circle.waves-light.btn-floating.secondary-content(href='#')
                     i.material-icons add
             #userinfo
