@@ -89,11 +89,14 @@ var renderData = function(data){
     var temp = document.getElementById('productTemp'),
         ul = document.getElementById('manualUl');
 
+    while (ul.firstChild) {
+        ul.removeChild(ul.firstChild);
+    }
     for(var k = 0; k < products.length; k++){
         var clonedTemplate = temp.content.cloneNode(true);
 
         clonedTemplate.querySelector("h3").innerText = products[k].productName;
-        clonedTemplate.querySelector("a").href = href='/product?id=' + products[k]._id;
+        clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id;
         clonedTemplate.querySelector('.pic').src = products[k].productImages[0];
 
         ul.appendChild(clonedTemplate);
