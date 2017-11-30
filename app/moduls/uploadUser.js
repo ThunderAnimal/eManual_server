@@ -20,7 +20,7 @@ const delteFiles = function(files){
     }
 };
 
-const uploadUser = function (content, cb) {
+exports.uploadFiles = function (content, cb) {
 
     const filesList = content;
     let count = 0;
@@ -61,4 +61,13 @@ const uploadUser = function (content, cb) {
     }
 };
 
-module.exports = uploadUser;
+exports.deleteFiles = function(content, cb){
+    const filesList = content;
+
+    for(let i = 0; i < filesList.length; i++){
+        const file = bucket.file(filesList[i]);
+        file.delete(function(err, apiResponse) {});
+    }
+
+    cb();
+};

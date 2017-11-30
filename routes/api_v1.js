@@ -45,9 +45,11 @@ router.get('/products', productManager.getAll);
 router.get('/company_product',policy.isAuthorized,policy.onlyRepresentativeAllowed,productManager.getCompanyProduct);
 router.get('/product/:id', productManager.getOne);
 router.post('/product', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.create);
-router.put('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllowed, productManager.update);
+router.put('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.update);
 router.delete('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllowed, productManager.delete);
 
+router.post('/product/:id/material', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.addMaterials);
+router.delete('/product/:id/material', policy.isAuthorized, policy.onlyRepresentativeAllowed, productManager.deleteMaterials);
 
 //API Categories
 router.get('/categories', categoryManager.getAll);
