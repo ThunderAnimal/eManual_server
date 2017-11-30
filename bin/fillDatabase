@@ -163,34 +163,34 @@ const createRepresentas = function (company ,done) {
     });
 
     const represent2 = new RepresentativeModel({
-        login: "amir@sony.com",
+        login: "amir@" + company.name.toLowerCase() + ".com",
         password: "1234",
         name: "Amir",
         company: company._id
     });
     const represent3 = new RepresentativeModel({
-        login: "prasannjeet@sony.com",
+        login: "prasannjeet@" + company.name.toLowerCase() + ".com",
         password: "1234",
         name: "Prasannjeet",
         company: company._id
     });
 
     const represent4 = new RepresentativeModel({
-        login: "weibin@sony.com",
+        login: "weibin@" + company.name.toLowerCase() + ".com",
         password: "1234",
         name: "Weibin",
         company: company._id
     });
 
     const represent5 = new RepresentativeModel({
-        login: "ayesha@sony.com",
+        login: "ayesha@" + company.name.toLowerCase() + ".com",
         password: "1234",
         name: "Ayesha",
         company: company._id
     });
 
     const represent6 = new RepresentativeModel({
-        login: "martin@sony.com",
+        login: "martin@" + company.name.toLowerCase() + ".com",
         password: "1234",
         name: "Martin",
         company: company._id
