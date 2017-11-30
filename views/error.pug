@@ -4,9 +4,10 @@ block header
     div.navbar-fixed
         nav#header
             div.nav-wrapper
-                a.brand-logo(href="#") eManual
+                a.brand-logo(href="#") ManualPik
 
 block main
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+    .container
+        h1= message
+        h2= error.status
+        pre #{error.stack}

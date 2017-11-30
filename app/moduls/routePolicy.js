@@ -79,6 +79,6 @@ exports.isLoggedIn = function(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    req.flash('errorMessage', 'Secure Area. Need to Login');
-    res.redirect('/');
+    req.flash('loginMessage', 'Secure Area. Need to Login');
+    res.redirect('/login?redirect_url=' + encodeURIComponent(req.url));
 };

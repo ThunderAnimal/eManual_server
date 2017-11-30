@@ -97,7 +97,8 @@ router.get('/product', function (req, res, next) {
 
 //LOGIN PAGE
 router.get('/login', function(req, res){
-   res.render('login', {message: req.flash('loginMessage') });
+    req.session.redirect_url = req.query.redirect_url;
+    res.render('login', {message: req.flash('loginMessage') });
 });
 
 //LOGOUT
