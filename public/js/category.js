@@ -89,6 +89,9 @@ var renderData = function(data){
     var temp = document.getElementById('productTemp'),
         ul = document.getElementById('manualUl');
 
+    while (ul.firstChild) {
+        ul.removeChild(ul.firstChild);
+    }
     for(var k = 0; k < products.length; k++){
         var clonedTemplate = temp.content.cloneNode(true);
 
