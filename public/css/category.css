@@ -165,11 +165,19 @@ div#LOM ul li .product-info{
     padding: 20px 10px;
 }
 
+div#LOM ul li .product-select{
+    min-width: 10px;
+}
+
 div#LOM ul li .product-select a{
     border-radius: 0;
     width: 25px;
     height: 25px;
     line-height: 25px;
+
+    position: absolute;
+    margin-top: 30px;
+    margin-left: -25px;
 }
 
 div#LOM ul li .product-select .remove-selection{

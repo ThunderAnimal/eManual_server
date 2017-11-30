@@ -44,8 +44,10 @@ block main
                                 .product-pic
                                     img.pic(src='../assets/img/product-placeholder.png', alt='delete', height='20', width='20')
                                 .product-select
-                                    <a class="btn-floating waves-effect waves-light add-selection"><i class="material-icons">add</i></a>
-                                    <a class="btn-floating waves-effect waves-light remove-selection"><i class="material-icons">remove</i></a>
+                                    a.btn-floating.waves-effect.waves-light.add-selection
+                                        i.material-icons add
+                                    a.btn-floating.waves-effect.waves-light.remove-selection(style="display:none")
+                                        i.material-icons remove
                                 .product-info
                                     a(href='#')
                                         h3 Product Title - Model
