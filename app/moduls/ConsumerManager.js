@@ -1,4 +1,5 @@
 const consumerModel = require("../models/Consumer");
+const productModel = require("../models/Product");
 
 exports.create = function (req, res, next) {
 
@@ -57,6 +58,17 @@ exports.findOrCreateFacebook = function(profile, accessToken, done){
             result.username = username;
             result.image = img;
             result.save(done);
+        }
+    });
+};
+
+exports.getSelectedProduct=function (req,res) {
+    productModel.find({'_id' : {$in: req.user.products}},function (err, result) {
+        if(err){
+            console.log(err);
+            res.status(500).send(err);
+        }else{
+            res.status(200).send(result);
         }
     });
 };

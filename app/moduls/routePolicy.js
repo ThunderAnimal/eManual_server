@@ -63,6 +63,16 @@ exports.onlyRepresentativeAllowed = function(req, res, next){
     });
 };
 
+exports.onlyCustomerAllowed = function(req, res, next){
+    if(authManager.isUserConsumer(req.user))
+        return next();
+
+    return res.status(403).send({
+        status: 403,
+        message: "Forbidden! Only a Customer is allowed to access."
+    });
+};
+
 exports.isLoggedIn = function(req, res, next) {
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())

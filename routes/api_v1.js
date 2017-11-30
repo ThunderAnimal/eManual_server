@@ -7,6 +7,7 @@ const upload = require('../app/moduls/fileUpload');
 
 const productManager = require('../app/moduls/ProductManager');
 const categoryManager = require('../app/moduls/CategoryManager');
+const consumerManager = require('../app/moduls/ConsumerManager');
 
 //API representatives
 router.route('/representatives')
@@ -50,6 +51,8 @@ router.delete('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllow
 //API Categories
 router.get('/categories', categoryManager.getAll);
 router.get('/category/:id', categoryManager.getOne);
+
+router.get('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.getSelectedProduct);
 /*
 Currently the top categories are:
 1. Televisions
