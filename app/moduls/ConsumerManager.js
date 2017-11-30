@@ -1,6 +1,7 @@
 const consumerModel = require("../models/Consumer");
 const productModel = require("../models/Product");
 
+
 exports.create = function (req, res, next) {
 
     var consumer = new consumerModel ({
@@ -19,6 +20,40 @@ exports.create = function (req, res, next) {
     });
 
 };
+
+exports.changeProducts=function (req,res,next) {
+    const product_id = req.body.product_id;
+    const clientAdd= req.body.add;
+    const clientDelete= req.body.delete;
+
+    consumerModel.find({}, function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+    });
+
+    consumerModel.findOne({_id: req.user._id}, function (err, consumer) {
+        if (clientAdd) {
+            consumer.products.push(product_id);
+            consumer.save();
+
+            res.send("successfully added");
+
+        } else if (clientDelete) {
+            if (consumer.products.indexOf(product_id)!==-1){
+                consumer.products.splice(consumer.products.indexOf(product_id),1)
+            }
+
+            consumer.save();
+            res.send("success deleted");
+
+        }
+        else{
+            res.status(400).send("no input")
+        }
+    });
+}
+
 
 exports.findOrCreateGoogle = function(profile, accessToken, done){
     const email = profile.emails[0].value;

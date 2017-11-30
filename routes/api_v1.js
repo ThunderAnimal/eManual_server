@@ -9,6 +9,7 @@ const productManager = require('../app/moduls/ProductManager');
 const categoryManager = require('../app/moduls/CategoryManager');
 const consumerManager = require('../app/moduls/ConsumerManager');
 
+
 //API representatives
 router.route('/representatives')
     .all(policy.isAuthorized, policy.onlyCompanyAllowed)
@@ -53,6 +54,8 @@ router.get('/categories', categoryManager.getAll);
 router.get('/category/:id', categoryManager.getOne);
 
 router.get('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.getSelectedProduct);
+router.put('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.changeProducts);
+
 /*
 Currently the top categories are:
 1. Televisions
@@ -89,5 +92,6 @@ router.get('/dir_products', function(req, res){
         });
     });
 });
+
 
 module.exports = router;

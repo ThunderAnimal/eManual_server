@@ -2,6 +2,13 @@ const categoryModel = require('../models/Category');
 const productModel = require('../models/Product');
 
 
+
+
+
+
+
+
+
 exports.getOne = function(req, res) {
     categoryModel.findOne({_id : req.params.id}, function(err, result) {
         if(err){
