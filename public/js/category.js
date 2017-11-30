@@ -96,7 +96,7 @@ var renderData = function(data){
         var clonedTemplate = temp.content.cloneNode(true);
 
         clonedTemplate.querySelector("h3").innerText = products[k].productName;
-        clonedTemplate.querySelector("a").href = href='/product?id=' + products[k]._id;
+        clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id;
         clonedTemplate.querySelector('.pic').src = products[k].productImages[0];
 
         ul.appendChild(clonedTemplate);
