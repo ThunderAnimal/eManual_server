@@ -79,7 +79,6 @@ var renderData = function(data){
     var products = data.productList;
 
     var cat_list = $("#cat_list");
-    var product_block = $("#product_block");
 
     cat_list.empty();
     cat_list.append('<div class="collection-header center-align"><h4>Categories</h4></div>');
@@ -87,19 +86,17 @@ var renderData = function(data){
         cat_list.append('<a id="' + cats[i]._id + '" name="' + cats[i].name + '" class="collection-item">' + cats[i].name  + '<span class="badge">'+cats[i].count+'</span></a>')
     }
 
-    product_block.empty();
+    var temp = document.getElementById('productTemp'),
+        ul = document.getElementById('manualUl');
+
     for(var k = 0; k < products.length; k++){
-        product_block.append("<div class=\"col s6 m4 l3\">\n" +
-            "            <div class=\"card small\">\n" +
-            "            <div class=\"card-image\">\n" +
-            "            <img class='' src=\"" + products[k].productImages[0] + "\">\n" +
-            "            <a class=\"btn-floating halfway-fab waves-effect waves-light materialize-red\"><i class=\"material-icons\">add</i></a>\n" +
-            "            </div>\n" +
-            "            <div class=\"card-content\">\n" +
-            "            <p><a href='/product?id=" + products[k]._id +"'>"+ products[k].productName +"</a></p>\n" +
-            "            </div>\n" +
-            "            </div>\n" +
-            "            </div>\n")
+        var clonedTemplate = temp.content.cloneNode(true);
+
+        clonedTemplate.querySelector("h3").innerText = products[k].productName;
+        clonedTemplate.querySelector("a").href = href='/product?id=' + products[k]._id;
+        clonedTemplate.querySelector('.pic').src = products[k].productImages[0];
+
+        ul.appendChild(clonedTemplate);
     }
 };
 

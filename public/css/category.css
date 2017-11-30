@@ -97,7 +97,19 @@ button.alt:active,
 
 #cat_list .collection-header h4{
     font-size: 2.28rem;
-    color: #303030;
+    color: #25a2c3;
+}
+.collection.with-header .collection-header{
+    border-bottom: 2px solid #4D4D4D;
+}
+#cat_list .collection-item{
+    background-color: #cdcdcd;
+    border-color: rgba(0,0,0,0.1);
+}
+
+#cat_list .collection-item:hover{
+    background-color: #f6755f;
+    color: #fff
 }
 
 #cat_list a.collection-item{
@@ -106,4 +118,88 @@ button.alt:active,
 
 #cat_list a.collection-item:hover{
     cursor: pointer;
+}
+
+
+div#LOM{
+    padding-right: 10%;
+    padding-left: 10%;
+    width: auto;
+}
+div#LOM ul{
+    height: 120%;
+    width: auto;
+}
+
+div#LOM ul li #product-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+div#LOM ul li .product-pic{
+    height: 100%;
+    padding: 10px;
+    width: 13%;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#LOM ul li .product-pic .pic{
+    text-align: right;
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+}
+
+div#LOM ul li .product-info{
+    width: 77%;
+    height: 100%;
+    padding: 20px 10px;
+}
+
+div#LOM ul li .product-select a{
+    border-radius: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+}
+
+div#LOM ul li .product-select .remove-selection{
+    background-color: #4D4D4D;
+}
+
+
+div#LOM ul li .product-select a i{
+    line-height: 25px;
+    font-size: 1rem;
+}
+
+div#LOM ul li .product-info h3{
+    color: #25a2c3;
+    font-family: "Open Sans";
+    font-size: 18px;
+    margin: 0!important;
+}
+
+div#LOM ul li .product-info h3:hover{
+    color: #f6755f;
+}
+
+div#LOM ul li .product-info p{
+    color: #515151;
+    font-family: "Open Sans";
+    font-size: 14px;
+}
+
+div#LOM ul li .product-edit, div#LOM ul li .product-delete {
+    width: 5%;
+    text-align: center;
 }

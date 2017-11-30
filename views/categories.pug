@@ -32,10 +32,24 @@ block main
         .col.s9
             div.category-header.center-align.section
                 h2#current_cat
-                div#category_breadcrumb
+                div#category_breadcrumb.left-align
 
             div.divider
             div#product_block.section
+                #LOM
+                    ul#manualUl
+                        template#productTemp
+                            li
+                                #product-item
+                                    .product-pic
+                                        img.pic(src='../assets/img/product-placeholder.png', alt='delete', height='20', width='20')
+                                    .product-select
+                                        <a class="btn-floating waves-effect waves-light add-selection"><i class="material-icons">add</i></a>
+                                        <a class="btn-floating waves-effect waves-light remove-selection"><i class="material-icons">remove</i></a>
+                                    .product-info
+                                        a(href='#')
+                                            h3 Product Title - Model
+                                        p lorem ipsum dolor sit amet. lorem ipsum dolor sit amet, ipsum dolor sit amet, lorem ipsum dolor sit amet
 
 
 block stylesheet
