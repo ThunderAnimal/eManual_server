@@ -107,3 +107,32 @@ exports.getSelectedProduct=function (req,res) {
         }
     });
 };
+
+function checkRequestFromUser (req, consumers){
+    if (req.user === undefined) {
+        return false;
+    }
+    else {
+        let flag = false;
+
+        for (let i = 0; i < consumers.length; i++) {
+            if (req.user._id.toString() === consumers[i]._id.toString()) {
+                flag = true;
+                return flag;
+                break;
+            }
+        }
+        return flag;
+    }
+}
+
+exports.isRequestFromUser = (req, yes, no) =>{
+    consumerModel.find({}, {"_id": 1}, (err, data) => {
+        if (checkRequestFromUser(req, data)) {
+            yes();
+        }
+        else {
+            no();
+        }
+    });
+};
