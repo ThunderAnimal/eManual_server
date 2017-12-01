@@ -7,6 +7,7 @@ const policy = require('../app/moduls/routePolicy');
 
 const upload = require('../app/moduls/fileUpload');
 
+const authManager = require('../app/moduls/authManager');
 const productManager = require('../app/moduls/ProductManager');
 const categoryManager = require('../app/moduls/CategoryManager');
 const consumerManager = require('../app/moduls/ConsumerManager');
@@ -138,7 +139,12 @@ router.get('/dir_products', function(req, res){
                     finalProductList = product_result;
                     done();
                 };
-                consumerManager.isRequestFromUser(req, isConsumer, isNotConsumer);
+
+                if(authManager.isUserConsumer(req.user)){
+                    isConsumer();
+                }else{
+                    isNotConsumer();
+                }
 
             };
             sendData(()=>{
