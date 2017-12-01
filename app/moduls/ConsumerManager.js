@@ -25,6 +25,10 @@ exports.changeProducts=function (req,res,next) {
     const product_id = req.body.product_id;
     const clientAdd= req.body.add;
     const clientDelete= req.body.delete;
+    console.log(req.body);
+    console.log(req.body.product_id);
+    console.log(req.body.add);
+    console.log(req.body.delete);
 
     consumerModel.find({}, function (err, data) {
         if (err) {
@@ -98,40 +102,24 @@ exports.findOrCreateFacebook = function(profile, accessToken, done){
 };
 
 exports.getSelectedProduct=function (req,res) {
-    productModel.find({'_id' : {$in: req.user.products}},function (err, result) {
+    consumerModel.findById(req.user._id,function(err, consumer){
         if(err){
             console.log(err);
-            res.status(500).send(err);
-        }else{
-            res.status(200).send(result);
+            return res.status(500).send(err);
         }
-    });
-};
 
-function checkRequestFromUser (req, consumers){
-    if (req.user === undefined) {
-        return false;
-    }
-    else {
-        let flag = false;
+        if(!consumer){
+            return res.sendStatus(401);
+        }
 
-        for (let i = 0; i < consumers.length; i++) {
-            if (req.user._id.toString() === consumers[i]._id.toString()) {
-                flag = true;
-                return flag;
+        productModel.find({'_id' : {$in: consumer.products}},function (err, result) {
+            if(err){
+                console.log(err);
+                res.status(500).send(err);
+            }else{
+                res.status(200).send(result);
             }
-        }
-        return flag;
-    }
-}
-
-exports.isRequestFromUser = (req, yes, no) =>{
-    consumerModel.find({}, {"_id": 1}, (err, data) => {
-        if (checkRequestFromUser(req, data)) {
-            yes();
-        }
-        else {
-            no();
-        }
+        });
     });
+
 };
