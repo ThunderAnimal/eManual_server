@@ -179,7 +179,6 @@ main {
 div#LOM{
     padding-right: 10%;
     padding-left: 10%;
-    height: 100px;
     width: auto;
 }
 div#LOM ul{
@@ -234,7 +233,45 @@ div#LOM ul li .product-info p{
     font-size: 14px;
 }
 
+div#LOM ul li .product-select a{
+    border-radius: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+
+    position: absolute;
+    margin-top: 30px;
+    margin-left: -25px;
+}
+
+div#LOM ul li .product-select .remove-selection{
+    background-color: #4D4D4D;
+}
+
+
+div#LOM ul li .product-select a i{
+    line-height: 25px;
+    font-size: 1rem;
+}
+
 div#LOM ul li .product-edit, div#LOM ul li .product-delete {
     width: 5%;
     text-align: center;
+}
+
+div#LOM ul li .product-delete a{
+    border-radius: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+}
+
+div#LOM ul li .product-delete .remove-selection{
+    background-color: #4D4D4D;
+}
+
+
+div#LOM ul li .product-delete a i{
+    line-height: 25px;
+    font-size: 1rem;
 }
