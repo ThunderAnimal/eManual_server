@@ -11,7 +11,7 @@ const dropData = function (done) {
     CompanyModel.remove({}, function () {
         RepresentativeModel.remove({}, function () {
             CategoryModel.remove({}, function () {
-                ProductModel.remove({}, function(){
+                ProductModel.remove({}, function () {
                     ConsumerModel.remove({}, done);
                 });
             });
@@ -19,19 +19,19 @@ const dropData = function (done) {
     });
 };
 
-const createConsumer = function(done){
-   /* Randomly picking the first Product which is under the category "television", and adding that product under
-    Our sample consume, Don Corleone!*/
-    CategoryModel.findOne({"name": "Televisions"}, function(err, data){
-        if (err){
-            console.log("Some Error: "+err);
+const createConsumer = function (done) {
+    /* Randomly picking the first Product which is under the category "television", and adding that product under
+     Our sample consume, Don Corleone!*/
+    CategoryModel.findOne({"name": "Televisions"}, function (err, data) {
+        if (err) {
+            console.log("Some Error: " + err);
         }
-        else{
-            ProductModel.findOne({"categories": data._id}, function(err, data2){
-                if(err){
-                    console.log("Some Error: "+err);
+        else {
+            ProductModel.findOne({"categories": data._id}, function (err, data2) {
+                if (err) {
+                    console.log("Some Error: " + err);
                 }
-                else{
+                else {
                     const consumer1 = new ConsumerModel({
                         username: "doncorleone",
                         password: "1234",
@@ -40,9 +40,19 @@ const createConsumer = function(done){
                         products: [data2._id]
                     });
 
-                    consumer1.save(function(){
-                        done(consumer1);
-                    })
+                    const consumer2 = new ConsumerModel({
+                        username: "jocker",
+                        password: "1234",
+                        email: "whysoserious@gotham.com",
+                        image: "https://vignette.wikia.nocookie.net/batman/images/7/79/Heath_ledger_joker.jpg",
+                        products: [data2._id]
+                    });
+
+                    consumer1.save(function () {
+                        consumer2.save(function (){
+                            done(consumer1, consumer2);
+                        });
+                    });
                 }
             });
         }
@@ -50,7 +60,7 @@ const createConsumer = function(done){
 
 };
 
-const createCompanys= function(done){
+const createCompanys = function (done) {
     const company1 = new CompanyModel({
         login: "admin@sony.com",
         password: "1234",
@@ -81,7 +91,7 @@ const createCompanys= function(done){
         name: "Amazon"
     });
 
-	const company6 = new CompanyModel({
+    const company6 = new CompanyModel({
         login: "admin@dell.com",
         password: "1234",
         name: "Dell"
@@ -94,67 +104,67 @@ const createCompanys= function(done){
     });
 
     const company8 = new CompanyModel({
-            login: "admin@microsoft.com",
-            password: "1234",
-            name: "Microsoft"
-        });
+        login: "admin@microsoft.com",
+        password: "1234",
+        name: "Microsoft"
+    });
     const company9 = new CompanyModel({
-            login: "admin@logitech.com",
-            password: "1234",
-            name: "Logitech"
-               });
-     const company10 = new CompanyModel({
-                  login: "admin@bushnell.com",
-                  password: "1234",
-                  name: "Bushnell"
-                });
-     const company11 = new CompanyModel({
-           login: "admin@miluotech.com",
-           password: "1234",
-           name: "MiluoTech"
-           });
-     const company12 = new CompanyModel({
-                      login: "admin@teslong.com",
-                      password: "1234",
-                      name: "Teslong"
-                      });
+        login: "admin@logitech.com",
+        password: "1234",
+        name: "Logitech"
+    });
+    const company10 = new CompanyModel({
+        login: "admin@bushnell.com",
+        password: "1234",
+        name: "Bushnell"
+    });
+    const company11 = new CompanyModel({
+        login: "admin@miluotech.com",
+        password: "1234",
+        name: "MiluoTech"
+    });
+    const company12 = new CompanyModel({
+        login: "admin@teslong.com",
+        password: "1234",
+        name: "Teslong"
+    });
 
-     const company13 = new CompanyModel({
-               login: "admin@apollo.com",
-               password: "1234",
-               name: "Apollo"
-               });
+    const company13 = new CompanyModel({
+        login: "admin@apollo.com",
+        password: "1234",
+        name: "Apollo"
+    });
 
-    company1.save(function() {
+    company1.save(function () {
         company2.save(function () {
-           company3.save(function () {
-               company4.save(function(){
-                   company5.save(function(){
-					   company6.save(function(){
-					    company7.save(function(){
-					     company8.save(function(){
-					        company9.save(function(){
-					        company10.save(function(){
-					          company11.save(function(){
-					           company12.save(function(){
-					            company13.save(function(){
-                                    done([company1, company2, company3, company4, company5, company6,company7,company8,company9,company10,company11,company12,company13]);
+            company3.save(function () {
+                company4.save(function () {
+                    company5.save(function () {
+                        company6.save(function () {
+                            company7.save(function () {
+                                company8.save(function () {
+                                    company9.save(function () {
+                                        company10.save(function () {
+                                            company11.save(function () {
+                                                company12.save(function () {
+                                                    company13.save(function () {
+                                                        done([company1, company2, company3, company4, company5, company6, company7, company8, company9, company10, company11, company12, company13]);
+                                                    });
+                                                });
+                                            });
+                                        });
                                     });
-                                    });
-                                 });
                                 });
-                               });
                             });
-                         });
-					   });
-                   });
-               });
-           });
+                        });
+                    });
+                });
+            });
         });
     });
 };
 
-const createRepresentas = function (company ,done) {
+const createRepresentas = function (company, done) {
     const represent1 = new RepresentativeModel({
         login: "eyuel@" + company.name.toLowerCase() + ".com",
         password: "1234",
@@ -200,243 +210,245 @@ const createRepresentas = function (company ,done) {
     RepresentativeModel.collection.insert(batchInsert, done);
 };
 
-const createCategories = function(done){
+const createCategories = function (done) {
 
-   const cat = [
+    const cat = [
         "Televisions",
-            "LED",
-            "OLED",
-            "Flat",
-            "Curved",
-            "Smart",
-            "TV Accessories",
-                "Cables",
-                "Cast Devices",
+        "LED",
+        "OLED",
+        "Flat",
+        "Curved",
+        "Smart",
+        "TV Accessories",
+        "Cables",
+        "Cast Devices",
         "Bestsellers",
         "Home Entertainment Systems",
-            "Home Theater",
-            "Televisions",
-            "Speakers",
-                "Bluetooth Speakers",
-                "Bookshelf Speakers",
-                "Ceiling and In Wall Speakers",
-                "Centre Speakers",
-                "Outdoor Speakers",
-                "Satellite Speakers",
-                "Soundbar Speakers",
-                "Speaker Systems",
-                "Subwoofers",
-                "Tower Speakers",
-            "Sound Bars",
-            "DVD Players and Recorders",
-            "Streaming Media Players",
-            "Set Top Boxes",
+        "Home Theater",
+        "Televisions",
+        "Speakers",
+        "Bluetooth Speakers",
+        "Bookshelf Speakers",
+        "Ceiling and In Wall Speakers",
+        "Centre Speakers",
+        "Outdoor Speakers",
+        "Satellite Speakers",
+        "Soundbar Speakers",
+        "Speaker Systems",
+        "Subwoofers",
+        "Tower Speakers",
+        "Sound Bars",
+        "DVD Players and Recorders",
+        "Streaming Media Players",
+        "Set Top Boxes",
 
         "Projectors",
-            "Gaming Projectors",
-            "Business & Education Projectors",
-            "Home Theater",
-            "Portable",
-            "Projector Accessories",
-                "Cables",
-                "Projector Screens",
-                "Projector Bags & Cases",
-                "Projector Lamps",
-                "Projector Lenses",
-                "Projector Mounts",
-                "Projector Stands",
+        "Gaming Projectors",
+        "Business & Education Projectors",
+        "Home Theater",
+        "Portable",
+        "Projector Accessories",
+        "Cables",
+        "Projector Screens",
+        "Projector Bags & Cases",
+        "Projector Lamps",
+        "Projector Lenses",
+        "Projector Mounts",
+        "Projector Stands",
 
         "Modems and Routers",
-            "Modems",
-            "Routers",
-            "Data Cards and Dongles",
-            "Wireless USB Adaptors",
-            "Switch",
-            "Repeaters",
+        "Modems",
+        "Routers",
+        "Data Cards and Dongles",
+        "Wireless USB Adaptors",
+        "Switch",
+        "Repeaters",
 
         "Headphones",
-            "In Ear",
-            "On Ear",
-            "Over Ear",
-            "Noice Cancelling",
-            "Sports and Fitness",
-            "Tangle Free Cord",
-            "With Microphone",
-            "Withouth Microphone",
+        "In Ear",
+        "On Ear",
+        "Over Ear",
+        "Noice Cancelling",
+        "Sports and Fitness",
+        "Tangle Free Cord",
+        "With Microphone",
+        "Withouth Microphone",
 
         "MP3, Media Players & Accessories",
-            "Media Player Accessories",
-            "Boomboxes",
-            "DVD And Blu Ray Players",
-            "MP3 & MP4 Players",
+        "Media Player Accessories",
+        "Boomboxes",
+        "DVD And Blu Ray Players",
+        "MP3 & MP4 Players",
 
         "Audio & Video Accessories",
-            "3D Glasses",
-            "Cables",
-            "Headphones",
-            "Headphone Accessories",
-            "Projector Accessories",
-            "Remote Controls",
-            "TV Mounts & Stands",
-            "Turntable Cartridges & Needles",
-            "Video Converters",
+        "3D Glasses",
+        "Cables",
+        "Headphones",
+        "Headphone Accessories",
+        "Projector Accessories",
+        "Remote Controls",
+        "TV Mounts & Stands",
+        "Turntable Cartridges & Needles",
+        "Video Converters",
 
         "Cameras",
-            "Camera Accessories",
-                "Batteries & Charges",
-                "Caliberation Charts & Grey Cards",
-                "Camcorder & Video Accessories",
-                "Case & Bag Accessories",
-                "Cases & Bags",
-                "Cleaners",
-                "Digital Camera Accessories",
-                "Filters",
-                "Flash Accessories",
-                "Lens Accessories",
-                "Photo Studio & Lightning",
-                "Telescope Accessories",
-                "Tripod & Monopod Accessories",
-            "Action Cameras",
-            "Binoculars",
-            "Camcorders",
-            "Digital Cameras",
-            "Digital Picture Frames",
-            "Film Cameras",
-            "Flashes",
-            "Survelliance Cameras",
-            "Tripods & Monopods",
-            "Underwater Video & Photography",
-            "Video Projectors",
+        "Camera Accessories",
+        "Batteries & Charges",
+        "Caliberation Charts & Grey Cards",
+        "Camcorder & Video Accessories",
+        "Case & Bag Accessories",
+        "Cases & Bags",
+        "Cleaners",
+        "Digital Camera Accessories",
+        "Filters",
+        "Flash Accessories",
+        "Lens Accessories",
+        "Photo Studio & Lightning",
+        "Telescope Accessories",
+        "Tripod & Monopod Accessories",
+        "Action Cameras",
+        "Binoculars",
+        "Camcorders",
+        "Digital Cameras",
+        "Digital Picture Frames",
+        "Film Cameras",
+        "Flashes",
+        "Survelliance Cameras",
+        "Tripods & Monopods",
+        "Underwater Video & Photography",
+        "Video Projectors",
 
         "DSLR Cameras",
 
         "Camera Accessories",
 
         "Musical Instruments & Professional Audio",
-            "Bass Guitars & Gear",
-            "DJ & VJ Equipment",
-            "Drums & Percussion",
-            "Guitars & Gear",
-            "Karaoke Equipment",
-            "Microphone",
-            "PA & Stage",
-            "Piano & Keyboard",
-            "Recording & Computer",
-            "String Instruments",
-            "Synthesizer & Sampler",
-            "Wind Instruments",
+        "Bass Guitars & Gear",
+        "DJ & VJ Equipment",
+        "Drums & Percussion",
+        "Guitars & Gear",
+        "Karaoke Equipment",
+        "Microphone",
+        "PA & Stage",
+        "Piano & Keyboard",
+        "Recording & Computer",
+        "String Instruments",
+        "Synthesizer & Sampler",
+        "Wind Instruments",
 
         "Gaming Consoles",
 
         "Heating & Cooling Appliances",
-            "Air Coolers",
-            "Air Purifiers",
-            "Dehumidifiers",
-            "Fans",
-            "Humidifiers",
-            "Room Heaters",
-            "Water Heaters",
+        "Air Coolers",
+        "Air Purifiers",
+        "Dehumidifiers",
+        "Fans",
+        "Humidifiers",
+        "Room Heaters",
+        "Water Heaters",
 
         "Air Conditioners",
-            "Window AC",
-            "Split AC",
+        "Window AC",
+        "Split AC",
 
         "Refrigerators",
-            "Multi Door",
-            "Side By Side",
-            "Standard Double Door",
-            "Standard Single Door",
+        "Multi Door",
+        "Side By Side",
+        "Standard Double Door",
+        "Standard Single Door",
 
         "Washing Machines",
-            "Top Loading",
-            "Front Loading",
-            "Fully Automatic",
-            "Semi Automatic",
+        "Top Loading",
+        "Front Loading",
+        "Fully Automatic",
+        "Semi Automatic",
 
         "Kitchen & Home Appliances",
-            "Mixer Grinders",
-            "Juicers",
-            "Food Processors",
-            "Rice & Pasta Cookers",
-            "Induction Cookers",
-            "Espresso Machines",
-            "Over Toaster Grills",
-            "Kettles",
-            "Toasters",
-            "Sandwich Makers",
-            "Stand Mixers",
+        "Mixer Grinders",
+        "Juicers",
+        "Food Processors",
+        "Rice & Pasta Cookers",
+        "Induction Cookers",
+        "Espresso Machines",
+        "Over Toaster Grills",
+        "Kettles",
+        "Toasters",
+        "Sandwich Makers",
+        "Stand Mixers",
     ];
 
-   let categories = [];
+    let categories = [];
 
 
-   function increment (j){
-        j+=1;
+    function increment(j) {
+        j += 1;
         return j;
     }
 
-    function addCategories(x){
+    function addCategories(x) {
         const cat_entity = new CategoryModel({
             name: cat[x]
         });
-        cat_entity.save(function(err, result){
-            if(err){
+        cat_entity.save(function (err, result) {
+            if (err) {
                 console.log("Duplicate Entry!");
-            }else{
+            } else {
                 categories.push(cat_entity);
             }
 
-            if (x === cat.length-1){
+            if (x === cat.length - 1) {
                 done(categories);
-            }else{
+            } else {
                 addCategories(increment(x));
             }
 
         });
     }
+
     addCategories(0);
 };
 
 const createProducts = function (companies, categories, done) {
     let companySamsung;
     let companySony;
-    let companyGoogle, companyAmazon, companyDell,companyTwinStar,companyMicrosoft,companyLogitech,companyBushnell,companyMiluoTech,companyTeslong,companyApollo;
-    for(let i = 0; i < companies.length; i++){
-        if(companies[i].name === "Samsung"){
+    let companyGoogle, companyAmazon, companyDell, companyTwinStar, companyMicrosoft, companyLogitech, companyBushnell,
+        companyMiluoTech, companyTeslong, companyApollo;
+    for (let i = 0; i < companies.length; i++) {
+        if (companies[i].name === "Samsung") {
             companySamsung = companies[i];
-        }else if(companies[i].name === "Sony"){
+        } else if (companies[i].name === "Sony") {
             companySony = companies[i];
         }
-        else if (companies[i].name === "Google"){
+        else if (companies[i].name === "Google") {
             companyGoogle = companies[i];
         }
-        else if (companies[i].name === "Amazon"){
+        else if (companies[i].name === "Amazon") {
             companyAmazon = companies[i];
         }
-		 else if (companies[i].name === "Dell"){
+        else if (companies[i].name === "Dell") {
             companyDell = companies[i];
         }
-         else if (companies[i].name === "TwinStar"){
-                companyTwinStar = companies[i];
-          }
-         else if (companies[i].name === "Microsoft"){
-              companyMicrosoft = companies[i];
-          }
-          else if (companies[i].name === "Logitech"){
-              companyLogitech = companies[i];
-          }
-          else if (companies[i].name === "Bushnell"){
-                 companyBushnell = companies[i];
-          }
-          else if (companies[i].name === "MiluoTech"){
-             companyMiluoTech = companies[i];
-           }
-           else if (companies[i].name === "Teslong"){
-                        companyTeslong = companies[i];
-          }
-          else if (companies[i].name === "Apollo"){
-                 companyApollo = companies[i];
-          }
+        else if (companies[i].name === "TwinStar") {
+            companyTwinStar = companies[i];
+        }
+        else if (companies[i].name === "Microsoft") {
+            companyMicrosoft = companies[i];
+        }
+        else if (companies[i].name === "Logitech") {
+            companyLogitech = companies[i];
+        }
+        else if (companies[i].name === "Bushnell") {
+            companyBushnell = companies[i];
+        }
+        else if (companies[i].name === "MiluoTech") {
+            companyMiluoTech = companies[i];
+        }
+        else if (companies[i].name === "Teslong") {
+            companyTeslong = companies[i];
+        }
+        else if (companies[i].name === "Apollo") {
+            companyApollo = companies[i];
+        }
 
 
     }
@@ -444,90 +456,93 @@ const createProducts = function (companies, categories, done) {
     let categoryTv;
     let categoryCabel;
     let categoryProjector;
-    let categoryLED, categoryOLED, categoryFLAT, categoryCastDevices, categorySmart, categoryTVAccessories, categoryBestsellers;
-    let categoryGamingProjectors, categoryBusinessProjectors, categoryHomeTheater, categoryPortable, categoryProjectorAcc, categoryHeadphones,categoryCamera;
-    let categoryHomeEntertainmentSystems, categorySpeakers, categoryBluetoothSpeakers, categoryBookshelfSpeakers, categoryCeilingSpeakers, categoryCentreSpeakers, categoryOutdoorSpeakers, categorySoundBars;
-    for(let k = 0; k < categories.length; k++){
-        if(categories[k].name === "Televisions"){
+    let categoryLED, categoryOLED, categoryFLAT, categoryCastDevices, categorySmart, categoryTVAccessories,
+        categoryBestsellers;
+    let categoryGamingProjectors, categoryBusinessProjectors, categoryHomeTheater, categoryPortable,
+        categoryProjectorAcc, categoryHeadphones, categoryCamera;
+    let categoryHomeEntertainmentSystems, categorySpeakers, categoryBluetoothSpeakers, categoryBookshelfSpeakers,
+        categoryCeilingSpeakers, categoryCentreSpeakers, categoryOutdoorSpeakers, categorySoundBars;
+    for (let k = 0; k < categories.length; k++) {
+        if (categories[k].name === "Televisions") {
             categoryTv = categories[k];
-        }else if(categories[k].name === "Cables"){
+        } else if (categories[k].name === "Cables") {
             categoryCabel = categories[k];
-        }else if(categories[k].name === "Projectors"){
+        } else if (categories[k].name === "Projectors") {
             categoryProjector = categories[k];
         }
-        else if(categories[k].name === "LED"){
+        else if (categories[k].name === "LED") {
             categoryLED = categories[k];
         }
-        else if(categories[k].name === "OLED"){
+        else if (categories[k].name === "OLED") {
             categoryOLED = categories[k];
         }
-        else if(categories[k].name === "Flat"){
+        else if (categories[k].name === "Flat") {
             categoryFLAT = categories[k];
         }
-        else if(categories[k].name === "TV Accessories"){
+        else if (categories[k].name === "TV Accessories") {
             categoryTVAccessories = categories[k];
         }
-        else if(categories[k].name === "Cast Devices"){
+        else if (categories[k].name === "Cast Devices") {
             categoryCastDevices = categories[k];
         }
-        else if(categories[k].name === "Smart"){
+        else if (categories[k].name === "Smart") {
             categorySmart = categories[k];
         }
-        else if(categories[k].name === "Bestsellers"){
+        else if (categories[k].name === "Bestsellers") {
             categoryBestsellers = categories[k];
         }
-        else if(categories[k].name === "TV Accessories"){
+        else if (categories[k].name === "TV Accessories") {
             categoryTVAccessories = categories[k];
         }
-        else if(categories[k].name === "Gaming Projectors"){
+        else if (categories[k].name === "Gaming Projectors") {
             categoryGamingProjectors = categories[k];
         }
-        else if(categories[k].name === "Business & Education Projectors"){
+        else if (categories[k].name === "Business & Education Projectors") {
             categoryBusinessProjectors = categories[k];
         }
-        else if(categories[k].name === "Home Theater"){
+        else if (categories[k].name === "Home Theater") {
             categoryHomeTheater = categories[k];
         }
-        else if(categories[k].name === "Portable"){
+        else if (categories[k].name === "Portable") {
             categoryPortable = categories[k];
         }
-        else if(categories[k].name === "Projector Accessories"){
+        else if (categories[k].name === "Projector Accessories") {
             categoryProjectorAcc = categories[k];
         }
-        else if(categories[k].name === "Home Entertainment Systems"){
+        else if (categories[k].name === "Home Entertainment Systems") {
             categoryHomeEntertainmentSystems = categories[k];
         }
-        else if(categories[k].name === "Speakers"){
+        else if (categories[k].name === "Speakers") {
             categorySpeakers = categories[k];
         }
-        else if(categories[k].name === "Bluetooth Speakers"){
+        else if (categories[k].name === "Bluetooth Speakers") {
             categoryBluetoothSpeakers = categories[k];
         }
-        else if(categories[k].name === "Bookshelf Speakers"){
+        else if (categories[k].name === "Bookshelf Speakers") {
             categoryBookshelfSpeakers = categories[k];
         }
-        else if(categories[k].name === "Ceiling and In Wall Speakers"){
+        else if (categories[k].name === "Ceiling and In Wall Speakers") {
             categoryCeilingSpeakers = categories[k];
         }
-        else if(categories[k].name === "Centre Speakers"){
+        else if (categories[k].name === "Centre Speakers") {
             categoryCentreSpeakers = categories[k];
         }
-        else if(categories[k].name === "Outdoor Speakers"){
+        else if (categories[k].name === "Outdoor Speakers") {
             categoryOutdoorSpeakers = categories[k];
         }
-        else if(categories[k].name === "Sound Bars"){
+        else if (categories[k].name === "Sound Bars") {
             categorySoundBars = categories[k];
         }
-		 else if(categories[k].name === "Headphones"){
+        else if (categories[k].name === "Headphones") {
             categoryHeadphones = categories[k];   //categoryHeadphones._id
         }
-        else if(categories[k].name === "Cameras"){
-                    categoryCamera = categories[k];   //categoryCamera._id
+        else if (categories[k].name === "Cameras") {
+            categoryCamera = categories[k];   //categoryCamera._id
         }
     }
 
     const productSamsungTv = new ProductModel({
-        productName : "SamsungTV55",
+        productName: "SamsungTV55",
         company_id: companySamsung._id,
         categories: [categoryTv, categoryOLED, categoryFLAT, categoryBestsellers],
         productImages: [
@@ -543,9 +558,9 @@ const createProducts = function (companies, categories, done) {
     });
 
     const productSonyHdmiCabel = new ProductModel({
-        productName : "HDMI Cabel",
+        productName: "HDMI Cabel",
         company_id: companySamsung._id,
-        categories: [categoryTv , categoryCabel, categoryTVAccessories],
+        categories: [categoryTv, categoryCabel, categoryTVAccessories],
         productImages: [
             "https://storage.googleapis.com/product_resources/8d16bae2-7e79-4bca-8714-d9188bf45d56_hdmi.jpeg"
         ],
@@ -553,7 +568,7 @@ const createProducts = function (companies, categories, done) {
     });
 
     const productSonyTv = new ProductModel({
-        productName : "Sony KDL-32WD755",
+        productName: "Sony KDL-32WD755",
         company_id: companySony._id,
         categories: [categoryTv, categoryLED],
         productImages: [
@@ -573,7 +588,7 @@ const createProducts = function (companies, categories, done) {
     });
 
     const productSamsungProjector = new ProductModel({
-        productName : "Flux Supa Projector",
+        productName: "Flux Supa Projector",
         company_id: companySamsung._id,
         categories: [categoryProjector, categoryBusinessProjectors],
         productImages: [
@@ -654,7 +669,7 @@ const createProducts = function (companies, categories, done) {
     const productProjector1 = new ProductModel({
         productName: "Sony DBPOWER T20 1500 Lumens LCD Mini Projector",
         company_id: companySony._id,
-        categories: [categoryProjector,categoryGamingProjectors],
+        categories: [categoryProjector, categoryGamingProjectors],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/61FtfuuaQxL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/61IiZ4WIt1L._SX522_.jpg"
@@ -704,7 +719,7 @@ const createProducts = function (companies, categories, done) {
     });
 
 
-const productProjector6 = new ProductModel({
+    const productProjector6 = new ProductModel({
         productName: "Apollo Horizon 2 Overhead Projector, 15 x 14 x 27 Inches, Open Head (V16000M)",
         company_id: companyApollo._id,
         //,Business & Education Projectors
@@ -718,7 +733,7 @@ const productProjector6 = new ProductModel({
         ]
     });
 
-const productProjector7 = new ProductModel({
+    const productProjector7 = new ProductModel({
         productName: "Apollo Overhead Projector, 15 x 14 x 27 Inches, Closed Head (V16002M)",
         company_id: companyApollo._id,
         //,Business & Education Projectors
@@ -829,35 +844,35 @@ const productProjector7 = new ProductModel({
     });
 
 
- const productHeadPhones = new ProductModel({
+    const productHeadPhones = new ProductModel({
         productName: "Dell Performance USB Headset (AE2)",
         company_id: companyDell._id,
         categories: [categoryHeadphones],  //the category variable
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/61KmB2THvpL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/511JRZ3pXeL._SX522_.jpg",
-			"https://images-na.ssl-images-amazon.com/images/I/61wAYkiXPqL._SX522_.jpg"
+            "https://images-na.ssl-images-amazon.com/images/I/61wAYkiXPqL._SX522_.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=kLyYGjbi7vM"
         ]
     });
 
-const productCamera = new ProductModel({
+    const productCamera = new ProductModel({
         productName: "60mm Compact Refractor AstroVenture Telescope ",
         company_id: companyTwinStar._id,
         categories: [categoryCamera],  //the category variable
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/61aUx2rts4L._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71wV1Z1aE2L._SL1500_.jpg",
-			"https://images-na.ssl-images-amazon.com/images/I/71OKYFIu1RL._SL1500_.jpg"
+            "https://images-na.ssl-images-amazon.com/images/I/71OKYFIu1RL._SL1500_.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=dX8I9SC11vM"
         ]
     });
 
-const productCamera2 = new ProductModel({
+    const productCamera2 = new ProductModel({
         productName: "Microsoft LifeCam HD-3000",
         company_id: companyMicrosoft._id,
         categories: [categoryCamera],  //the category variable
@@ -871,105 +886,104 @@ const productCamera2 = new ProductModel({
     });
 
     const productCamera3 = new ProductModel({
-            productName: "Logitech HD Webcam C310",
-            company_id: companyLogitech._id,
-            categories: [categoryCamera],  //the category variable
-            productImages: [
-                "https://images-na.ssl-images-amazon.com/images/I/41QNcbkM9OL.jpg",
-                "https://images-na.ssl-images-amazon.com/images/I/81RWpOQo1qL._SL1500_.jpg"
-            ],
-            productResources: [
-                "https://www.youtube.com/watch?v=IRXDXRZc9Rg"
-            ]
-        });
+        productName: "Logitech HD Webcam C310",
+        company_id: companyLogitech._id,
+        categories: [categoryCamera],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/41QNcbkM9OL.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/81RWpOQo1qL._SL1500_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=IRXDXRZc9Rg"
+        ]
+    });
 
     const productCamera4 = new ProductModel({
-            productName: "Bushnell Legend Ultra HD Monocular, Black, 10 x 42-mm",
-            company_id: companyBushnell._id,
-            categories: [categoryCamera],  //the category variable
-            productImages: [
-                "https://images-na.ssl-images-amazon.com/images/I/910uWOypCIL._SL1500_.jpg",
-                "https://images-na.ssl-images-amazon.com/images/I/519NW5HTB4L.jpg"
-            ],
-            productResources: [
-                "https://www.youtube.com/watch?v=j0Gfjwd7K0Y"
-            ]
-        });
+        productName: "Bushnell Legend Ultra HD Monocular, Black, 10 x 42-mm",
+        company_id: companyBushnell._id,
+        categories: [categoryCamera],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/910uWOypCIL._SL1500_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/519NW5HTB4L.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=j0Gfjwd7K0Y"
+        ]
+    });
 
     const productCamera5 = new ProductModel({
-            productName: "Miluo Tech 16x52 Dual Focus Monocular Telescope /Monocular Scope for Hunting, Camping, Surveillance",
-            company_id: companyMiluoTech._id,
-            categories: [categoryCamera],  //the category variable
-            productImages: [
-                "https://images-na.ssl-images-amazon.com/images/I/61I%2Bbr1Cs5L._SL1500_.jpg",
-                "https://images-na.ssl-images-amazon.com/images/I/61Kc-4iIGiL._SL1308_.jpg"
-            ],
-            productResources: [
-                "https://www.youtube.com/watch?v=HEKdhscWBzU"
-            ]
-        });
+        productName: "Miluo Tech 16x52 Dual Focus Monocular Telescope /Monocular Scope for Hunting, Camping, Surveillance",
+        company_id: companyMiluoTech._id,
+        categories: [categoryCamera],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/61I%2Bbr1Cs5L._SL1500_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/61Kc-4iIGiL._SL1308_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=HEKdhscWBzU"
+        ]
+    });
 
-      const productCamera6 = new ProductModel({
-                    productName: "Bushnell Trophy Cam HD Essential E2 12MP Trail Camera",
-                    company_id: companyBushnell._id,
-                    categories: [categoryCamera],  //the category variable
-                    productImages: [
-                        "https://images-na.ssl-images-amazon.com/images/I/51E9DNupkJL.jpg",
-                        "https://images-na.ssl-images-amazon.com/images/I/81OtXblbltL._SL1500_.jpg"
-                    ],
-                    productResources: [
-                        "https://www.youtube.com/watch?v=B-wUgdfduXw"
-                    ]
-                });
+    const productCamera6 = new ProductModel({
+        productName: "Bushnell Trophy Cam HD Essential E2 12MP Trail Camera",
+        company_id: companyBushnell._id,
+        categories: [categoryCamera],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/51E9DNupkJL.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/81OtXblbltL._SL1500_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=B-wUgdfduXw"
+        ]
+    });
 
-            const productCamera7= new ProductModel({
-                              productName: "Bushnell Trophy Cam HD Aggressor 14MP Wireless Trail Camera",
-                              company_id: companyBushnell._id,
-                              categories: [categoryCamera],  //the category variable
-                              productImages: [
-                                  "https://images-na.ssl-images-amazon.com/images/I/A1RUKRdLlKL._SL1500_.jpg",
-                                  "https://images-na.ssl-images-amazon.com/images/I/A1WFrUtuO1L._SL1500_.jpg"
-                              ],
-                              productResources: [
-                                  "https://www.amazon.com/Bushnell-Trophy-Aggressor-Wireless-Camera/dp/B01D0JTRGU/ref=pd_bxgy_200_img_2?_encoding=UTF8&psc=1&refRID=04JXN6BY0JE58KV7M66D"
-                              ]
-                          });
+    const productCamera7 = new ProductModel({
+        productName: "Bushnell Trophy Cam HD Aggressor 14MP Wireless Trail Camera",
+        company_id: companyBushnell._id,
+        categories: [categoryCamera],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/A1RUKRdLlKL._SL1500_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/A1WFrUtuO1L._SL1500_.jpg"
+        ],
+        productResources: [
+            "https://www.amazon.com/Bushnell-Trophy-Aggressor-Wireless-Camera/dp/B01D0JTRGU/ref=pd_bxgy_200_img_2?_encoding=UTF8&psc=1&refRID=04JXN6BY0JE58KV7M66D"
+        ]
+    });
 
-             const productCamera8= new ProductModel({
-                                          productName: "Barrel Borescope, Teslong Rifle Barrel Endoscope Inspection Camera with 5.5mm Diameter, Short Focus Camera, 24 Inch Rod and 3.5 Inch LCD ",
-                                          company_id: companyTeslong._id,
-                                          categories: [categoryCamera],  //the category variable
-                                          productImages: [
-                                              "https://images-na.ssl-images-amazon.com/images/I/61vPWse8ZvL._SL1001_.jpg",
-                                              "https://images-na.ssl-images-amazon.com/images/I/61vTpdQZNOL._SL1001_.jpg"
-                                          ],
-                                          productResources: [
-                                              "https://www.youtube.com/watch?v=KOo__ePq1fo"
-                                          ]
-                                      });
+    const productCamera8 = new ProductModel({
+        productName: "Barrel Borescope, Teslong Rifle Barrel Endoscope Inspection Camera with 5.5mm Diameter, Short Focus Camera, 24 Inch Rod and 3.5 Inch LCD ",
+        company_id: companyTeslong._id,
+        categories: [categoryCamera],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/61vPWse8ZvL._SL1001_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/61vTpdQZNOL._SL1001_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=KOo__ePq1fo"
+        ]
+    });
 
-              const productCamera9= new ProductModel({
-                                                        productName: "Digital Endoscope, Teslong 0.21inch Semi Rigid Industrial Endoscope  ",
-                                                        company_id: companyTeslong._id,
-                                                        categories: [categoryCamera],  //the category variable
-                                                        productImages: [
-                                                            "https://images-na.ssl-images-amazon.com/images/I/71RIP0D9uPL._SL1500_.jpg",
-                                                            "https://images-na.ssl-images-amazon.com/images/I/818KXU7RtaL._SL1500_.jpg",
-                                                            "https://images-na.ssl-images-amazon.com/images/I/71--F%2B2RtHL._SL1500_.jpg"
-                                                        ],
-                                                        productResources: [
-                                                            "https://www.youtube.com/watch?v=W_sTSFhdakw"
-                                                        ]
-                                                    });
+    const productCamera9 = new ProductModel({
+        productName: "Digital Endoscope, Teslong 0.21inch Semi Rigid Industrial Endoscope  ",
+        company_id: companyTeslong._id,
+        categories: [categoryCamera],  //the category variable
+        productImages: [
+            "https://images-na.ssl-images-amazon.com/images/I/71RIP0D9uPL._SL1500_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/818KXU7RtaL._SL1500_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/71--F%2B2RtHL._SL1500_.jpg"
+        ],
+        productResources: [
+            "https://www.youtube.com/watch?v=W_sTSFhdakw"
+        ]
+    });
 
 
-
-    const batchInsert = [productProjector7,productProjector6, productCamera9,productCamera8,productCamera7,productCamera6,productCamera5,productCamera4,productCamera3,productCamera2,productCamera,productHeadPhones, productHDMI2, productSpeaker6, productSpeaker5, productSpeaker4, productSpeaker3, productSpeaker2, productSpeaker1, productProjector5, productProjector4, productProjector3, productProjector1, productSonyTV2, productSamsungTV2, productAmazonFire, productGoogleChromeCast, productSamsungTv, productSonyHdmiCabel, productSonyTv, productSamsungProjector, productProjectorCable];
-    ProductModel.collection.insert(batchInsert, function(){
+    const batchInsert = [productProjector7, productProjector6, productCamera9, productCamera8, productCamera7, productCamera6, productCamera5, productCamera4, productCamera3, productCamera2, productCamera, productHeadPhones, productHDMI2, productSpeaker6, productSpeaker5, productSpeaker4, productSpeaker3, productSpeaker2, productSpeaker1, productProjector5, productProjector4, productProjector3, productProjector1, productSonyTV2, productSamsungTV2, productAmazonFire, productGoogleChromeCast, productSamsungTv, productSonyHdmiCabel, productSonyTv, productSamsungProjector, productProjectorCable];
+    ProductModel.collection.insert(batchInsert, function () {
         done(batchInsert);
     });
 };
-mongoose.connect(config.database.connectionURL, { useMongoClient: true });
+mongoose.connect(config.database.connectionURL, {useMongoClient: true});
 mongoose.Promise = global.Promise;
 
 console.log("Setup Databse");
@@ -979,22 +993,22 @@ console.log("Drop Data");
 dropData(function () {
     console.log("Add Data");
     createCompanys(function (companies) {
-       for(let i = 0; i < companies.length; i++){
-           createRepresentas(companies[i], function(){
+        for (let i = 0; i < companies.length; i++) {
+            createRepresentas(companies[i], function () {
 
-           });
-       }
-       createCategories(function(categories){
-          createProducts(companies, categories, function () {
-              createConsumer(function(){
-                  console.log("---");
-                  console.log("Finished");
-                  setTimeout(function(){
-                      process.exit(0);
-                  }, 2000);
-              });
+            });
+        }
+        createCategories(function (categories) {
+            createProducts(companies, categories, function () {
+                createConsumer(function () {
+                    console.log("---");
+                    console.log("Finished");
+                    setTimeout(function () {
+                        process.exit(0);
+                    }, 2000);
+                });
 
-          });
-       });
+            });
+        });
     });
 });
