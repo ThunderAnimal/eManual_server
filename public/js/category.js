@@ -35,6 +35,7 @@ $(document).ready(function(){
         }
 
     });
+
 });
 
 var addChooseCategorie = function(id, name){
@@ -94,11 +95,56 @@ var renderData = function(data){
     }
     for(var k = 0; k < products.length; k++){
         var clonedTemplate = temp.content.cloneNode(true);
-
         clonedTemplate.querySelector("h3").innerText = products[k].productName;
         clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id;
         clonedTemplate.querySelector('.pic').src = products[k].productImages[0];
+        clonedTemplate.querySelector('.product-select p').textContent = products[k]._id;
+        if(products[k].selected){
+            clonedTemplate.querySelector('.product-select a.add-selection').style.display= "none";
+            clonedTemplate.querySelector('.product-select a.remove-selection').style.display= "";
+        }else{
+            clonedTemplate.querySelector('.product-select a.add-selection').style.display= "";
+            clonedTemplate.querySelector('.product-select a.remove-selection').style.display= "none";
+        }
+        clonedTemplate.querySelector('.product-select a.add-selection').addEventListener("click",function () {
+            this.style.display = "none";
+            var e = this.parentNode.childNodes[1];
+            var pID = this.parentNode.childNodes[2].textContent;
+            $.ajax({
+                url: 'api/v1/selected_product',
+                type: 'PUT',
+                data:{add:true,product_id:pID},
+                success: function(res) {
+                    console.log(res);
+                    e.style.display="";
+                },
+                error: function (err) {
+                    console.log(err);
+                    if(err.status === 401){
+                        alert("Log in is required for select product");
+                    }
+                }
+            });
+        });
+        clonedTemplate.querySelector('.product-select a.remove-selection').addEventListener("click",function () {
+            this.style.display = "none";
+            var e = this.parentNode.childNodes[0];
+            var pID =this.parentNode.childNodes[2].textContent;
+            $.ajax({
+                url: 'api/v1/selected_product',
+                type: 'PUT',
+                data:{delete:true,product_id:pID},
+                success: function(res) {
+                    console.log(res);
+                    e.style.display="";
+                },
+                error: function (err) {
+                    console.log(err.status);
+                }
+            });
 
+
+        });
         ul.appendChild(clonedTemplate);
     }
 };

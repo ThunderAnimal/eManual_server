@@ -25,6 +25,10 @@ exports.changeProducts=function (req,res,next) {
     const product_id = req.body.product_id;
     const clientAdd= req.body.add;
     const clientDelete= req.body.delete;
+    console.log(req.body);
+    console.log(req.body.product_id);
+    console.log(req.body.add);
+    console.log(req.body.delete);
 
     consumerModel.find({}, function (err, data) {
         if (err) {
