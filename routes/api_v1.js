@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const rep = require('../app/models/Representative');
-const consumerModel = require('../app/models/Consumer');
 
 const policy = require('../app/moduls/routePolicy');
 
@@ -11,7 +10,6 @@ const upload = require('../app/moduls/fileUpload');
 const productManager = require('../app/moduls/ProductManager');
 const categoryManager = require('../app/moduls/CategoryManager');
 const consumerManager = require('../app/moduls/ConsumerManager');
-const fs = require('fs');
 
 
 //API representatives
