@@ -1,67 +1,38 @@
 var choosenCategories = [];
 
 $(document).ready(function(){
+    var category_list = getParams(window.location.href)['category_id[]'];
 
-    if(getParameterByName("category_id")){
-        $.get('api/v1/category/' + getParameterByName("category_id"), function(result){
-            addChooseCategorie(result._id, result.name);
-        }).fail(function () {
+    console.log(category_list);
+    if(category_list){
+        fillChoosenCategories(category_list, function (choosenCategories) {
+            console.log(choosenCategories);
             getData(choosenCategories);
             renderNaviagtion(choosenCategories);
         });
     }else{
-        getData(choosenCategories);
-        renderNaviagtion(choosenCategories);
+        getData([]);
+        renderNaviagtion([]);
     }
-
-
-    $("#cat_list").on("click", "a", function (e) {
-        addChooseCategorie($(this).attr("id"), $(this).attr("name"));
-        choosenCategories.push();
-        getData();
-    });
-
-    $('#category_breadcrumb').on("click", "a", function (e) {
-        if(!$(this).attr("id")){
-            return;
-        }
-
-        if($(this).attr("id") === 'breadcrump_all'){
-            choosenCategories = [];
-            getData(choosenCategories);
-            renderNaviagtion(choosenCategories);
-        }else{
-            removesChooseCategorie($(this).attr("id"));
-        }
-
-    });
 
 });
+var fillChoosenCategories = function(cat_list, callback){
 
-var addChooseCategorie = function(id, name){
-    for(var i = 0; i < choosenCategories.length; i++){
-        if(choosenCategories[i].id === id){
+    var getCatNameHelper = function(counter){
+        if(counter >= cat_list.length){
+            callback(choosenCategories);
             return;
         }
-    }
-    choosenCategories.push({
-       id: id,
-       name: name
-    });
-
-    renderNaviagtion(choosenCategories);
-    getData(choosenCategories);
-
-};
-
-var removesChooseCategorie = function(id){
-    for(var i = 0; i < choosenCategories.length; i++){
-        if(choosenCategories[i].id === id){
-            choosenCategories.splice(i + 1);
-            renderNaviagtion(choosenCategories);
-            getData(choosenCategories);
-        }
-    }
+        $.get('api/v1/category/' + cat_list[counter], function(result){
+            choosenCategories.push({id:result._id, name: result.name});
+            counter = counter + 1;
+            getCatNameHelper(counter);
+        }).fail(function () {
+            counter = counter + 1;
+            getCatNameHelper(counter);
+        });
+    };
+    getCatNameHelper(0);
 };
 
 var getData = function(choosenCategories){
@@ -79,12 +50,18 @@ var renderData = function(data){
     var cats = data.categoryList;
     var products = data.productList;
 
-    var cat_list = $("#cat_list");
+    var linkBase;
+    if(choosenCategories.length <= 0){
+        linkBase = window.location.href + '?category_id[]=';
+    }else{
+        linkBase = window.location.href + '&category_id[]=';
+    }
 
+    var cat_list = $("#cat_list");
     cat_list.empty();
     cat_list.append('<div class="collection-header center-align"><h4>Categories</h4></div>');
     for(var i = 0; i < cats.length; i++){
-        cat_list.append('<a id="' + cats[i]._id + '" name="' + cats[i].name + '" class="collection-item">' + cats[i].name  + '<span class="badge">'+cats[i].count+'</span></a>')
+        cat_list.append('<a href="' + linkBase + cats[i]._id + '" id="' + cats[i]._id + '" name="' + cats[i].name + '" class="collection-item">' + cats[i].name  + '<span class="badge">'+cats[i].count+'</span></a>')
     }
 
     var temp = document.getElementById('productTemp'),
@@ -166,9 +143,14 @@ var renderNaviagtion = function(choosenCategories){
     currentCatTitle.text(choosenCategories[choosenCategories.length - 1].name);
     catBreadCrump.empty();
 
-    catBreadCrump.append('<a id="breadcrump_all" class="breadcrumb">Categories</a>');
+    catBreadCrump.append('<a href="/category" id="breadcrump_all" class="breadcrumb">Categories</a>');
+
+    linkBase = '/category' + '?category_id[]=';
+    console.log(choosenCategories);
     for(var i = 0; i < choosenCategories.length; i++){
-        catBreadCrump.append('<a id="' + choosenCategories[i].id + '" class="breadcrumb">' + choosenCategories[i].name + '</a>');
+        linkBase += choosenCategories[i].id;
+        catBreadCrump.append('<a href="' + linkBase + '" id="' + choosenCategories[i].id + '" class="breadcrumb">' + choosenCategories[i].name + '</a>');
+        linkBase += '&category_id[]=';
     }
 
     currentCatTitle.show();
@@ -183,4 +165,24 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function getParams(url) {
+    var regex = /([^=&?]+)=([^&#]*)/g, params = {}, parts, key, value;
+
+    while((parts = regex.exec(url)) != null) {
+
+        key = parts[1], value = parts[2];
+        var isArray = /\[\]$/.test(key);
+
+        if(isArray) {
+            params[key] = params[key] || [];
+            params[key].push(value);
+        }
+        else {
+            params[key] = value;
+        }
+    }
+
+    return params;
 }
