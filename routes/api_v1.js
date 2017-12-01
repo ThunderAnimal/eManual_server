@@ -110,7 +110,6 @@ router.get('/dir_products', function(req, res){
                 let isConsumer = () => {
                     for (let i=0; i<product_result.length; i++){
                         isFavorite(product_result[i], i, req, (i)=>{
-                            console.log("came to true");
                             let item = {
                                 _id: product_result[i]._id,
                                 productName: product_result[i].productName,
@@ -122,7 +121,6 @@ router.get('/dir_products', function(req, res){
                             };
                             finalProductList.push(item);
                         }, (i)=>{
-                            console.log("came to false");
                             let item = {
                                 _id: product_result[i]._id,
                                 productName: product_result[i].productName,
