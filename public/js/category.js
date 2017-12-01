@@ -107,6 +107,7 @@ var renderData = function(data){
             clonedTemplate.querySelector('.product-select a.remove-selection').style.display= "none";
         }
         clonedTemplate.querySelector('.product-select a.add-selection').addEventListener("click",function () {
+            var that = this;
             this.style.display = "none";
             var e = this.parentNode.childNodes[1];
             var pID = this.parentNode.childNodes[2].textContent;
@@ -119,9 +120,12 @@ var renderData = function(data){
                     e.style.display="";
                 },
                 error: function (err) {
+                    that.style.display = "";
                     console.log(err);
                     if(err.status === 401){
                         alert("Log in is required for select product");
+                    }else if(err.status === 403){
+                        alert("Only consumer can select products");
                     }
                 }
             });
