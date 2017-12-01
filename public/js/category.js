@@ -71,12 +71,13 @@ var renderData = function(data){
         ul.removeChild(ul.firstChild);
     }
     for(var k = 0; k < products.length; k++){
+        console.log(products[k]);
         var clonedTemplate = temp.content.cloneNode(true);
         clonedTemplate.querySelector("h3").innerText = products[k].productName;
         clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id;
         clonedTemplate.querySelector('.pic').src = products[k].productImages[0];
         clonedTemplate.querySelector('.product-select p').textContent = products[k]._id;
-        if(products[k].selected){
+        if(products[k].isFavorite){
             clonedTemplate.querySelector('.product-select a.add-selection').style.display= "none";
             clonedTemplate.querySelector('.product-select a.remove-selection').style.display= "";
         }else{
