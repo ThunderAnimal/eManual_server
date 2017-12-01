@@ -102,12 +102,24 @@ exports.findOrCreateFacebook = function(profile, accessToken, done){
 };
 
 exports.getSelectedProduct=function (req,res) {
-    productModel.find({'_id' : {$in: req.user.products}},function (err, result) {
+    consumerModel.findById(req.user._id,function(err, consumer){
         if(err){
             console.log(err);
-            res.status(500).send(err);
-        }else{
-            res.status(200).send(result);
+            return res.status(500).send(err);
         }
+
+        if(!consumer){
+            return res.sendStatus(401);
+        }
+
+        productModel.find({'_id' : {$in: consumer.products}},function (err, result) {
+            if(err){
+                console.log(err);
+                res.status(500).send(err);
+            }else{
+                res.status(200).send(result);
+            }
+        });
     });
+
 };
