@@ -119,7 +119,6 @@ function checkRequestFromUser (req, consumers){
             if (req.user._id.toString() === consumers[i]._id.toString()) {
                 flag = true;
                 return flag;
-                break;
             }
         }
         return flag;
