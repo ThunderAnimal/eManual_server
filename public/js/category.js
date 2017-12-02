@@ -3,10 +3,9 @@ var choosenCategories = [];
 $(document).ready(function(){
     var category_list = getParams(window.location.href)['category_id[]'];
 
-    console.log(category_list);
+
     if(category_list){
         fillChoosenCategories(category_list, function (choosenCategories) {
-            console.log(choosenCategories);
             getData(choosenCategories);
             renderNaviagtion(choosenCategories);
         });
@@ -57,6 +56,11 @@ var renderData = function(data){
         linkBase = window.location.href + '&category_id[]=';
     }
 
+    var productLinkEnd = '';
+    for(var i = 0; i < choosenCategories.length; i++){
+        productLinkEnd += '&category_id[]=' + choosenCategories[i].id;
+    }
+
     var cat_list = $("#cat_list");
     cat_list.empty();
     cat_list.append('<div class="collection-header center-align"><h4>Categories</h4></div>');
@@ -71,10 +75,9 @@ var renderData = function(data){
         ul.removeChild(ul.firstChild);
     }
     for(var k = 0; k < products.length; k++){
-        console.log(products[k]);
         var clonedTemplate = temp.content.cloneNode(true);
         clonedTemplate.querySelector("h3").innerText = products[k].productName;
-        clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id;
+        clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id + productLinkEnd;
         clonedTemplate.querySelector('.pic').src = products[k].productImages[0];
         clonedTemplate.querySelector('.product-select p').textContent = products[k]._id;
         if(products[k].isFavorite){
@@ -146,8 +149,7 @@ var renderNaviagtion = function(choosenCategories){
 
     catBreadCrump.append('<a href="/category" id="breadcrump_all" class="breadcrumb">Categories</a>');
 
-    linkBase = '/category' + '?category_id[]=';
-    console.log(choosenCategories);
+    var linkBase = '/category' + '?category_id[]=';
     for(var i = 0; i < choosenCategories.length; i++){
         linkBase += choosenCategories[i].id;
         catBreadCrump.append('<a href="' + linkBase + '" id="' + choosenCategories[i].id + '" class="breadcrumb">' + choosenCategories[i].name + '</a>');

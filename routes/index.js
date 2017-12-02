@@ -86,12 +86,37 @@ router.get('/category',function (req,res) {
 router.get('/product', function (req, res, next) {
     const _id = req.query.id;
 
+    let profileUrl;
+    let name;
+    let image;
+
+    if(authManager.isUserCompany(req.user)){
+        profileUrl = "/company/dashboard";
+        name = req.user.name;
+    } else if(authManager.isUserRepresentative(req.user)){
+        profileUrl = "/representatives/dashboard";
+        name = req.user.name;
+    } else if(authManager.isUserConsumer(req.user)){
+        profileUrl = "/consumer";
+        name = req.user.username;
+        image = req.user.image;
+    }
+
     if(!_id){
         const err = new Error("Missing Product-Id");
         err.status = 400;
         next(err);
     }else{
-        res.render('detailProduct', {id: _id});
+        res.render('detailProduct',
+            {
+                id: _id,
+                isLoggedIn: req.isAuthenticated(),
+                user: {
+                    name: name,
+                    profileUrl: profileUrl,
+                    image: image
+                }
+        });
     }
 });
 
