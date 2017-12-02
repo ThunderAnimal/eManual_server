@@ -95,10 +95,11 @@ router.get('/dir_products', function(req, res){
                 return cat_list.indexOf(value._id.toString()) === -1;
             });
             let finalProductList = [];
-            let isFavorite = (product_entity, x, req, yes, no) => {
+
+            let isFavorite = (product_entity, x, customerProducts, yes, no) => {
                 let productID = product_entity._id;
-                for (let i = 0; i < req.user.products.length; i++) {
-                    if (req.user.products[i].toString() === productID.toString()) {
+                for (let i = 0; i < customerProducts.length; i++) {
+                    if (customerProducts[i].toString() === productID.toString()) {
                         yes(x);
                         return;
                     }
@@ -106,46 +107,49 @@ router.get('/dir_products', function(req, res){
                 no(x);
             };
             let sendData = (done) => {
-                let isConsumer = () => {
-                    for (let i=0; i<product_result.length; i++){
-                        isFavorite(product_result[i], i, req, (i)=>{
-                            let item = {
-                                _id: product_result[i]._id,
-                                productName: product_result[i].productName,
-                                company_id: product_result[i].company_id,
-                                productResources: product_result[i].productResources,
-                                productImages: product_result[i].productImages,
-                                categories: product_result[i].categories,
-                                isFavorite: true
-                            };
-                            finalProductList.push(item);
-                        }, (i)=>{
-                            let item = {
-                                _id: product_result[i]._id,
-                                productName: product_result[i].productName,
-                                company_id: product_result[i].company_id,
-                                productResources: product_result[i].productResources,
-                                productImages: product_result[i].productImages,
-                                categories: product_result[i].categories,
-                                isFavorite: false
-                            };
-                            finalProductList.push(item);
-                        });
-                    }
-                    done();
+                let getCurrentCustomerFavoriteProducts = () => {
+                    consumerManager.getUpdatedConsumerProducts(req.user._id, (customerProducts) =>{
+                        let isConsumer = () => {
+                            for (let i=0; i<product_result.length; i++){
+                                isFavorite(product_result[i], i, customerProducts, (i)=>{
+                                    let item = {
+                                        _id: product_result[i]._id,
+                                        productName: product_result[i].productName,
+                                        company_id: product_result[i].company_id,
+                                        productResources: product_result[i].productResources,
+                                        productImages: product_result[i].productImages,
+                                        categories: product_result[i].categories,
+                                        isFavorite: true
+                                    };
+                                    finalProductList.push(item);
+                                }, (i)=>{
+                                    let item = {
+                                        _id: product_result[i]._id,
+                                        productName: product_result[i].productName,
+                                        company_id: product_result[i].company_id,
+                                        productResources: product_result[i].productResources,
+                                        productImages: product_result[i].productImages,
+                                        categories: product_result[i].categories,
+                                        isFavorite: false
+                                    };
+                                    finalProductList.push(item);
+                                });
+                            }
+                            done();
+                        };
+                        isConsumer();
+                    })
                 };
-
                 let isNotConsumer = () => {
                     finalProductList = product_result;
                     done();
                 };
 
                 if(authManager.isUserConsumer(req.user)){
-                    isConsumer();
+                    getCurrentCustomerFavoriteProducts();
                 }else{
                     isNotConsumer();
                 }
-
             };
             sendData(()=>{
                 res.status(200).send({productList: finalProductList, categoryList: cat_result});
