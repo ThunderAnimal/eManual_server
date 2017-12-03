@@ -18,6 +18,7 @@ a,a:hover,a:focus {
 main {
     background: #fff;
     height: 100%;
+    //height: 2000px;
 }
 
 /* layout
@@ -27,10 +28,12 @@ main {
     left:0;
     right:0;
     width: auto;
-    height: 15vh;
+    height: 16vh;
+    max-height: 115px;
+    min-height: 70px;
     text-align: left;
     vertical-align: top;
-    position: absolute;
+    position: fixed;
     overflow: hidden;
 //background-image: url(../img/header-all-pages.png);
     background: linear-gradient(to right, #7dc7da, #faac9e);
@@ -40,10 +43,12 @@ main {
     align-items: flex-start;
     border-bottom: solid 4px #6c8790;
     box-sizing: border-box;
+    z-index: 30;
 }
 
 #top-space-nav-bar {
-    height: 12vh;
+    height: 85%;
+    max-height: 84px;
     width: 100%;
     background: #fefefe;
     display: flex;
@@ -54,7 +59,7 @@ main {
 
 #top-space img.logo-pic{
     margin-left: 2vw;
-    height: 60%;
+    height: 70%;
 }
 
 #user-header {
@@ -157,6 +162,14 @@ main {
     align-items: flex-end;
 }
 
+#user-content-tabs .tabs .indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: #f6755f;
+    will-change: left, right;
+}
+
 #user-content-tabs .tab {
     line-height: 1em;
     height: 100%;
@@ -177,8 +190,7 @@ main {
 }
 
 div#LOM{
-    padding-right: 10%;
-    padding-left: 10%;
+    padding: 0 5%;
     height: 100px;
     width: auto;
 }
