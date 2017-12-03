@@ -6,10 +6,6 @@ body {
     flex-direction: column;
 }
 
-header {
-    height: 15vh;
-}
-
 a,a:hover,a:focus {
     text-decoration: none;
     outline: 0;
@@ -23,50 +19,15 @@ main {
 
 /* layout
  **************************************************/
-#top-space{
-    top:0;
-    left:0;
-    right:0;
-    width: auto;
-    height: 16vh;
-    max-height: 115px;
-    min-height: 70px;
-    text-align: left;
-    vertical-align: top;
-    position: fixed;
-    overflow: hidden;
-//background-image: url(../img/header-all-pages.png);
-    background: linear-gradient(to right, #7dc7da, #faac9e);
-    background-size: 100%;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
-    display: flex;
-    align-items: flex-start;
-    border-bottom: solid 4px #6c8790;
-    box-sizing: border-box;
-    z-index: 30;
-}
-
-#top-space-nav-bar {
-    height: 85%;
-    max-height: 84px;
-    width: 100%;
-    background: #fefefe;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    box-shadow: none;
-}
-
-#top-space img.logo-pic{
-    margin-left: 2vw;
-    height: 70%;
-}
 
 #user-header {
     width: 100%;
     height: 22vh;
     background: #fff;
     font-size: 0.95em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #user-background {
@@ -77,9 +38,20 @@ main {
     justify-content: center;
 }
 
+#user-background .container {
+    width: 80%;
+}
+
 #user-header-content {
     height: 37%;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#user-header-content .container {
+    width: 85%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -90,6 +62,7 @@ main {
     display: flex;
     flex-direction: row;
     height: auto;
+    margin-left: 200px;
 }
 
 #username .name{

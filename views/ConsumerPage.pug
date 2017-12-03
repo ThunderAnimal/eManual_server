@@ -7,31 +7,51 @@ block header
     #wrapper
         #top-space
             nav#top-space-nav-bar
-                img.logo-pic(src='/assets/img/logo.png', alt='dash')
+                a.homepage-link(href='#')
+                    img.logo-pic(src='/assets/img/logo.png', alt='dash')
+                ul.right.user-login
+                    if isLoggedIn
+                        li
+                            img(src=user.image class="circle responsive-img" style="max-height: 60px; margin-top: 10px; margin-right: 10px")
+                        li
+                            a.button.alt.dropdown-button(href='' data-activates='dropdown_user')="Welcome, " + user.name
+                            <i class="material-icons right" style="margin-top:-8px">arrow_drop_down</i>
+
+                        ul(id='dropdown_user' class='dropdown-content' style='margin-top: 70px')
+                            li
+                                a(href=user.profileUrl) Profile
+                            li.divider
+                            li
+                                a(href="/logout" style="color: #f6755f") Logout
+                    else
+                        li
+                            a.button.alt(href='/login') Log in
 
 block main
     #user-header
         #user-background
-            #username
-                p.name= user.username
-                p.email="(" + user.email + ")"
-            #edit-button
+            .container
+                #username
+                    p.name= user.username
+                    p.email="(" + user.email + ")"
+                #edit-button
         #user-header-content
-            #useravatar
-                if(user.image)
-                    img(src=user.image, alt='dash')
-                else
-                    img(src='/assets/img/representative-placeholder.jpg', alt='dash')
-                a.waves-effect.waves-circle.waves-light.btn-floating.secondary-content(href='#')
-                    i.material-icons add
-            #userinfo
-                p Member Since November 2017
-            #changepass-button
-                p Change password
-                    a.fa.fa-lock(href='#')
-            #deleteaccount-button
-                p Delete account
-                    a.fa.fa-trash-o(href='#')
+            div.container
+                #useravatar
+                    if(user.image)
+                        img(src=user.image, alt='dash')
+                    else
+                        img(src='/assets/img/representative-placeholder.jpg', alt='dash')
+                    a.waves-effect.waves-circle.waves-light.btn-floating.secondary-content(href='#')
+                        i.material-icons add
+                #userinfo
+                    p Member Since November 2017
+                #changepass-button
+                    p Change password
+                        a.fa.fa-lock(href='#')
+                #deleteaccount-button
+                    p Delete account
+                        a.fa.fa-trash-o(href='#')
     #user-content
         #user-content-tabs
             .nav-content
