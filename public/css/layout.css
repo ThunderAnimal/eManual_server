@@ -1,5 +1,33 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 header {
     height: 15vh;
+}
+
+header nav{
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
+    line-height: 6em;
+
+    min-height: 70px;
+    height: 14vh;
+    max-height: 84px;
+}
+
+
+.nav-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #top-space{
@@ -14,7 +42,7 @@ header {
     vertical-align: top;
     position: fixed;
     overflow: hidden;
-//background-image: url(../img/header-all-pages.png);
+/*background-image: url(../img/header-all-pages.png);*/
     background: linear-gradient(to right, #7dc7da, #faac9e);
     background-size: 100%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
@@ -104,7 +132,17 @@ button.alt:active,
     align-items: center;
 }
 
-.user-login li a {
+.user-login ul.dropdown-content li{
+    display: block;
+}
+
+.user-login li a.login-btn,
+.user-login li a.profile-btn{
     display: flex;
     flex-direction: row;
+}
+
+.user-login .profile-pic{
+    max-height: 60px;
+    margin-right: 10px;
 }

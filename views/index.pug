@@ -3,29 +3,28 @@ extends layout
 block header
     div.navbar-fixed
         nav#header
-            div.nav-wrapper.container
+            div.nav-wrapper
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
                 #user-nav-ul
                     ul.right.user-login
                         if isLoggedIn
                             li
-                                img(src=user.image class="circle responsive-img" style="max-height: 60px; margin-top: 10px; margin-right: 10px")
+                                img.profile-pic(src=user.image class="circle responsive-img")
                             li
-                                a.button.alt.dropdown-button(href='' data-activates='dropdown_user')="Welcome, " + user.name
-                                   // i.material-icons.right arrow_drop_down
-
-                            ul(id='dropdown_user' class='dropdown-content' style='margin-top: 70px')
-                                li
-                                    a(href=user.profileUrl) Profile
-                                li.divider
-                                li
-                                    a(href="/logout" style="color: #f6755f") Logout
+                                a.button.alt.dropdown-button.profile-btn(data-activates='dropdown_user')="Welcome, " + user.name
                         else
                             li
-                                a.button.alt(href='/login') Log in
+                                a.button.alt.login-btn(href='/login') Log in
+
+                    ul(id='dropdown_user' class='dropdown-content')
+                        li
+                            a(href=user.profileUrl) Profile
+                        li.divider
+                        li
+                            a(href="/logout" style="color: #f6755f") Logout
             .container
-                a(id="btn_cat" class='dropdown-button btn materialize-red' href='#' data-activates='dropdown1') categories
+                a(id="btn_cat" class='dropdown-button btn materialize-red' data-activates='dropdown1') categories
                 ul(id='dropdown1' class='dropdown-content')
 block main
 
