@@ -16,6 +16,11 @@ router.post('/login', passport.authenticate('local-login', {
             return res.redirect('/login');
         }
 
+        if(req.session.redirect_url){
+            res.redirect(req.session.redirect_url);
+            return;
+        }
+
         if(authManager.isUserCompany(req.user)){
             res.redirect('/company/dashboard');
         }else if(authManager.isUserRepresentative(req.user)){

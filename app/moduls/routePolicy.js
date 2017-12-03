@@ -63,12 +63,22 @@ exports.onlyRepresentativeAllowed = function(req, res, next){
     });
 };
 
+exports.onlyCustomerAllowed = function(req, res, next){
+    if(authManager.isUserConsumer(req.user))
+        return next();
+
+    return res.status(403).send({
+        status: 403,
+        message: "Forbidden! Only a Customer is allowed to access."
+    });
+};
+
 exports.isLoggedIn = function(req, res, next) {
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
     // if they aren't redirect them to the home page
-    req.flash('errorMessage', 'Secure Area. Need to Login');
-    res.redirect('/');
+    req.flash('loginMessage', 'Secure Area. Need to Login');
+    res.redirect('/login?redirect_url=' + encodeURIComponent(req.url));
 };

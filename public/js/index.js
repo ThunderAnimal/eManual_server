@@ -15,7 +15,7 @@ var renderCategorieData = function(data){
 
   list.empty();
   for(i=0;i<data.length;i++){
-      list.append("<li id='" + data[i]._id + "'><a href='/category?category_id=" + data[i]._id + "'>"+data[i].name + "<span class='badge'>"+data[i].count+"</span></a></li>");
+      list.append("<li id='" + data[i]._id + "'><a href='/category?category_id[]=" + data[i]._id + "'>"+data[i].name + "<span class='badge'>"+data[i].count+"</span></a></li>");
 
 
   }

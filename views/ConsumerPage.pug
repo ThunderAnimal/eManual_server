@@ -13,12 +13,15 @@ block main
     #user-header
         #user-background
             #username
-                p.name JOHN MCCAIN
-                p.email (johnmccain@email.com)
+                p.name= user.username
+                p.email="(" + user.email + ")"
             #edit-button
         #user-header-content
             #useravatar
-                img(src='/assets/img/representative-placeholder.jpg', alt='dash')
+                if(user.image)
+                    img(src=user.image, alt='dash')
+                else
+                    img(src='/assets/img/representative-placeholder.jpg', alt='dash')
                 a.waves-effect.waves-circle.waves-light.btn-floating.secondary-content(href='#')
                     i.material-icons add
             #userinfo
@@ -34,25 +37,29 @@ block main
             .nav-content
                 ul.tabs.tabs-transparent
                     li.tab
-                        a.active(href='#uploaded') Uploaded
+                        a.active(href='#bookmarks') Selected
                     li.tab
-                        a(href='#bookmarks') Bookmarks
+                        a(href='#uploaded') Uploaded
                     li.tab
                         a(href='#comments') Comments
-            #uploaded.col.s12
+
+            #bookmarks.col.s12
                 #LOM
                     ul#manualUl
+                    template#productTemp
                         li
                             #product-item
                                 .product-pic
                                     img.pic(src='../assets/img/product-placeholder.png', alt='delete', height='20', width='20')
                                 .product-info
-                                    h3 Product Title - Model
+                                    a(href='#')
+                                        h3 Product Title - Model
                                     p lorem ipsum dolor sit amet. lorem ipsum dolor sit amet, ipsum dolor sit amet, lorem ipsum dolor sit amet
-                                .product-edit
-                                    img.edit(src='../assets/img/Edit.png', alt='edit', height='20', width='20')
                                 .product-delete
-                                    img.delete(src='../assets/img/delete.png', alt='delete', height='20', width='20')
-            #bookmarks.col.s12 Test 2
-            #comments.col.s12 Test 3
+                                    a.btn-floating.waves-effect.waves-light.remove-selection
+                                        i.material-icons remove
+            #uploaded.col.s12 Uploaded
+            #comments.col.s12 Comments
 
+block append javascript
+    script(src='/assets/js/consumerPageControl.js')

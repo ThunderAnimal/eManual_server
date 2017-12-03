@@ -1,4 +1,6 @@
 const consumerModel = require("../models/Consumer");
+const productModel = require("../models/Product");
+
 
 exports.create = function (req, res, next) {
 
@@ -18,6 +20,40 @@ exports.create = function (req, res, next) {
     });
 
 };
+
+exports.changeProducts=function (req,res,next) {
+    const product_id = req.body.product_id;
+    const clientAdd= req.body.add;
+    const clientDelete= req.body.delete;
+
+    consumerModel.find({}, function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+    });
+
+    consumerModel.findOne({_id: req.user._id}, function (err, consumer) {
+        if (clientAdd) {
+            consumer.products.push(product_id);
+            consumer.save();
+
+            res.send("successfully added");
+
+        } else if (clientDelete) {
+            if (consumer.products.indexOf(product_id)!==-1){
+                consumer.products.splice(consumer.products.indexOf(product_id),1)
+            }
+
+            consumer.save();
+            res.send("success deleted");
+
+        }
+        else{
+            res.status(400).send("no input")
+        }
+    });
+}
+
 
 exports.findOrCreateGoogle = function(profile, accessToken, done){
     const email = profile.emails[0].value;
@@ -58,5 +94,39 @@ exports.findOrCreateFacebook = function(profile, accessToken, done){
             result.image = img;
             result.save(done);
         }
+    });
+};
+
+exports.getSelectedProduct=function (req,res) {
+    consumerModel.findById(req.user._id,function(err, consumer){
+        if(err){
+            console.log(err);
+            return res.status(500).send(err);
+        }
+
+        if(!consumer){
+            return res.sendStatus(401);
+        }
+
+        productModel.find({'_id' : {$in: consumer.products}},function (err, result) {
+            if(err){
+                console.log(err);
+                res.status(500).send(err);
+            }else{
+                res.status(200).send(result);
+            }
+        });
+    });
+
+};
+
+exports.getUpdatedConsumerProducts =  (userID, done) => {
+    consumerModel.findOne({"_id": userID}, (err, data) => {
+        if (err)
+            console.log("Some Error Occured: "+err);
+        else {
+            done(data.products);
+        }
+
     });
 };

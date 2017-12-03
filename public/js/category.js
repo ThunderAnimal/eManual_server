@@ -1,66 +1,37 @@
 var choosenCategories = [];
 
 $(document).ready(function(){
+    var category_list = getParams(window.location.href)['category_id[]'];
 
-    if(getParameterByName("category_id")){
-        $.get('api/v1/category/' + getParameterByName("category_id"), function(result){
-            addChooseCategorie(result._id, result.name);
-        }).fail(function () {
+
+    if(category_list){
+        fillChoosenCategories(category_list, function (choosenCategories) {
             getData(choosenCategories);
             renderNaviagtion(choosenCategories);
         });
     }else{
-        getData(choosenCategories);
-        renderNaviagtion(choosenCategories);
+        getData([]);
+        renderNaviagtion([]);
     }
 
-
-    $("#cat_list").on("click", "a", function (e) {
-        addChooseCategorie($(this).attr("id"), $(this).attr("name"));
-        choosenCategories.push();
-        getData();
-    });
-
-    $('#category_breadcrumb').on("click", "a", function (e) {
-        if(!$(this).attr("id")){
-            return;
-        }
-
-        if($(this).attr("id") === 'breadcrump_all'){
-            choosenCategories = [];
-            getData(choosenCategories);
-            renderNaviagtion(choosenCategories);
-        }else{
-            removesChooseCategorie($(this).attr("id"));
-        }
-
-    });
 });
+var fillChoosenCategories = function(cat_list, callback){
 
-var addChooseCategorie = function(id, name){
-    for(var i = 0; i < choosenCategories.length; i++){
-        if(choosenCategories[i].id === id){
+    var getCatNameHelper = function(counter){
+        if(counter >= cat_list.length){
+            callback(choosenCategories);
             return;
         }
-    }
-    choosenCategories.push({
-       id: id,
-       name: name
-    });
-
-    renderNaviagtion(choosenCategories);
-    getData(choosenCategories);
-
-};
-
-var removesChooseCategorie = function(id){
-    for(var i = 0; i < choosenCategories.length; i++){
-        if(choosenCategories[i].id === id){
-            choosenCategories.splice(i + 1);
-            renderNaviagtion(choosenCategories);
-            getData(choosenCategories);
-        }
-    }
+        $.get('api/v1/category/' + cat_list[counter], function(result){
+            choosenCategories.push({id:result._id, name: result.name});
+            counter = counter + 1;
+            getCatNameHelper(counter);
+        }).fail(function () {
+            counter = counter + 1;
+            getCatNameHelper(counter);
+        });
+    };
+    getCatNameHelper(0);
 };
 
 var getData = function(choosenCategories){
@@ -78,28 +49,88 @@ var renderData = function(data){
     var cats = data.categoryList;
     var products = data.productList;
 
-    var cat_list = $("#cat_list");
-    var product_block = $("#product_block");
+    var linkBase;
+    if(choosenCategories.length <= 0){
+        linkBase = window.location.href + '?category_id[]=';
+    }else{
+        linkBase = window.location.href + '&category_id[]=';
+    }
 
+    var productLinkEnd = '';
+    for(var i = 0; i < choosenCategories.length; i++){
+        productLinkEnd += '&category_id[]=' + choosenCategories[i].id;
+    }
+
+    var cat_list = $("#cat_list");
     cat_list.empty();
     cat_list.append('<div class="collection-header center-align"><h4>Categories</h4></div>');
     for(var i = 0; i < cats.length; i++){
-        cat_list.append('<a id="' + cats[i]._id + '" name="' + cats[i].name + '" class="collection-item">' + cats[i].name  + '<span class="badge">'+cats[i].count+'</span></a>')
+        cat_list.append('<a href="' + linkBase + cats[i]._id + '" id="' + cats[i]._id + '" name="' + cats[i].name + '" class="collection-item">' + cats[i].name  + '<span class="badge">'+cats[i].count+'</span></a>')
     }
 
-    product_block.empty();
+    var temp = document.getElementById('productTemp'),
+        ul = document.getElementById('manualUl');
+
+    while (ul.firstChild) {
+        ul.removeChild(ul.firstChild);
+    }
     for(var k = 0; k < products.length; k++){
-        product_block.append("<div class=\"col s6 m4 l3\">\n" +
-            "            <div class=\"card small\">\n" +
-            "            <div class=\"card-image\">\n" +
-            "            <img class='' src=\"" + products[k].productImages[0] + "\">\n" +
-            "            <a class=\"btn-floating halfway-fab waves-effect waves-light materialize-red\"><i class=\"material-icons\">add</i></a>\n" +
-            "            </div>\n" +
-            "            <div class=\"card-content\">\n" +
-            "            <p><a href='/product?id=" + products[k]._id +"'>"+ products[k].productName +"</a></p>\n" +
-            "            </div>\n" +
-            "            </div>\n" +
-            "            </div>\n")
+        var clonedTemplate = temp.content.cloneNode(true);
+        clonedTemplate.querySelector("h3").innerText = products[k].productName;
+        clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id + productLinkEnd;
+        clonedTemplate.querySelector('.pic').src = products[k].productImages[0];
+        clonedTemplate.querySelector('.product-select p').textContent = products[k]._id;
+        if(products[k].isFavorite){
+            clonedTemplate.querySelector('.product-select a.add-selection').style.display= "none";
+            clonedTemplate.querySelector('.product-select a.remove-selection').style.display= "";
+        }else{
+            clonedTemplate.querySelector('.product-select a.add-selection').style.display= "";
+            clonedTemplate.querySelector('.product-select a.remove-selection').style.display= "none";
+        }
+        clonedTemplate.querySelector('.product-select a.add-selection').addEventListener("click",function () {
+            var that = this;
+            this.style.display = "none";
+            var e = this.parentNode.childNodes[1];
+            var pID = this.parentNode.childNodes[2].textContent;
+            $.ajax({
+                url: 'api/v1/selected_product',
+                type: 'PUT',
+                data:{add:true,product_id:pID},
+                success: function(res) {
+                    console.log(res);
+                    e.style.display="";
+                },
+                error: function (err) {
+                    that.style.display = "";
+                    console.log(err);
+                    if(err.status === 401){
+                        alert("Log in is required for select product");
+                    }else if(err.status === 403){
+                        alert("Only consumer can select products");
+                    }
+                }
+            });
+        });
+        clonedTemplate.querySelector('.product-select a.remove-selection').addEventListener("click",function () {
+            this.style.display = "none";
+            var e = this.parentNode.childNodes[0];
+            var pID =this.parentNode.childNodes[2].textContent;
+            $.ajax({
+                url: 'api/v1/selected_product',
+                type: 'PUT',
+                data:{delete:true,product_id:pID},
+                success: function(res) {
+                    console.log(res);
+                    e.style.display="";
+                },
+                error: function (err) {
+                    console.log(err.status);
+                }
+            });
+
+
+        });
+        ul.appendChild(clonedTemplate);
     }
 };
 
@@ -116,9 +147,13 @@ var renderNaviagtion = function(choosenCategories){
     currentCatTitle.text(choosenCategories[choosenCategories.length - 1].name);
     catBreadCrump.empty();
 
-    catBreadCrump.append('<a id="breadcrump_all" class="breadcrumb">Categories</a>');
+    catBreadCrump.append('<a href="/category" id="breadcrump_all" class="breadcrumb">Categories</a>');
+
+    var linkBase = '/category' + '?category_id[]=';
     for(var i = 0; i < choosenCategories.length; i++){
-        catBreadCrump.append('<a id="' + choosenCategories[i].id + '" class="breadcrumb">' + choosenCategories[i].name + '</a>');
+        linkBase += choosenCategories[i].id;
+        catBreadCrump.append('<a href="' + linkBase + '" id="' + choosenCategories[i].id + '" class="breadcrumb">' + choosenCategories[i].name + '</a>');
+        linkBase += '&category_id[]=';
     }
 
     currentCatTitle.show();
@@ -133,4 +168,24 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function getParams(url) {
+    var regex = /([^=&?]+)=([^&#]*)/g, params = {}, parts, key, value;
+
+    while((parts = regex.exec(url)) != null) {
+
+        key = parts[1], value = parts[2];
+        var isArray = /\[\]$/.test(key);
+
+        if(isArray) {
+            params[key] = params[key] || [];
+            params[key].push(value);
+        }
+        else {
+            params[key] = value;
+        }
+    }
+
+    return params;
 }

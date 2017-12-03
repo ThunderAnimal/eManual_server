@@ -51,7 +51,7 @@ router.get('/representatives/createProduct', policy.isLoggedIn, function (req,re
 
 //Consumer
 router.get('/consumer', policy.isLoggedIn, function (req,res) {
-    res.render('ConsumerPage', {name: req.user.username});
+    res.render('ConsumerPage', {user: req.user});
 });
 
 //Browse Category
@@ -86,18 +86,44 @@ router.get('/category',function (req,res) {
 router.get('/product', function (req, res, next) {
     const _id = req.query.id;
 
+    let profileUrl;
+    let name;
+    let image;
+
+    if(authManager.isUserCompany(req.user)){
+        profileUrl = "/company/dashboard";
+        name = req.user.name;
+    } else if(authManager.isUserRepresentative(req.user)){
+        profileUrl = "/representatives/dashboard";
+        name = req.user.name;
+    } else if(authManager.isUserConsumer(req.user)){
+        profileUrl = "/consumer";
+        name = req.user.username;
+        image = req.user.image;
+    }
+
     if(!_id){
         const err = new Error("Missing Product-Id");
         err.status = 400;
         next(err);
     }else{
-        res.render('detailProduct', {id: _id});
+        res.render('detailProduct',
+            {
+                id: _id,
+                isLoggedIn: req.isAuthenticated(),
+                user: {
+                    name: name,
+                    profileUrl: profileUrl,
+                    image: image
+                }
+        });
     }
 });
 
 //LOGIN PAGE
 router.get('/login', function(req, res){
-   res.render('login', {message: req.flash('loginMessage') });
+    req.session.redirect_url = req.query.redirect_url;
+    res.render('login', {message: req.flash('loginMessage') });
 });
 
 //LOGOUT
