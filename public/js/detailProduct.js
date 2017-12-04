@@ -35,12 +35,30 @@ var fillChoosenCategories = function(cat_list, callback){
     getCatNameHelper(0);
 }
 
+var getCompanyData = function(id, callback){
+    $.get('api/v1/company/' + id,function (result) {
+        if(!result){
+            alert("Woops! Company doesn't exists");
+            return;
+        }
+        callback(result);
+    }).fail(function(e) {
+        alert('Woops! Error to get Company Data'); // or whatever
+        console.log(e);
+    });
+};
+
+var renderCompanyData = function(data){
+    $('#product_brand').text(data.name);
+};
+
 var getProductData = function(id, callback){
     $.get('api/v1/product/' + id,function (result) {
         if(!result){
             alert("Woops! Product doesn't exists");
             return;
         }
+        getCompanyData(result.company_id, renderCompanyData);
         callback(result);
     }).fail(function(e) {
         alert('Woops! Error to get Product Data'); // or whatever
@@ -49,11 +67,27 @@ var getProductData = function(id, callback){
 };
 
 var renderProductData = function(data){
-    //TODO fill apge with detail data
-    console.log(data);
+    var images = data.productImages;
+    var image_list =  $('#product-gallery');
+
+    var materials = data.productResources;
+    var material_list = $('#material-list')
 
     $('#product_name').text(data.productName);
     $('#product_image').attr('src', data.productImages[0]);
+
+    image_list.empty();
+    for(var i = 0; i < images.length; i++){
+        image_list.append("<li><img class='responsive-img' src='" + images[i] + "'></li>");
+    }
+
+    material_list.empty();
+    for(var j = 0; j < materials.length; j++){
+        material_list.append('<a href="' + materials[0] + '" target="_blank" class="collection-item" >' + materials[0] + '</a>');
+    }
+
+
+
 };
 
 var getCatData = function(choosenCategories, callback){
