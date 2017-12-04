@@ -98,6 +98,11 @@ ul#product-gallery li{
     padding: 0 10px;
 }
 
+ul#product-gallery li img{
+    height: 100px;
+    width: 100px;
+}
+
 #manuals-header {
     font-size: 1.4rem;
 }

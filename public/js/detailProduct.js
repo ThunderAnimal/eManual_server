@@ -78,7 +78,7 @@ var renderProductData = function(data){
 
     image_list.empty();
     for(var i = 0; i < images.length; i++){
-        image_list.append("<li><img class='responsive-img' src='" + images[i] + "'></li>");
+        image_list.append("<li><img src='" + images[i] + "'></li>");
     }
 
     material_list.empty();
