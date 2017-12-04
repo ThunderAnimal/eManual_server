@@ -6,10 +6,12 @@ body {
 
 main {
     flex: 1 0 auto;
+    z-index: 30;
 }
 
 header {
     height: 15vh;
+    z-index: 100;
 }
 
 header nav{
@@ -41,8 +43,6 @@ header nav{
     text-align: left;
     vertical-align: top;
     position: fixed;
-    overflow: hidden;
-/*background-image: url(../img/header-all-pages.png);*/
     background: linear-gradient(to right, #7dc7da, #faac9e);
     background-size: 100%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
