@@ -1,5 +1,8 @@
 .content{
-    margin-top: 40px;
+    width: 80vw;
+    min-width: 1280px;
+    padding: 40px 0 0 0;
+   // margin-top: 40px;
 }
 
 .breadcrumb{
@@ -22,6 +25,10 @@
 
 .breadcrumb:last-child:hover{
     cursor: default;
+}
+
+#cat-list-wrapper {
+    padding: 0 20px;
 }
 
 #cat_list .collection-header h4{
@@ -47,4 +54,50 @@
 
 #cat_list a.collection-item:hover{
     cursor: pointer;
+}
+
+#product-container {
+    padding: 10px 30px;
+}
+
+#product_image {
+    width: 100%;
+}
+
+.product-details-left-column {
+    padding-left: 20px;
+}
+#product_name {
+    color: #25a2c3;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+#product_brand {
+    color: #4d4d4d;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#product_description {
+    color: #4d4d4d;
+    font-size: 0.9rem;
+    font-family: "Open Sans", sans-serif;
+    text-align: justify;
+}
+
+ul#product-gallery {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    height: 130px;
+}
+
+ul#product-gallery li{
+    padding: 0 10px;
+}
+
+#manuals-header {
+    font-size: 1.4rem;
 }

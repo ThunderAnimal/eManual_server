@@ -62,7 +62,7 @@ main {
     display: flex;
     flex-direction: row;
     height: auto;
-    margin-left: 200px;
+    margin-left: 26%;
 }
 
 #username .name{

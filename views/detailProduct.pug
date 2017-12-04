@@ -1,9 +1,9 @@
 extends layout
 
 block header
-    div.navbar-fixed
-        nav#header
-            div.nav-wrapper
+    #wrapper
+        #top-space
+            nav#top-space-nav-bar
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
                 #user-nav-ul
@@ -27,14 +27,38 @@ block header
 block main
     div#product_id(data-id=id)
     .row.content
-        .col.s3
+        #cat-list-wrapper.col.s3
             div#cat_list.collection.with-header
 
-        .col.s9
+        #product-container.col.s9
             div#category_breadcrumb.left-align
             div.divider
-            h4#product_name
-            img#product_image
+            .row
+                .col.s4
+                    img#product_image
+                .product-details-left-column.col.s7
+                    h4#product_name
+                    h5#product_brand BRAND
+                    #product_description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+            .row
+                .col.s4
+                    ul#product-gallery
+                        li
+                            img(src='/assets/img/product-placeholder.png')
+                        li
+                            img(src='/assets/img/product-placeholder.png')
+                        li
+                            img(src='/assets/img/product-placeholder.png')
+                        li
+                            img(src='/assets/img/product-placeholder.png')
+                        li
+                            img(src='/assets/img/product-placeholder.png')
+                        li
+                            img(src='/assets/img/product-placeholder.png')
+
+                .product-details-left-column.col.s7
+                    h5#manuals-header Manuals
 
 block stylesheet
     link(rel="stylesheet" href="assets/css/detail_product.css")
