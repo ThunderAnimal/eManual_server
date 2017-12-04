@@ -11,7 +11,11 @@ const authManager = require('../app/moduls/authManager');
 const productManager = require('../app/moduls/ProductManager');
 const categoryManager = require('../app/moduls/CategoryManager');
 const consumerManager = require('../app/moduls/ConsumerManager');
+const companyManager = require('../app/moduls/CompanyManager');
 
+
+//API Company
+router.get('/company/:id', companyManager.getOne);
 
 //API representatives
 router.route('/representatives')
