@@ -49,6 +49,22 @@ router.get('/representatives/createProduct', policy.isLoggedIn, function (req,re
     res.render('createProduct', {name: req.user.name});
 });
 
+router.get('/representatives/updateProduct', policy.isLoggedIn, function (req,res) {
+    const _id = req.query.id;
+
+    if(!_id){
+        const err = new Error("Missing Product-Id");
+        err.status = 400;
+        next(err);
+    }else{
+        res.render('updateProduct',
+            {
+                id: _id,
+                name: req.user.name
+            });
+    }
+});
+
 //Consumer
 router.get('/consumer', policy.isLoggedIn, function (req,res) {
     res.render('ConsumerPage', {user: req.user});

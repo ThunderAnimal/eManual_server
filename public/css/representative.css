@@ -276,6 +276,10 @@ div#LOM ul li .product-info h3{
     margin: 0!important;
 }
 
+div#LOM ul li .product-info h3:hover{
+    color: #f6755f;
+}
+
 div#LOM ul li .product-info p{
     color: #515151;
     font-family: "Open Sans";
