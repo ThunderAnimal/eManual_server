@@ -71,7 +71,7 @@ var renderProductData = function(data){
     var image_list =  $('#product-gallery');
 
     var materials = data.productResources;
-    var material_list = $('#material-list')
+    var material_list = $('#material-list');
 
     $('#product_name').text(data.productName);
     $('#product_image').attr('src', data.productImages[0]);
@@ -83,11 +83,8 @@ var renderProductData = function(data){
 
     material_list.empty();
     for(var j = 0; j < materials.length; j++){
-        material_list.append('<a href="' + materials[0] + '" target="_blank" class="collection-item" >' + materials[0] + '</a>');
+        material_list.append('<a href="' + materials[j] + '" target="_blank" class="collection-item" >' + materials[j] + '</a>');
     }
-
-
-
 };
 
 var getCatData = function(choosenCategories, callback){
