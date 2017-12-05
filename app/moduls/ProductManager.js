@@ -118,6 +118,8 @@ exports.create = function(req, res){
 };
 
 exports.update = function(req, res){
+    console.log(req.body);
+
     const productId = req.params.id;
     const images = req.files.image;
     const resources = req.files.resources;
@@ -235,8 +237,27 @@ exports.delete = function (req, res){
 
 exports.deleteMaterials = function(req, res){
     const productId = req.params.id;
-    const images = req.body.image_list;
-    const resources = req.body.resource_list;
+    const images = req.body['image_list[]'];
+    const resources = req.body['resource_list[]'];
+
+    let image_list = [];
+    if (Array.isArray(images)){
+        image_list = images;
+    }else{
+        if(images){
+            image_list.push(images)
+        }
+    }
+
+    let resources_list = [];
+    if (Array.isArray(resources)){
+        resources_list = resources;
+    }else{
+        if(resources){
+            resources_list.push(resources)
+        }
+    }
+
 
 
     if(!productId){
@@ -246,6 +267,7 @@ exports.deleteMaterials = function(req, res){
     const getFileNames = function(fileList){
         let fileNames = [];
         for(let i = 0; i < fileList.length; i++){
+
             fileNames.push(fileList[i].split("/").pop());
         }
         return fileNames;
@@ -279,20 +301,20 @@ exports.deleteMaterials = function(req, res){
         if(!isProductFromOwnCompany(product.company_id, req.user))
             return sendForbiddenEditProduct(res);
 
-        deleteImgaes(images,function(){
-           deleteResources(resources,function () {
+        deleteImgaes(image_list,function(){
+           deleteResources(resources_list,function () {
                product.productImages = product.productImages.filter( function( obj){
                    if(!images)
                        return true;
 
-                   return images.indexOf(obj) < 0;
+                   return image_list.indexOf(obj) < 0;
 
                });
                product.productResources = product.productResources.filter( function( obj){
                    if(!resources)
                        return true;
 
-                   return resources.indexOf(obj) < 0;
+                   return resources_list.indexOf(obj) < 0;
 
                });
 
