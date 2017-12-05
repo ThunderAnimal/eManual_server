@@ -1,11 +1,7 @@
-//import
-"use strict"
+const mongoose=require('mongoose');
 
-var mongoose=require('mongoose');
 
-//category schema
-
-var productsSchema = mongoose.Schema({
+const productsSchema = mongoose.Schema({
     productName: String,
     company_id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -17,6 +13,13 @@ var productsSchema = mongoose.Schema({
     }],
     productImages: [String],
     productResources: [String]
+},{
+
+    timestamps: true
+
 });
+
+productsSchema.index({"createdAt": 1});
+productsSchema.index({"updatedAt": 1});
 
 module.exports = mongoose.model("product", productsSchema);
