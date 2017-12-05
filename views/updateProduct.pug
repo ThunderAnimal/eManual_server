@@ -1,0 +1,52 @@
+extends RepresentativesPage
+
+block append stylesheet
+    link(rel="stylesheet", href="/assets/css/updateProduct.css")
+
+block main
+    div#product_id(data-id=id)
+    #main
+        //#company-logo
+            .company-logo
+        .content
+            form#formUpdateProduct(method="PUT" action='/api/v1/product' enctype="multipart/form-data")
+                div.row
+                    div.col.s12
+                        div(class="input-field")
+                            input(name="name" id="name" type="text" required="true" placeholder="name")
+                            label(for="name") Name
+
+                        div(class="input-field")
+                            select(name="categories" id="categories" required="true" multiple="true")
+                                option(value="" disabled) Choose your categories
+                            label Category
+
+                    div.col.s12
+                        h5 Add Materials
+                        div(class="input-field file-field")
+                            div.btn
+                                span Add Images
+                                input(name="image" id="image" type="file" multiple="true" accept='image/*')
+                            div.file-path-wrapper
+                                input(class="file-path validate" type="text" placeholder="Upload one or more images")
+                        div(class="input-field file-field")
+                            div.btn
+                                span Add Resources
+                                input(name="resources" id="resources" type="file" multiple="true")
+                            div.file-path-wrapper
+                                input(class="file-path validate" type="text" placeholder="Upload one or more recourse")
+
+                    div.col.s12
+                        h5 Remove Materials
+                        ul#remove_list.collection
+                div.row
+                    div.col.s12
+                        div.loader(style="display:none")
+                            div.progress
+                                div.indeterminate
+                        div.buttons.center
+                            button#btnCreateProduct(type="submit" class="waves-effect waves-light btn") Update
+                            a(href="../representatives/dashboard" class="waves-effect waves-light btn materialize-red") Cancel
+
+block append javascript
+    script(src='/assets/js/updateProduct.js')

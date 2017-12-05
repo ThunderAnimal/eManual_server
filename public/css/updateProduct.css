@@ -1,0 +1,23 @@
+.content{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 1%;
+}
+
+.buttons{
+    padding-top: 20px;
+}
+
+#remove_list a:hover{
+    cursor: pointer;
+}
+
+form .buttons button,
+form .buttons a{
+    width: 150px;
+    margin-right: 40px;
+}
+form .buttons button:last-child,
+form .buttons a:last-child{
+    margin-right: 0;
+}
