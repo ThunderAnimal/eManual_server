@@ -107,3 +107,15 @@ ul#product-gallery li img{
 #manuals-header {
     font-size: 1.4rem;
 }
+
+#manual-links {
+    margin-top: 30px;
+}
+#manual-links a.manual-doc-link {
+    margin-right: 20px;
+    width: 50px;
+}
+
+#manual-links a.manual-doc-link img {
+    width: 50px;
+}
