@@ -207,7 +207,7 @@ const createRepresentas = function (company, done) {
     });
 
     const batchInsert = [represent1, represent2, represent3, represent4, represent5, represent6];
-    RepresentativeModel.collection.insert(batchInsert, done);
+    RepresentativeModel.insertMany(batchInsert, done);
 };
 
 const createCategories = function (done) {
@@ -979,7 +979,7 @@ const createProducts = function (companies, categories, done) {
 
 
     const batchInsert = [productProjector7, productProjector6, productCamera9, productCamera8, productCamera7, productCamera6, productCamera5, productCamera4, productCamera3, productCamera2, productCamera, productHeadPhones, productHDMI2, productSpeaker6, productSpeaker5, productSpeaker4, productSpeaker3, productSpeaker2, productSpeaker1, productProjector5, productProjector4, productProjector3, productProjector1, productSonyTV2, productSamsungTV2, productAmazonFire, productGoogleChromeCast, productSamsungTv, productSonyHdmiCabel, productSonyTv, productSamsungProjector, productProjectorCable];
-    ProductModel.collection.insert(batchInsert, function () {
+    ProductModel.insertMany(batchInsert, function () {
         done(batchInsert);
     });
 };
