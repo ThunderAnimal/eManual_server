@@ -3,11 +3,13 @@ extends layout
 block stylesheet
     link(rel="stylesheet", href="/assets/css/CompanyCss.css")
 
-
-block sidebar
+block header
     #wrapper
         #top-space
-            p.logo MANUALPIK
+            nav#top-space-nav-bar
+                a.homepage-link(href='#')
+                    img.logo-pic(src='/assets/img/logo.png', alt='dash')
+block sidebar
         a.mobilemenu(href='#sidebar')
             i.icon-reorder
         #sidebar
@@ -51,17 +53,6 @@ block sidebar
                                 .icon.icon-logout
                                     img(src='/assets/img/logout.png', alt='dash', height='35', width='35')
                                 .text Logout
-            .social-icons
-                ul
-                    li
-                        a(href='#')
-                            i.icon-facebook
-                    li
-                        a(href='#')
-                            i.icon-twitter
-                    li
-                        a(href='#')
-                            i.icon-linkedin
 
 block main
 

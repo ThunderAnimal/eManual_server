@@ -34,40 +34,6 @@ a,a:hover,a:focus {
 
 /* layout
  **************************************************/
-#top-space{
-    top:0;
-    left:0;
-    right:0;
-    width: auto;
-    height: 15vh;
-    text-align: left;
-    vertical-align: top;
-    position: absolute;
-    overflow: hidden;
-    //background-image: url(../img/header-all-pages.png);
-    background: linear-gradient(to right, #7dc7da, #faac9e);
-    background-size: 100%;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
-    display: flex;
-    align-items: flex-start;
-    border-bottom: solid 4px #6c8790;
-    box-sizing: border-box;
-}
-
-#top-space-nav-bar {
-    height: 12vh;
-    width: 100%;
-    background: #fefefe;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    box-shadow: none;
-}
-
-#top-space img.logo-pic{
-    margin-left: 2vw;
-    height: 60%;
-}
 
 #main-nav {
     text-align: left;
@@ -87,7 +53,7 @@ a,a:hover,a:focus {
 }
 
 #main {
-    position: fixed;
+    position: absolute;
     right: 0;
     top: 15vh;
     background: #fefefe;

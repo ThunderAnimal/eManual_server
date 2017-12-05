@@ -2,6 +2,13 @@ extends layout
 
 block stylesheet
     link(rel="stylesheet", href="/assets/css/representative.css")
+block header
+    #wrapper
+        #top-space
+            nav#top-space-nav-bar
+                a.homepage-link(href='#')
+                    img.logo-pic(src='/assets/img/logo.png', alt='dash')
+
 
 block sidebar
     #wrapper
