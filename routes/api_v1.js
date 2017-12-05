@@ -51,6 +51,7 @@ router.route('/representatives')
 router.get('/products', productManager.getAll);
 router.get('/company_product',policy.isAuthorized,policy.onlyRepresentativeAllowed,productManager.getCompanyProduct);
 router.get('/product/:id', productManager.getOne);
+//TODO add field default_image
 router.post('/product', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.create);
 router.put('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.update);
 router.delete('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllowed, productManager.delete);
