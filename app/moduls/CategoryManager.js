@@ -1,8 +1,6 @@
-const categoryModel = require('../models/Category');
-const productModel = require('../models/Product');
-
-
-
+const MODEL_PATH = '../models/';
+const categoryModel = require(MODEL_PATH + 'Category');
+const productModel = require(MODEL_PATH + 'Product');
 
 
 

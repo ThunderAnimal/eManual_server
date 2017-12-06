@@ -1,4 +1,5 @@
-const companyModel = require("../models/Company");
+const MODEL_PATH = '../models/';
+const companyModel = require(MODEL_PATH + 'Company');
 
 
 exports.getOne = function(req, res) {

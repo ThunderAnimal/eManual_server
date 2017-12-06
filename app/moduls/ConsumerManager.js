@@ -1,10 +1,11 @@
-const consumerModel = require("../models/Consumer");
-const productModel = require("../models/Product");
+const MODEL_PATH = '../models/';
+const consumerModel = require(MODEL_PATH + 'Consumer');
+const productModel = require(MODEL_PATH + 'Product');
 
 
 exports.create = function (req, res, next) {
 
-    var consumer = new consumerModel ({
+    let consumer = new consumerModel ({
         username: req.body.user,
         password: req.body.pass,
         email: req.body.email
@@ -52,7 +53,7 @@ exports.changeProducts=function (req,res,next) {
             res.status(400).send("no input")
         }
     });
-}
+};
 
 
 exports.findOrCreateGoogle = function(profile, accessToken, done){
