@@ -1,4 +1,4 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
 
 const productsSchema = mongoose.Schema({
@@ -12,15 +12,15 @@ const productsSchema = mongoose.Schema({
         ref: 'Category'
     }],
     productImages: [String],
-    profilePicture:{type :String,requires:true },
-    counter:{ type:Number,default:0 },
-    productResources: [ {
-         description:{ type:String,requires:true },
-         originalName:{ type:String },
-         dataType:{ type:String },
-         originalLinks:{ type:String }
-       }]
-},{
+    profilePicture: String,
+    favorites: {type: Number, default: 0},
+    productResources: [{
+        description: {type: String, requires: true},
+        originalName: String,
+        dataType: String,
+        url: {type: String, requires: true}
+    }]
+}, {
 
     timestamps: true
 
