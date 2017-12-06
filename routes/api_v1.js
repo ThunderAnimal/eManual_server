@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const rep = require('../app/models/Representative');
+const MODEL_PATH = '../app/models/';
+const rep = require(MODEL_PATH + 'Representative');
 
 const policy = require('../app/moduls/routePolicy');
 
@@ -52,8 +53,8 @@ router.get('/products', productManager.getAll);
 router.get('/company_product',policy.isAuthorized,policy.onlyRepresentativeAllowed,productManager.getCompanyProduct);
 router.get('/product/:id', productManager.getOne);
 //TODO add field default_image
-router.post('/product', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.create);
-router.put('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.update);
+router.post('/product', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{name: 'profilePicture'}, { name: 'image'}, { name: 'resources'}]), productManager.create);
+router.put('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{name: 'profilePicture'}, { name: 'image'}, { name: 'resources'}]), productManager.update);
 router.delete('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllowed, productManager.delete);
 
 router.post('/product/:id/material', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.addMaterials);
