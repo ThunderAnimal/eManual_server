@@ -1,7 +1,7 @@
 const authManager = require("./authManager");
 const uploadUser = require("./uploadUser");
-const productModel = require("../models/Product");
-
+const MODEL_PATH = '../models/';
+const productModel = require(MODEL_PATH + 'Product');
 
 const isProductFromOwnCompany = function(productCompanyId, user){
 
@@ -67,63 +67,94 @@ exports.getAllInCategories = function(cat_list, done){
     });
 };
 
+let uploadProfilePicture = (profilePicture, done) => {
+    if (profilePicture) {
+        uploadUser.uploadFiles(profilePicture, (extUrl) => {
+            done(extUrl);
+        });
+    }
+    else {
+        done([]);
+    }
+};
+
+let getProductResourcesArray = (req, resourceURLs, done) => {
+    let productResourcesArray = [];
+    for (let i = 0; i < resourceURLs.length; i++) {
+        let tempResource = {
+            description: req.body.productResources[i].description,
+            originalName: req.body.productResources[i].originalName,
+            dataType: req.body.productResources[i].dataType,
+            url: resourceURLs[i]
+        };
+
+        productResourcesArray.push(tempResource);
+    }
+
+    done(productResourcesArray);
+};
+
 //TODO enable comments.
-exports.create = function(req, res){
+exports.create = function (req, res) {
 
     const companyId = authManager.getCompanyId(req.user);
-    //const default_image = req.files.default_image;
+    const profilePicture = req.files.profilePicture;
     const images = req.files.image;
     const resources = req.files.resources;
 
-
-    const uploadImages = function(images ,done){
-        if(images){
+    const uploadImages = function (images, done) {
+        if (images) {
             uploadUser.uploadFiles(images, function (extUrl) {
                 done(extUrl);
             });
-        }else{
+        } else {
             done([]);
         }
     };
 
-    const uploadResources = function(resources, done){
-        if(resources){
+    const uploadResources = function (resources, done) {
+        if (resources) {
             uploadUser.uploadFiles(resources, function (extUrl) {
                 done(extUrl);
             });
-        }else{
+        } else {
             done([]);
         }
     };
-    //uploadImages(default_image, function(DefaultImageUrl) {
-        uploadImages(images, function (imageUrls) {
-            uploadResources(resources, function (resourceUrls) {
 
-                const product = new productModel({
-                    productName: req.body.name,
-                    //defaultImage:DefaultImageUrl[0],
-                    company_id: companyId,
-                    categories: req.body.categories,
-                    productImages: imageUrls,
-                    productResources: resourceUrls
-                });
+    uploadResources(resources, function (resourceUrls) {
+        getProductResourcesArray(req, resourceUrls, (productResourcesArray) => {
+            uploadProfilePicture(profilePicture, function (profilePicURL) {
+                uploadImages(images, function (imageUrls) {
 
-                product.save(function (err, result) {
-                    if (err) {
-                        console.log(err);
-                        res.status(500).send({_error: true, err: err});
-                    } else {
-                        res.status(201).send(result);
-                    }
+                    const product = new productModel({
+                        productName: req.body.name,
+                        profilePicture: profilePicURL[0],
+                        company_id: companyId,
+                        categories: req.body.categories,
+                        productImages: imageUrls,
+                        productResources: productResourcesArray
+                    });
+
+                    product.save(function (err, result) {
+                        if (err) {
+                            console.log(err);
+                            res.status(500).send({_error: true, err: err});
+                        } else {
+                            res.status(201).send(result);
+                        }
+                    });
                 });
             });
         });
-    //};
+    });
 };
+
 
 exports.update = function(req, res){
     console.log(req.body);
     //const default_image = req.files.default_image;
+    const profilePicture = req.files.profilePicture;
     const productId = req.params.id;
     const images = req.files.image;
     const resources = req.files.resources;
@@ -165,29 +196,28 @@ exports.update = function(req, res){
         if (!isProductFromOwnCompany(product.company_id, req.user))
             return sendForbiddenEditProduct(res);
 
-        //uploadImages(default_image, function (DefaultImageUrl) {
-            uploadImages(images, function (imageUrls) {
-                uploadResources(resources, function (resourceUrls) {
-                    product.productName = req.body.name;
-                    product.categories = req.body.categories;
-
-                    //product.defaultImage = product.defaultImage.concat(DefaultImageUrl[0]);
-                    product.productImages = product.productImages.concat(imageUrls);
-                    product.productResources = product.productResources.concat(resourceUrls);
-
-                    product.save(function (err, result) {
-                        if (err) {
-                            console.log(err);
-                            res.status(500).send({_error: true, err: err});
-                        } else {
-                            res.status(200).send(result);
-                        }
+        uploadResources(resources, function (resourceUrls) {
+            getProductResourcesArray(req, resourceUrls, (productResourcesArray) => {
+                uploadProfilePicture(profilePicture, function (profilePicURL) {
+                    uploadImages(images, function (imageUrls) {
+                        product.productName = req.body.name;
+                        product.profilePicture = profilePicURL[0];
+                        product.categories = req.body.categories;
+                        product.productImages = product.productImages.concat(imageUrls);
+                        product.productResources = product.productResources.concat(productResourcesArray);
+                        product.save(function (err, result) {
+                            if (err) {
+                                console.log(err);
+                                res.status(500).send({_error: true, err: err});
+                            } else {
+                                res.status(200).send(result);
+                            }
+                        });
                     });
                 });
             });
-
         });
-   // });
+    });
 };
 
 exports.delete = function (req, res){
@@ -342,6 +372,7 @@ exports.deleteMaterials = function(req, res){
 };
 
 exports.addMaterials = function(req, res){
+
     const productId = req.params.id;
     const images = req.files.image;
     const resources = req.files.resources;
@@ -372,31 +403,33 @@ exports.addMaterials = function(req, res){
     }
 
     productModel.findById(productId, function (err, product) {
-        if(err){
+        if (err) {
             console.log(err);
             return res.status(500).send({_error: true, err: err});
         }
 
-        if(!product){
+        if (!product) {
             return res.status(400).send({_error: true, err: "Product not found"});
         }
 
-        if(!isProductFromOwnCompany(product.company_id, req.user))
+        if (!isProductFromOwnCompany(product.company_id, req.user))
             return sendForbiddenEditProduct(res);
 
-        uplaodImgaes(images, function(imageUrls){
-            uploadResources(resources, function(resourceUrls){
+        uplaodImgaes(images, function (imageUrls) {
+            uploadResources(resources, function (resourceUrls) {
+                getProductResourcesArray(req, resourceUrls, (productResourcesArray) => {
 
-                product.productImages =  product.productImages.concat(imageUrls);
-                product.productResources =  product.productResources.concat(resourceUrls);
+                    product.productImages = product.productImages.concat(imageUrls);
+                    product.productResources = product.productResources.concat(productResourcesArray);
 
-                product.save(function (err, result) {
-                    if(err){
-                        console.log(err);
-                        res.status(500).send({_error: true, err: err});
-                    }else{
-                        res.status(200).send(result);
-                    }
+                    product.save(function (err, result) {
+                        if (err) {
+                            console.log(err);
+                            res.status(500).send({_error: true, err: err});
+                        } else {
+                            res.status(200).send(result);
+                        }
+                    });
                 });
             });
         });
