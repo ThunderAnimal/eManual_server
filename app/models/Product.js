@@ -12,7 +12,14 @@ const productsSchema = mongoose.Schema({
         ref: 'Category'
     }],
     productImages: [String],
-    productResources: [String]
+    profilePicture:{type :String,requires:true },
+    counter:{ type:Number,default:0 },
+    productResources: [ {
+         description:{ type:String,requires:true },
+         originalName:{ type:String },
+         dataType:{ type:String },
+         originalLinks:{ type:String }
+       }]
 },{
 
     timestamps: true
