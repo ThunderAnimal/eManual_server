@@ -545,15 +545,13 @@ const createProducts = function (companies, categories, done) {
         productName: "SamsungTV55",
         company_id: companySamsung._id,
         categories: [categoryTv, categoryOLED, categoryFLAT, categoryBestsellers],
+        profilePicture:["https://storage.googleapis.com/product_resources/5c379607-0992-4b86-bf2e-baf9c3f5aada_41fcmkyAH8L._SL1000_.jpg"],
         productImages: [
-            "https://storage.googleapis.com/product_resources/5c379607-0992-4b86-bf2e-baf9c3f5aada_41fcmkyAH8L._SL1000_.jpg",
-            "https://storage.googleapis.com/product_resources/a3b8737b-ca30-4ed6-8cdb-3d58ce0a17b4_41ZTemqcTbL.jpg",
             "https://storage.googleapis.com/product_resources/4075311e-353f-4fd6-81a4-85b62e64df5a_616+K6M825L._SL1000_.jpg",
             "https://storage.googleapis.com/product_resources/e8246037-bf21-4dae-98ad-8749fa968080_61O-zVbQEyL._SL1000_.jpg"
         ],
         productResources: [
-            "https://storage.googleapis.com/product_resources/3930f886-470c-4ff4-9732-c0262766f43f_Flyer_C109100111.pdf",
-            "https://storage.googleapis.com/product_resources/72b9f8c8-eb74-4479-8802-0b1f814d4806_[ME65B ME75B]User manual.pdf"
+           "https://storage.googleapis.com/product_resources/72b9f8c8-eb74-4479-8802-0b1f814d4806_[ME65B ME75B]User manual.pdf"
         ]
     });
 
@@ -561,6 +559,7 @@ const createProducts = function (companies, categories, done) {
         productName: "HDMI Cabel",
         company_id: companySamsung._id,
         categories: [categoryTv, categoryCabel, categoryTVAccessories],
+        profilePicture:[ "https://storage.googleapis.com/product_resources/8d16bae2-7e79-4bca-8714-d9188bf45d56_hdmi.jpeg"],
         productImages: [
             "https://storage.googleapis.com/product_resources/8d16bae2-7e79-4bca-8714-d9188bf45d56_hdmi.jpeg"
         ],
@@ -571,15 +570,14 @@ const createProducts = function (companies, categories, done) {
         productName: "Sony KDL-32WD755",
         company_id: companySony._id,
         categories: [categoryTv, categoryLED],
+        profilePicture:["https://storage.googleapis.com/product_resources/0db29e7e-8b70-449e-a51a-a7c635020626_71FDTYs2kYL._SL1000_.jpg"],
         productImages: [
-            "https://storage.googleapis.com/product_resources/0db29e7e-8b70-449e-a51a-a7c635020626_71FDTYs2kYL._SL1000_.jpg",
-            "https://storage.googleapis.com/product_resources/ba8e7bfe-05c5-4622-9d7c-f5233d4a79c1_518auH+ElmL._SL1344_.jpg",
-            "https://storage.googleapis.com/product_resources/c263a0f4-38a1-48e6-8754-e0e77ceb2458_71aoslUBdhL._SL1000_.jpg",
+           "https://storage.googleapis.com/product_resources/c263a0f4-38a1-48e6-8754-e0e77ceb2458_71aoslUBdhL._SL1000_.jpg",
             "https://storage.googleapis.com/product_resources/471e7dcb-8af2-48cf-a4b4-ed64230b8675_916UZhZsh-L._SL1500_.jpg",
             "https://storage.googleapis.com/product_resources/310f7ec2-850d-40c4-961f-2b469101ccbc_71z8ywLQ0YL._SL1000_.jpg",
             "https://storage.googleapis.com/product_resources/fb88aeed-2721-4fcc-8c2c-76e35651bc8d_61+oO5RZE1L._SL1500_.jpg",
         ],
-        productResources: [
+       productResources: [
             "https://storage.googleapis.com/product_resources/38dbd383-d127-40a3-a0b7-57932daee8c9_model-home (1).html",
             "https://storage.googleapis.com/product_resources/6212db00-6a14-4831-98ca-181be0f8edab_model-home.html",
             "https://storage.googleapis.com/product_resources/32f7bbff-32f1-47e4-9c0e-b0bddc43a9de_61PD-e9L3vL._SL1500_.jpg",
@@ -591,6 +589,7 @@ const createProducts = function (companies, categories, done) {
         productName: "Flux Supa Projector",
         company_id: companySamsung._id,
         categories: [categoryProjector, categoryBusinessProjectors],
+        profilePicture:["https://storage.googleapis.com/product_resources/12c09990-50d7-4f38-b76f-364627fc53df_908sama800.1.jpg"],
         productImages: [
             "https://storage.googleapis.com/product_resources/12c09990-50d7-4f38-b76f-364627fc53df_908sama800.1.jpg"
         ],
@@ -603,6 +602,7 @@ const createProducts = function (companies, categories, done) {
         productName: "Pnp 5M Hdmi Cable For Laptop, Tv, Projector, Plasma, Led And Lcd (Black)",
         company_id: companySamsung._id,
         categories: [categoryProjector, categoryCabel, categoryProjectorAcc],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/41hmeP3dn7L.jpg"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/41hmeP3dn7L.jpg"
         ],
@@ -616,8 +616,8 @@ const createProducts = function (companies, categories, done) {
         productName: "Google Chromecast 2 Digital HDMI Media Video Streamer 2nd Generation",
         company_id: companyGoogle._id,
         categories: [categoryTVAccessories, categoryCastDevices, categoryBestsellers],
+        profilePicture:["https://i.ebayimg.com/images/g/~5AAAOSw44BYFsnR/s-l500.jpg"],
         productImages: [
-            "https://i.ebayimg.com/images/g/~5AAAOSw44BYFsnR/s-l500.jpg",
             "https://i.ebayimg.com/images/g/WHUAAOSwal5YFsnU/s-l500.jpg",
             "https://i.ebayimg.com/images/g/Sf8AAOSwcLxYFsnZ/s-l500.jpg",
             "https://i.ebayimg.com/images/g/f-kAAOSwW9NZ4MHI/s-l500.jpg"
@@ -631,9 +631,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Amazon Fire TV Stick with Voice Remote | Streaming Media Player",
         company_id: companyAmazon._id,
         categories: [categoryTVAccessories, categoryCastDevices],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51aGXs%2BjLuL._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/51aGXs%2BjLuL._SX522_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/713gVB-Q8gL._SX522_.jpg"
+              "https://images-na.ssl-images-amazon.com/images/I/713gVB-Q8gL._SX522_.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=3t7lvG4piXE"
@@ -644,9 +644,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV",
         company_id: companySamsung._id,
         categories: [categoryTv, categoryLED, categorySmart, categoryFLAT],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51R7%2ByL8UUL.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/51R7%2ByL8UUL.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
+                 "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=DEFEbwdpK_k"
@@ -657,9 +657,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV",
         company_id: companySony._id,
         categories: [categoryTv, categoryOLED, categorySmart, categoryFLAT],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/712rZWrEs8L._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/712rZWrEs8L._SX522_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/51zq9faRJRL._SX522_.jpg"
+               "https://images-na.ssl-images-amazon.com/images/I/51zq9faRJRL._SX522_.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=78nnlgKFsGs"
@@ -670,9 +670,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Sony DBPOWER T20 1500 Lumens LCD Mini Projector",
         company_id: companySony._id,
         categories: [categoryProjector, categoryGamingProjectors],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61FtfuuaQxL._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/61FtfuuaQxL._SX522_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/61IiZ4WIt1L._SX522_.jpg"
+                  "https://images-na.ssl-images-amazon.com/images/I/61IiZ4WIt1L._SX522_.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=D7omM-Qcvls"
@@ -683,9 +683,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Samsung LG Electronics PF1000UW Ultra Short Throw Smart Home Theater Projector",
         company_id: companySamsung._id,
         categories: [categoryProjector, categoryHomeTheater],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/91trLemmjSL._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/91trLemmjSL._SX522_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/91LFsCxqr%2BL._SX522_.jpg",
+             "https://images-na.ssl-images-amazon.com/images/I/91LFsCxqr%2BL._SX522_.jpg",
         ],
         productResources: [
             "https://www.youtube.com/watch?v=pHmRwYvw7jw"
@@ -696,9 +696,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Sony VPLHW65ES 1080p 3D SXRD Home Theater Projector (2015 Model)",
         company_id: companySony._id,
         categories: [categoryProjector, categoryPortable],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81gv14OZo5L._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/81gv14OZo5L._SX522_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/81alhav1aYL._SX522_.jpg",
+             "https://images-na.ssl-images-amazon.com/images/I/81alhav1aYL._SX522_.jpg",
         ],
         productResources: [
             "https://www.youtube.com/watch?v=THkvd8ByNX4"
@@ -709,8 +709,8 @@ const createProducts = function (companies, categories, done) {
         productName: "LG Electronics HF80JA Laser Smart Home Theater Projector (2017 Model)",
         company_id: companySony._id,
         categories: [categoryProjector, categoryGamingProjectors, categoryPortable],
+        profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/81rD%2BfKHZ1L._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/81rD%2BfKHZ1L._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/81gOetrqSNL._SX522_.jpg",
         ],
         productResources: [
@@ -724,9 +724,9 @@ const createProducts = function (companies, categories, done) {
         company_id: companyApollo._id,
         //,Business & Education Projectors
         categories: [categoryProjector],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61VZdTVJaWL._SL1300_.jpg"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/61VZdTVJaWL._SL1300_.jpg",
-
         ],
         productResources: [
             "https://www.youtube.com/watch?v=hcPHhpXWVys"
@@ -738,6 +738,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyApollo._id,
         //,Business & Education Projectors
         categories: [categoryProjector],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/31H2gnShkiL.jpg"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/31H2gnShkiL.jpg",
 
@@ -752,8 +753,8 @@ const createProducts = function (companies, categories, done) {
         productName: "Echo Dot - Voice control your music, Get news, weather & more",
         company_id: companyAmazon._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryBluetoothSpeakers],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51xareNhn3L._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/51xareNhn3L._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/61snM2%2B59SL._SX522_.jpg",
         ],
         productResources: [
@@ -765,9 +766,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Logitech Z120 Stereo Speaker (Black and White)\n",
         company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryBookshelfSpeakers],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81VfSYq1dwL._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/81VfSYq1dwL._SX522_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/71NtTz8MxUL._SX522_.jpg",
+           "https://images-na.ssl-images-amazon.com/images/I/71NtTz8MxUL._SX522_.jpg",
         ],
         productResources: [
             "http://static.highspeedbackbone.net/pdf/Logitech-X-230-PC-Speaker-Manual.pdf"
@@ -778,6 +779,7 @@ const createProducts = function (companies, categories, done) {
         productName: "Boston Acoustics HSi 250 In-Ceiling Speaker (White)",
         company_id: companySamsung._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCeilingSpeakers],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/8129s7pyEYL._SX522_.jpg"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/8129s7pyEYL._SX522_.jpg",
         ],
@@ -790,8 +792,8 @@ const createProducts = function (companies, categories, done) {
         productName: "Boston Acoustics A 225C Dual 5.25\" Woofer 2-Way Center Channel Speaker - Gloss Black",
         company_id: companyGoogle._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCentreSpeakers],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/818lK-Re8sL._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/818lK-Re8sL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/81SgApJskvL._SX522_.jpg"
         ],
         productResources: [
@@ -803,8 +805,8 @@ const createProducts = function (companies, categories, done) {
         productName: "OFFBEAT ® - ECHO 10W outdoor Bluetooth speaker",
         company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryOutdoorSpeakers],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/91ZrgKSDdIL._SY679_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/91ZrgKSDdIL._SY679_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/919CoKR3fbL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/81d-KYE6IEL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/91N3Cu8OujL._SX522_.jpg"
@@ -818,8 +820,8 @@ const createProducts = function (companies, categories, done) {
         productName: "Sony HT-RT3 Sound Bar Home Theatre System (Black)",
         company_id: companySamsung._id,
         categories: [categoryHomeEntertainmentSystems, categorySoundBars],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61A5aYmKtfL._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/61A5aYmKtfL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71Ui6dzgBBL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71EXF1ltkHL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71EXF1ltkHL._SX522_.jpg",
@@ -834,8 +836,8 @@ const createProducts = function (companies, categories, done) {
         productName: "WireSwipe HDMI Male to HDMI Male Cable (Black)",
         company_id: companySony._id,
         categories: [categoryTVAccessories, categoryCabel, categoryProjectorAcc],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/717ACbKJ44L._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/717ACbKJ44L._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/41bTZR4-SuL.jpg"
         ],
         productResources: [
@@ -848,8 +850,8 @@ const createProducts = function (companies, categories, done) {
         productName: "Dell Performance USB Headset (AE2)",
         company_id: companyDell._id,
         categories: [categoryHeadphones],  //the category variable
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61KmB2THvpL._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/61KmB2THvpL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/511JRZ3pXeL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/61wAYkiXPqL._SX522_.jpg"
         ],
@@ -862,8 +864,8 @@ const createProducts = function (companies, categories, done) {
         productName: "60mm Compact Refractor AstroVenture Telescope ",
         company_id: companyTwinStar._id,
         categories: [categoryCamera],  //the category variable
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61aUx2rts4L._SX522_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/61aUx2rts4L._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71wV1Z1aE2L._SL1500_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71OKYFIu1RL._SL1500_.jpg"
         ],
@@ -876,9 +878,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Microsoft LifeCam HD-3000",
         company_id: companyMicrosoft._id,
         categories: [categoryCamera],  //the category variable
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61YZvhIV2dL._SL1000_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/61YZvhIV2dL._SL1000_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/61xOYeUSN8L._SL1000_.jpg"
+             "https://images-na.ssl-images-amazon.com/images/I/61xOYeUSN8L._SL1000_.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=xSNxLfwHS1I"
@@ -889,8 +891,8 @@ const createProducts = function (companies, categories, done) {
         productName: "Logitech HD Webcam C310",
         company_id: companyLogitech._id,
         categories: [categoryCamera],  //the category variable
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/41QNcbkM9OL.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/41QNcbkM9OL.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/81RWpOQo1qL._SL1500_.jpg"
         ],
         productResources: [
@@ -902,9 +904,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Bushnell Legend Ultra HD Monocular, Black, 10 x 42-mm",
         company_id: companyBushnell._id,
         categories: [categoryCamera],  //the category variable
+        profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/910uWOypCIL._SL1500_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/910uWOypCIL._SL1500_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/519NW5HTB4L.jpg"
+           "https://images-na.ssl-images-amazon.com/images/I/519NW5HTB4L.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=j0Gfjwd7K0Y"
@@ -915,9 +917,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Miluo Tech 16x52 Dual Focus Monocular Telescope /Monocular Scope for Hunting, Camping, Surveillance",
         company_id: companyMiluoTech._id,
         categories: [categoryCamera],  //the category variable
+        profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/61I%2Bbr1Cs5L._SL1500_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/61I%2Bbr1Cs5L._SL1500_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/61Kc-4iIGiL._SL1308_.jpg"
+           "https://images-na.ssl-images-amazon.com/images/I/61Kc-4iIGiL._SL1308_.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=HEKdhscWBzU"
@@ -928,8 +930,8 @@ const createProducts = function (companies, categories, done) {
         productName: "Bushnell Trophy Cam HD Essential E2 12MP Trail Camera",
         company_id: companyBushnell._id,
         categories: [categoryCamera],  //the category variable
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51E9DNupkJL.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/51E9DNupkJL.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/81OtXblbltL._SL1500_.jpg"
         ],
         productResources: [
@@ -941,9 +943,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Bushnell Trophy Cam HD Aggressor 14MP Wireless Trail Camera",
         company_id: companyBushnell._id,
         categories: [categoryCamera],  //the category variable
+        profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/A1RUKRdLlKL._SL1500_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/A1RUKRdLlKL._SL1500_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/A1WFrUtuO1L._SL1500_.jpg"
+           "https://images-na.ssl-images-amazon.com/images/I/A1WFrUtuO1L._SL1500_.jpg"
         ],
         productResources: [
             "https://www.amazon.com/Bushnell-Trophy-Aggressor-Wireless-Camera/dp/B01D0JTRGU/ref=pd_bxgy_200_img_2?_encoding=UTF8&psc=1&refRID=04JXN6BY0JE58KV7M66D"
@@ -954,9 +956,9 @@ const createProducts = function (companies, categories, done) {
         productName: "Barrel Borescope, Teslong Rifle Barrel Endoscope Inspection Camera with 5.5mm Diameter, Short Focus Camera, 24 Inch Rod and 3.5 Inch LCD ",
         company_id: companyTeslong._id,
         categories: [categoryCamera],  //the category variable
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61vPWse8ZvL._SL1001_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/61vPWse8ZvL._SL1001_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/61vTpdQZNOL._SL1001_.jpg"
+           "https://images-na.ssl-images-amazon.com/images/I/61vTpdQZNOL._SL1001_.jpg"
         ],
         productResources: [
             "https://www.youtube.com/watch?v=KOo__ePq1fo"
@@ -967,8 +969,8 @@ const createProducts = function (companies, categories, done) {
         productName: "Digital Endoscope, Teslong 0.21inch Semi Rigid Industrial Endoscope  ",
         company_id: companyTeslong._id,
         categories: [categoryCamera],  //the category variable
+        profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/71RIP0D9uPL._SL1500_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/71RIP0D9uPL._SL1500_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/818KXU7RtaL._SL1500_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71--F%2B2RtHL._SL1500_.jpg"
         ],
