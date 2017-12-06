@@ -74,7 +74,7 @@ var renderProductData = function(data){
     var material_list = $('#material-list');
 
     $('#product_name').text(data.productName);
-    $('#product_image').attr('src', data.productImages[0]);
+    $('#product_image').attr('src', data.profilePicture);
 
     image_list.empty();
     for(var i = 0; i < images.length; i++){

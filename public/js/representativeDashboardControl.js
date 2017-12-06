@@ -17,7 +17,7 @@ var renderProducts = function(data){
 
         clonedTemplate.querySelector(".product-info a").href = '/representatives/updateProduct?id=' + data[product]._id;
         clonedTemplate.querySelector("h3").innerText = data[product].productName;
-        clonedTemplate.querySelector('.pic').src = data[product].productImages[0];
+        clonedTemplate.querySelector('.pic').src = data[product].profilePicture;
 
         ul.appendChild(clonedTemplate);;
     }
