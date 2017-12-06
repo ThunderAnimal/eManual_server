@@ -15,7 +15,7 @@ const productsSchema = mongoose.Schema({
     profilePicture: String,
     favorites: {type: Number, default: 0},
     productResources: [{
-        description: {type: String, requires: true},
+        description: String,
         originalName: String,
         dataType: String,
         url: {type: String, requires: true}
