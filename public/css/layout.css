@@ -150,3 +150,16 @@ button.alt:active,
 #dropdown_user {
     margin-top: 4em;
 }
+
+footer {
+    font-size: 0.85rem;
+}
+
+#main-footer .row {
+    margin-bottom: 10px;
+}
+
+#main-footer .footer-copyright {
+    padding: 5px 0;
+    min-height: 34px;
+}
