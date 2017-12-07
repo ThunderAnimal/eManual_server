@@ -11,7 +11,14 @@ block main
                 a.waves-effect.waves-circle.waves-light.btn-floating.secondary-content(href='/representatives/createProduct')
                     i.material-icons add
 
-
+        .container
+            a(id="btn_cat" class='dropdown-button btn materialize-red' data-activates='dropdown1') sort by
+            ul(id='dropdown1' class='dropdown-content')
+                li(id='count')
+                    a Count
+                li(id='name')
+                    a Name
+            a(id="order" class='btn materialize-red') Order
         #separateContext
             #line
         #LOM
@@ -29,6 +36,8 @@ block main
                                 img.edit(src='../assets/img/Edit.png', alt='edit', height='20', width='20')
                             .product-delete
                                 img.delete(src = '../assets/img/delete.png', alt = 'delete', height = '20', width = '20')
+
+
 
 block javascript
     script(src='/assets/js/representativeDashboardControl.js')

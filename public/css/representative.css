@@ -299,3 +299,11 @@ div#footer-block {
     bottom:0;                           /* added */
     left:0;
 }
+
+#dropdown1{
+    margin-top: 40px;
+    min-width: 100px;
+}
+#order{
+    margin-left: 10px;
+}
