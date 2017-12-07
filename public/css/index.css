@@ -1,4 +1,4 @@
-header {
+/*header {
     justify-content: space-around;
     flex-flow: column;
     width: 100%;
@@ -9,8 +9,15 @@ header {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}*/
+
+header {
+    max-height: 84px;
 }
 
+main {
+    width: 100%;
+}
 #btn_cat{
     position: absolute;
     top: 90px;
@@ -22,4 +29,148 @@ header {
     margin-top: 40px;
     min-width: 150px;
 }
+
+#search-widget {
+    background: url(../img/bg/main_page_bg.jpg) no-repeat center center scroll;
+    max-height: 730px;
+    height: 39vw;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 15px -8px;
+}
+
+#search-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: -50px;
+}
+
+#welcome-title {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#welcome-title h4{
+    font-family: Raleway, "Open Sans", sans-serif;
+    font-weight: bolder;
+    font-size: 3.5em;
+    letter-spacing: 0.02em;
+}
+
+#welcome-title h5{
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.6em;
+    font-weight: normal;
+}
+
+#search-field-wrapper {
+    margin-top: 30px;
+}
+
+.search-container {
+    width: 38vw;
+    min-width: 400px;
+    height: 45px;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+#search-field {
+    width: 80%;
+}
+
+#search-field input{
+    background-color: #fff;
+    margin: 0;
+    border-radius: 3px 0 0 3px;
+    padding: 0 10px;
+    border: 0;
+    height:100%;
+    box-sizing: border-box;
+}
+
+#search-button {
+    height:100%!important;
+    border-radius: 0 3px 3px 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 20px;
+    background: #e7434e;
+}
+
+#search-button > i{
+    font-size: 100%;
+}
+
+#search-button > input{
+    height: 100%;
+    width: 100%;
+}
+
+#numbers-wrapper{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: -50px;
+}
+
+#stat-numbers {
+    width: 65%;
+    min-width: 400px;
+    background-color: #fff;
+    height: 100%;
+    align-self: center;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px 1px rgba(0,0,0,0.1);
+    display: inline-flex;
+    padding: 20px 0;
+}
+
+.stat-item {
+    width: 25%;
+    height: 100%;
+    padding: 3px 0;
+    font-family: "Open Sans", sans-serif;
+}
+.stat-item p {
+    margin: 0;
+    text-align: center;
+}
+
+.stat-item p.number {
+    color: #343434;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.stat-item p.number-label {
+    color: #717171;
+}
+
+
+.separate-line {
+    height: 100%;
+    width: 1px;
+    background-color: #717171;
+    opacity: 0.3;
+}
+
+#main-content {
+    width: 100%;
+    background-color: #fff;
+    min-height: 80px;
+}
+
 

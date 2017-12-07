@@ -27,6 +27,38 @@ block header
                 a(id="btn_cat" class='dropdown-button btn materialize-red' data-activates='dropdown1') categories
                 ul(id='dropdown1' class='dropdown-content')
 block main
+    #search-widget
+        #search-wrapper
+            #welcome-title
+                h4 Keep your World Running
+                h5 A range of user and service manuals
+            #search-field-wrapper
+                .search-container
+                    div#search-field
+                        input.input(type='text' name='search-field' placeholder="Search manuals")
+                    div#search-button.waves-effect.waves-light.btn
+                        i.fa.fa-search
+                        input(type='button' name='search-button' value='search')
+    //#main
+    #numbers-wrapper
+        #stat-numbers
+            .stat-item
+                p.number 230,000
+                p.number-label Products
+            .separate-line
+            .stat-item
+                p.number 700,000
+                p.number-label Manuals
+            .separate-line
+            .stat-item
+                p.number 35,000
+                p.number-label Brands
+            .separate-line
+            .stat-item
+                p.number 500,000
+                p.number-label Users
+    #main-content
+
 
 
 block stylesheet
