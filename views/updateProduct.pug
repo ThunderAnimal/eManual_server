@@ -11,30 +11,60 @@ block main
         .content
             form#formUpdateProduct(method="PUT" action='/api/v1/product' enctype="multipart/form-data")
                 div.row
-                    div.col.s12
-                        div(class="input-field")
-                            input(name="name" id="name" type="text" required="true" placeholder="name")
-                            label(for="name") Name
+                    div.col.s12(class="input-field")
+                        input(name="name" id="name" type="text" required="true" placeholder="name")
+                        label(for="name") Name
 
-                        div(class="input-field")
-                            select(name="categories" id="categories" required="true" multiple="true")
-                                option(value="" disabled) Choose your categories
-                            label Category
+                    div.col.s12(class="input-field")
+                        select(name="categories" id="categories" required="true" multiple="true")
+                            option(value="" disabled) Choose your categories
+                        label Category
+                    div.col.s12(class="input-field file-field")
+                        div.btn
+                            span Update Profile Image
+                            input(name="profilePicture" id="profilePicture" type="file" multiple="false" required="true" accept='image/*')
+                        div.file-path-wrapper
+                            input(class="file-path validate" type="text" placeholder="Upload one main Image")
 
-                    div.col.s12
-                        h5 Add Materials
-                        div(class="input-field file-field")
+
+                    h5 Add Materials
+                    div.col.s12(class="input-field file-field")
+                        div.btn
+                            span Add Images
+                            input(name="image" id="image" type="file" multiple="true" accept='image/*')
+                        div.file-path-wrapper
+                            input(class="file-path validate" type="text" placeholder="Upload one or more images")
+                    div#ResourcesList
+                        div.col.s5(class="input-field file-field")
                             div.btn
-                                span Add Images
-                                input(name="image" id="image" type="file" multiple="true" accept='image/*')
+                                span Resource
+                                input(name="resources" id="resources" type="file")
                             div.file-path-wrapper
-                                input(class="file-path validate" type="text" placeholder="Upload one or more images")
-                        div(class="input-field file-field")
-                            div.btn
-                                span Add Resources
-                                input(name="resources" id="resources" type="file" multiple="true")
-                            div.file-path-wrapper
-                                input(class="file-path validate" type="text" placeholder="Upload one or more recourse")
+                                input(class="file-path validate" type="text" placeholder="Upload one recourse")
+                        div.col.s5(class="input-field")
+                            input(name="resources_description" id="resources_description" type="text" required="true")
+                            label(for="resources_description") Description
+                        div.col.s1
+                            a.btn-floating.waves-effect.waves-light.blue-grey.lighten-4.add-rescource-fields
+                                i.material-icons add
+
+                        template#ResourceFields
+                            div.resource-fields
+                                div.col.s5(class="input-field file-field")
+                                    div.btn
+                                        span Resource
+                                        input(name="resources" id="resources" type="file")
+                                    div.file-path-wrapper
+                                        input(class="file-path validate" type="text" placeholder="Upload one recourse")
+                                div.col.s5(class="input-field")
+                                    input(name="resources_description" id="resources_description" type="text" required="true")
+                                    label(for="resources_description") Description
+                                div.col.s1
+                                    a.btn-floating.waves-effect.waves-light.blue-grey.lighten-4.add-rescource-fields
+                                        i.material-icons add
+                                div.col.s1
+                                    a.btn-floating.waves-effect.waves-light.blue-grey.lighten-4.remove-rescource-fields
+                                        i.material-icons remove
 
                     div.col.s12
                         h5 Remove Materials

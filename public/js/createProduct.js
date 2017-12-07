@@ -1,7 +1,18 @@
 $(document).ready(function(){
+    $('#ResourcesList').on('click', '.add-rescource-fields', function (e) {
+        var resourceTemp = document.getElementById('ResourceFields');
+        var resourceFields = document.getElementById('ResourcesList');
+        var clonedTemplate = resourceTemp.content.cloneNode(true);
+
+        resourceFields.appendChild(clonedTemplate);
+    }).on('click', '.remove-rescource-fields', function (e) {
+        $(this).closest('.resource-fields').remove();
+    });
+
 
     $('select').material_select();
     getCategorieData();
+
 
     var func_finish = function(){
         $('#btnCreateProduct').removeClass('disabled');

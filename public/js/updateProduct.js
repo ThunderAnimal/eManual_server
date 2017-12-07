@@ -12,6 +12,16 @@ $(document).ready(function(){
         });
     });
 
+    $('#ResourcesList').on('click', '.add-rescource-fields', function (e) {
+        var resourceTemp = document.getElementById('ResourceFields');
+        var resourceFields = document.getElementById('ResourcesList');
+        var clonedTemplate = resourceTemp.content.cloneNode(true);
+
+        resourceFields.appendChild(clonedTemplate);
+    }).on('click', '.remove-rescource-fields', function (e) {
+        $(this).closest('.resource-fields').remove();
+    });
+
 
     var func_finish = function(){
         $('#btnCreateProduct').removeClass('disabled');
@@ -91,10 +101,12 @@ var renderProductData = function(data, cat_list){
     }
     for(var j = 0; j < materials.length; j++){
         remove_list.append('<li class="collection-item avatar">\n' +
-            '        <img src="/assets/img/material.png" alt="" class="circle">\n' +
-            '        <span class="title">' + materials[j] + '</span>\n' +
-            '    </p>\n' +
-            '    <a data-href="' + materials[j] +'" class="secondary-content remove-ressource" style="color: #f6755f"><i class="material-icons">clear</i></a>\n' +
+            '      <img src="/assets/img/material.png" alt="" class="circle">\n' +
+            '      <span class="title">' + materials[j].description +'</span>\n' +
+            '      <p>' + materials[j].originalName + '<br>\n' +
+            '          ' + materials[j].dataType + '\n' +
+            '      </p>\n' +
+            '    <a data-href="' + materials[j].url +'" class="secondary-content remove-ressource" style="color: #f6755f"><i class="material-icons">clear</i></a>\n' +
             '    </li>');
     }
 };
@@ -108,14 +120,11 @@ var getCategorieData = function(callback){
 var renderCategorieData = function(data, chooseCategories){
     var list = $('#categories');
 
-    console.log(data);
-    console.log(chooseCategories);
     for(var i = 0; i < data.length; i++){
         var lSelect = false;
         for(var j = 0; j < chooseCategories.length; j++){
             if(chooseCategories[j] === data[i]._id){
                 lSelect = true;
-                console.log("TRUE");
                 break;
             }
         }
