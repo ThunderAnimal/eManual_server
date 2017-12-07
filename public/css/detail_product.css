@@ -14,6 +14,10 @@
     color: #4D4D4D;
 }
 
+#category_list .breadcrumb:before{
+    color: transparent;
+}
+
 .breadcrumb:hover{
     color: #f6755f;
     cursor: pointer;
@@ -22,6 +26,10 @@
 .breadcrumb:last-child{
     color: #f6755f;
 }
+#category_list .breadcrumb:last-child{
+    color: #25a2c3;
+}
+
 
 .breadcrumb:last-child:hover{
     cursor: default;
