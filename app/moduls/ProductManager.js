@@ -78,13 +78,13 @@ let uploadProfilePicture = (profilePicture, done) => {
     }
 };
 
-let getProductResourcesArray = (req, resourceURLs, done) => {
+let getProductResourcesArray = (resource, resourceURLs, done) => {
     let productResourcesArray = [];
     for (let i = 0; i < resourceURLs.length; i++) {
         let tempResource = {
-            description: req.body.productResources[i].description,
-            originalName: req.body.productResources[i].originalName,
-            dataType: req.body.productResources[i].dataType,
+            description: resource[i].description,
+            originalName: resource[i].originalName,
+            dataType: resource[i].mimetype,
             url: resourceURLs[i]
         };
 
@@ -123,7 +123,7 @@ exports.create = function (req, res) {
     };
 
     uploadResources(resources, function (resourceUrls) {
-        getProductResourcesArray(req, resourceUrls, (productResourcesArray) => {
+        getProductResourcesArray(resources, resourceUrls, (productResourcesArray) => {
             uploadProfilePicture(profilePicture, function (profilePicURL) {
                 uploadImages(images, function (imageUrls) {
 
@@ -197,7 +197,7 @@ exports.update = function(req, res){
             return sendForbiddenEditProduct(res);
 
         uploadResources(resources, function (resourceUrls) {
-            getProductResourcesArray(req, resourceUrls, (productResourcesArray) => {
+            getProductResourcesArray(resources, resourceUrls, (productResourcesArray) => {
                 uploadProfilePicture(profilePicture, function (profilePicURL) {
                     uploadImages(images, function (imageUrls) {
                         product.productName = req.body.name;
@@ -417,7 +417,7 @@ exports.addMaterials = function(req, res){
 
         uplaodImgaes(images, function (imageUrls) {
             uploadResources(resources, function (resourceUrls) {
-                getProductResourcesArray(req, resourceUrls, (productResourcesArray) => {
+                getProductResourcesArray(resources, resourceUrls, (productResourcesArray) => {
 
                     product.productImages = product.productImages.concat(imageUrls);
                     product.productResources = product.productResources.concat(productResourcesArray);
