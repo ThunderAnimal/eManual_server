@@ -21,44 +21,44 @@ const delteFiles = function(files){
 };
 
 exports.uploadFiles = function (content, cb) {
-
     const filesList = content;
-    let count = 0;
     let urlList = [];
 
-    let isFinish = function(){
-        if(filesList.length === count){
-            delteFiles(filesList);
+    const helperUpload = function (counter) {
+        if(counter >= filesList.length){
             cb(urlList);
+            delteFiles(filesList);
+            return;
         }
-    };
 
-    for(let i = 0; i < filesList.length; i++){
-        const gcsname = uuidv4() +'_'+filesList[i].originalname;
+        const gcsname = uuidv4() +'_'+filesList[counter].originalname;
         const files = bucket.file(gcsname);
 
-        fs.createReadStream(filesList[i].path)
+
+        fs.createReadStream(filesList[counter].path)
             .pipe(files.createWriteStream({
                 metadata: {
-                    contentType: filesList[i].mimetype
+                    contentType: filesList[counter].mimetype
                 }
             }))
             .on("error", function (err) {
-                count++;
-
                 console.log(err);
 
-                isFinish();
+                counter += 1;
+                urlList.push('');
+
+                helperUpload(counter);
             })
             .on('finish',function () {
-                count++;
+                counter += 1;
 
-                const fileUrl = `https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`;
-                urlList.push(fileUrl);
+                urlList.push(`https://storage.googleapis.com/${CLOUD_BUCKET}/${gcsname}`);
 
-                isFinish();
+                helperUpload(counter);
             });
-    }
+    };
+
+    helperUpload(0);
 };
 
 exports.deleteFiles = function(content, cb){
