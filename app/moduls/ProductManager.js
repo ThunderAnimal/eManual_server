@@ -18,6 +18,67 @@ const sendForbiddenEditProduct = function(res){
     });
 };
 
+const uploadFiles = function (files, done) {
+    if (files) {
+        uploadUser.uploadFiles(files, function (extUrl) {
+            done(extUrl);
+        });
+    } else {
+        done([]);
+    }
+};
+
+const deleteFiles = function(fileUlrList ,done){
+    if(!images)
+        return done();
+
+    uploadUser.deleteFiles(getFileNames(fileUlrs), done);
+
+};
+
+const getFileNames = function(fileUrlList){
+    let fileNames = [];
+    for(let i = 0; i < fileUrlList.length; i++){
+
+        fileNames.push(fileUrlList[i].split("/").pop());
+    }
+    return fileNames;
+};
+
+
+const getProductResourcesArray = (resource, resourceURLs, done) => {
+    let productResourcesArray = [];
+    for (let i = 0; i < resourceURLs.length; i++) {
+        let tempResource = {
+            description: resource[i].description,
+            originalName: resource[i].originalname,
+            dataType: resource[i].mimetype,
+            url: resourceURLs[i]
+        };
+
+        productResourcesArray.push(tempResource);
+    }
+
+    done(productResourcesArray);
+};
+
+const mergeResourcesAndDescription = function(resources_list, resources_description){
+    const mergedArray = [];
+
+    if (!Array.isArray(resources_description)){
+        resources_description = [resources_description];
+    }
+
+    for(let i = 0; i < resources_list.length; i++){
+        const obj = resources_list[i];
+        obj.description = resources_description[i];
+        mergedArray.push(obj);
+    }
+
+    return mergedArray;
+};
+
+
 exports.getOne = function(req, res) {
     productModel.findOne({_id : req.params.id}, function(err, result) {
         if(err){
@@ -67,66 +128,19 @@ exports.getAllInCategories = function(cat_list, done){
     });
 };
 
-let uploadProfilePicture = (profilePicture, done) => {
-    if (profilePicture) {
-        uploadUser.uploadFiles(profilePicture, (extUrl) => {
-            done(extUrl);
-        });
-    }
-    else {
-        done([]);
-    }
-};
-
-let getProductResourcesArray = (resource, resourceURLs, done) => {
-    let productResourcesArray = [];
-    for (let i = 0; i < resourceURLs.length; i++) {
-        let tempResource = {
-            description: resource[i].description,
-            originalName: resource[i].originalName,
-            dataType: resource[i].mimetype,
-            url: resourceURLs[i]
-        };
-
-        productResourcesArray.push(tempResource);
-    }
-
-    done(productResourcesArray);
-};
-
-//TODO enable comments.
 exports.create = function (req, res) {
-
     const companyId = authManager.getCompanyId(req.user);
     const profilePicture = req.files.profilePicture;
     const images = req.files.image;
-    const resources = req.files.resources;
+    let resources = req.files.resources;
+    const resourcesDescription = req.body.resources_description;
 
-    const uploadImages = function (images, done) {
-        if (images) {
-            uploadUser.uploadFiles(images, function (extUrl) {
-                done(extUrl);
-            });
-        } else {
-            done([]);
-        }
-    };
+    resources = mergeResourcesAndDescription(resources, resourcesDescription);
 
-    const uploadResources = function (resources, done) {
-        if (resources) {
-            uploadUser.uploadFiles(resources, function (extUrl) {
-                done(extUrl);
-            });
-        } else {
-            done([]);
-        }
-    };
-
-    uploadResources(resources, function (resourceUrls) {
+    uploadFiles(resources, function (resourceUrls) {
         getProductResourcesArray(resources, resourceUrls, (productResourcesArray) => {
-            uploadProfilePicture(profilePicture, function (profilePicURL) {
-                uploadImages(images, function (imageUrls) {
-
+            uploadFiles(profilePicture, function (profilePicURL) {
+                uploadFiles(images, function (imageUrls) {
                     const product = new productModel({
                         productName: req.body.name,
                         profilePicture: profilePicURL[0],
@@ -150,35 +164,14 @@ exports.create = function (req, res) {
     });
 };
 
-
 exports.update = function(req, res){
-    console.log(req.body);
-    //const default_image = req.files.default_image;
     const profilePicture = req.files.profilePicture;
     const productId = req.params.id;
     const images = req.files.image;
-    const resources = req.files.resources;
+    let resources = req.files.resources;
+    const resourcesDescription = req.body.resources_description;
 
-
-    const uploadImages = function(images ,done){
-        if(images){
-            uploadUser.uploadFiles(images, function (extUrl) {
-                done(extUrl);
-            });
-        }else{
-            done([]);
-        }
-    };
-
-    const uploadResources = function(resources, done){
-        if(resources){
-            uploadUser.uploadFiles(resources, function (extUrl) {
-                done(extUrl);
-            });
-        }else{
-            done([]);
-        }
-    };
+    resources = mergeResourcesAndDescription(resources, resourcesDescription);
 
     if(!productId){
         return res.status(400).send({_error: true, err: "No Product ID"})
@@ -196,12 +189,18 @@ exports.update = function(req, res){
         if (!isProductFromOwnCompany(product.company_id, req.user))
             return sendForbiddenEditProduct(res);
 
-        uploadResources(resources, function (resourceUrls) {
+        uploadFiles(resources, function (resourceUrls) {
             getProductResourcesArray(resources, resourceUrls, (productResourcesArray) => {
-                uploadProfilePicture(profilePicture, function (profilePicURL) {
-                    uploadImages(images, function (imageUrls) {
+                uploadFiles(profilePicture, function (profilePicURL) {
+                    uploadFiles(images, function (imageUrls) {
                         product.productName = req.body.name;
-                        product.profilePicture = profilePicURL[0];
+
+                        if(profilePicURL[0]){
+                            const oldImageUrl =  product.profilePicture;
+                            deleteFiles([oldImageUrl],function () {});
+                            product.profilePicture = profilePicURL[0];
+                        }
+
                         product.categories = req.body.categories;
                         product.productImages = product.productImages.concat(imageUrls);
                         product.productResources = product.productResources.concat(productResourcesArray);
@@ -227,21 +226,6 @@ exports.delete = function (req, res){
         return res.status(400).send({_error: true, err: "No Product ID"})
     }
 
-    const getFileNames = function(fileList){
-        let fileNames = [];
-        for(let i = 0; i < fileList.length; i++){
-            fileNames.push(fileList[i].split("/").pop());
-        }
-        return fileNames;
-    };
-    const deleteMaterials = function(materials ,done){
-        if(!materials)
-            return done();
-
-        uploadUser.deleteFiles(getFileNames(materials), done);
-
-    };
-
     productModel.findById(productId, function (err, product) {
         if(err){
             console.log(err);
@@ -261,15 +245,12 @@ exports.delete = function (req, res){
                 return res.status(400).send({_error: true, err: "Product not found"});
             }
 
-            deleteMaterials(removed.productImages.concat(removed.productResources),function(){
+            deleteFiles(removed.productImages.concat(removed.productResources).push(removed.profilePicture),function(){
 
             });
             return res.sendStatus(204);
         });
     });
-
-
-
 };
 
 exports.deleteMaterials = function(req, res){
@@ -295,34 +276,9 @@ exports.deleteMaterials = function(req, res){
         }
     }
 
-
-
     if(!productId){
         return res.status(400).send({_error: true, err: "No Product ID"})
     }
-
-    const getFileNames = function(fileList){
-        let fileNames = [];
-        for(let i = 0; i < fileList.length; i++){
-
-            fileNames.push(fileList[i].split("/").pop());
-        }
-        return fileNames;
-    };
-    const deleteImgaes = function(images ,done){
-        if(!images)
-            return done();
-
-        uploadUser.deleteFiles(getFileNames(images), done);
-
-    };
-
-    const deleteResources = function(resources, done){
-        if(!resources)
-            return done();
-
-        uploadUser.deleteFiles(getFileNames(resources), done);
-    };
 
 
     productModel.findById(productId, function (err, product) {
@@ -338,8 +294,8 @@ exports.deleteMaterials = function(req, res){
         if(!isProductFromOwnCompany(product.company_id, req.user))
             return sendForbiddenEditProduct(res);
 
-        deleteImgaes(image_list,function(){
-           deleteResources(resources_list,function () {
+        deleteFiles(image_list,function(){
+           deleteFiles(resources_list,function () {
                product.productImages = product.productImages.filter( function( obj){
                    if(!images)
                        return true;
@@ -351,7 +307,7 @@ exports.deleteMaterials = function(req, res){
                    if(!resources)
                        return true;
 
-                   return resources_list.indexOf(obj) < 0;
+                   return resources_list.indexOf(obj.url) < 0;
 
                });
 
@@ -372,31 +328,10 @@ exports.deleteMaterials = function(req, res){
 };
 
 exports.addMaterials = function(req, res){
-
     const productId = req.params.id;
     const images = req.files.image;
     const resources = req.files.resources;
 
-
-    const uplaodImgaes = function(images ,done){
-        if(images){
-            uploadUser.uploadFiles(images, function (extUrl) {
-                done(extUrl);
-            });
-        }else{
-            done([]);
-        }
-    };
-
-    const uploadResources = function(resources, done){
-        if(resources){
-            uploadUser.uploadFiles(resources, function (extUrl) {
-                done(extUrl);
-            });
-        }else{
-            done([]);
-        }
-    };
 
     if(!productId){
         return res.status(400).send({_error: true, err: "No Product ID"})
@@ -415,8 +350,8 @@ exports.addMaterials = function(req, res){
         if (!isProductFromOwnCompany(product.company_id, req.user))
             return sendForbiddenEditProduct(res);
 
-        uplaodImgaes(images, function (imageUrls) {
-            uploadResources(resources, function (resourceUrls) {
+        uploadFiles(images, function (imageUrls) {
+            uploadFiles(resources, function (resourceUrls) {
                 getProductResourcesArray(resources, resourceUrls, (productResourcesArray) => {
 
                     product.productImages = product.productImages.concat(imageUrls);
