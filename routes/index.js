@@ -105,6 +105,7 @@ router.get('/product', function (req, res, next) {
     let profileUrl;
     let name;
     let image;
+    let isRepresantive = false;
 
     if(authManager.isUserCompany(req.user)){
         profileUrl = "/company/dashboard";
@@ -112,6 +113,7 @@ router.get('/product', function (req, res, next) {
     } else if(authManager.isUserRepresentative(req.user)){
         profileUrl = "/representatives/dashboard";
         name = req.user.name;
+        isRepresantive = true;
     } else if(authManager.isUserConsumer(req.user)){
         profileUrl = "/consumer";
         name = req.user.username;
@@ -131,7 +133,8 @@ router.get('/product', function (req, res, next) {
                     name: name,
                     profileUrl: profileUrl,
                     image: image
-                }
+                },
+                isRepresantive: isRepresantive
         });
     }
 });

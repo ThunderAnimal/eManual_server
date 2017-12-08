@@ -7,7 +7,8 @@ $(document).ready(function(){
 
     getProductData(id, renderProductData);
     if(category_list){
-        fillChoosenCategories(category_list, function (choosenCategories) {
+        fillCategories(category_list, function (cat_list) {
+            choosenCategories = cat_list;
             getCatData(choosenCategories,renderCatData);
             renderNaviagtion(choosenCategories);
         });
@@ -17,14 +18,16 @@ $(document).ready(function(){
     }
 });
 
-var fillChoosenCategories = function(cat_list, callback){
+var fillCategories = function(cat_list, callback){
+    var newCatList = [];
     var getCatNameHelper = function(counter){
+
         if(counter >= cat_list.length){
-            callback(choosenCategories);
+            callback(newCatList);
             return;
         }
         $.get('api/v1/category/' + cat_list[counter], function(result){
-            choosenCategories.push({id:result._id, name: result.name});
+            newCatList.push({id:result._id, name: result.name});
             counter = counter + 1;
             getCatNameHelper(counter);
         }).fail(function () {
@@ -33,7 +36,7 @@ var fillChoosenCategories = function(cat_list, callback){
         });
     };
     getCatNameHelper(0);
-}
+};
 
 var getCompanyData = function(id, callback){
     $.get('api/v1/company/' + id,function (result) {
@@ -59,6 +62,7 @@ var getProductData = function(id, callback){
             return;
         }
         getCompanyData(result.company_id, renderCompanyData);
+        fillCategories(result.categories, renderProductCategories);
         callback(result);
     }).fail(function(e) {
         alert('Woops! Error to get Product Data'); // or whatever
@@ -84,6 +88,18 @@ var renderProductData = function(data){
     material_list.empty();
     for(var j = 0; j < materials.length; j++){
         material_list.append('<a href="' + materials[j] + '" target="_blank" class="collection-item" >' + materials[j] + '</a>');
+    }
+
+
+};
+
+var renderProductCategories = function(cat_list){
+    var categorie_list = $('#category_list');
+
+    categorie_list.empty();
+    linkBase = '/category' + '?category_id[]=';
+    for(var i = 0; i < cat_list.length; i++){
+        categorie_list.append('<a href="' + linkBase + cat_list[i].id + '" id="' + cat_list[i].id + '" class="breadcrumb">' + cat_list[i].name + '</a>');
     }
 };
 
@@ -131,6 +147,8 @@ var renderNaviagtion = function(choosenCategories){
     if(choosenCategories.length <= 0){
         catBreadCrump.hide();
         return;
+    }else{
+        $('#category_list').hide();
     }
 
     catBreadCrump.empty();
