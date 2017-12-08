@@ -134,6 +134,17 @@ const createCompanys = function (done) {
         password: "1234",
         name: "Apollo"
     });
+  const company14 = new CompanyModel({
+        login: "admin@dbPower.com",
+        password: "1234",
+        name: "DBPower"
+    });
+    const company15 = new CompanyModel({
+        login: "admin@lg.com",
+        password: "1234",
+        name: "LG"
+    });
+
 
     company1.save(function () {
         company2.save(function () {
@@ -148,21 +159,26 @@ const createCompanys = function (done) {
                                             company11.save(function () {
                                                 company12.save(function () {
                                                     company13.save(function () {
-                                                        done([company1, company2, company3, company4, company5, company6, company7, company8, company9, company10, company11, company12, company13]);
+                                                        company14.save(function () {
+                                                            company15.save(function () {
+
+                                                                    done([company1, company2, company3, company4, company5, company6, company7, company8, company9, company10, company11, company12, company13,company14,company15 ]);
+                                                                 });
+                                                             });
+                                                        });
                                                     });
                                                 });
                                             });
                                         });
-                                    });
+                                     });
                                 });
-                            });
-                        });
-                    });
+                         });
+                     });
+                  });
                 });
-            });
-        });
-    });
-};
+             });
+         });
+   };
 
 const createRepresentas = function (company, done) {
     const represent1 = new RepresentativeModel({
@@ -412,7 +428,7 @@ const createProducts = function (companies, categories, done) {
     let companySamsung;
     let companySony;
     let companyGoogle, companyAmazon, companyDell, companyTwinStar, companyMicrosoft, companyLogitech, companyBushnell,
-        companyMiluoTech, companyTeslong, companyApollo;
+        companyMiluoTech, companyTeslong, companyApollo,companyLG,companyDBPower;
     for (let i = 0; i < companies.length; i++) {
         if (companies[i].name === "Samsung") {
             companySamsung = companies[i];
@@ -448,6 +464,12 @@ const createProducts = function (companies, categories, done) {
         }
         else if (companies[i].name === "Apollo") {
             companyApollo = companies[i];
+        }
+        else if (companies[i].name === "LG") {
+                    companyLG = companies[i];
+        }
+        else if (companies[i].name === "DBPower") {
+                   companyDBPower = companies[i];
         }
 
 
@@ -545,9 +567,10 @@ const createProducts = function (companies, categories, done) {
         productName: "SamsungTV55",
         company_id: companySamsung._id,
         categories: [categoryTv, categoryOLED, categoryFLAT, categoryBestsellers],
-        profilePicture:["https://storage.googleapis.com/product_resources/5c379607-0992-4b86-bf2e-baf9c3f5aada_41fcmkyAH8L._SL1000_.jpg"],
+        profilePicture:["https://storage.googleapis.com/product_resources/4075311e-353f-4fd6-81a4-85b62e64df5a_616+K6M825L._SL1000_.jpg"],
+        productDescription:["The Samsung TV screen of 55 inch"],
         productImages: [
-            "https://storage.googleapis.com/product_resources/4075311e-353f-4fd6-81a4-85b62e64df5a_616+K6M825L._SL1000_.jpg",
+            "https://storage.googleapis.com/product_resources/5c379607-0992-4b86-bf2e-baf9c3f5aada_41fcmkyAH8L._SL1000_.jpg",
             "https://storage.googleapis.com/product_resources/e8246037-bf21-4dae-98ad-8749fa968080_61O-zVbQEyL._SL1000_.jpg"
         ],
         //description: originalName: dataType:url:
@@ -557,16 +580,23 @@ const createProducts = function (companies, categories, done) {
            dataType:"PDF",
            url:"https://storage.googleapis.com/product_resources/72b9f8c8-eb74-4479-8802-0b1f814d4806_[ME65B ME75B]User manual.pdf"
            },
-        ]
+        ],
+         productLinks: [{
+                description: "The Samsung TV screen of 55 inch",
+                url: "https://www.youtube.com/watch?v=I3Lo4ysUf80",
+          }]
+
     });
 
     const productSonyHdmiCabel = new ProductModel({
-        productName: "HDMI Cabel",
+        productName: "Samsung HDMI Cabel",
         company_id: companySamsung._id,
         categories: [categoryTv, categoryCabel, categoryTVAccessories],
-        profilePicture:[ "https://storage.googleapis.com/product_resources/8d16bae2-7e79-4bca-8714-d9188bf45d56_hdmi.jpeg"],
+        profilePicture:["https://www.ebay.com/itm/Mini-USB-MHL-To-HDMI-1080P-TV-Adapter-Cable-HD-For-Samsung-Galaxy-S6-S7-iPhone-7-/302335276129"],
+        productDescription:["The Samsung HDMI cable"],
         productImages: [
-            "https://storage.googleapis.com/product_resources/8d16bae2-7e79-4bca-8714-d9188bf45d56_hdmi.jpeg"
+            "https://www.ebay.com/itm/Mini-USB-MHL-To-HDMI-1080P-TV-Adapter-Cable-HD-For-Samsung-Galaxy-S6-S7-iPhone-7-/302335276129",
+            "https://www.ebay.com/itm/Mini-USB-MHL-To-HDMI-1080P-TV-Adapter-Cable-HD-For-Samsung-Galaxy-S6-S7-iPhone-7-/302335276129"
         ],
         productResources: [{
             description:"A website to review HDMI Cabel",
@@ -580,78 +610,87 @@ const createProducts = function (companies, categories, done) {
             dataType:"PDF",
             url:"http://support-us.samsung.com/nas/storage/201306131736006%5Estorage_attachment%5EF7450_-_8000,_S9_e-Manual.pdf"
            },
-        ]
+        ],
+         productLinks: [{
+            description: "The HDMI Cabel cable",
+            url: "https://www.youtube.com/watch?v=t60AgGqk2iM",
+         }]
     });
 
     const productSonyTv = new ProductModel({
         productName: "Sony KDL-32WD755",
         company_id: companySony._id,
         categories: [categoryTv, categoryLED],
-        profilePicture:["https://storage.googleapis.com/product_resources/0db29e7e-8b70-449e-a51a-a7c635020626_71FDTYs2kYL._SL1000_.jpg"],
+        profilePicture:["https://kagoo.co.uk/tvs/sony-kdl-32wd755"],
+        productDescription:["Full HD |LED| Smart  SONY TELEVISIONS "],
         productImages: [
-           "https://storage.googleapis.com/product_resources/c263a0f4-38a1-48e6-8754-e0e77ceb2458_71aoslUBdhL._SL1000_.jpg",
-            "https://storage.googleapis.com/product_resources/471e7dcb-8af2-48cf-a4b4-ed64230b8675_916UZhZsh-L._SL1500_.jpg",
-            "https://storage.googleapis.com/product_resources/310f7ec2-850d-40c4-961f-2b469101ccbc_71z8ywLQ0YL._SL1000_.jpg",
-            "https://storage.googleapis.com/product_resources/fb88aeed-2721-4fcc-8c2c-76e35651bc8d_61+oO5RZE1L._SL1500_.jpg",
+           "https://kagoo.co.uk/tvs/sony-kdl-32wd755",
+            "https://kagoo.co.uk/tvs/sony-kdl-32wd755",
+            "https://kagoo.co.uk/tvs/sony-kdl-32wd755",
         ],
        productResources: [ {
            description:"Original Manual to review  Sony KDL-32WD755 ",
            originalName:"Sony KDL-32WD755",
            dataType:"Html",
-           url: "https://storage.googleapis.com/product_resources/38dbd383-d127-40a3-a0b7-57932daee8c9_model-home (1).html",
+           url: "https://www.sony.co.uk/electronics/support/res/manuals/4586/45866851M.pdf",
             },
-            {
-            description:"Original Manual to review  Sony KDL-32WD755 ",
-            originalName:"Sony KDL-32WD755",
-            dataType:"HTML",
-            url:"https://storage.googleapis.com/product_resources/6212db00-6a14-4831-98ca-181be0f8edab_model-home.html",
-            },
-            {
-             description:"Original Manual to review  Sony KDL-32WD755 ",
-             dataType:"JPG",
-             url:"https://storage.googleapis.com/product_resources/32f7bbff-32f1-47e4-9c0e-b0bddc43a9de_61PD-e9L3vL._SL1500_.jpg",
-            },
-            {
-             description:"Original Manual to review  Sony KDL-32WD755 ",
-             originalName:"Sony KDL-32WD755",
-             dataType:"PDF",
-             url:"https://storage.googleapis.com/product_resources/e098394f-563e-4884-a2ed-48f190637625_Ref_4562216131_EN_FR.pdf"
-            },
-        ]
+           ],
+        productLinks: [{
+           description: "Full HD | Smart  SONY TELEVISIONS ",
+           url: "https://www.youtube.com/watch?v=B8MHEGo_bxk",
+              }]
     });
 
     const productSamsungProjector = new ProductModel({
-        productName: "Flux Supa Projector",
+        productName: "Samsung SP-A800B DLP Projector 1080p",
         company_id: companySamsung._id,
         categories: [categoryProjector, categoryBusinessProjectors],
-        profilePicture:["https://storage.googleapis.com/product_resources/12c09990-50d7-4f38-b76f-364627fc53df_908sama800.1.jpg"],
+        profilePicture:["https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S"],
+        productDescription:["Samsung SP-A800B DLP Projector"],
         productImages: [
-            "https://storage.googleapis.com/product_resources/12c09990-50d7-4f38-b76f-364627fc53df_908sama800.1.jpg"
+            "https://storage.googleapis.com/product_resources/12c09990-50d7-4f38-b76f-364627fc53df_908sama800.1.jpg",
+            "https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S",
+            "https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S",
+            "https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S",
+            "https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S",
         ],
         productResources: [{
-             description:"A pdf Manual for Flux Supa Projector ",
-             originalName:"Flux Supa Projector",
+             description:"A pdf Manual Samsung SP-A800B DLP Projector 1080p",
+             originalName:"Samsung SP-A800B DLP Projector 1080p",
              dataType:"PDF",
-             url:"https://storage.googleapis.com/product_resources/5256e03b-33b3-4aab-96ac-674907581f28_ex3210ug.pdf"
+             url:"http://www.projectorcentral.com/pdf/projector_manual_3885.pdf"
             }
-        ]
+        ],
+       productLinks: [{
+            description: "Samsung SP-A800B DLP Projector ",
+            url: "https://www.youtube.com/watch?v=B8MHEGo_bxk",
+         }]
     });
 
     const productProjectorCable = new ProductModel({
-        productName: "Pnp 5M Hdmi Cable For Laptop, Tv, Projector, Plasma, Led And Lcd (Black)",
+        productName: "3x1 HDMI Auto Switch with 6ft HDMI|AT-HAD-V31",
         company_id: companySamsung._id,
         categories: [categoryProjector, categoryCabel, categoryProjectorAcc],
-        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/41hmeP3dn7L.jpg"],
+        productDescription:["HDMI Auto Switch  AT-HAD-V13 is a high performance HDMI Switcher"],
+        profilePicture:["https://s7d2.scene7.com/is/image/SamsungUS/Pdpgallery-cy-shc5020d-za-600x600-C4-052016?$product-details-jpg$"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/41hmeP3dn7L.jpg"
+            "https://s7d2.scene7.com/is/image/SamsungUS/Pdpdefault-cy-shc5020d-za-600x600-C1-052016?$product-details-jpg$",
+            "https://s7d2.scene7.com/is/image/SamsungUS/Pdpgallery-cy-shc5020d-za-600x600-C1-052016?$product-details-jpg$",
+            "https://s7d2.scene7.com/is/image/SamsungUS/Pdpgallery-cy-shc5020d-za-600x600-C2-052016?$product-details-jpg$",
+            "https://s7d2.scene7.com/is/image/SamsungUS/Pdpgallery-cy-shc5020d-za-600x600-C3-052016?$product-details-jpg$",
+            "https://images-na.ssl-images-amazon.com/images/I/41hmeP3dn7L.jpg",
         ],
         productResources: [{
             description:"A pdf Manual for HDMI cable for Laptop, Tv, Projector",
             originalName:"Hdmi Cable For Laptop, Tv, Projector, Plasma, Led And Lcd",
             dataType:"PDF",
-            url:"http://www.inkwelleditorial.com/pdfSample.pdf"
+            url:"https://support-us.samsung.com/nas/storage/201306131733051%5Estorage_attachment%5EF6300_-_6350_e-Manual.pdf"
             },
-        ]
+        ] ,
+        productLinks: [{
+           description: "HDMI Automatic Switchswitch to connect up to 5 devices to the one HDMI port.",
+           url: "https://www.youtube.com/watch?v=bHfCZ9qTGVY",
+         }]
     });
 
 
@@ -660,6 +699,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyGoogle._id,
         categories: [categoryTVAccessories, categoryCastDevices, categoryBestsellers],
         profilePicture:["https://i.ebayimg.com/images/g/~5AAAOSw44BYFsnR/s-l500.jpg"],
+        productDescription:["Google Chromecast Stream media from phone, tablet or laptop|Cast your favorite apps"],
         productImages: [
             "https://i.ebayimg.com/images/g/WHUAAOSwal5YFsnU/s-l500.jpg",
             "https://i.ebayimg.com/images/g/Sf8AAOSwcLxYFsnZ/s-l500.jpg",
@@ -671,13 +711,19 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=17VQK6jBfQg"
             },
-        ]
+        ],
+        productLinks: [{
+             description: "Google Chromecast Stream media from phone, tablet or laptop| easy instalation.",
+             url: "https://www.youtube.com/watch?v=0AIuBrhIaMM",
+          }]
+
     });
 
     const productAmazonFire = new ProductModel({
         productName: "Amazon Fire TV Stick with Voice Remote | Streaming Media Player",
         company_id: companyAmazon._id,
         categories: [categoryTVAccessories, categoryCastDevices],
+        productDescription:["Amazon Fire TV Stick with Voice Remote. The next generation of our bestselling Fire TV Stick. The most powerful streaming media stick, with the fastest Wi-Fi and most accurate voice search"],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51aGXs%2BjLuL._SX522_.jpg"],
         productImages: [
               "https://images-na.ssl-images-amazon.com/images/I/713gVB-Q8gL._SX522_.jpg"
@@ -688,7 +734,11 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url:"https://www.youtube.com/watch?v=3t7lvG4piXE"
             },
-        ]
+        ],
+         productLinks: [{
+             description: "Amazon Fire TV Stick with Alexa Voice Remote REVIEW 2017",
+             url: "https://www.youtube.com/watch?v=IgEmj6txQAI",
+         }]
     });
 
     const productSamsungTV2 = new ProductModel({
@@ -696,6 +746,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySamsung._id,
         categories: [categoryTv, categoryLED, categorySmart, categoryFLAT],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51R7%2ByL8UUL.jpg"],
+        productDescription:["Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV"],
         productImages: [
                  "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
         ],
@@ -705,7 +756,11 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=DEFEbwdpK_k"
             },
-        ]
+        ],
+        productLinks: [{
+              description: "SMART Signage TV - From Unboxing To Installation",
+              url: "https://www.youtube.com/watch?v=Q_3zB7P8RRE",
+          }]
     });
 
     const productSonyTV2 = new ProductModel({
@@ -713,39 +768,53 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryTv, categoryOLED, categorySmart, categoryFLAT],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/712rZWrEs8L._SX522_.jpg"],
+        productDescription:["Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Smart Signage LED TV"],
         productImages: [
-               "https://images-na.ssl-images-amazon.com/images/I/51zq9faRJRL._SX522_.jpg"
+               "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
         ],
         productResources: [{
             description:"A Youtube video review of samsung Smart Signage LED TV",
             originalName:"Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV",
             dataType:"Video",
-            url: "https://www.youtube.com/watch?v=78nnlgKFsGs"
+            url: "https://www.youtube.com/watch?v=aGtfCgtmqUQ"
             },
-        ]
+        ],
+        productLinks: [{
+             description: "Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV Explained",
+             url: "https://www.youtube.com/watch?v=VWxf8Dfu4lU",
+         }]
     });
 
     const productProjector1 = new ProductModel({
-        productName: "Sony DBPOWER T20 1500 Lumens LCD Mini Projector",
-        company_id: companySony._id,
+        productName: "DBPOWER T20 1500 Lumens LCD Mini Projector",
+        company_id: companyDBPower._id,
         categories: [categoryProjector, categoryGamingProjectors],
-        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61FtfuuaQxL._SX522_.jpg"],
+        productDescription:["DBPOWER T20 1500 Lumens LCD Mini Projector"],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61FtfuuaQxL._SL1000_.jpg"],
         productImages: [
-                  "https://images-na.ssl-images-amazon.com/images/I/61IiZ4WIt1L._SX522_.jpg"
+                  "https://images-na.ssl-images-amazon.com/images/I/61IiZ4WIt1L._SX522_.jpg",
+                  "https://images-na.ssl-images-amazon.com/images/I/51i7cgdXfDL._SL1000_.jpg",
+                  "https://images-na.ssl-images-amazon.com/images/I/617S0xKLhuL._SL1000_.jpg",
+                  "https://images-na.ssl-images-amazon.com/images/I/61rcSAS8otL._SL1000_.jpg"
         ],
         productResources: [{
             description:"A Youtube video review of Sony DBPOWER Lumens LCD Mini Projector",
-            originalName:"Sony DBPOWER T20 1500 Lumens LCD Mini Projector",
+            originalName:"DBPOWER T20 1500 Lumens LCD Mini Projector",
             dataType:"Video",
-            url: "https://www.youtube.com/watch?v=D7omM-Qcvls"
+            url: "https://www.youtube.com/watch?v=L9QpC1MHbzc"
             },
-        ]
+        ],
+        productLinks: [{
+            description: "DBPOWER T20 1500 Lumens LED Video Projector Review",
+            url: "https://www.youtube.com/watch?v=D7omM-Qcvls",
+          }]
     });
 
     const productProjector3 = new ProductModel({
-        productName: "Samsung LG Electronics PF1000UW Ultra Short Throw Smart Home Theater Projector",
-        company_id: companySamsung._id,
+        productName: "LG Electronics PF1000UW Ultra Short Throw Smart Home Theater Projector",
+        company_id: companyLG._id,
         categories: [categoryProjector, categoryHomeTheater],
+        productDescription:["Samsung LG Electronics Smart Home Theater Projector"],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/91trLemmjSL._SX522_.jpg"],
         productImages: [
              "https://images-na.ssl-images-amazon.com/images/I/91LFsCxqr%2BL._SX522_.jpg",
@@ -756,7 +825,11 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=pHmRwYvw7jw"
             },
-        ]
+        ],
+        productLinks: [{
+             description: "Assembling my Hidden Home Cinema with the LG PF1000U Minibeam Ultra Short Throw Projector (REVIEW)",
+              url: "https://www.youtube.com/watch?v=55la7bJhd04",
+         }]
     });
 
     const productProjector4 = new ProductModel({
@@ -764,6 +837,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryProjector, categoryPortable],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81gv14OZo5L._SX522_.jpg"],
+        productDescription:["Sony VPLHW65ES 1080p 3D SXRD Home Theater Projector (2015 Model)"],
         productImages: [
              "https://images-na.ssl-images-amazon.com/images/I/81alhav1aYL._SX522_.jpg",
         ],
@@ -771,16 +845,21 @@ const createProducts = function (companies, categories, done) {
             description:"A Youtube video review of Sony Home Theater Projector (2015 Model)",
             originalName:"Sony VPLHW65ES 1080p 3D SXRD Home Theater Projector (2015 Model)",
             dataType:"Video",
-            url: "https://www.youtube.com/watch?v=THkvd8ByNX4"
+            url: "https://www.youtube.com/watch?v=3Nvjr5rnWhI"
             },
-        ]
+        ],
+        productLinks: [{
+            description: "Sony VPLHW65ES 1080p 3D SXRD Home Theater Projector(REVIEW)",
+            url: "https://www.youtube.com/watch?v=yE2l-Ye-e1A",
+        }]
     });
 
     const productProjector5 = new ProductModel({
         productName: "LG Electronics HF80JA Laser Smart Home Theater Projector (2017 Model)",
-        company_id: companySony._id,
+        company_id: companyLG._id,
         categories: [categoryProjector, categoryGamingProjectors, categoryPortable],
-        profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/81rD%2BfKHZ1L._SX522_.jpg"],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81rD%2BfKHZ1L._SX522_.jpg"],
+        productDescription:["LG Electronics HF80JA Laser Smart Home Theater Projector (2017 Model)"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/81gOetrqSNL._SX522_.jpg",
         ],
@@ -790,7 +869,11 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=x_f6vm-tTXY"
             },
-        ]
+        ],
+        productLinks: [{
+             description: "LG Probeam HF80JA Review | Best 1080p Home Cinema Projector 2017",
+             url: "https://www.youtube.com/watch?v=QGbYjT_kFUQ",
+         }]
     });
 
 
@@ -800,8 +883,11 @@ const createProducts = function (companies, categories, done) {
         //,Business & Education Projectors
         categories: [categoryProjector],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61VZdTVJaWL._SL1300_.jpg"],
+        productDescription:["Apollo Horizon 2 Overhead Projector Open Head (V16000M). 2000 lumens of brightness provides crystal clear projections in even the lightest rooms"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/61VZdTVJaWL._SL1300_.jpg",
+            "https://ssli.ebayimg.com/images/g/SGUAAOSwYeRaI2WF/s-l1600.jpg",
+            "https://i.ebayimg.com/images/g/L04AAOSwNuxXa4yH/s-l500.jpg",
+            "https://ssli.ebayimg.com/images/g/s0UAAOSwqbxaJUvo/s-l640.jpg",
         ],
         productResources: [ {
             description:"A Youtube video review Apollo Horizon 2 Overhead Projector(V16000M)",
@@ -809,7 +895,11 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=hcPHhpXWVys"
             },
-        ]
+        ],
+         productLinks: [{
+              description: "How To Change The Lightbulb In An Overhead Projector",
+              url: "https://www.youtube.com/watch?v=bDgM4_7xjuU",
+          }]
     });
 
     const productProjector7 = new ProductModel({
@@ -817,6 +907,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyApollo._id,
         //,Business & Education Projectors
         categories: [categoryProjector],
+        productDescription:["Apollo Overhead Projector, 15 x 14 x 27 Inches, Closed Head (V16002M)"],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/31H2gnShkiL.jpg"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/31H2gnShkiL.jpg",
@@ -828,7 +919,11 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=hcPHhpXWVys"
             },
-        ]
+        ],
+        productLinks: [{
+            description: "Apollo Concept Overhead Projector Open Doublet",
+            url: "https://www.youtube.com/watch?v=7SrYGTbAjNw",
+            }]
     });
 
 
@@ -837,6 +932,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyAmazon._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryBluetoothSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51xareNhn3L._SX522_.jpg"],
+        productDescription:["Echo Dot - Voice control your music, Get news, weather & more"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/61snM2%2B59SL._SX522_.jpg",
         ],
@@ -846,13 +942,19 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=vVYcOi8R8dg"
             },
-        ]
+        ],
+        productLinks: [{
+            description: "How To Setup And Use The Amazon Echo Dot And Most Alexa Devices",
+            url: "https://www.youtube.com/watch?v=u--lmSEywJg",
+         }]
+
     });
 
     const productSpeaker2 = new ProductModel({
         productName: "Logitech Z120 Stereo Speaker (Black and White)",
         company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryBookshelfSpeakers],
+        productDescription:["Logitech Z120 Stereo Speaker (Black and White).Your speakers get power from the USB port on your laptop or netbook, so no wall plug is required"],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81VfSYq1dwL._SX522_.jpg"],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/71NtTz8MxUL._SX522_.jpg",
@@ -863,14 +965,19 @@ const createProducts = function (companies, categories, done) {
             dataType:"PDF",
             url: "http://static.highspeedbackbone.net/pdf/Logitech-X-230-PC-Speaker-Manual.pdf"
             },
-        ]
+        ],
+        productLinks: [{
+             description: "Logitech Z120 2.0 speaker set UNBOXING & REVIEW by Ur IndianConsumer",
+             url: "https://www.youtube.com/watch?v=covUkxzh4jg",
+         }]
     });
 
     const productSpeaker3 = new ProductModel({
         productName: "Boston Acoustics HSi 250 In-Ceiling Speaker (White)",
-        company_id: companySamsung._id,
+        company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCeilingSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/8129s7pyEYL._SX522_.jpg"],
+        productDescription:["Boston Acoustics HSi 250 In-Ceiling Speaker (White). the second generation CRC is a compact, versatile, high performance center channel speaker designed to deliver accurate, natural reproduction. "],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/8129s7pyEYL._SX522_.jpg",
         ],
@@ -880,14 +987,19 @@ const createProducts = function (companies, categories, done) {
             dataType:"PDF",
             url: "http://static.highspeedbackbone.net/pdf/Boston_Acoustics_CRC_Speaker-Manual.pdf"
             },
-        ]
+        ],
+        productLinks: [{
+             description: "Center Channel Speakers: Which Design is Best for Home Theater",
+             url: "https://www.youtube.com/watch?v=Vh4_3EefmJ8",
+          }]
     });
 
     const productSpeaker4 = new ProductModel({
         productName: "Boston Acoustics A 225C Dual 5.25\" Woofer 2-Way Center Channel Speaker - Gloss Black",
-        company_id: companyGoogle._id,
+        company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCentreSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/818lK-Re8sL._SX522_.jpg"],
+        productDescription:["Boston Acoustics A 225C Dual. Woofer 2-Way Center Channel Speaker - Gloss Black"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/81SgApJskvL._SX522_.jpg"
         ],
@@ -897,7 +1009,11 @@ const createProducts = function (companies, categories, done) {
             dataType:"PDF",
             url: "http://static.highspeedbackbone.net/pdf/Boston_Acoustics_CRC_Speaker-Manual.pdf"
             },
-        ]
+        ],
+        productLinks: [{
+            description: "Boston Acoustics A25 review and sound test",
+            url: "https://www.youtube.com/watch?v=uewzm2mwxc0",
+         }]
     });
 
     const productSpeaker5 = new ProductModel({
@@ -905,6 +1021,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryOutdoorSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/91ZrgKSDdIL._SY679_.jpg"],
+        productDescription:["ECHO 10W outdoor Bluetooth speaker"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/919CoKR3fbL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/81d-KYE6IEL._SX522_.jpg",
@@ -916,17 +1033,21 @@ const createProducts = function (companies, categories, done) {
             dataType:"PDF",
             url: "https://www.massfidelity.com/media/files/Core_instructions_2015_11_22.pdf"
             },
-        ]
+        ],
+        productLinks: [{
+            description: "OFFBEAT ECHO UNBOXING .Bluetooth Speaker made of Fabric",
+            url: "https://www.youtube.com/watch?v=LeXLNoX794E",
+        }]
     });
 
     const productSpeaker6 = new ProductModel({
         productName: "Sony HT-RT3 Sound Bar Home Theatre System (Black)",
-        company_id: companySamsung._id,
+        company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySoundBars],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61A5aYmKtfL._SX522_.jpg"],
+        productDescription:["Sony HT-RT3 Sound Bar Home Theatre System (Black)"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/71Ui6dzgBBL._SX522_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/71EXF1ltkHL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71EXF1ltkHL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/31yuXsHq%2BOL.jpg"
         ],
@@ -935,15 +1056,20 @@ const createProducts = function (companies, categories, done) {
             originalName:"Sony HT-RT3 Sound Bar Home Theatre System (Black)",
             dataType:"Video",
             url:"https://www.youtube.com/watch?v=Ok-p8VY7DsU"
-             },
-        ]
-    });
+           },
+        ],
+        productLinks: [{
+           description: "Sony HT-ST5000 - Dolby Atmos Sound Bar - Demo Room at CES 2017",
+           url: "https://www.youtube.com/watch?v=zBG9_pFKedU",
+             }]
+      });
 
     const productHDMI2 = new ProductModel({
         productName: "WireSwipe HDMI Male to HDMI Male Cable (Black)",
         company_id: companySony._id,
         categories: [categoryTVAccessories, categoryCabel, categoryProjectorAcc],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/717ACbKJ44L._SX522_.jpg"],
+        productDescription:["WireSwipe HDMI Male to HDMI Male Cable (Black)"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/41bTZR4-SuL.jpg"
         ],
@@ -953,7 +1079,12 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=yIwwW98yc5c"
              },
-        ]
+        ],
+        productLinks: [{
+          description: "SONY HIGH SPEED HDMI 1080p HD CABLE [UNBOXING & REVIEWS]",
+          url: "https://www.youtube.com/watch?v=z_1CjmBFkU0 ",
+        }]
+
     });
 
 
@@ -962,6 +1093,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyDell._id,
         categories: [categoryHeadphones],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61KmB2THvpL._SX522_.jpg"],
+        productDescription:["Dell Performance USB Headset (AE2) "],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/511JRZ3pXeL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/61wAYkiXPqL._SX522_.jpg"
@@ -972,7 +1104,12 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=kLyYGjbi7vM"
             },
-        ]
+        ],
+        productLinks: [{
+          description: "Dell Performance USB Headset (AE2). Dell Performance USB Headset - AE2 ",
+          url: "https://www.youtube.com/watch?v=ZltgAvWg1Q0",
+        }]
+
     });
 
     const productCamera = new ProductModel({
@@ -980,6 +1117,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyTwinStar._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61aUx2rts4L._SX522_.jpg"],
+        productDescription:["Compact Refractor AstroVenture Telescope"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/71wV1Z1aE2L._SL1500_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71OKYFIu1RL._SL1500_.jpg"
@@ -987,10 +1125,15 @@ const createProducts = function (companies, categories, done) {
         productResources: [{
             description:"A Youtube video review of 60mm Compact Refractor AstroVenture Telescope ",
             originalName:"60mm Compact Refractor AstroVenture Telescope ",
-            dataType:"Video",
-            url: "https://www.youtube.com/watch?v=dX8I9SC11vM"
+            dataType:"HTML",
+            url: "https://www.telescopeguide.org/black-twinstar-4-5-reflector-telescope-review/"
              },
-        ]
+        ],
+        productLinks: [{
+            description: "Twinstar 60mm Compact Refractor Telescope",
+           url: "https://www.youtube.com/watch?v=dX8I9SC11vM",
+       }]
+
     });
 
     const productCamera2 = new ProductModel({
@@ -998,6 +1141,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyMicrosoft._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61YZvhIV2dL._SL1000_.jpg"],
+        productDescription:["Microsoft LifeCam HD-3000 "],
         productImages: [
              "https://images-na.ssl-images-amazon.com/images/I/61xOYeUSN8L._SL1000_.jpg"
         ],
@@ -1005,18 +1149,24 @@ const createProducts = function (companies, categories, done) {
              description:"A Youtube video review of Microsoft LifeCam HD-3000 ",
              originalName:"Microsoft LifeCam HD-3000",
              dataType:"Video",
-             url: "https://www.youtube.com/watch?v=xSNxLfwHS1I"
+             url: "https://www.youtube.com/watch?v=TPH6Ru6hXtI",
              },
-        ]
+        ],
+        productLinks: [{
+           description: "Microsoft LifeCam HD-3000 Webcam ",
+           url: "https://www.youtube.com/watch?v=tPpZdBlVP6A ",
+        }]
+
     });
 
     const productCamera3 = new ProductModel({
         productName: "Logitech HD Webcam C310",
         company_id: companyLogitech._id,
         categories: [categoryCamera],  //the category variable
-        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/41QNcbkM9OL.jpg"],
+        productDescription:[" "],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81RWpOQo1qL._SL1500_.jpg"],
         productImages: [
-            "https://images-na.ssl-images-amazon.com/images/I/81RWpOQo1qL._SL1500_.jpg"
+            "https://images-na.ssl-images-amazon.com/images/I/41QNcbkM9OL.jpg"
         ],
         productResources: [{
             description:"A Youtube video review of Logitech HD Webcam C310",
@@ -1024,13 +1174,19 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url:"https://www.youtube.com/watch?v=IRXDXRZc9Rg"
             },
-        ]
+        ],
+        productLinks: [{
+             description: "Logitech C310 HD Webcam Review 2017 - Live Recording & Video Testing ",
+             url: "https://www.youtube.com/watch?v=CZe3WPvLSnQ ",
+        }]
+
     });
 
     const productCamera4 = new ProductModel({
         productName: "Bushnell Legend Ultra HD Monocular, Black, 10 x 42-mm",
         company_id: companyBushnell._id,
         categories: [categoryCamera],  //the category variable
+        productDescription:[" "],
         profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/910uWOypCIL._SL1500_.jpg"],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/519NW5HTB4L.jpg"
@@ -1041,7 +1197,12 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=j0Gfjwd7K0Y"
             },
-        ]
+        ],
+        productLinks: [{
+            description: "Bushnell 10x42 monocular review ",
+            url: "https://www.youtube.com/watch?v=wZvRw1Q_8ZE ",
+        }]
+
     });
 
     const productCamera5 = new ProductModel({
@@ -1049,6 +1210,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyMiluoTech._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/61I%2Bbr1Cs5L._SL1500_.jpg"],
+        productDescription:["Monocular Scope for Hunting, Camping, Surveillance "],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/61Kc-4iIGiL._SL1308_.jpg"
         ],
@@ -1058,7 +1220,12 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=HEKdhscWBzU"
             },
-        ]
+        ],
+        productLinks: [{
+            description: "16x52 HD 16x Magnification Zoom Monocular by ARCHEER review",
+            url: "https://www.youtube.com/watch?v=cu7OgU7zlYQ ",
+        }]
+
     });
 
     const productCamera6 = new ProductModel({
@@ -1066,6 +1233,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyBushnell._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51E9DNupkJL.jpg"],
+        productDescription:["Bushnell Trophy Cam HD Essential E2 12MP Trail Camera"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/81OtXblbltL._SL1500_.jpg"
         ],
@@ -1075,7 +1243,12 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=B-wUgdfduXw"
              },
-        ]
+        ],
+        productLinks: [{
+           description: "Bushnell Trophy Cam ",
+           url: " https://www.youtube.com/watch?v=XD50HPVY3J0",
+           }]
+
     });
 
     const productCamera7 = new ProductModel({
@@ -1083,6 +1256,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyBushnell._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/A1RUKRdLlKL._SL1500_.jpg"],
+        productDescription:["Bushnell Trophy Cam HD Aggressor 14MP Wireless Trail Camera "],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/A1WFrUtuO1L._SL1500_.jpg"
         ],
@@ -1092,7 +1266,12 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
            url: "https://www.amazon.com/Bushnell-Trophy-Aggressor-Wireless-Camera/dp/B01D0JTRGU/ref=pd_bxgy_200_img_2?_encoding=UTF8&psc=1&refRID=04JXN6BY0JE58KV7M66D"
          },
-        ]
+        ],
+        productLinks: [{
+           description: "Bushnell Trophy Cam HD Essential E2 Trail Camera Review ",
+           url: " https://www.youtube.com/watch?v=PT4v8xjz0XU",
+          }]
+
     });
 
     const productCamera8 = new ProductModel({
@@ -1100,6 +1279,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyTeslong._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61vPWse8ZvL._SL1001_.jpg"],
+        productDescription:["Barrel Borescope, Teslong Rifle Barrel Endoscope Inspection Camera "],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/61vTpdQZNOL._SL1001_.jpg"
         ],
@@ -1109,7 +1289,12 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=KOo__ePq1fo"
              },
-        ]
+        ],
+        productLinks: [{
+           description: "Barrel Borescope, Teslong Rifle Barrel Endoscope Inspection Camera ",
+           url: " https://www.youtube.com/watch?v=QY70isrEYU0 ",
+        }]
+
     });
 
     const productCamera9 = new ProductModel({
@@ -1117,6 +1302,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyTeslong._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/71RIP0D9uPL._SL1500_.jpg"],
+        productDescription:["Digital Endoscope, Teslong Semi Rigid Industrial Endoscope "],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/818KXU7RtaL._SL1500_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71--F%2B2RtHL._SL1500_.jpg"
@@ -1127,7 +1313,12 @@ const createProducts = function (companies, categories, done) {
             dataType:"Video",
             url: "https://www.youtube.com/watch?v=W_sTSFhdakw"
             },
-        ]
+        ],
+        productLinks: [{
+             description: "Best Digital Endoscope 8.2mm Waterproof 3.5'' Inspection Camera",
+             url: "https://www.youtube.com/watch?v=5QvvfLDsHV8",
+        }]
+
     });
 
 
