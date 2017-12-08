@@ -61,6 +61,7 @@ header nav{
     align-items: center;
     justify-content: space-between;
     box-shadow: none;
+    padding: 0 7vw;
 }
 .homepage-link{
     height: 100%;

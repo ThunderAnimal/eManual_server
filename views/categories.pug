@@ -1,9 +1,9 @@
 extends  layout
 
 block header
-    div.navbar-fixed
-        nav#header
-            div.nav-wrapper
+    #wrapper
+        #top-space
+            nav#top-space-nav-bar
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
                 #user-nav-ul
@@ -26,7 +26,7 @@ block header
 
 block main
     .row.content
-        .col.s3
+        #cat-list-wrapper.col.s3
             div#cat_list.collection.with-header
 
         .col.s9
@@ -42,7 +42,7 @@ block main
                         li
                             #product-item
                                 .product-pic
-                                    img.pic(src='../assets/img/product-placeholder.png', alt='delete', height='20', width='20')
+                                    img.pic(src='/assets/img/product-placeholder.png', height='20', width='20')
                                 .product-select
                                     a.btn-floating.waves-effect.waves-light.add-selection
                                         i.material-icons add
