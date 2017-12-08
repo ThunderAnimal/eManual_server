@@ -24,35 +24,72 @@ exports.create = function (req, res, next) {
 
 exports.changeProducts=function (req,res,next) {
     const product_id = req.body.product_id;
-    const clientAdd= req.body.add;
-    const clientDelete= req.body.delete;
+    const clientAdd = req.body.add;
+    const clientDelete = req.body.delete;
 
     consumerModel.find({}, function (err, data) {
         if (err) {
             console.log(err);
         }
     });
+    let updateConsumerModel = function (userId, done) {
+        consumerModel.findOne({_id: userId}, function (err, consumer) {
+            if (clientAdd) {
+                consumer.products.push(product_id);
+                consumer.save();
 
-    consumerModel.findOne({_id: req.user._id}, function (err, consumer) {
-        if (clientAdd) {
-            consumer.products.push(product_id);
-            consumer.save();
 
-            res.send("successfully added");
+                // res.send("successfully added");
+                done(true);
+            } else if (clientDelete) {
+                if (consumer.products.indexOf(product_id) !== -1) {
+                    consumer.products.splice(consumer.products.indexOf(product_id), 1)
+                }
 
-        } else if (clientDelete) {
-            if (consumer.products.indexOf(product_id)!==-1){
-                consumer.products.splice(consumer.products.indexOf(product_id),1)
+                consumer.save();
+                // res.send("success deleted");
+                done(false);
+
+            }
+            else {
+                res.status(400).send("no input")
+            }
+        });
+
+    };
+
+    let addOrRemoveFavorite = function (bool, done) {
+        productModel.findById(product_id, function (err, productObject) {
+            if (err) {
+                console.log(err);
+                return res.status(500).send(err);
             }
 
-            consumer.save();
-            res.send("success deleted");
+            if (bool) {
+                productObject.favorites++;
+                productObject.save(function () {
+                    done(true);
+                })
+            }
+            else{
+                productObject.favorites--;
+                productObject.save(function () {
+                    done(false);
+                })
 
-        }
-        else{
-            res.status(400).send("no input")
-        }
-    });
+            }
+        });
+    };
+
+
+        updateConsumerModel(req.user._id, function (bool) {
+            addOrRemoveFavorite(bool, function (bool) {
+                if (!bool)
+                    res.send("success deleted");
+                else
+                    res.send("successfully added");
+            });
+        });
 };
 
 

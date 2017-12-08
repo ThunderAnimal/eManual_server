@@ -13,11 +13,16 @@ const productsSchema = mongoose.Schema({
     }],
     productImages: [String],
     profilePicture: String,
+    productDescription:{type:String},
     favorites: {type: Number, default: 0},
     productResources: [{
         description: String,
         originalName: String,
         dataType: String,
+        url: {type: String, requires: true}
+    }],
+    productLinks: [{
+        description: String,
         url: {type: String, requires: true}
     }]
 }, {
