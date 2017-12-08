@@ -13,6 +13,8 @@ const productsSchema = mongoose.Schema({
     }],
     productImages: [String],
     profilePicture: String,
+    productDescription:{type:String,requires:true},
+    productUrl:{type:String},
     favorites: {type: Number, default: 0},
     productResources: [{
         description: String,
