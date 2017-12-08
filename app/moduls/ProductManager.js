@@ -29,10 +29,10 @@ const uploadFiles = function (files, done) {
 };
 
 const deleteFiles = function(fileUlrList ,done){
-    if(!images)
+    if(!fileUlrList)
         return done();
 
-    uploadUser.deleteFiles(getFileNames(fileUlrs), done);
+    uploadUser.deleteFiles(getFileNames(fileUlrList), done);
 
 };
 
@@ -65,13 +65,27 @@ const getProductResourcesArray = (resource, resourceURLs, done) => {
 const mergeResourcesAndDescription = function(resources_list, resources_description){
     const mergedArray = [];
 
+    if(!resources_list){
+        return;
+    }
+
+    if(!resources_description){
+        resources_description = [''];
+    }
+
     if (!Array.isArray(resources_description)){
         resources_description = [resources_description];
     }
 
     for(let i = 0; i < resources_list.length; i++){
         const obj = resources_list[i];
-        obj.description = resources_description[i];
+
+        if(resources_description[i] === ''){
+            obj.description = resources_list[i].originalname;
+        }else{
+            obj.description = resources_description[i];
+        }
+
         mergedArray.push(obj);
     }
 

@@ -6,7 +6,7 @@ block append stylesheet
 block main
     div#product_id(data-id=id)
     #main
-        //#company-logo
+        #company-logo
             .company-logo
         .content
             form#formUpdateProduct(method="PUT" action='/api/v1/product' enctype="multipart/form-data")
@@ -22,7 +22,7 @@ block main
                     div.col.s12(class="input-field file-field")
                         div.btn
                             span Update Profile Image
-                            input(name="profilePicture" id="profilePicture" type="file" multiple="false" required="true" accept='image/*')
+                            input(name="profilePicture" id="profilePicture" type="file" multiple="false" accept='image/*')
                         div.file-path-wrapper
                             input(class="file-path validate" type="text" placeholder="Upload one main Image")
 
@@ -42,7 +42,7 @@ block main
                             div.file-path-wrapper
                                 input(class="file-path validate" type="text" placeholder="Upload one recourse")
                         div.col.s5(class="input-field")
-                            input(name="resources_description" id="resources_description" type="text" required="true")
+                            input(name="resources_description" id="resources_description" type="text")
                             label(for="resources_description") Description
                         div.col.s1
                             a.btn-floating.waves-effect.waves-light.blue-grey.lighten-4.add-rescource-fields
@@ -53,11 +53,11 @@ block main
                                 div.col.s5(class="input-field file-field")
                                     div.btn
                                         span Resource
-                                        input(name="resources" id="resources" type="file")
+                                        input(name="resources" id="resources" type="file" required="true")
                                     div.file-path-wrapper
                                         input(class="file-path validate" type="text" placeholder="Upload one recourse")
                                 div.col.s5(class="input-field")
-                                    input(name="resources_description" id="resources_description" type="text" required="true")
+                                    input(name="resources_description" id="resources_description" type="text")
                                     label(for="resources_description") Description
                                 div.col.s1
                                     a.btn-floating.waves-effect.waves-light.blue-grey.lighten-4.add-rescource-fields
