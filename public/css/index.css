@@ -18,6 +18,10 @@ header {
 main {
     width: 100%;
 }
+
+#header {
+    padding: 0 7vw;
+}
 #btn_cat{
     position: absolute;
     top: 90px;
@@ -116,6 +120,15 @@ main {
 #search-button > input{
     height: 100%;
     width: 100%;
+}
+
+#browse-categories {
+    margin-top: 50px;
+    box-shadow: none;
+    border-radius: 3px;
+    background-color: #4d4d4d;
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 #numbers-wrapper{
