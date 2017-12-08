@@ -158,8 +158,9 @@ input:-webkit-autofill {
 
 .btn-back{
     position: absolute;
-    margin-left: 410px;
-    margin-top: -80px;
+    margin-left: 430px;
+    margin-top: -60px;
+    color: #25a2c3;
 }
 
 
