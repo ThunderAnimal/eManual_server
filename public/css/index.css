@@ -22,6 +22,7 @@ main {
 #header {
     padding: 0 7vw;
 }
+
 #btn_cat{
     position: absolute;
     top: 90px;
@@ -186,4 +187,75 @@ main {
     min-height: 80px;
 }
 
+#recent-manuals{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    margin: 20px 0;
+}
+
+h4#recent-manuals-header {
+    text-transform: uppercase;
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #f6755f;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+#recent-manuals-list-wrapper {
+    width: 100%;
+    background-color: #f4f4f4;
+    border-top: 1px solid #7cc7db;
+    border-bottom: 1px solid #7cc7db;
+    min-height: 80px;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+}
+
+ul#recent-manuals-list {
+    width: 70%;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 10px 0;
+}
+
+ul#recent-manuals-list li {
+    min-width: 150px;
+    width: 20%;
+    height: auto;
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+ul#recent-manuals-list li img {
+    height: 100px;
+    width: 100px;
+}
+
+ul#recent-manuals-list li h6 {
+    color: #25a2c3;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 0;
+}
+
+#load-more-button-wrapper {
+    text-align: center;
+}
+
+a#load-more-button {
+    width: 150px;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+a#load-more-button p {
+    margin: 0 0 0 10px;
+}
 
