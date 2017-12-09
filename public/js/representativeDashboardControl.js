@@ -44,6 +44,7 @@ var renderProducts = function(data){
         clonedTemplate.querySelector(".product-info a").href = '/product?id=' + data[product]._id;
         clonedTemplate.querySelector(".product-edit a").href = '/representatives/updateProduct?id=' + data[product]._id;
         clonedTemplate.querySelector("h3").innerText = data[product].productName;
+        clonedTemplate.querySelector("p1").innerText="Selected by: "+data[product].favorites;
         clonedTemplate.querySelector('.pic').src = data[product].profilePicture;
 
         ul.appendChild(clonedTemplate);
