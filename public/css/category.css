@@ -38,12 +38,12 @@ main > div.row.content {
 }
 
 #cat_list .collection-header h4{
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     color: #25a2c3;
     margin: 0.1em 0;
 }
 .collection.with-header .collection-header{
-    border-bottom: 2px solid #4D4D4D;
+    border-bottom: 1px solid #9b9a9a;
 }
 #cat_list .collection-item{
     background-color: #f7f6f6;
