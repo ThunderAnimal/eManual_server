@@ -132,6 +132,11 @@ main {
     font-size: 0.9rem;
 }
 
+#browse-categories:hover{
+    background-color: #676c6c;
+    transition: background-color 1s ease-out;
+}
+
 #numbers-wrapper{
     width: 100%;
     height: 100px;
