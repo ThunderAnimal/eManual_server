@@ -131,8 +131,8 @@ exports.getCompanyProduct = function(req, res){
 
             if (fieldName == null || fieldName >6 || fieldName < 0) {
                 res.status(200).send(result);
+                return;
             }
-
             let compareParameter1, compareParameter2;
             //Simple bubble sort sorting
             for (let i=0; i<result.length; i++){
