@@ -384,3 +384,51 @@ exports.addMaterials = function(req, res){
         });
     });
 };
+
+exports.getRecentlyCreatedProducts =(req,res) => {
+    const offset = req.body.offset;
+    const quantity = req.body.quantity;
+    // const offset = 0;
+    // const quantity = 2;
+    productModel.find({}, (error, result) => {
+        if (error) {
+            console.log(error);
+            return res.status(500).send({_error: true, err: error});
+        }
+        //Simple bubble sort sorting
+        for (let i=0; i<result.length; i++){
+            for (let j=0; j<result.length-i-1; j++){
+                if (result[j].createdAt < result[j+1].createdAt){
+                    let temp = result[j];
+                    result[j] = result[j+1];
+                    result[j+1] = temp;
+                }
+            }
+        }
+        //Offset: if 0, start from 0, if 25, start from product number 25, if 33, start from product number 33 and so on
+        //Note: Offset of 1st product is always '0'
+        //Example:  If offset is 5 and quantity is 5, then client will get prod number 5, 6, 7, 8 & 9.
+        if (offset < 0)
+            res.status(500).send({_error: true, err: "Offset Negative"});
+        else if (offset >= result.length)
+            res.status(500).send({_error: true, err: "Offset beyond number of products"});
+        else if (quantity <= 0)
+            res.status(500).send({_error: true, err: "Quantity cannot be zero or less"});
+        else if ((offset + quantity) > result.length){
+            let returnList = [];
+            for (let i = offset; i<result.length; i++){
+                returnList.push(result[i]);
+            }
+            res.status(200).send(returnList);
+        }
+        else {
+            // console.log("Hello");
+            let returnList = [];
+            for (let i=offset; i<offset+quantity; i++){
+                returnList.push(result[i]);
+            }
+            res.status(200).send(returnList);
+        }
+
+    });
+};

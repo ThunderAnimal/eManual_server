@@ -68,6 +68,9 @@ router.get('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,co
 router.put('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.changeProducts);
 //router.get('/consumerProducts', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.getConsumerProducts);
 
+//Get recently created products:
+router.get('/dir_recent_products', productManager.getRecentlyCreatedProducts);
+
 
 /*
 Currently the top categories are:
