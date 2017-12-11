@@ -124,6 +124,7 @@ router.get('/dir_products', function(req, res){
                                     let item = {
                                         _id: product_result[i]._id,
                                         productName: product_result[i].productName,
+                                        profilePicture: product_result[i].profilePicture,
                                         company_id: product_result[i].company_id,
                                         productResources: product_result[i].productResources,
                                         productImages: product_result[i].productImages,
@@ -135,6 +136,7 @@ router.get('/dir_products', function(req, res){
                                     let item = {
                                         _id: product_result[i]._id,
                                         productName: product_result[i].productName,
+                                        profilePicture: product_result[i].profilePicture,
                                         company_id: product_result[i].company_id,
                                         productResources: product_result[i].productResources,
                                         productImages: product_result[i].productImages,
