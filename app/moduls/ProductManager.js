@@ -386,8 +386,8 @@ exports.addMaterials = function(req, res){
 };
 
 exports.getRecentlyCreatedProducts =(req,res) => {
-    const offset = req.body.offset;
-    const quantity = req.body.quantity;
+    const offset = req.query.offset;
+    const quantity = req.query.quantity;
     // const offset = 0;
     // const quantity = 2;
     productModel.find({}, (error, result) => {
