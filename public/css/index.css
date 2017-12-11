@@ -192,14 +192,14 @@ main {
     min-height: 80px;
 }
 
-#recent-manuals{
+#recent-products{
     display: flex;
     flex-direction: column;
     justify-items: center;
     margin: 20px 0;
 }
 
-h4#recent-manuals-header {
+h4#recent-products-header {
     text-transform: uppercase;
     font-size: 1.25em;
     font-weight: bold;
@@ -208,7 +208,7 @@ h4#recent-manuals-header {
     text-align: center;
 }
 
-#recent-manuals-list-wrapper {
+#recent-products-list-wrapper {
     width: 100%;
     background-color: #f4f4f4;
     border-top: 1px solid #7cc7db;
@@ -219,14 +219,14 @@ h4#recent-manuals-header {
     justify-content: center;
 }
 
-ul#recent-manuals-list {
+ul#recent-products-list {
     width: 70%;
     display: flex;
     flex-flow: row wrap;
     margin: 10px 0;
 }
 
-ul#recent-manuals-list li {
+ul#recent-products-list li {
     min-width: 150px;
     width: 20%;
     height: auto;
@@ -235,12 +235,12 @@ ul#recent-manuals-list li {
     text-align: center;
 }
 
-ul#recent-manuals-list li img {
+ul#recent-products-list li img {
     height: 100px;
     width: 100px;
 }
 
-ul#recent-manuals-list li h6 {
+ul#recent-products-list li h6 {
     color: #25a2c3;
     font-weight: bold;
     font-size: 1em;
@@ -255,7 +255,7 @@ a#load-more-button {
     width: 150px;
     display: inline-flex;
     align-items: center;
-    margin-top: 20px;
+    margin: 20px 0;
     font-weight: bold;
     font-size: 1.2em;
 }

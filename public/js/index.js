@@ -1,11 +1,27 @@
+var offset = 0;
+var temp = document.getElementById('productTemp');
+
 $(document).ready(function(){
 
-   getCategorieData();
+    getCategorieData();
+    getRecentProductsData();
+    $('#load-more-button').click(function(e){
+        getRecentProductsData();
+        e.preventDefault();
+    });
 });
 
 var getCategorieData = function(){
     $.get('api/v1/categories_top', function(result){
         renderCategorieData(result);
+    });
+};
+
+var getRecentProductsData = function () {
+    $.get('api/v1/dir_recent_products', {offset: offset, quantity: 10}, function(recentProductsData){
+        offset += 10;
+        renderRecentProductsData(recentProductsData);
+        delete recentProductsData;
     });
 };
 
@@ -22,15 +38,17 @@ var renderCategorieData = function(data){
   list.append("<li id=''><a class='center-align' href='/category' style='color: #000000'>show all</a></li>")
 };
 
-var renderData = function(data){
+var renderRecentProductsData = function(data){
     var products = data;
 
 
-    var temp = document.getElementById('productTemp'),
-        ul = document.getElementById('recent-manuals-list');
+   // var temp = document.getElementById('productTemp'),
+    var ul = document.getElementById('recent-products-list');
 
-    while (ul.firstChild) {
-        ul.removeChild(ul.firstChild);
+    if(offset == 0){
+        while (ul.firstChild) {
+            ul.removeChild(ul.firstChild);
+        }
     }
     console.log(products);
     for(var k = 0; k < products.length; k++){
@@ -40,29 +58,6 @@ var renderData = function(data){
         clonedTemplate.querySelector('img').src = products[k].profilePicture;
         clonedTemplate.querySelector('li').setAttribute('data-id', products[k]._id);
 
-
-        clonedTemplate.querySelector('.product-delete a.remove-selection').addEventListener("click",function () {
-            console.log(this);
-            var that = this;
-            var liElement = this.closest('li');
-            this.style.display = "none";
-            $.ajax({
-                url: 'api/v1/selected_product',
-                type: 'PUT',
-                data:{delete:true,product_id:liElement.getAttribute('data-id')},
-                success: function(res) {
-                    console.log(res);
-                    ul.removeChild(liElement);
-                },
-                error: function (err) {
-                    console.log(err.status);
-                    that.style.display = "";
-                    alert("Woops! Something went wrong, sry.")
-                }
-            });
-
-
-        });
         ul.appendChild(clonedTemplate);
     }
 };
