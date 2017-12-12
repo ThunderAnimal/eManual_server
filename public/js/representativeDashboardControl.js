@@ -1,8 +1,10 @@
 
 $(document).ready(function(){
     getProductData();
+    var top = $('#btn_cat').position().top + "px";
+    
     $('#btn_cat').on('click',function () {
-        $('#dropdown1').css({"top": "285.672px"});
+        $('#dropdown1').css({"top": top});
     });
     $('#count').on('click',function () {
         getProductData(3,1);
