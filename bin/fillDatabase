@@ -592,11 +592,12 @@ const createProducts = function (companies, categories, done) {
         productName: "Samsung HDMI Cabel",
         company_id: companySamsung._id,
         categories: [categoryTv, categoryCabel, categoryTVAccessories],
-        profilePicture:["https://www.ebay.com/itm/Mini-USB-MHL-To-HDMI-1080P-TV-Adapter-Cable-HD-For-Samsung-Galaxy-S6-S7-iPhone-7-/302335276129"],
+        profilePicture:["https://i.ebayimg.com/images/g/QiUAAOSwjL5ZL5CY/s-l500.jpg"],
         productDescription:["The Samsung HDMI cable"],
         productImages: [
-            "https://www.ebay.com/itm/Mini-USB-MHL-To-HDMI-1080P-TV-Adapter-Cable-HD-For-Samsung-Galaxy-S6-S7-iPhone-7-/302335276129",
-            "https://www.ebay.com/itm/Mini-USB-MHL-To-HDMI-1080P-TV-Adapter-Cable-HD-For-Samsung-Galaxy-S6-S7-iPhone-7-/302335276129"
+            "https://i.ebayimg.com/images/g/i8YAAOSwCQZZL5Ca/s-l500.jpg",
+            "https://i.ebayimg.com/images/g/VNcAAOSwjqVZL5Cc/s-l500.jpg",
+            "https://i.ebayimg.com/images/g/N40AAOSwrhBZL5Ce/s-l500.jpg"
         ],
         productResources: [{
             description:"A website to review HDMI Cabel",
@@ -621,12 +622,12 @@ const createProducts = function (companies, categories, done) {
         productName: "Sony KDL-32WD755",
         company_id: companySony._id,
         categories: [categoryTv, categoryLED],
-        profilePicture:["https://kagoo.co.uk/tvs/sony-kdl-32wd755"],
+        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/71aoslUBdhL._SX770_.jpg"],
         productDescription:["Full HD |LED| Smart  SONY TELEVISIONS "],
         productImages: [
-           "https://kagoo.co.uk/tvs/sony-kdl-32wd755",
-            "https://kagoo.co.uk/tvs/sony-kdl-32wd755",
-            "https://kagoo.co.uk/tvs/sony-kdl-32wd755",
+           "https://images-na.ssl-images-amazon.com/images/I/71FDTYs2kYL._SX770_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/61%2BoO5RZE1L._SX770_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/61PD-e9L3vL._SY1002_.jpg",
         ],
        productResources: [ {
            description:"Original Manual to review  Sony KDL-32WD755 ",
@@ -645,14 +646,14 @@ const createProducts = function (companies, categories, done) {
         productName: "Samsung SP-A800B DLP Projector 1080p",
         company_id: companySamsung._id,
         categories: [categoryProjector, categoryBusinessProjectors],
-        profilePicture:["https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S"],
+        profilePicture:["https://storage.googleapis.com/product_resources/12c09990-50d7-4f38-b76f-364627fc53df_908sama800.1.jpg"],
         productDescription:["Samsung SP-A800B DLP Projector"],
         productImages: [
-            "https://storage.googleapis.com/product_resources/12c09990-50d7-4f38-b76f-364627fc53df_908sama800.1.jpg",
-            "https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S",
-            "https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S",
-            "https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S",
-            "https://www.amazon.com/Samsung-SP-A800B-DLP-Projector-1080p/dp/B000Z1GI7S",
+            "https://images-na.ssl-images-amazon.com/images/I/41Nsq67t2jL.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/41-hx5vlzmL.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/416cZ9SXAcL.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/41Rdh0XX4vL.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/51%2BbEt4Bz3L.jpg",
         ],
         productResources: [{
              description:"A pdf Manual Samsung SP-A800B DLP Projector 1080p",
