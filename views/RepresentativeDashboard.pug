@@ -12,13 +12,16 @@ block main
                     i.material-icons add
 
         .container
-            a(id="btn_cat" class='dropdown-button btn materialize-red' data-activates='dropdown1') sort by
+            a(id="btn_cat" class='dropdown-button btn' data-activates='dropdown1') sort by
             ul(id='dropdown1' class='dropdown-content')
                 li(id='count')
-                    a Count
+                    a Most selected
+                li(id='countR')
+                    a Least selected
                 li(id='name')
-                    a Name
-            a(id="order" class='btn materialize-red') Order
+                    a Ascending:A-Z
+                li(id='nameR')
+                    a Ascending:Z-A
         #separateContext
             #line
         #LOM

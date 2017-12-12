@@ -104,7 +104,7 @@ exports.getOne = function(req, res) {
 
 exports.getCompanyProduct = function(req, res){
     const companyID = authManager.getCompanyId(req.user);
-    console.log(req.query);
+
     /*
      * Assumptions: fieldName = 0 =>    Sort By Created At
      *              fieldName = 1 =>    Sort By Updated At

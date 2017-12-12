@@ -1,41 +1,25 @@
-var clicked = false;
+
 $(document).ready(function(){
     getProductData();
     $('#count').on('click',function () {
-        if(clicked){
-            getProductData(3,1);
-            console.log("Display in reversed count order")
-        }else
-            getProductData(3,0);
-            console.log("Display in count order")
+        getProductData(3,1);
+    });
+    $('#countR').on('click',function () {
+        getProductData(3,0);
     });
     $('#name').on('click',function () {
-        if(clicked){
-            getProductData(2,1);
-            console.log("Display in reversed name order")
-        }else
-            getProductData(2,0);
-            console.log("Display in name order")
+        getProductData(2,0);
     });
-    $('#order').on('click',function (e) {
-        if(!clicked){
-            $(this).filter(".materialize-red").removeClass("materialize-red");
-            $(this).addClass('materialize-blue');
-            $(this).text("Reverse");
-            clicked = true;
-        }else if(clicked){
-            $(this).filter(".materialize-blue").removeClass("materialize-blue");
-            $(this).addClass('materialize-red');
-            $(this).text("Order");
-            clicked = false;
-        }
-    })
+    $('#nameR').on('click',function () {
+        getProductData(2,1);
+    });
 });
 
 
 var getProductData = function(fieldName,order){
     document.getElementById('manualUl').innerHTML = "";
     $.get('api/v1/company_product',{fieldName, order},function(result){
+        console.log(result);
         renderProducts(result);
     });
 };
