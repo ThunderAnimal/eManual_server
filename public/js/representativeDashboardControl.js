@@ -1,6 +1,9 @@
 
 $(document).ready(function(){
     getProductData();
+    $('#btn_cat').on('click',function () {
+        $('#dropdown1').css({"top": "285.672px"});
+    });
     $('#count').on('click',function () {
         getProductData(3,1);
     });
@@ -19,7 +22,6 @@ $(document).ready(function(){
 var getProductData = function(fieldName,order){
     document.getElementById('manualUl').innerHTML = "";
     $.get('api/v1/company_product',{fieldName, order},function(result){
-        console.log(result);
         renderProducts(result);
     });
 };
