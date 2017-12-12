@@ -104,7 +104,7 @@ exports.getOne = function(req, res) {
 
 exports.getCompanyProduct = function(req, res){
     const companyID = authManager.getCompanyId(req.user);
-
+    console.log(req.query);
     /*
      * Assumptions: fieldName = 0 =>    Sort By Created At
      *              fieldName = 1 =>    Sort By Updated At
@@ -121,7 +121,7 @@ exports.getCompanyProduct = function(req, res){
      *              value of order     == null or invalid value => Assume Ascending Order.
      *              */
 
-    const fieldName = req.query.fieldName, order = req.query.order;
+    const fieldName = Number(req.query.fieldName), order = Number(req.query.order);
     // const fieldName = 5, order = 1;
 
     productModel.find({company_id: companyID}, function(err, result) {
