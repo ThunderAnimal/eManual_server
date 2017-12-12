@@ -5,10 +5,8 @@ const productModel = require(MODEL_PATH + 'Product');
 
 const isProductFromOwnCompany = function(productCompanyId, user){
 
-    if(authManager.getCompanyId(user).toString() === productCompanyId.toString())
-        return true;
+    return authManager.getCompanyId(user).toString() === productCompanyId.toString();
 
-    return false;
 };
 
 const sendForbiddenEditProduct = function(res){
@@ -107,11 +105,88 @@ exports.getOne = function(req, res) {
 exports.getCompanyProduct = function(req, res){
     const companyID = authManager.getCompanyId(req.user);
 
+    /*
+     * Assumptions: fieldName = 0 =>    Sort By Created At
+     *              fieldName = 1 =>    Sort By Updated At
+     *              fieldName = 2 =>    Sort By Name
+     *              fieldName = 3 =>    Sort By Favorites
+     *              fieldName = 4 =>    Sort By Number of Images
+     *              fieldName = 5 =>    Sort By Number of Resources
+     *              fieldName = 6 =>    Sort By Number of Links
+     *
+     *              order     = 0 =>    Sort By Ascending Order
+     *              order     = 1 =>    Sort By Descending Order
+     *
+     *              value of fieldName == null or invalid value => Send default Order.
+     *              value of order     == null or invalid value => Assume Ascending Order.
+     *              */
+
+    const fieldName = req.query.fieldName, order = req.query.order;
+    // const fieldName = 5, order = 1;
+
     productModel.find({company_id: companyID}, function(err, result) {
         if(err){
             console.log(err);
             res.status(500).send(err);
         }else{
+
+            if (fieldName == null || fieldName >6 || fieldName < 0) {
+                res.status(200).send(result);
+                return;
+            }
+            let compareParameter1, compareParameter2;
+            //Simple bubble sort sorting
+            for (let i=0; i<result.length; i++){
+                for (let j=0; j<result.length-i-1; j++){
+
+                    switch (fieldName){
+                        case 0:
+                            compareParameter1 = result[j].createdAt;
+                            compareParameter2 = result[j+1].createdAt;
+
+                            break;
+                        case 1:
+                            compareParameter1 = result[j].updatedAt;
+                            compareParameter2 = result[j+1].updatedAt;
+                            break;
+                        case 2:
+                            compareParameter1 = result[j].productName;
+                            compareParameter2 = result[j+1].productName;
+                            break;
+                        case 3:
+                            compareParameter1 = result[j].favorites;
+                            compareParameter2 = result[j+1].favorites;
+                            break;
+                        case 4:
+                            compareParameter1 = result[j].productImages.length;
+                            compareParameter2 = result[j+1].productImages.length;
+                            break;
+                        case 5:
+                            compareParameter1 = result[j].productResources.length;
+                            compareParameter2 = result[j+1].productResources.length;
+                            break;
+                        case 6:
+                            compareParameter1 = result[j].productLinks.length;
+                            compareParameter2 = result[j+1].productLinks.length;
+                            break;
+                    }
+
+                    if (order <= 0 || order > 1 || order == null) {
+                        if (compareParameter1 > compareParameter2) {
+                            let temp = result[j];
+                            result[j] = result[j + 1];
+                            result[j + 1] = temp;
+                        }
+                    }
+                    else {
+                        if (compareParameter1 < compareParameter2) {
+                            let temp = result[j];
+                            result[j] = result[j + 1];
+                            result[j + 1] = temp;
+                        }
+                    }
+                }
+            }
             res.status(200).send(result);
         }
     });
@@ -385,50 +460,58 @@ exports.addMaterials = function(req, res){
     });
 };
 
-exports.getRecentlyCreatedProducts =(req,res) => {
+let findFromModel = (offset, quantity, res, done) => {
+    productModel.find()
+        .limit(Number(quantity))
+        .skip(Number(offset))
+        .sort({
+            createdAt: 'desc'
+        })
+        .exec((error, result) => {
+            if (error) {
+                console.log(error);
+                return res.status(500).send({_error: true, err: error});
+            }
+            else {
+                res.status(200).send(result);
+            }
+
+        });
+};
+
+let findNumberOfProducts = (done) => {
+    productModel.find({}, (error, result) => {
+        if (error) {
+            res.status(500).send({_error: true, err: error});
+        }
+        else {
+            done(result.length);
+        }
+    });
+};
+
+exports.getRecentlyCreatedProducts = (req, res) => {
+
     const offset = req.query.offset;
     const quantity = req.query.quantity;
     // const offset = 0;
     // const quantity = 2;
-    productModel.find({}, (error, result) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).send({_error: true, err: error});
-        }
-        //Simple bubble sort sorting
-        for (let i=0; i<result.length; i++){
-            for (let j=0; j<result.length-i-1; j++){
-                if (result[j].createdAt < result[j+1].createdAt){
-                    let temp = result[j];
-                    result[j] = result[j+1];
-                    result[j+1] = temp;
-                }
-            }
-        }
-        //Offset: if 0, start from 0, if 25, start from product number 25, if 33, start from product number 33 and so on
-        //Note: Offset of 1st product is always '0'
-        //Example:  If offset is 5 and quantity is 5, then client will get prod number 5, 6, 7, 8 & 9.
+
+    console.log("Data: "+offset+" "+quantity);
+
+    //Offset: if 0, start from 0, if 25, start from product number 25, if 33, start from product number 33 and so on
+    //Note: Offset of 1st product is always '0'
+    //Example:  If offset is 5 and quantity is 5, then client will get prod number 5, 6, 7, 8 & 9.
+    findNumberOfProducts((result) => {
         if (offset < 0)
             res.status(500).send({_error: true, err: "Offset Negative"});
-        else if (offset >= result.length)
+        else if (offset >= result)
             res.status(500).send({_error: true, err: "Offset beyond number of products"});
         else if (quantity <= 0)
             res.status(500).send({_error: true, err: "Quantity cannot be zero or less"});
-        else if ((offset + quantity) > result.length){
-            let returnList = [];
-            for (let i = offset; i<result.length; i++){
-                returnList.push(result[i]);
-            }
-            res.status(200).send(returnList);
-        }
         else {
-            // console.log("Hello");
-            let returnList = [];
-            for (let i=offset; i<offset+quantity; i++){
-                returnList.push(result[i]);
-            }
-            res.status(200).send(returnList);
+            console.log("Hello");
+            findFromModel(offset, quantity, res);
         }
-
     });
 };
