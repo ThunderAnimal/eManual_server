@@ -57,16 +57,16 @@ footer {
 }
 
 #main {
-    position: fixed;
+    position: absolute;
     right: 0;
     top: 15vh;
     bottom: 0;
     background: #fefefe;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     width: 86vw;
-    height: auto;
-    min-height: 100%;
+    //height: auto;
+    height: 85vh;
     left: 14vw;
 }
 
@@ -235,6 +235,7 @@ div#LOM{
     padding-right: 10%;
     padding-left: 10%;
     width: auto;
+    height: 100%;
 }
 div#LOM ul{
     height: 120%;
