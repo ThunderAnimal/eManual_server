@@ -127,3 +127,27 @@ ul#product-gallery li img{
 #manual-links a.manual-doc-link img {
     width: 50px;
 }
+.collection .collection-item.avatar img{
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    left: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.collection .collection-item.avatar a{
+    color: #4d4d4d;
+}
+
+.collection .collection-item.avatar .title{
+    color: inherit;
+}
+
+.collection .collection-item.avatar a:hover{
+    color: #f6755f;
+}
+
+.collection .collection-item.avatar a:hover .title{
+    color: inherit;
+}

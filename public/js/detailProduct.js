@@ -77,6 +77,8 @@ var renderProductData = function(data){
     var materials = data.productResources;
     var material_list = $('#material-list');
 
+    var links = data.productLinks;
+
     $('#product_name').text(data.productName);
     $('#product_image').attr('src', data.profilePicture);
 
@@ -85,10 +87,34 @@ var renderProductData = function(data){
         image_list.append("<li><img src='" + images[i] + "'></li>");
     }
 
-    material_list.empty();
+   // material_list.empty();
+    console.log(materials);
     for(var j = 0; j < materials.length; j++){
-        material_list.append('<a href="' + materials[j] + '" target="_blank" class="collection-item" >' + materials[j] + '</a>');
+        var imgUrl = "assets/img/papers-64.png";
+
+        if(materials[j].dataType.toLocaleLowerCase().includes("pdf")){
+            imgUrl = "assets/img/pdf.png";
+        }
+        material_list.append('<li class="collection-item avatar">\n' +
+            '<a href="' + materials[j].url +'" target="_blank" >' +
+            '      <img src="' + imgUrl +'" alt=""> \n' +
+            '      <span class="title">' + materials[j].description + '</span>\n' +
+            '          <p>' + materials[j].originalName + ' </p>\n' +
+            '</a>' +
+            '    </li>');
     }
+
+    var imgUrl = "assets/img/youtube.png";
+    for(var j = 0; j < links.length; j++){
+
+        material_list.append('<li class="collection-item avatar">\n' +
+            '<a href="' + links[j].url +'" target="_blank" >' +
+            '      <img src="' + imgUrl +'" alt=""> \n' +
+            '      <span class="title">' + links[j].description + '</span>\n' +
+            '</a>' +
+            '    </li>');
+    }
+
 
 
 };

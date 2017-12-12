@@ -751,8 +751,8 @@ const createProducts = function (companies, categories, done) {
                  "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
         ],
         productResources: [{
-            description:"A pdf  review of samsung Smart Signage LED TV",
-            originalName:"Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV",
+            description:"A pdf review of samsung Smart Signage LED TV",
+            originalName:"Samsung_EBD_Series.pdf",
             dataType:"PDF",
             url: "http://www.onlinecomputer.com.co/articulos/activos/catalogos/Samsung_EBD_Series.pdf"
             },
