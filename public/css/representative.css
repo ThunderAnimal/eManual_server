@@ -9,6 +9,10 @@ a,a:hover,a:focus {
     outline: 0;
 }
 
+footer {
+    display:none;
+}
+
 
 /* mobile menu
  **************************************************/
@@ -35,7 +39,7 @@ a,a:hover,a:focus {
 /* layout
  **************************************************/
 
-#main-nav {
+#sidebar {
     text-align: left;
     vertical-align: top;
     -webkit-user-select: none;
@@ -45,7 +49,7 @@ a,a:hover,a:focus {
     width: 14vw;
     min-width: 150px;
     background: #2b2b2b;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 15vh;
     overflow-y: hidden;
@@ -53,11 +57,13 @@ a,a:hover,a:focus {
 }
 
 #main {
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 15vh;
+    bottom: 0;
     background: #fefefe;
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
     width: 86vw;
     height: auto;
     min-height: 100%;
