@@ -122,6 +122,7 @@ exports.getCompanyProduct = function(req, res){
      *              */
 
     const fieldName = req.query.fieldName, order = req.query.order;
+    // const fieldName = 5, order = 1;
 
     productModel.find({company_id: companyID}, function(err, result) {
         if(err){
@@ -459,50 +460,58 @@ exports.addMaterials = function(req, res){
     });
 };
 
-exports.getRecentlyCreatedProducts =(req,res) => {
+let findFromModel = (offset, quantity, res, done) => {
+    productModel.find()
+        .limit(Number(quantity))
+        .skip(Number(offset))
+        .sort({
+            createdAt: 'desc'
+        })
+        .exec((error, result) => {
+            if (error) {
+                console.log(error);
+                return res.status(500).send({_error: true, err: error});
+            }
+            else {
+                res.status(200).send(result);
+            }
+
+        });
+};
+
+let findNumberOfProducts = (done) => {
+    productModel.find({}, (error, result) => {
+        if (error) {
+            res.status(500).send({_error: true, err: error});
+        }
+        else {
+            done(result.length);
+        }
+    });
+};
+
+exports.getRecentlyCreatedProducts = (req, res) => {
+
     const offset = req.query.offset;
     const quantity = req.query.quantity;
     // const offset = 0;
     // const quantity = 2;
-    productModel.find({}, (error, result) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).send({_error: true, err: error});
-        }
-        //Simple bubble sort sorting
-        for (let i=0; i<result.length; i++){
-            for (let j=0; j<result.length-i-1; j++){
-                if (result[j].createdAt < result[j+1].createdAt){
-                    let temp = result[j];
-                    result[j] = result[j+1];
-                    result[j+1] = temp;
-                }
-            }
-        }
-        //Offset: if 0, start from 0, if 25, start from product number 25, if 33, start from product number 33 and so on
-        //Note: Offset of 1st product is always '0'
-        //Example:  If offset is 5 and quantity is 5, then client will get prod number 5, 6, 7, 8 & 9.
+
+    console.log("Data: "+offset+" "+quantity);
+
+    //Offset: if 0, start from 0, if 25, start from product number 25, if 33, start from product number 33 and so on
+    //Note: Offset of 1st product is always '0'
+    //Example:  If offset is 5 and quantity is 5, then client will get prod number 5, 6, 7, 8 & 9.
+    findNumberOfProducts((result) => {
         if (offset < 0)
             res.status(500).send({_error: true, err: "Offset Negative"});
-        else if (offset >= result.length)
+        else if (offset >= result)
             res.status(500).send({_error: true, err: "Offset beyond number of products"});
         else if (quantity <= 0)
             res.status(500).send({_error: true, err: "Quantity cannot be zero or less"});
-        else if ((offset + quantity) > result.length){
-            let returnList = [];
-            for (let i = offset; i<result.length; i++){
-                returnList.push(result[i]);
-            }
-            res.status(200).send(returnList);
-        }
         else {
-            // console.log("Hello");
-            let returnList = [];
-            for (let i=offset; i<offset+quantity; i++){
-                returnList.push(result[i]);
-            }
-            res.status(200).send(returnList);
+            console.log("Hello");
+            findFromModel(offset, quantity, res);
         }
-
     });
 };
