@@ -3,14 +3,18 @@ $(document).ready(function(){
     getProductData();
     $('#count').on('click',function () {
         if(clicked){
+            getProductData(3,1);
             console.log("Display in reversed count order")
         }else
+            getProductData(3,0);
             console.log("Display in count order")
     });
     $('#name').on('click',function () {
         if(clicked){
+            getProductData(2,1);
             console.log("Display in reversed name order")
         }else
+            getProductData(2,0);
             console.log("Display in name order")
     });
     $('#order').on('click',function (e) {
@@ -29,8 +33,9 @@ $(document).ready(function(){
 });
 
 
-var getProductData = function(){
-    $.get('api/v1/company_product', function(result){
+var getProductData = function(fieldName,order){
+    document.getElementById('manualUl').innerHTML = "";
+    $.get('api/v1/company_product',{fieldName, order},function(result){
         renderProducts(result);
     });
 };
