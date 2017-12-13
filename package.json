@@ -9,7 +9,8 @@
     "build-css": "./bin/build-css",
     "watch-css": "./bin/watch-css",
     "create-acc": "node ./bin/Company_account.js",
-    "create-category": "node ./bin/Product_category.js"
+    "create-category": "node ./bin/Product_category.js",
+    "create-serviceProvider-acc":"node ./bin/ServiceProvider_account.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
