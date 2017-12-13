@@ -66,8 +66,13 @@ block main
                    template#productTemp
                         li
                             img(src='/assets/img/product-placeholder.png')
-                            a(href="#")
-                                h6 Product-name
+                            a.btn-floating.waves-effect.waves-light.add-selection
+                                i.material-icons add
+                            a.btn-floating.waves-effect.waves-light.remove-selection(style="display:none")
+                                i.material-icons remove
+                            .product-info
+                                a(href="#")
+                                    h6 Product-name
             #load-more-button-wrapper
                 a#load-more-button(href="#")
                     i.fa.fa-plus-circle

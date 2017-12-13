@@ -264,3 +264,25 @@ a#load-more-button p {
     margin: 0 0 0 10px;
 }
 
+
+
+ul#recent-products-list li a.btn-floating{
+    border-radius: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+
+    position: absolute;
+    margin-top: 75px;
+    margin-left: -15px;
+}
+
+ul#recent-products-list li a.btn-floating i{
+    line-height: 25px;
+    font-size: 1rem;
+}
+
+ul#recent-products-list li a.remove-selection{
+    background-color: #4D4D4D;
+}
+
