@@ -565,8 +565,6 @@ exports.getRecentlyCreatedProducts = (req, res) => {
     const offset = req.query.offset;
     const quantity = req.query.quantity;
 
-    console.log("Data: "+offset+" "+quantity);
-
     //Offset: if 0, start from 0, if 25, start from product number 25, if 33, start from product number 33 and so on
     //Note: Offset of 1st product is always '0'
     //Example:  If offset is 5 and quantity is 5, then client will get prod number 5, 6, 7, 8 & 9.
@@ -578,7 +576,6 @@ exports.getRecentlyCreatedProducts = (req, res) => {
         else if (quantity <= 0)
             res.status(500).send({_error: true, err: "Quantity cannot be zero or less"});
         else {
-            console.log("Hello");
             findFromModel(req, res, offset, quantity);
         }
     });
