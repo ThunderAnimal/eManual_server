@@ -11,7 +11,8 @@ exports.create = function (req, res, next) {
     let consumer = new consumerModel ({
         username: req.body.user,
         password: req.body.pass,
-        email: req.body.email
+        email: req.body.email,
+        spamAddress: req.body.email
     });
 
     consumer.save(function (err, result) {
@@ -148,6 +149,7 @@ exports.findOrCreateGoogle = function(profile, accessToken, done){
                 username: username,
                 password: accessToken,
                 email: email,
+                spamAddress:email,
                 image: img
             });
             consumer.save(done);
@@ -169,6 +171,7 @@ exports.findOrCreateFacebook = function(profile, accessToken, done){
                 username: username,
                 password: accessToken,
                 email: email,
+                spamAddress:email,
                 image: img
             });
             consumer.save(done);
@@ -204,12 +207,36 @@ exports.getSelectedProduct=function (req,res) {
 };
 
 exports.getUpdatedConsumerProducts =  (userID, done) => {
-    consumerModel.findOne({"_id": userID}, (err, data) => {
-        if (err)
+    consumerModel.findById(userID, (err, data) => {
+        if (err){
             console.log("Some Error Occured: "+err);
+            done([]);
+        }
         else {
             done(data.products);
         }
+    });
+};
 
+exports.updateSpamAddress = (req,res) =>{
+    consumerModel.findById(req.user._id,function(err, consumer) {
+        if (err) {
+            console.log(err);
+            return res.status(500).send(err);
+        }
+
+        if (!consumer) {
+            return res.sendStatus(401);
+        }
+
+        consumer.spamAddress = req.body.spamAddress;
+        consumer.save(function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500).send({_error: true, err: err});
+            } else {
+                res.status(200).send(result);
+            }
+        });
     });
 };

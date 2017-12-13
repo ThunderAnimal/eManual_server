@@ -199,6 +199,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 60px;
 }
 #categories-list-wrapper {
     width: 70%;
@@ -206,8 +207,48 @@ main {
 
 #categories-list-header {
     border-bottom: solid 1px #4d4d4d;
+    display: flex;
+    justify-items: flex-start;
 }
 
+#categories-list-header .title {
+    text-transform: uppercase;
+    color: #25a2c3;
+    font-family: Raleway, "Open Sans", sans-serif;
+    font-weight: 800;
+    border-bottom: solid 2px #f6755f;
+    padding: 1px 9px;
+}
+ul#categories-list {
+    display: flex;
+    flex-flow: row wrap;
+}
+ul#categories-list li {
+    display: inline-flex;
+    align-items: center;
+    width: 25%;
+}
+
+ul#categories-list .category-name-icon {
+    color: #25a2c3;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+ul#categories-list .category-name {
+    padding-left: 6px;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: Raleway, "Open Sans", sans-serif;
+    font-weight: 800;
+    color: #4d4d4d;
+    letter-spacing: 2px;
+}
+
+ul#categories-list .category-amount {
+    color: #a4a3a3;
+    padding-left: 4px;
+}
 /*   recent products block
 *************************************************/
 #recent-products{
@@ -282,5 +323,23 @@ a#load-more-button p {
     margin: 0 0 0 10px;
 }
 
+ul#recent-products-list li a.btn-floating{
+    border-radius: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
 
+    position: absolute;
+    margin-top: 75px;
+    margin-left: -15px;
+}
+
+ul#recent-products-list li a.btn-floating i{
+    line-height: 25px;
+    font-size: 1rem;
+}
+
+ul#recent-products-list li a.remove-selection{
+    background-color: #4D4D4D;
+}
 

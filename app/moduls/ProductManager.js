@@ -1,4 +1,5 @@
 const authManager = require("./authManager");
+const consumManager =  require('./ConsumerManager');
 const uploadUser = require("./uploadUser");
 const MODEL_PATH = '../models/';
 const productModel = require(MODEL_PATH + 'Product');
@@ -90,6 +91,28 @@ const mergeResourcesAndDescription = function(resources_list, resources_descript
     return mergedArray;
 };
 
+const fillProductFavorite = function(product_list, user, done){
+    if(!user){
+        return done(product_list);
+    }
+
+    if(!authManager.isUserConsumer(user)){
+        return done(product_list);
+    }
+
+    consumManager.getUpdatedConsumerProducts(user._id, function (user_product_list) {
+        for(let i = 0; i < user_product_list.length; i++){
+            for(let k = 0; k < product_list.length; k++){
+                if(user_product_list[i].toString() === product_list[k]._id.toString()){
+                    product_list[k] = product_list[k].toJSON();
+                    product_list[k].isFavorite = true;
+                    break;
+                }
+            }
+        }
+        done(product_list);
+    });
+};
 
 exports.getOne = function(req, res) {
     productModel.findOne({_id : req.params.id}, function(err, result) {
@@ -97,7 +120,9 @@ exports.getOne = function(req, res) {
             console.log(err);
             res.status(500).send(err);
         }else{
-            res.status(200).send(result);
+            fillProductFavorite([result], req.user, function (product_result) {
+                res.status(200).send(product_result[0]);
+            });
         }
     });
 };
@@ -239,12 +264,14 @@ exports.getAll = function(req, res){
             console.log(err);
             res.status(500).send(err);
         }else{
-            res.status(200).send(result);
+            fillProductFavorite(result, req.user, function (product_result) {
+                res.status(200).send(product_result);
+            });
         }
     });
 };
 
-exports.getAllInCategories = function(cat_list, done){
+exports.getAllInCategories = function(req, cat_list, done){
     let query_products;
 
     if(cat_list.length === 0){
@@ -254,7 +281,9 @@ exports.getAllInCategories = function(cat_list, done){
     }
 
     productModel.find(query_products, function (err, result) {
-        done(err, result);
+        fillProductFavorite(result, req.user, function (product_result) {
+            done(err, product_result);
+        });
     });
 };
 
@@ -501,7 +530,7 @@ exports.addMaterials = function(req, res){
     });
 };
 
-let findFromModel = (offset, quantity, res, done) => {
+let findFromModel = (req, res, offset, quantity) => {
     productModel.find()
         .limit(Number(quantity))
         .skip(Number(offset))
@@ -514,9 +543,10 @@ let findFromModel = (offset, quantity, res, done) => {
                 return res.status(500).send({_error: true, err: error});
             }
             else {
-                res.status(200).send(result);
+                fillProductFavorite(result, req.user, function (product_result) {
+                    res.status(200).send(product_result);
+                });
             }
-
         });
 };
 
@@ -532,13 +562,8 @@ let findNumberOfProducts = (done) => {
 };
 
 exports.getRecentlyCreatedProducts = (req, res) => {
-
     const offset = req.query.offset;
     const quantity = req.query.quantity;
-    // const offset = 0;
-    // const quantity = 2;
-
-    console.log("Data: "+offset+" "+quantity);
 
     //Offset: if 0, start from 0, if 25, start from product number 25, if 33, start from product number 33 and so on
     //Note: Offset of 1st product is always '0'
@@ -551,8 +576,8 @@ exports.getRecentlyCreatedProducts = (req, res) => {
         else if (quantity <= 0)
             res.status(500).send({_error: true, err: "Quantity cannot be zero or less"});
         else {
-            console.log("Hello");
-            findFromModel(offset, quantity, res);
+            findFromModel(req, res, offset, quantity);
         }
     });
 };
+

@@ -22,6 +22,10 @@ router.get('/', function(req, res) {
         profileUrl = "/consumer";
         name = req.user.username;
         image = req.user.image;
+    }else if(authManager.isUserServiceProvider(req.user)){
+        profileUrl = "/service_provider";
+        name = req.user.name;
+
     }
     res.render('index', {isLoggedIn: req.isAuthenticated(),
                         user: {
@@ -70,6 +74,11 @@ router.get('/consumer', policy.isLoggedIn, function (req,res) {
     res.render('ConsumerPage', {user: req.user});
 });
 
+//ServiceProvider
+router.get('/service_provider', policy.isLoggedIn, function (req,res) {
+    res.render('ServiceProviderPage', {user: req.user});
+});
+
 //Browse Category
 router.get('/category',function (req,res) {
 
@@ -106,6 +115,7 @@ router.get('/product', function (req, res, next) {
     let name;
     let image;
     let isRepresantive = false;
+    let isCustomer = false;
 
     if(authManager.isUserCompany(req.user)){
         profileUrl = "/company/dashboard";
@@ -118,6 +128,7 @@ router.get('/product', function (req, res, next) {
         profileUrl = "/consumer";
         name = req.user.username;
         image = req.user.image;
+        isCustomer = true;
     }
 
     if(!_id){
@@ -134,7 +145,8 @@ router.get('/product', function (req, res, next) {
                     profileUrl: profileUrl,
                     image: image
                 },
-                isRepresantive: isRepresantive
+                isRepresantive: isRepresantive,
+                isCustomer: isCustomer
         });
     }
 });

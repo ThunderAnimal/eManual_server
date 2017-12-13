@@ -36,6 +36,7 @@ const createConsumer = function (done) {
                         username: "doncorleone",
                         password: "1234",
                         email: "don@godfather.com",
+                        spamAddress:"don@godfather.com",
                         image: "https://duckduckgo.com/i/6351f747.jpg",
                         products: [data2._id]
                     });
@@ -44,6 +45,7 @@ const createConsumer = function (done) {
                         username: "jocker",
                         password: "1234",
                         email: "whysoserious@gotham.com",
+                        spamAddress:"whysoserious@gotham.com",
                         image: "https://vignette.wikia.nocookie.net/batman/images/7/79/Heath_ledger_joker.jpg",
                         products: [data2._id]
                     });

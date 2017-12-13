@@ -14,6 +14,7 @@ var httpsRedirect = require('express-https-redirect');
 var config = require("config");
 
 var policy = require('./app/moduls/routePolicy');
+var mailManager = require('./app/moduls/MailManager');
 
 //Set Up Server
 var app = express();
@@ -66,6 +67,22 @@ db.on('error', function (error) {
 db.on('open', function () {
     if(config.util.getEnv('NODE_ENV') !== 'test') {
         console.log("Connected with MongoDB!");
+    }
+});
+
+//SETUP MAIL SYTEM
+mailManager.setUpMailSystem(function(error, success) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Mail-Server is ready to take messages');
+        mailManager.sendMessage(
+            "no-reply@manaualpik.com",
+            "user@test.com",
+            "TEST MAIL -" + Date.now(),
+            "ManualPIK TEST\n\nHey that is a test mail.\nDate:" + Date.now(),
+            "<h1>ManualPik Test</h1><p>Hey that is a test mail.<br>Date:"  + Date.now() + "</p>"
+        );
     }
 });
 
