@@ -224,9 +224,13 @@ ul#categories-list {
     flex-flow: row wrap;
 }
 ul#categories-list li {
+    width: 25%;
+}
+
+ul#categories-list li a{
     display: inline-flex;
     align-items: center;
-    width: 25%;
+    width: 100%;
 }
 
 ul#categories-list .category-name-icon {
@@ -243,6 +247,7 @@ ul#categories-list .category-name {
     font-weight: 800;
     color: #4d4d4d;
     letter-spacing: 2px;
+    font-size: 0.9em;
 }
 
 ul#categories-list .category-amount {

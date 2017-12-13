@@ -63,11 +63,12 @@ block main
                 #categories-list-header
                     .title Categories
                 ul#categories-list
-                    //template#category-template
-                    li
-                        i.fa.fa-tv.category-name-icon
-                        p.category-name name
-                        p.category-amount (1234)
+                    template#category-template
+                        li
+                            a(href="#")
+                                i.fa.fa-tv.category-name-icon
+                                p.category-name name
+                                p.category-amount (1234)
         #recent-manuals
             h4#recent-products-header Recently added manuals
             #recent-products-list-wrapper

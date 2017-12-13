@@ -1,5 +1,6 @@
 var offset = 0;
 var temp = document.getElementById('productTemp');
+var catTemp = document.getElementById('category-template');
 
 $(document).ready(function(){
 
@@ -14,6 +15,7 @@ $(document).ready(function(){
 var getCategorieData = function(){
     $.get('api/v1/categories_top', function(result){
         renderCategorieData(result);
+        renderTopCategoriesData(result);
     });
 };
 
@@ -23,6 +25,26 @@ var getRecentProductsData = function () {
         renderRecentProductsData(recentProductsData);
         delete recentProductsData;
     });
+};
+
+var renderTopCategoriesData = function(data){
+    var categories = data;
+    var ul = document.getElementById('categories-list');
+
+    while (ul.firstChild) {
+        ul.removeChild(ul.firstChild);
+    }
+    console.log(categories);
+
+    for(var k = 0; k < categories.length; k++){
+        var clonedTemplate = catTemp.content.cloneNode(true);
+        clonedTemplate.querySelector('li').setAttribute('data-id', categories[k]._id);
+        clonedTemplate.querySelector('.category-name').innerText = categories[k].name;
+        clonedTemplate.querySelector('.category-amount').innerText = categories[k].count;
+        clonedTemplate.querySelector('a').href = href='/category?category_id[]=' + categories[k]._id;
+
+        ul.appendChild(clonedTemplate);
+    }
 };
 
 var renderCategorieData = function(data){
