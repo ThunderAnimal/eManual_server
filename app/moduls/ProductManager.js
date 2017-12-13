@@ -1,4 +1,5 @@
 const authManager = require("./authManager");
+const mailManager = require("./MailManager");
 const consumManager =  require('./ConsumerManager');
 const uploadUser = require("./uploadUser");
 const MODEL_PATH = '../models/';
@@ -43,7 +44,6 @@ const getFileNames = function(fileUrlList){
     }
     return fileNames;
 };
-
 
 const getProductResourcesArray = (resource, resourceURLs, done) => {
     let productResourcesArray = [];
@@ -314,6 +314,7 @@ exports.create = function (req, res) {
                             console.log(err);
                             res.status(500).send({_error: true, err: err});
                         } else {
+                            mailManager.sendNotificationNewProduct(result);
                             res.status(201).send(result);
                         }
                     });

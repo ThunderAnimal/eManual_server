@@ -15,7 +15,6 @@ var config = require("config");
 
 var policy = require('./app/moduls/routePolicy');
 var mailManager = require('./app/moduls/MailManager');
-
 //Set Up Server
 var app = express();
 
@@ -76,13 +75,6 @@ mailManager.setUpMailSystem(function(error, success) {
         console.log(error);
     } else {
         console.log('Mail-Server is ready to take messages');
-        mailManager.sendMessage(
-            "no-reply@manaualpik.com",
-            "user@test.com",
-            "TEST MAIL -" + Date.now(),
-            "ManualPIK TEST\n\nHey that is a test mail.\nDate:" + Date.now(),
-            "<h1>ManualPik Test</h1><p>Hey that is a test mail.<br>Date:"  + Date.now() + "</p>"
-        );
     }
 });
 
