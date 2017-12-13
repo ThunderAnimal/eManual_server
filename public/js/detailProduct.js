@@ -14,8 +14,57 @@ $(document).ready(function(){
         });
     }else{
         getCatData([], renderCatData);
-        renderCatData([]);
     }
+
+    $('.add-selection').click(function () {
+        var that = $(this);
+        that.hide();
+
+        $.ajax({
+            url: 'api/v1/selected_product',
+            type: 'PUT',
+            data:{add:true,product_id:id},
+            success: function(res) {
+                $('.remove-selection').show();
+            },
+            error: function (err) {
+                that.show()();
+                console.log(err);
+                if(err.status === 401){
+                    alert("Log in is required for select product");
+                }else if(err.status === 403){
+                    alert("Only consumer can select products");
+                }else{
+                    alert("Woops! Something went wrong, sry.");
+                }
+            }
+        });
+    });
+
+    $('.remove-selection').click(function () {
+        var that = $(this);
+        that.hide();
+
+        $.ajax({
+            url: 'api/v1/selected_product',
+            type: 'PUT',
+            data:{add:false,product_id:id},
+            success: function(res) {
+                $('.add-selection').show();
+            },
+            error: function (err) {
+                that.show();
+                console.log(err);
+                if(err.status === 401){
+                    alert("Log in is required for select product");
+                }else if(err.status === 403){
+                    alert("Only consumer can select products");
+                }else{
+                    alert("Woops! Something went wrong, sry.");
+                }
+            }
+        });
+    });
 });
 
 var fillCategories = function(cat_list, callback){
@@ -81,6 +130,14 @@ var renderProductData = function(data){
 
     $('#product_name').text(data.productName);
     $('#product_image').attr('src', data.profilePicture);
+
+    if(data.isFavorite){
+        $('.add-selection').hide();
+        $('.remove-selection').show();
+    }else{
+        $('.remove-selection').hide();
+        $('.add-selection').show();
+    }
 
     image_list.empty();
     for(var i = 0; i < images.length; i++){

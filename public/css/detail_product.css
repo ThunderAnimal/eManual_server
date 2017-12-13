@@ -151,3 +151,7 @@ ul#product-gallery li img{
 .collection .collection-item.avatar a:hover .title{
     color: inherit;
 }
+
+.remove-selection{
+    background-color: #4D4D4D;
+}

@@ -106,6 +106,7 @@ router.get('/product', function (req, res, next) {
     let name;
     let image;
     let isRepresantive = false;
+    let isCustomer = false;
 
     if(authManager.isUserCompany(req.user)){
         profileUrl = "/company/dashboard";
@@ -118,6 +119,7 @@ router.get('/product', function (req, res, next) {
         profileUrl = "/consumer";
         name = req.user.username;
         image = req.user.image;
+        isCustomer = true;
     }
 
     if(!_id){
@@ -134,7 +136,8 @@ router.get('/product', function (req, res, next) {
                     profileUrl: profileUrl,
                     image: image
                 },
-                isRepresantive: isRepresantive
+                isRepresantive: isRepresantive,
+                isCustomer: isCustomer
         });
     }
 });

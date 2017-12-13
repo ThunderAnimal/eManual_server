@@ -39,6 +39,11 @@ block main
             div#category_list.left-align
             div#category_breadcrumb.left-align
             div.divider
+            if isCustomer
+                .row
+                    .col.offset-s4.s7.right-align
+                        a.btn.waves-effect.waves-light.add-selection Add Selection
+                        a.btn.waves-effect.waves-light.remove-selection(style="display:none") Remove Selection
             .row
                 .col.s4
                     img#product_image
