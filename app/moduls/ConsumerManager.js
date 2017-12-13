@@ -207,13 +207,14 @@ exports.getSelectedProduct=function (req,res) {
 };
 
 exports.getUpdatedConsumerProducts =  (userID, done) => {
-    consumerModel.findOne({"_id": userID}, (err, data) => {
-        if (err)
+    consumerModel.findById(userID, (err, data) => {
+        if (err){
             console.log("Some Error Occured: "+err);
+            done([]);
+        }
         else {
             done(data.products);
         }
-
     });
 };
 
