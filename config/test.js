@@ -17,5 +17,14 @@ module.exports = {
             client_id : '2077525315801631',
             client_secret: '8eb4126dcf1db4f7755e35ccbda8ee92'
         }
+    },
+    mail:{
+        pool: true,
+        host: 'smtp.ethereal.email',
+        port: 587,
+        auth: {
+            user: 'ttlrmrc66uz66l3q@ethereal.email',
+            pass: '6mrtg7gjPgfAXTm6jw'
+        }
     }
 };
