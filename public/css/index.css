@@ -190,8 +190,26 @@ main {
     width: 100%;
     background-color: #fff;
     min-height: 80px;
+    text-align: center;
 }
 
+/*   categories list
+**************************************************/
+#categories-list-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#categories-list-wrapper {
+    width: 70%;
+}
+
+#categories-list-header {
+    border-bottom: solid 1px #4d4d4d;
+}
+
+/*   recent products block
+*************************************************/
 #recent-products{
     display: flex;
     flex-direction: column;
@@ -263,4 +281,6 @@ a#load-more-button {
 a#load-more-button p {
     margin: 0 0 0 10px;
 }
+
+
 
