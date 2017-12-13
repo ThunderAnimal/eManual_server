@@ -17,6 +17,10 @@ var consumerSchema = mongoose.Schema({
         unique: true,
         requires: true
     },
+    spamAddress:{
+        type: String
+    },
+    optin:  Boolean,
     image: {
         type: String
     },
