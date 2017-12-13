@@ -102,6 +102,19 @@ exports.getOne = function(req, res) {
     });
 };
 
+exports.getCompanyIDbyProductID = (product_id, done) => {
+    productModel.findOne({_id: product_id}).select('company_id -_id').exec((err, result) => {
+        if(err){
+            console.log("Error in getting companyID by productID ProductManager.js "+err);
+            // res.status(500).send(err);
+        }
+        else{
+            // console.log("kkhkjhkj "+ result.company_id);
+            done(result.company_id);
+        }
+    });
+};
+
 exports.getCompanyProduct = function(req, res) {
     const companyID = authManager.getCompanyId(req.user);
 

@@ -1,6 +1,9 @@
 const MODEL_PATH = '../models/';
+const MODUL_PATH = '../moduls/';
 const consumerModel = require(MODEL_PATH + 'Consumer');
 const productModel = require(MODEL_PATH + 'Product');
+const companyManager = require(MODUL_PATH+'CompanyManager');
+const productManager = require(MODUL_PATH+'ProductManager');
 
 
 exports.create = function (req, res, next) {
@@ -84,12 +87,54 @@ exports.changeProducts=function (req,res,next) {
 
         updateConsumerModel(req.user._id, function (bool) {
             addOrRemoveFavorite(bool, function (bool) {
-                if (!bool)
-                    res.send("success deleted");
-                else
-                    res.send("successfully added");
+                if (!bool) {
+                    companyManager.changeCustomerOptIn(product_id, req.user._id, false, ()=> {
+                        res.send("success deleted");
+                    });
+
+                }
+                else {
+                    companyManager.changeCustomerOptIn(product_id, req.user._id, true, ()=> {
+                        res.send("success added");
+                    });
+                }
             });
         });
+};
+
+exports.isNoMoreProductFromThatCompany = (user_id, company_id, done) => {
+    consumerModel.findOne({_id: user_id}, (error, consumer) => {
+        if (error){
+            console.log("Error: Cannot find the user_id in Consumer Model ConsumerManager.js "+error);
+        }
+        else {
+            let companyArray = [];
+            let flag = true;
+            let countLength = consumer.products.length-1;
+
+
+            function fillCompanyArray (count){
+                if (!(count < 0)){
+                    productManager.getCompanyIDbyProductID(consumer.products[count], (companyID) => {
+                        companyArray.push(companyID);
+                        let newCount = count -1;
+                        fillCompanyArray(newCount);
+                    });
+                }
+                else {
+                    for (let i = 0; i<companyArray.length; i++){
+                        console.log("LHS: "+companyArray[i].toString()+" RHS: "+company_id.toString());
+                        if (companyArray[i].toString() === company_id.toString()){
+                            flag = false;
+                            break;
+                        }
+                    }
+                    done(flag);
+                }
+            }
+            fillCompanyArray(countLength);
+        }
+    });
 };
 
 
