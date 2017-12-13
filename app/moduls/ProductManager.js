@@ -102,17 +102,15 @@ exports.getOne = function(req, res) {
     });
 };
 
-exports.getCompanyProduct = function(req, res){
+exports.getCompanyProduct = function(req, res) {
     const companyID = authManager.getCompanyId(req.user);
 
     /*
-     * Assumptions: fieldName = 0 =>    Sort By Created At
-     *              fieldName = 1 =>    Sort By Updated At
+     * Assumptions:
+     *
      *              fieldName = 2 =>    Sort By Name
      *              fieldName = 3 =>    Sort By Favorites
-     *              fieldName = 4 =>    Sort By Number of Images
-     *              fieldName = 5 =>    Sort By Number of Resources
-     *              fieldName = 6 =>    Sort By Number of Links
+     *
      *
      *              order     = 0 =>    Sort By Ascending Order
      *              order     = 1 =>    Sort By Descending Order
@@ -122,74 +120,104 @@ exports.getCompanyProduct = function(req, res){
      *              */
 
     const fieldName = Number(req.query.fieldName), order = Number(req.query.order);
-    // const fieldName = 5, order = 1;
 
-    productModel.find({company_id: companyID}, function(err, result) {
-        if(err){
-            console.log(err);
-            res.status(500).send(err);
-        }else{
-
-            if (fieldName == null || fieldName >6 || fieldName < 0) {
+    if (fieldName < 2 || fieldName > 3 || isNaN(fieldName)){
+        productModel.find({
+            company_id: companyID
+        }, function(err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500).send(err);
+            } else {
                 res.status(200).send(result);
-                return;
             }
-            let compareParameter1, compareParameter2;
-            //Simple bubble sort sorting
-            for (let i=0; i<result.length; i++){
-                for (let j=0; j<result.length-i-1; j++){
+        });
+        return;
+    }
 
-                    switch (fieldName){
-                        case 0:
-                            compareParameter1 = result[j].createdAt;
-                            compareParameter2 = result[j+1].createdAt;
+    switch (fieldName) {
+        case 2:
+            let findFromModel1 = (done) => {
+                if (order <= 0 || order > 1 || order == null) {
+                    productModel.find()
+                        .sort({
+                            productName: 'asc'
+                        })
+                        .exec((error, result) => {
+                            if (error) {
+                                console.log(error);
+                                return res.status(500).send({
+                                    _error: true,
+                                    err: error
+                                });
+                            } else {
+                                res.status(200).send(result);
+                            }
 
-                            break;
-                        case 1:
-                            compareParameter1 = result[j].updatedAt;
-                            compareParameter2 = result[j+1].updatedAt;
-                            break;
-                        case 2:
-                            compareParameter1 = result[j].productName;
-                            compareParameter2 = result[j+1].productName;
-                            break;
-                        case 3:
-                            compareParameter1 = result[j].favorites;
-                            compareParameter2 = result[j+1].favorites;
-                            break;
-                        case 4:
-                            compareParameter1 = result[j].productImages.length;
-                            compareParameter2 = result[j+1].productImages.length;
-                            break;
-                        case 5:
-                            compareParameter1 = result[j].productResources.length;
-                            compareParameter2 = result[j+1].productResources.length;
-                            break;
-                        case 6:
-                            compareParameter1 = result[j].productLinks.length;
-                            compareParameter2 = result[j+1].productLinks.length;
-                            break;
-                    }
+                        });
+                } else {
+                    productModel.find()
+                        .sort({
+                            productName: 'desc'
+                        })
+                        .exec((error, result) => {
+                            if (error) {
+                                console.log(error);
+                                return res.status(500).send({
+                                    _error: true,
+                                    err: error
+                                });
+                            } else {
+                                res.status(200).send(result);
+                            }
 
-                    if (order <= 0 || order > 1 || order == null) {
-                        if (compareParameter1 > compareParameter2) {
-                            let temp = result[j];
-                            result[j] = result[j + 1];
-                            result[j + 1] = temp;
-                        }
-                    }
-                    else {
-                        if (compareParameter1 < compareParameter2) {
-                            let temp = result[j];
-                            result[j] = result[j + 1];
-                            result[j + 1] = temp;
-                        }
-                    }
+                        });
                 }
-            }
-            res.status(200).send(result);
-        }
-    });
+            };
+            findFromModel1();
+            break;
+        case 3:
+            let findFromModel2 = (done) => {
+                if (order <= 0 || order > 1 || order == null) {
+                    productModel.find()
+                        .sort({
+                            favorites: 'asc'
+                        })
+                        .exec((error, result) => {
+                            if (error) {
+                                console.log(error);
+                                return res.status(500).send({
+                                    _error: true,
+                                    err: error
+                                });
+                            } else {
+                                res.status(200).send(result);
+                            }
+
+                        });
+                } else {
+                    productModel.find()
+                        .sort({
+                            favorites: 'desc'
+                        })
+                        .exec((error, result) => {
+                            if (error) {
+                                console.log(error);
+                                return res.status(500).send({
+                                    _error: true,
+                                    err: error
+                                });
+                            } else {
+                                res.status(200).send(result);
+                            }
+
+                        });
+                }
+            };
+            findFromModel2();
+            break;
+
+    }
 };
 
 exports.getAll = function(req, res){
