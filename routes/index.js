@@ -22,6 +22,10 @@ router.get('/', function(req, res) {
         profileUrl = "/consumer";
         name = req.user.username;
         image = req.user.image;
+    }else if(authManager.isUserServiceProvider(req.user)){
+        profileUrl = "/service_provider";
+        name = req.user.name;
+
     }
     res.render('index', {isLoggedIn: req.isAuthenticated(),
                         user: {
@@ -68,6 +72,11 @@ router.get('/representatives/updateProduct', policy.isLoggedIn, function (req,re
 //Consumer
 router.get('/consumer', policy.isLoggedIn, function (req,res) {
     res.render('ConsumerPage', {user: req.user});
+});
+
+//ServiceProvider
+router.get('/service_provider', policy.isLoggedIn, function (req,res) {
+    res.render('ServiceProviderPage', {user: req.user});
 });
 
 //Browse Category

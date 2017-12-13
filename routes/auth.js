@@ -20,13 +20,14 @@ router.post('/login', passport.authenticate('local-login', {
             res.redirect(req.session.redirect_url);
             return;
         }
-
         if(authManager.isUserCompany(req.user)){
             res.redirect('/company/dashboard');
         }else if(authManager.isUserRepresentative(req.user)){
             res.redirect('/representatives/dashboard');
         }else if(authManager.isUserConsumer(req.user)){
             res.redirect('/consumer');
+        }else if(authManager.isUserServiceProvider(req.user)){
+            res.redirect('/service_provider');
         }else{
             let err = new Error("Not Redirect after Login defined");
             err.status = 500;

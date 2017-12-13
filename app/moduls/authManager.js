@@ -4,6 +4,7 @@ var config = require("config");
 var Company = require('../models/Company');
 var Representative = require('../models/Representative');
 var Consumer = require('../models/Consumer');
+var ServiceProvider = require('../models/ServiceProvider');
 
 exports.findUser = function(email, done){
     var findCompany = function(email, done){
@@ -37,6 +38,17 @@ exports.findUser = function(email, done){
         });
     };
 
+    var findServiceProvider = function(email, done){
+        ServiceProvider.findOne({login: email}, function (err, result) {
+            if(err){
+                console.log(err);
+                done(null);
+            }else{
+                done(result);
+            }
+        });
+    };
+
     findCompany(email, function(result){
         if(result){
             done(result);
@@ -49,7 +61,13 @@ exports.findUser = function(email, done){
                         if(result){
                             done(result);
                         }else{
-                            done(null);
+                            findServiceProvider(email, function(result){
+                                if(result){
+                                    done(result);
+                                }else{
+                                    done(null);
+                                }
+                            });
                         }
                     });
                 }
@@ -65,6 +83,8 @@ exports.checkPassword = function(user, password){
         return user.password === password;
     }else if (user instanceof Consumer){
         return user.password === password;
+    }else if (user instanceof ServiceProvider){
+        return user.password === password;
     }
     return false;
 };
@@ -78,11 +98,12 @@ exports.loginUser = function (user) {
         userJSON.model = Representative.collection.collectionName;
     }else if(user instanceof Consumer){
         userJSON.model = Consumer.collection.collectionName;
+    }else if(user instanceof ServiceProvider){
+        userJSON.model = ServiceProvider.collection.collectionName;
     }else{
         var err = new Error('Model not Found');
         console.log(err);
     }
-
     userJSON.login_at = Date.now();
     return userJSON;
 };
@@ -129,6 +150,18 @@ exports.verifyUser = function(id, model, login_at, done){
         });
     };
 
+    var findServiceProvider = function(id, done){
+        ServiceProvider.findOne({_id: id}, function (err, result) {
+            if(err){
+                console.log(err);
+                done(null);
+            }else{
+                console.log(result);
+                done(result);
+            }
+        });
+    };
+
     var setupUser = function(user){
         if(!user)
             return done(null);
@@ -140,13 +173,14 @@ exports.verifyUser = function(id, model, login_at, done){
         return done(userJSON);
 
     };
-
     if(model === Company.collection.collectionName){
         findCompany(id, setupUser);
     }else if(model === Representative.collection.collectionName){
         findRepresentative(id, setupUser);
     }else if(model === Consumer.collection.collectionName){
         findConsumer(id, setupUser);
+    }else if(model === ServiceProvider.collection.collectionName){
+        findServiceProvider(id, setupUser);
     }else{
         var err = new Error('Model not Found');
         console.log(err);
@@ -181,4 +215,10 @@ exports.isUserConsumer= function(user){
         return false;
 
     return user.model === Consumer.collection.collectionName;
+};
+exports.isUserServiceProvider = function(user){
+    if(!user)
+        return false;
+
+    return user.model === ServiceProvider.collection.collectionName;
 };
