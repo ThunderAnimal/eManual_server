@@ -73,7 +73,7 @@ router.put('/spam_address',policy.isAuthorized,policy.onlyCustomerAllowed,consum
 router.get('/dir_recent_products', productManager.getRecentlyCreatedProducts);
 
 //API ServiceProvider
-router.get('/service_providers',policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.getAllServiceProviders());
+router.get('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.getAllServiceProviders);
 
 /*
 Currently the top categories are:
