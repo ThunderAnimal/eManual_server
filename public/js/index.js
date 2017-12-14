@@ -3,7 +3,6 @@ var temp = document.getElementById('productTemp');
 var catTemp = document.getElementById('category-template');
 
 $(document).ready(function(){
-
     getCategorieData();
     getRecentProductsData();
     $('#load-more-button').click(function(e){

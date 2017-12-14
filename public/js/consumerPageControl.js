@@ -1,5 +1,6 @@
 $(document).ready(function(){
     getData(renderData);
+    $('.modal').modal();
 });
 
 

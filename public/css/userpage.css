@@ -77,6 +77,35 @@ main {
     margin: 0;
 }
 
+/* spam address popup
+**************************** */
+
+#username .edit-spam-address{
+    padding: 0 0 0 15px;
+    font-size: 1em;
+    margin: 0;
+    color: #fff;
+    display: inline-flex;
+}
+#username .spam-address {
+    margin: 0;
+    color: #4d4d4d;
+    font-family: Raleway, "Open Sans", sans-serif;
+}
+
+#modal-spam-address-popup{
+    width: 400px!important;
+    font-family: Raleway, "Open Sans", sans-serif;
+    cursor: default;
+}
+
+#modal-spam-address-popup .spam-address-label {
+    text-transform: uppercase;
+    font-size: 1em;
+}
+/* user profile info bottom
+************************* */
+
 #useravatar {
     padding: 0 10px;
 }
