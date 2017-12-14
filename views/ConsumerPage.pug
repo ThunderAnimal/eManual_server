@@ -30,15 +30,17 @@ block main
                     p.name= user.username
                     p.email="(" + user.email + ")"
                     a.fa.fa-pencil.edit-spam-address.modal-trigger(href='#modal-spam-address-popup')
-                        #modal-spam-address-popup.modal
-                            .modal-content
-                                form
-                                    p
-                                        label.spam-address-label(for="email") Email for subscription
-                                        input#email.validate.spam-address(type="email")
-                                    p
-                                        input#receive-mail.filled-in(type="checkbox" checked="checked" style="z-index: 2000;")
-                                        label(for="receive-mail" style="z-index: 2000;") I want to receive news from my companies
+                    #modal-spam-address-popup.modal
+                        .modal-content
+                            form
+                                p
+                                    label.spam-address-label(for="email") Email for subscription
+                                    input#email.validate.spam-address(type="email")
+                                p
+                                    input#receive-mail.filled-in(type="checkbox" checked="checked")
+                                    label(for="receive-mail") I want to receive news from my companies
+                                p
+                                    button.waves-effect.waves-light.btn(type="submit") Submit
 
         #user-header-content
             div.container
