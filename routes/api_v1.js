@@ -12,7 +12,8 @@ const productManager = require('../app/moduls/ProductManager');
 const categoryManager = require('../app/moduls/CategoryManager');
 const consumerManager = require('../app/moduls/ConsumerManager');
 const companyManager = require('../app/moduls/CompanyManager');
-
+//import serviceProductManager module
+const serviceProvicderManager = require('../app/moduls/ServiceProviderManager');
 
 //API Company
 router.get('/company/:id', companyManager.getOne);
@@ -71,6 +72,8 @@ router.put('/spam_address',policy.isAuthorized,policy.onlyCustomerAllowed,consum
 //Get recently created products:c
 router.get('/dir_recent_products', productManager.getRecentlyCreatedProducts);
 
+//API ServiceProvider
+router.get('/service_providers',policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.getAllServiceProviders());
 
 /*
 Currently the top categories are:

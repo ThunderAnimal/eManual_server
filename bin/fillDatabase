@@ -578,7 +578,7 @@ const createProducts = function (companies, categories, done) {
         //description: originalName: dataType:url:
         productResources: [{
            description:"A pdf Manual of to review Samsung TV 55",
-           originalName:"TVSamsungTV55",
+           originalName:"User Manual ME65B ME75B",
            dataType:"PDF",
            url:"https://storage.googleapis.com/product_resources/72b9f8c8-eb74-4479-8802-0b1f814d4806_[ME65B ME75B]User manual.pdf"
            },
@@ -609,7 +609,7 @@ const createProducts = function (companies, categories, done) {
             },
             {
             description:"A pdf  Manual of to review HDMI Cabel",
-            originalName:"HDMI Cabel",
+            originalName:"E-MANUAL for HDMI Cabel",
             dataType:"PDF",
             url:"http://support-us.samsung.com/nas/storage/201306131736006%5Estorage_attachment%5EF7450_-_8000,_S9_e-Manual.pdf"
            },
@@ -633,8 +633,8 @@ const createProducts = function (companies, categories, done) {
         ],
        productResources: [ {
            description:"Original Manual to review  Sony KDL-32WD755 ",
-           originalName:"Sony KDL-32WD755",
-           dataType:"Html",
+           originalName:"Sony Television Operating Instruction",
+           dataType:"PDF",
            url: "https://www.sony.co.uk/electronics/support/res/manuals/4586/45866851M.pdf",
             },
            ],
@@ -685,7 +685,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A pdf Manual for HDMI cable for Laptop, Tv, Projector",
-            originalName:"Hdmi Cable For Laptop, Tv, Projector, Plasma, Led And Lcd",
+            originalName:"e-Manual Guide Samsung",
             dataType:"PDF",
             url:"https://support-us.samsung.com/nas/storage/201306131733051%5Estorage_attachment%5EF6300_-_6350_e-Manual.pdf"
             },
@@ -709,10 +709,10 @@ const createProducts = function (companies, categories, done) {
             "https://i.ebayimg.com/images/g/f-kAAOSwW9NZ4MHI/s-l500.jpg"
         ],
         productResources: [{
-            description:"An HTML review Google Chromecast2",
-            originalName:"Google Chromecast2 Digital HDMI Media Video Streamer 2nd Generation",
-            dataType:"HTML",
-            url: "http://allaboutchromecast.com/chromecast-manual/"
+            description:"A PDF review Google Chromecast2",
+            originalName:"The Google Chromecast	UserGuide",
+            dataType:"PDF",
+            url: "http://hackerspace.cs.rutgers.edu/library/GoogleChromecastUsageGuide.pdf"
             },
         ],
         productLinks: [{
@@ -732,10 +732,10 @@ const createProducts = function (companies, categories, done) {
               "https://images-na.ssl-images-amazon.com/images/I/713gVB-Q8gL._SX522_.jpg"
         ],
         productResources: [{
-            description:"An HTML review Amazon Fire TV",
-            originalName:"Amazon Fire TV Stick with Voice Remote or Streaming Media Player",
-            dataType:"HTML",
-            url:"https://www.amazon.com/Fire-Stick-Voice-Remote-Manual-ebook/dp/B018VE1Q8Q"
+            description:"A PDF review Amazon Fire TV",
+            originalName:"Amazon Fire TV User Guide",
+            dataType:"PDF",
+            url:"https://s3-us-west-2.amazonaws.com/customerdocumentation/Amazon+Fire+TV+User+Guides/Amazon+Fire+TV+Device+Documentation/Amazon_Fire_TV_User_Guide.pdf"
             },
         ],
          productLinks: [{
@@ -755,7 +755,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A pdf review of samsung Smart Signage LED TV",
-            originalName:"Samsung_EBD_Series.pdf",
+            originalName:"Samsung EBD Series SMART Signage",
             dataType:"PDF",
             url: "http://www.onlinecomputer.com.co/articulos/activos/catalogos/Samsung_EBD_Series.pdf"
             },
@@ -776,10 +776,10 @@ const createProducts = function (companies, categories, done) {
                "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
         ],
         productResources: [{
-            description:"An HTML review of samsung Smart Signage LED TV",
-            originalName:"Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV",
-            dataType:"HTML",
-            url: "http://manualzz.com/doc/4295637/samsung-samsung-smart-signage-tv-40-%0Aeb40d-%0A-manual-de-us..."
+            description:"A Pdf review of samsung Smart Signage LED TV",
+            originalName:"User Manual EB40D EB48D",
+            dataType:"PDF",
+            url: "http://cdn.cnetcontent.com/f2/4a/f24aa110-01d7-4530-95d2-cd4338720709.pdf"
             },
         ],
         productLinks: [{
@@ -802,9 +802,9 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"An HTML review of Sony DBPOWER Lumens LCD Mini Projector",
-            originalName:"DBPOWER T20 1500 Lumens LCD Mini Projector",
-            dataType:"HTML",
-            url: "https://nerdtechy.com/dbpower-t20-mini-projector-review"
+            originalName:"Mobile LED Projector User’s Manual",
+            dataType:"PDF",
+            url: "http://www.optomausa.com/webresources/files/support/77282f78fac74325b3d07f205c4def0e.pdf"
             },
         ],
         productLinks: [{
@@ -823,10 +823,10 @@ const createProducts = function (companies, categories, done) {
              "https://images-na.ssl-images-amazon.com/images/I/91LFsCxqr%2BL._SX522_.jpg",
         ],
         productResources: [ {
-            description:"An HTML review of Samsung LG Electronics Smart Home Theater Projector",
-            originalName:"Samsung LG Electronics PF1000UW Ultra Short Throw Smart Home Theater Projector",
-            dataType:"HTML",
-            url: "https://www.manualslib.com/manual/1236038/Lg-Pf1000uw.html"
+            description:"A pdf review of Samsung LG Electronics Smart Home Theater Projector",
+            originalName:"Owner's Manual LG Minibeam UST DLP Projector",
+            dataType:"PDF",
+            url: "http://www.projectorcentral.com/pdf/projector_manual_9726.pdf"
             },
         ],
         productLinks: [{
@@ -846,9 +846,9 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"An HTML  review of Sony Home Theater Projector (2015 Model)",
-            originalName:"Sony VPLHW65ES 1080p 3D SXRD Home Theater Projector (2015 Model)",
-            dataType:"HTML",
-            url: "https://www.manualslib.com/manual/1063467/Sony-Vpl-Hw65.html"
+            originalName:"Sony Video Projector",
+            dataType:"PDF",
+            url: "https://www.sony.co.uk/electronics/support/res/manuals/4580/45800420M.pdf"
             },
         ],
         productLinks: [{
@@ -868,7 +868,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A PDF video review LG  Laser Smart Home Theater Projector (2017 Model)",
-            originalName:"LG Electronics HF80JA Laser Smart Home Theater Projector (2017 Model)",
+            originalName:"LG Electronics HF80JA Laser Smart Home Theater Projector",
             dataType:"PDF",
             url: "http://www.lg.com/us/support/products/documents/HF80JA_Spec_Sheet_20170818.pdf"
             },
@@ -916,7 +916,12 @@ const createProducts = function (companies, categories, done) {
             "https://images-na.ssl-images-amazon.com/images/I/31H2gnShkiL.jpg",
 
         ],
-        productResources: [
+        productResources: [{
+           description:"An HTML review Apollo Horizon 2 Overhead Projector(V16000M)",
+           originalName:"APOLLOLIGHTING PROJECTOR",
+           dataType:"HTML",
+           url: "https://www.manualslib.com/manual/732092/Apollo-Lighting-Projector.html#manual"
+                    },
         ],
         productLinks: [{
             description: "Apollo Concept Overhead Projector Open Doublet",
@@ -936,7 +941,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [ {
             description:"A PDF review Echo Dot",
-            originalName:"Echo Dot - Voice control your music, Get news, weather & more",
+            originalName:"Set Up Your Echo Dot",
             dataType:"PDF",
             url: "https://cdn.billiger.com/dynimg/v09yZDqi1Nu7mmdBOfnVx_t4H9rycHjeBa9LTdXG2DASTX1NzUAYz9kVT0oDYqo5GsG3D_gL2MZruAzLFbfOYk/Amazon-Echo-Dot-2-Generation-weiss-Bedienungsanleitung-1d4f27.pdf"
             },
@@ -958,10 +963,10 @@ const createProducts = function (companies, categories, done) {
            "https://images-na.ssl-images-amazon.com/images/I/71NtTz8MxUL._SX522_.jpg",
         ],
         productResources: [{
-            description:"A PDF review Logitech Z120 Stereo Speaker (Black and White)",
-            originalName:"Logitech Z120 Stereo Speaker (Black and White)",
+            description:"A PDF review Logitech Z120 Stereo Speaker ",
+            originalName:"Getting started with Première utilisation Logitech Stereo Speakers Z120",
             dataType:"PDF",
-            url: "http://static.highspeedbackbone.net/pdf/Logitech-X-230-PC-Speaker-Manual.pdf"
+            url: "https://www.logitech.com/assets/42351/z120-quick-start-guide.pdf"
             },
         ],
         productLinks: [{
@@ -981,7 +986,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [ {
             description:"A PDF review Boston Acoustics Ceiling Speaker (White)",
-            originalName:"Boston Acoustics HSi 250 In-Ceiling Speaker (White)",
+            originalName:"Center Channel Speaker Boston Compact Speakers",
             dataType:"PDF",
             url: "http://static.highspeedbackbone.net/pdf/Boston_Acoustics_CRC_Speaker-Manual.pdf"
             },
@@ -1003,7 +1008,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A PDF review Boston Acoustics A 225C Dual 5.25",
-            originalName:"Boston Acoustics A 225C Dual 5.25\" Woofer 2-Way Center Channel Speaker - Gloss Black",
+            originalName:"Center Channel Speaker Boston Compact Speakers",
             dataType:"PDF",
             url: "http://static.highspeedbackbone.net/pdf/Boston_Acoustics_CRC_Speaker-Manual.pdf"
             },
@@ -1027,7 +1032,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A PDF review OFFBEAT - ECHO 10W outdoor Bluetooth speaker",
-            originalName:"OFFBEAT ® - ECHO 10W outdoor Bluetooth speaker",
+            originalName:"Core Wireless Speaker System Instruction Manual",
             dataType:"PDF",
             url: "https://www.massfidelity.com/media/files/Core_instructions_2015_11_22.pdf"
             },
@@ -1051,7 +1056,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A  PDF review Sony HT-RT3 Sound Bar Home Theatre System (Black)",
-            originalName:"Sony HT-RT3 Sound Bar Home Theatre System (Black)",
+            originalName:"Sony Home Theatre System Start up guide",
             dataType:"PDF",
             url:"https://www.sony.co.uk/electronics/support/res/manuals/4587/45877732M.pdf"
            },
@@ -1073,7 +1078,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A PDF review of WireSwipe HDMI Male to HDMI Male Cable (Black)",
-            originalName:"WireSwipe HDMI Male to HDMI Male Cable (Black)",
+            originalName:"User Guide DVI & HDMI Extenders",
             dataType:"PDF",
             url: "http://media.extron.com/download/files/userman/HDMI_201_user_D.pdf"
              },
@@ -1098,7 +1103,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A PDF review of Dell Performance USB Headset (AE2)",
-            originalName:"Dell Performance USB Headset (AE2)",
+            originalName:"Dell Performance USB Headset AE2 User's Guide",
             dataType:"PDF",
             url: "https://shop.evry.com/pdf/D6775DAE-94FE-4978-85AE-5031E36C69CB.pdf"
             },
@@ -1121,10 +1126,10 @@ const createProducts = function (companies, categories, done) {
             "https://images-na.ssl-images-amazon.com/images/I/71OKYFIu1RL._SL1500_.jpg"
         ],
         productResources: [{
-            description:"An HTML review of 60mm Compact Refractor AstroVenture Telescope ",
-            originalName:"60mm Compact Refractor AstroVenture Telescope ",
-            dataType:"HTML",
-            url: "https://www.telescopeguide.org/black-twinstar-4-5-reflector-telescope-review/"
+            description:"A PDF review of 60mm Compact Refractor AstroVenture Telescope ",
+            originalName:"Assembly Guide : 60mm Refractor Telescope",
+            dataType:"PDF",
+            url: "http://twinstar-telescopes.com/wp-content/uploads/2015/06/60mm-compact-refractor-telescope.pdf"
              },
         ],
         productLinks: [{
@@ -1167,9 +1172,9 @@ const createProducts = function (companies, categories, done) {
             "https://images-na.ssl-images-amazon.com/images/I/41QNcbkM9OL.jpg"
         ],
         productResources: [{
-            description:"An HTML review of Logitech HD Webcam C310",
-            originalName:"Logitech HD Webcam C310",
-            dataType:"HTML",
+            description:"A PDF review of Logitech HD Webcam C310",
+            originalName:"Logitech® HD Webcam C310 User’s Guide — Version 2.0",
+            dataType:"PDF",
             url:"https://carolynmiller221.files.wordpress.com/2014/01/carolynm1230_users_guide_7a.pdf"
             },
         ],
@@ -1191,7 +1196,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A PDF review of Bushnell Legend Ultra HD Monocular",
-            originalName:"Bushnell Legend Ultra HD Monocular, Black, 10 x 42-mm",
+            originalName:"LegendUHD-Monoculars-wReticle. Bushnell Legend Ultra HD Monocular",
             dataType:"PDF",
             url: "http://bushnell.com/getmedia/d8ffc049-64b9-4337-a812-54d551376136/191142-LegendUHD-Monoculars-wReticle.pdf?ext=.pdf"
             },
@@ -1237,7 +1242,7 @@ const createProducts = function (companies, categories, done) {
         ],
         productResources: [{
             description:"A PDF review of Bushnell Trophy Cam HD Essential E2 12MP Trail Camera",
-            originalName:"Bushnell Trophy Cam HD Essential E2 12MP Trail Camera",
+            originalName:"Bushnell Trophy Cam HD Essential E2 ",
             dataType:"PDF",
             url: "https://cdn.shopify.com/s/files/1/1065/8354/files/119836C_TrophyCamHD_EssentialE2_1LIM_print.pdf?13758801036814598632"
              },
@@ -1259,10 +1264,10 @@ const createProducts = function (companies, categories, done) {
            "https://images-na.ssl-images-amazon.com/images/I/A1WFrUtuO1L._SL1500_.jpg"
         ],
         productResources: [{
-            description:"An HTML review of Bushnell Trophy Cam HD Wireless Trail Camera",
-            originalName:"Bushnell Trophy Cam HD Aggressor 14MP Wireless Trail Camera",
-            dataType:"HTML",
-           url: "https://www.amazon.com/Bushnell-Trophy-Aggressor-Wireless-Camera/dp/B01D0JTRGU/ref=pd_bxgy_200_img_2?_encoding=UTF8&psc=1&refRID=04JXN6BY0JE58KV7M66D"
+            description:"A PDF review of Bushnell Trophy Cam HD Wireless Trail Camera",
+            originalName:"Bushnell Trophy Cam HD Aggressor Instruction Manuals",
+            dataType:"PDF",
+           url: "http://bushnell.com/getmedia/3204871b-c6d2-4eb3-82f9-72492c0992b8/119773C_GreyCabelasAggressorCam_USBedit_1LIM_web.pdf?ext=.pdf"
          },
         ],
         productLinks: [{
@@ -1281,7 +1286,12 @@ const createProducts = function (companies, categories, done) {
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/61vTpdQZNOL._SL1001_.jpg"
         ],
-        productResources: [
+        productResources: [{
+           description:"A PDF review of Barrel Borescope, Teslong",
+           originalName:"Wifi Endoscope camera user manual",
+           dataType:"PDF",
+           url: "https://fccid.io/2AHTO-WF200/User-Manual/User-Manual-2956091"
+           },
         ],
         productLinks: [{
            description: "Barrel Borescope, Teslong Rifle Barrel Endoscope Inspection Camera ",
@@ -1300,7 +1310,12 @@ const createProducts = function (companies, categories, done) {
             "https://images-na.ssl-images-amazon.com/images/I/818KXU7RtaL._SL1500_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71--F%2B2RtHL._SL1500_.jpg"
         ],
-        productResources: [
+        productResources: [ {
+             description:"A PDF review of Digital Endoscope, Teslong",
+             originalName:"Digital Borescope with Monitor",
+             dataType:"PDF",
+              url: "http://www.advantech.my/RVI/Borescope/Mini%20Rigid%20Operating%20Manual.pdf"
+               },
         ],
         productLinks: [{
              description: "Best Digital Endoscope 8.2mm Waterproof 3.5'' Inspection Camera",
