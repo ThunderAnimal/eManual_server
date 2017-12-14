@@ -32,15 +32,16 @@ block main
                     a.fa.fa-pencil.edit-spam-address.modal-trigger(href='#modal-spam-address-popup')
                     #modal-spam-address-popup.modal
                         .modal-content
-                            form
+                            form#spam-adress
                                 p
                                     label.spam-address-label(for="email") Email for subscription
-                                    input#email.validate.spam-address(type="email")
+                                    input#email.validate.spam-address(type="email" value=user.spamAddress)
                                 p
-                                    input#receive-mail.filled-in(type="checkbox" checked="checked")
+                                    input#receive-mail.filled-in(type="checkbox")
                                     label(for="receive-mail") I want to receive news from my companies
-                                p
+                                p.modal-buttons
                                     button.waves-effect.waves-light.btn(type="submit") Submit
+                                    a#close-spam-modal.waves-effect.waves-light.btn.materialize-red.modal-close Cancel
 
         #user-header-content
             div.container

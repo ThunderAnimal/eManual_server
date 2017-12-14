@@ -103,6 +103,12 @@ main {
     text-transform: uppercase;
     font-size: 1em;
 }
+
+p.modal-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 /* user profile info bottom
 ************************* */
 
