@@ -1,8 +1,29 @@
+var spamAddressValue = "";
+
 $(document).ready(function(){
     getData(renderData);
-    $('.modal').modal();
-});
 
+    $('.modal').modal();
+
+    $("#update-spam-address").click(function(){
+        spamAddressValue = document.querySelector('#email').value;
+    });
+
+    $("form#spam-address").ajaxForm({
+        url: '/api/v1/spam_address',
+        type: 'PUT',
+        data:{spamAddress: spamAddressValue},
+        success: function (res) {
+            console.log(res);
+            Materialize.toast('New address for notifications saved! ' + spamAddressValue, 4000);
+            $('.modal').modal('close');
+        },
+        error: function (err) {
+            console.log(err);
+            alert("error");
+        }
+    });
+});
 
 
 var getData = function(callback){
