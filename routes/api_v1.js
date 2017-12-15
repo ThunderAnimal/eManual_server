@@ -63,6 +63,10 @@ router.delete('/product/:id/material', policy.isAuthorized, policy.onlyRepresent
 router.get('/categories', categoryManager.getAll);
 router.get('/category/:id', categoryManager.getOne);
 
+
+//API Consumers
+router.put('/toggle_optin', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.toggleOptIn); //Toggle subscribed or not subscribed
+router.get('/get_subscription_status', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.getSubscriptionStatus); //Sends info, whether subscribed or not
 router.get('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.getSelectedProduct);
 router.put('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.changeProducts);
 //TODO use this api when update spam address
