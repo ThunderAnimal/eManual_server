@@ -10,6 +10,10 @@ var companySchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Consumer'
     }],
+    serviceProvider_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ServiceProvider'
+    }
 });
 
 module.exports = mongoose.model("Company", companySchema);
