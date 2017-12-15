@@ -249,9 +249,9 @@ exports.updateSpamAddress = (req,res) =>{
 
     Use the '/get_subscription_status' api to find out the current subscription status.
  */
-exports.toggleOptIn = (req, res) => {
+exports.toggleOptIn = function (req, res) {
     let consumerID = req.user._id;
-    consumerModel.findOne({_id: consumerID}, (error, data) => {
+    consumerModel.findOne({_id: consumerID}, function (error, data) {
         if (error){
             console.log("Error in getting consumer object from consumer ID: consumermanager.js: "+error);
             res.status(500).send(error);
@@ -279,14 +279,15 @@ else if (data.optin === true){
 /*
     No request needed, just sends the current subscription status of the customer. True if subscribed.
  */
-exports.getSubscriptionStatus = (req, res) => {
+exports.getSubscriptionStatus = function (req, res) {
     let consumerID = req.user._id;
-    consumerModel.findOne({_id: consumerID}, (error, data) => {
+    consumerModel.findOne({_id: consumerID}, function (error, data) {
         if (error) {
             console.log("Error in getting consumer object from consumer ID: consumermanager.js: " + error);
             res.status(500).send(error);
         }
         else {
             res.status(200).send(data.optin);
-}
-});
+        }
+    });
+};
