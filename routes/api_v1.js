@@ -74,7 +74,9 @@ router.get('/dir_recent_products', productManager.getRecentlyCreatedProducts);
 
 //API ServiceProvider
 router.get('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.getAllServiceProviders);
-
+s//API Consumers
+router.put('/toggle_optin', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.toggleOptIn); //Toggle subscribed or not subscribed
+router.get('/get_subscription_status', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.getSubscriptionStatus); //Sends info, whether subscribed or not
 /*
 Currently the top categories are:
 1. Televisions

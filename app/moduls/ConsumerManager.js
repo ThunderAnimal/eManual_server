@@ -138,6 +138,8 @@ exports.isNoMoreProductFromThatCompany = (user_id, company_id, done) => {
     });
 };
 
+exports.
+
 
 exports.findOrCreateGoogle = function(profile, accessToken, done){
     const email = profile.emails[0].value;
@@ -240,3 +242,51 @@ exports.updateSpamAddress = (req,res) =>{
         });
     });
 };
+/*
+    Note:
+    No request data needed. Just toggles the current subscription status. If subscribed, will unsubscribed, and vice-
+    versa.
+
+    Use the '/get_subscription_status' api to find out the current subscription status.
+ */
+exports.toggleOptIn = (req, res) => {
+    let consumerID = req.user._id;
+    consumerModel.findOne({_id: consumerID}, (error, data) => {
+        if (error){
+            console.log("Error in getting consumer object from consumer ID: consumermanager.js: "+error);
+            res.status(500).send(error);
+        }
+        else {
+            if (data.optin === false){
+        data.optin = true;
+        data.save();
+        res.send(true);
+    }
+
+else if (data.optin === true){
+        data.optin = false;
+        data.save();
+        res.send("Successfully Unsubscribed");
+    }
+
+    else {
+        res.status(500).send({_error: true, err: "Wrong Parameter Sent!"});
+    }
+}
+});
+};
+
+/*
+    No request needed, just sends the current subscription status of the customer. True if subscribed.
+ */
+exports.getSubscriptionStatus = (req, res) => {
+    let consumerID = req.user._id;
+    consumerModel.findOne({_id: consumerID}, (error, data) => {
+        if (error) {
+            console.log("Error in getting consumer object from consumer ID: consumermanager.js: " + error);
+            res.status(500).send(error);
+        }
+        else {
+            res.status(200).send(data.optin);
+}
+});
