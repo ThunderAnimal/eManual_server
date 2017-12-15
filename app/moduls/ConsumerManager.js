@@ -241,6 +241,19 @@ exports.updateSpamAddress = (req,res) =>{
     });
 };
 
+exports.getSpamAddress = (req, res) => {
+    let consumerID = req.user._id;
+    consumerModel.findOne({_id: consumerID}, (error, data) => {
+        if (error) {
+            console.log("Error in getting consumer object from consumer ID: consumermanager.js: " + error);
+            res.status(500).send(error);
+        }
+        else {
+            res.status(200).send(data.spamAddress);
+        }
+    });
+};
+
 /*
     Note:
     No request data needed. Just toggles the current subscription status. If subscribed, will unsubscribed, and vice-
