@@ -2,26 +2,45 @@ var spamAddressValue = "";
 
 $(document).ready(function(){
     getData(renderData);
+    getSpamData();
 
     $('.modal').modal();
 
     $("#update-spam-address").click(function(){
         spamAddressValue = document.querySelector('#email').value;
-    });
+        $.ajax({
+            url: '/api/v1/spam_address',
+            type: 'PUT',
+            data:{spamAddress: spamAddressValue},
+            success: function (res) {
+                console.log(res);
+                Materialize.toast('New address for notifications saved! ' + spamAddressValue, 4000);
+                $('.modal').modal('close');
+            },
+            error: function (err) {
+                console.log(err);
+                alert("error");
+            }
+        });
 
-    $("form#spam-address").ajaxForm({
-        url: '/api/v1/spam_address',
-        type: 'PUT',
-        data:{spamAddress: spamAddressValue},
-        success: function (res) {
-            console.log(res);
-            Materialize.toast('New address for notifications saved! ' + spamAddressValue, 4000);
-            $('.modal').modal('close');
-        },
-        error: function (err) {
-            console.log(err);
-            alert("error");
-        }
+        $.ajax({
+            url: '/api/v1/toggle_optin',
+            type: 'PUT',
+            success: function (res) {
+                console.log(res);
+                if($('#receive-mail').is(":checked")) {
+                    Materialize.toast('You will now receive notifications', 4000);
+                } else {
+                    Materialize.toast('You unsubscribed from notifications', 4000);
+                }
+                $('.modal').modal('close');
+            },
+            error: function (err) {
+                console.log(err);
+                alert("error");
+            }
+        });
+        getSpamData();
     });
 });
 
@@ -79,3 +98,19 @@ var renderData = function(data){
         ul.appendChild(clonedTemplate);
     }
 };
+
+var getSpamData = function(){
+    $.get('api/v1/spam_address', function(result){
+        document.querySelector('#email').value = result;
+    }).fail(function(e) {
+        alert('Woops! Error to get Data'); // or whatever
+        console.log(e);
+    });
+
+    $.get('api/v1/get_subscription_status', function(result){
+        document.querySelector('#receive-mail').setAttribute("checked", result);
+    }).fail(function(e) {
+        alert('Woops! Error to get Data'); // or whatever
+        console.log(e);
+    });
+}
