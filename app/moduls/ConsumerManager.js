@@ -263,28 +263,21 @@ exports.getSpamAddress = (req, res) => {
  */
 exports.toggleOptIn = (req, res) => {
     let consumerID = req.user._id;
+    let optin = req.body.optin;
+
+    if (optin === false || optin === true) {
+        return res.status(500).send({_error: true, err: "Wrong Parameter Sent!"});
+    }
+
     consumerModel.findOne({_id: consumerID}, (error, data) => {
         if (error){
             console.log("Error in getting consumer object from consumer ID: consumermanager.js: "+error);
-            res.status(500).send(error);
+            return res.status(500).send(error);
         }
-        else {
-            if (data.optin === false){
-                data.optin = true;
-                data.save();
-                res.send(true);
-            }
 
-            else if (data.optin === true){
-                data.optin = false;
-                data.save();
-                res.send("Successfully Unsubscribed");
-            }
-
-            else {
-                res.status(500).send({_error: true, err: "Wrong Parameter Sent!"});
-            }
-        }
+        data.optin = optin;
+        data.save();
+        res.status(200).send(data.optin);
     });
 };
 
