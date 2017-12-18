@@ -42,7 +42,7 @@ header nav{
     text-align: left;
     vertical-align: top;
     position: fixed;
-    background: linear-gradient(to right, #25a2c3, #f6755f);
+    background: linear-gradient(to right, #7cc7db, #faac9e);
     background-size: 100%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
     display: flex;
