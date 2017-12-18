@@ -9,6 +9,9 @@ a,a:hover,a:focus {
     outline: 0;
 }
 
+footer {
+    display:none;
+}
 
 /* mobile menu
  **************************************************/
@@ -34,7 +37,7 @@ a,a:hover,a:focus {
 
 /* layout
  **************************************************/
-#main-nav {
+#sidebar {
     text-align: left;
     vertical-align: top;
     -webkit-user-select: none;
@@ -44,22 +47,24 @@ a,a:hover,a:focus {
     width: 14vw;
     min-width: 150px;
     background: #2b2b2b;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 15vh;
     overflow-y: hidden;
-    //bottom: 0;
-    height: 84vh;
+    bottom: 0;
 }
 
 #main {
     position: absolute;
     right: 0;
     top: 15vh;
+    bottom: 0;
     background: #fefefe;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     width: 86vw;
-    //height: auto;
+//height: auto;
+    height: 85vh;
     left: 14vw;
 }
 
@@ -109,7 +114,6 @@ ul#navigation {
 }
 
 ul#navigation li {
-    display: block;
     float: none;
     clear: both;
     background: #303030;
@@ -126,6 +130,8 @@ ul#navigation li {
 ul#navigation li a {
     color: #ccc;
     font-size: 14px;
+    display: flex;
+    flex-direction: row;
 }
 
 ul#navigation li:hover,ul#navigation li:focus {
@@ -138,59 +144,27 @@ ul#navigation li:hover a,ul#navigation li:focus a {
 
 ul#navigation li .text {
     padding-left: 5%;
-    margin-left: 50px;
-    line-height: 45px;
-
+    line-height: 42px;
+    width: 100%;
     -webkit-box-shadow: -3px 0 5px -4px #000;
     box-shadow: -3px 0 5px -4px #000;
 }
 
 ul#navigation li .icon {
-    float: left;
     width: 50px;
     text-align: center;
+    font-size: 180%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.sidebar-active .text {
+    background: #25a2c3;
 }
 
-ul#navigation li .icon img{
-    padding: 4px 0;
+.sidebar-active .icon {
+    color: #25a2c3;
 }
-
-.social-icons {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #f6755e;
-    width: 250px;
-    z-index: 2;
-    height: 45px;
-}
-
-.social-icons ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.social-icons li {
-    float: left;
-    width: 33%;
-    padding: 10px;
-    text-align: center;
-}
-
-.social-icons a {
-    color: #ccc;
-}
-
-.social-icons a:hover,.social-icons a:focus {
-    color: #fff;
-}
-
-.social-icons i {
-    font-size: 16px;
-}
-
 /* main part
  **************************************************/
 
@@ -262,21 +236,20 @@ div#LOR{
     width: auto;
 }
 div#LOR ul{
-    height: 120%;
-    width: auto;
+    display: flex;
+    flex-flow: row wrap;
 }
 div#LOR ul li{
     list-style-type: none;
-    padding-top: 2%;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 20px 5%;
     width: 20%;
     height: 100%;
     float: left;
 }
 div#LOR ul li #pic{
     text-align: right;
-    height: 100%;
+    height: 100px;
+    width: 100px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 0 8px rgba(82, 168, 236, 0.6);
     background-color: #e1e1e1;
     border-radius: 3px;
