@@ -3,9 +3,12 @@ var isSubscribed = false;
 
 $(document).ready(function(){
     getData(renderData);
-    getSpamData();
 
-    $('.modal').modal();
+    $('.modal').modal({
+        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            getSpamData();
+        }
+    });
 
     $("#update-spam-address").click(function(){
         if(spamAddressValue != document.querySelector('#email').value) {
@@ -25,17 +28,16 @@ $(document).ready(function(){
                 }
             });
         }
-
-        var ischecked = isSubscribed;
-        if(!(isSubscribed && $('#receive-mail').is(':checked'))) {
+        var checkBoxValue = $('#receive-mail').is(':checked')
+        if(!(isSubscribed && checkBoxValue)) {
             $.ajax({
                 url: '/api/v1/toggle_optin',
                 type: 'PUT',
+                data: {optin: checkBoxValue},
                 success: function (res) {
-                    console.log(res);
-                    if ($('#receive-mail').is(":checked")) {
+                    if (res === true) {
                         Materialize.toast('You will now receive notifications', 4000);
-                    } else {
+                    } else if (res === false) {
                         Materialize.toast('You unsubscribed from notifications', 4000);
                     }
                     $('.modal').modal('close');
@@ -116,8 +118,7 @@ var getSpamData = function(){
     });
 
     $.get('api/v1/get_subscription_status', function(result){
-        if(result)
-            document.querySelector('#receive-mail').setAttribute("checked", "checked");
+        $('#receive-mail').prop('checked', result);
         isSubscribed = result;
     }).fail(function(e) {
         alert('Woops! Error to get Data'); // or whatever
