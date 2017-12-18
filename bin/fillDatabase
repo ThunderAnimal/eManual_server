@@ -52,9 +52,34 @@ const createConsumer = function (done) {
                         products: [data2._id]
                     });
 
+                    const consumer3 = new ConsumerModel({
+                       username: "eyuel",
+                       password: "1234",
+                       email: "eyueltb@gmail.com",
+                       spamAddress:"eyueltb@gmail.com",
+                       optin: false,
+                       image: " ",
+                       products: [data2._id]
+                       });
+                     const consumer4 = new ConsumerModel({
+                       username: "eyuel",
+                       password: "1234",
+                       email: "eyuel.tesfaye13@gmail.com",
+                       spamAddress:"eyuel.tesfaye13@gmail.com",
+                       optin: false,
+                       image: " ",
+                       products: [data2._id]
+                       });
+
+
+
                     consumer1.save(function () {
                         consumer2.save(function (){
+                         consumer3.save(function (){
+                          consumer4.save(function (){
                             done(consumer1, consumer2);
+                          });
+                         });
                         });
                     });
                 }
