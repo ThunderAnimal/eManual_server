@@ -275,24 +275,33 @@ div#LOM ul li .product-select a i{
     font-size: 1rem;
 }
 
-div#LOM ul li .product-edit, div#LOM ul li .product-delete {
+div#LOM ul li .product-edit, div#LOM ul li .product-delete,   div#LOM ul li .product-send-mess{
     width: 5%;
     text-align: center;
 }
 
-div#LOM ul li .product-delete a{
+div#LOM ul li .product-delete a, div#LOM ul li .product-send-mess a{
     border-radius: 0;
     width: 25px;
     height: 25px;
     line-height: 25px;
 }
 
-div#LOM ul li .product-delete .remove-selection{
+div#LOM ul li .product-delete .remove-selection, div#LOM ul li .product-send-mess a{
     background-color: #4D4D4D;
 }
 
+div#LOM ul li .product-send-mess a {
+    font-size: 0.9em;
+}
 
 div#LOM ul li .product-delete a i{
     line-height: 25px;
     font-size: 1rem;
+}
+
+/* send message modal
+**************************************/
+#send-message-modal {
+    max-width: 600px;
 }

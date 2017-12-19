@@ -80,8 +80,6 @@ var renderData = function(data){
         clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id;
         clonedTemplate.querySelector('.pic').src = products[k].profilePicture;
         clonedTemplate.querySelector('li').setAttribute('data-id', products[k]._id);
-
-
         clonedTemplate.querySelector('.product-delete a.remove-selection').addEventListener("click",function () {
             console.log(this);
             var that = this;
