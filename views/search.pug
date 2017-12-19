@@ -1,0 +1,39 @@
+extends layout
+
+
+block header
+    div.navbar-fixed
+        nav#header
+            div.nav-wrapper
+                a.homepage-link(href='#')
+                    img.logo-pic(src='/assets/img/logo.png', alt='dash')
+                .header-search-container
+                    a#btn_cat.dropdown-button.btn(data-activates='dropdown1') categories
+                    ul(id='dropdown1' class='dropdown-content')
+                    input#header-search-field.input(type='text' name='search-field' placeholder="What is your brand or product?")
+                    a#header-search-button.waves-effect.waves-light.btn
+                        i.fa.fa-search
+                        p Search
+                #user-nav-ul
+                    ul.right.user-login
+                        if isLoggedIn
+                            li
+                                img.profile-pic(src=user.image class="circle responsive-img")
+                            li
+                                a.button.alt.dropdown-button.profile-btn(data-activates='dropdown_user')="Welcome, " + user.name
+                        else
+                            li
+                                a.button.alt.login-btn(href='/login') Log in
+
+                    ul(id='dropdown_user' class='dropdown-content')
+                        li
+                            a(href=user.profileUrl) Profile
+                        li.divider
+                        li
+                            a(href="/logout" style="color: #f6755f") Logout
+
+block main
+    h2 Search
+
+block javascript
+    script(src='/assets/js/search.js')

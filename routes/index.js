@@ -109,6 +109,13 @@ router.get('/product', function (req, res, next) {
     }
 });
 
+//SEARCH
+router.get('/search', function (req, res, next) {
+    res.render('search', {isLoggedIn: req.isAuthenticated(),
+        user: getUserViewObj(req.user)
+    });
+});
+
 //LOGIN PAGE
 router.get('/login', function(req, res){
     req.session.redirect_url = req.query.redirect_url;
