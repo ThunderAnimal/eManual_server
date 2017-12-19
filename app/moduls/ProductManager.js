@@ -582,3 +582,11 @@ exports.getRecentlyCreatedProducts = (req, res) => {
     });
 };
 
+exports.getProductsSearch = function (req, res) {
+    const searchText = req.query.search;
+
+    console.log(searchText);
+
+    //TODO IMPLEMENT SEARCH ENGINE
+    res.status(200).send([]);
+};

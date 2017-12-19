@@ -59,6 +59,8 @@ router.delete('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllow
 router.post('/product/:id/material', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.addMaterials);
 router.delete('/product/:id/material', policy.isAuthorized, policy.onlyRepresentativeAllowed, productManager.deleteMaterials);
 
+router.get('/product_search', productManager.getProductsSearch);
+
 //API Categories
 router.get('/categories', categoryManager.getAll);
 router.get('/category/:id', categoryManager.getOne);
