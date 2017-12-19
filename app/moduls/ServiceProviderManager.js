@@ -1,6 +1,7 @@
 const MODEL_PATH = '../models/';
 const serviceProviderModel = require(MODEL_PATH + 'ServiceProvider');
 const companyModel = require(MODEL_PATH + 'Company');
+const consumerModel = require(MODEL_PATH + 'Consumer');
 
 //to get all service provider
 exports.getAllServiceProviders = function(req, res, next) {
@@ -49,8 +50,20 @@ exports.sendMessagesToConsumers = function(req, res){
                 return res.status(500).send({_error: true, error: err});
             }
 
-            //TODO Get all Users from companies, filter duplicates, send mails
-            res.status(200).send({send: true, count: 0});
+            let user_list = [];
+            for(let i = 0; i < companies.length; i++){
+                user_list = user_list.concat(companies.isConsumerOptIn);
+            }
+
+            consumerModel.find({
+                '_id': { $in : user_list},
+                'optin': true
+            }, function (err, consumers) {
+                //TODO SEND MESSAGES --> have a look at the MailManager
+
+
+                res.status(200).send({send: true, count: consumers.length});
+            });
         });
     });
 };
