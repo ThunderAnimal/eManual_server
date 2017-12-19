@@ -6,6 +6,11 @@ block header
             div.nav-wrapper
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
+                .header-search-container
+                    input#header-search-field.input(type='text' name='search-field' placeholder="What is your brand or product?")
+                    a#header-search-button.waves-effect.waves-light.btn
+                        i.fa.fa-search
+                        p Search
                 #user-nav-ul
                     ul.right.user-login
                         if isLoggedIn
@@ -35,7 +40,7 @@ block main
             #search-field-wrapper
                 .search-container
                     div#search-field
-                        input.input(type='text' name='search-field' placeholder="Search manuals")
+                        input.input(type='text' name='search-field' placeholder="What is your brand or product?")
                     div#search-button.waves-effect.waves-light.btn
                         i.fa.fa-search
                         input(type='button' name='search-button' value='search')

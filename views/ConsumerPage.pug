@@ -9,6 +9,11 @@ block header
             nav#top-space-nav-bar
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
+                .header-search-container
+                    input#header-search-field.input(type='text' name='search-field' placeholder="What is your brand or product?")
+                    a#header-search-button.waves-effect.waves-light.btn
+                        i.fa.fa-search
+                        p Search
                 ul.right.user-login
                         li
                             img.profile-pic(src=user.image class="circle responsive-img")

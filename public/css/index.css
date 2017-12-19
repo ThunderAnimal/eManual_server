@@ -76,6 +76,8 @@ main {
     font-weight: normal;
 }
 
+/* search field
+*****************************/
 #search-field-wrapper {
     margin-top: 30px;
 }
@@ -101,6 +103,7 @@ main {
     border: 0;
     height:100%;
     box-sizing: border-box;
+    width: 100%;
 }
 
 #search-button {
