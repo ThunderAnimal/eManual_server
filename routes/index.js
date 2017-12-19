@@ -1,39 +1,43 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var policy = require('../app/moduls/routePolicy');
+const policy = require('../app/moduls/routePolicy');
 
 const authManager = require('../app/moduls/authManager');
 
-// HOME PAGE (start page)
-router.get('/', function(req, res) {
-
+const getUserViewObj = function (user) {
     let profileUrl;
     let name;
     let image;
 
-    if(authManager.isUserCompany(req.user)){
+    if(authManager.isUserCompany(user)){
         profileUrl = "/company/dashboard";
-        name = req.user.name;
-    } else if(authManager.isUserRepresentative(req.user)){
+        name = user.name;
+    } else if(authManager.isUserRepresentative(user)){
         profileUrl = "/representatives/dashboard";
-        name = req.user.name;
-    } else if(authManager.isUserConsumer(req.user)){
+        name = user.name;
+    } else if(authManager.isUserConsumer(user)){
         profileUrl = "/consumer";
-        name = req.user.username;
-        image = req.user.image;
-    }else if(authManager.isUserServiceProvider(req.user)){
+        name = user.username;
+        image = user.image;
+    }else if(authManager.isUserServiceProvider(user)){
         profileUrl = "/service_provider";
-        name = req.user.name;
+        name = user.name;
 
     }
+
+    return  {
+        name: name,
+        profileUrl: profileUrl,
+        image: image
+    }
+};
+
+// HOME PAGE (start page)
+router.get('/', function(req, res) {
     res.render('index', {isLoggedIn: req.isAuthenticated(),
-                        user: {
-                            name: name,
-                            profileUrl: profileUrl,
-                            image: image
-                        }
-        });
+        user: getUserViewObj(req.user)
+    });
 });
 
 //DASHBOARD - Company
@@ -52,7 +56,6 @@ router.get('/representatives/dashboard', policy.isLoggedIn, function(req,res){
 router.get('/representatives/createProduct', policy.isLoggedIn, function (req,res) {
     res.render('createProduct', {name: req.user.name});
 });
-
 router.get('/representatives/updateProduct', policy.isLoggedIn, function (req,res) {
     const _id = req.query.id;
 
@@ -81,55 +84,14 @@ router.get('/service_provider', policy.isLoggedIn, function (req,res) {
 
 //Browse Category
 router.get('/category',function (req,res) {
-
-    let profileUrl;
-    let name;
-    let image;
-
-    if(authManager.isUserCompany(req.user)){
-        profileUrl = "/company/dashboard";
-        name = req.user.name;
-    } else if(authManager.isUserRepresentative(req.user)){
-        profileUrl = "/representatives/dashboard";
-        name = req.user.name;
-    } else if(authManager.isUserConsumer(req.user)){
-        profileUrl = "/consumer";
-        name = req.user.username;
-        image = req.user.image;
-    }
-
     res.render('categories', {isLoggedIn: req.isAuthenticated(),
-        user: {
-            name: name,
-            profileUrl: profileUrl,
-            image: image
-        }
+        user: getUserViewObj(req.user)
     });
 });
 
 //PRDOUCTS
 router.get('/product', function (req, res, next) {
     const _id = req.query.id;
-
-    let profileUrl;
-    let name;
-    let image;
-    let isRepresantive = false;
-    let isCustomer = false;
-
-    if(authManager.isUserCompany(req.user)){
-        profileUrl = "/company/dashboard";
-        name = req.user.name;
-    } else if(authManager.isUserRepresentative(req.user)){
-        profileUrl = "/representatives/dashboard";
-        name = req.user.name;
-        isRepresantive = true;
-    } else if(authManager.isUserConsumer(req.user)){
-        profileUrl = "/consumer";
-        name = req.user.username;
-        image = req.user.image;
-        isCustomer = true;
-    }
 
     if(!_id){
         const err = new Error("Missing Product-Id");
@@ -140,13 +102,9 @@ router.get('/product', function (req, res, next) {
             {
                 id: _id,
                 isLoggedIn: req.isAuthenticated(),
-                user: {
-                    name: name,
-                    profileUrl: profileUrl,
-                    image: image
-                },
-                isRepresantive: isRepresantive,
-                isCustomer: isCustomer
+                user: getUserViewObj(req.user),
+                isRepresantive: authManager.isUserRepresentative(req.user),
+                isCustomer: authManager.isUserConsumer(req.user)
         });
     }
 });
