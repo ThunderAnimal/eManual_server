@@ -10,6 +10,8 @@ block header
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
                 .header-search-container
+                    a#btn_cat.dropdown-button.btn(data-activates='dropdown1') categories
+                    ul(id='dropdown1' class='dropdown-content')
                     input#header-search-field.input(type='text' name='search-field' placeholder="What is your brand or product?")
                     a#header-search-button.waves-effect.waves-light.btn
                         i.fa.fa-search

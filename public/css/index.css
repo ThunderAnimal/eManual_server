@@ -23,18 +23,6 @@ main {
     padding: 0 7vw;
 }
 
-#btn_cat{
-    position: absolute;
-    top: 90px;
-    margin-left: 60px;
-    min-width: 200px;
-}
-#dropdown1{
-    margin-left: 60px;
-    margin-top: 40px;
-    min-width: 150px;
-}
-
 #search-widget {
     background: url(../img/bg/main_page_bg.jpg) no-repeat center center scroll;
     max-height: 730px;

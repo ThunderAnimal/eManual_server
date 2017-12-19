@@ -7,6 +7,8 @@ block header
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
                 .header-search-container
+                    a#btn_cat.dropdown-button.btn(data-activates='dropdown1') categories
+                    ul(id='dropdown1' class='dropdown-content')
                     input#header-search-field.input(type='text' name='search-field' placeholder="What is your brand or product?")
                     a#header-search-button.waves-effect.waves-light.btn
                         i.fa.fa-search
@@ -28,9 +30,6 @@ block header
                         li.divider
                         li
                             a(href="/logout" style="color: #f6755f") Logout
-            .container
-                a(id="btn_cat" class='dropdown-button btn materialize-red' data-activates='dropdown1') categories
-                ul(id='dropdown1' class='dropdown-content')
 block main
     #search-widget
         #search-wrapper
