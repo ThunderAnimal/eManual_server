@@ -5,6 +5,16 @@ $(document).ready(function(){
     var category_list = getParams(window.location.href)['category_id[]'];
     var id = $('#product_id').data('id');
 
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+
+    $('.modal').modal({
+        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+
+        }
+    });
+
     getProductData(id, renderProductData);
     if(category_list){
         fillCategories(category_list, function (cat_list) {

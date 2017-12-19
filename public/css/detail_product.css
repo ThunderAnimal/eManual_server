@@ -155,3 +155,19 @@ ul#product-gallery li img{
 .remove-selection{
     background-color: #4D4D4D;
 }
+
+/* send message block
+*********************************/
+a#send-message-button div{
+    display: flex;
+    align-items: center;
+}
+
+a#send-message-button i{
+    font-size: 1.6em;
+    line-height: 100%;
+}
+
+#send-message-modal {
+    max-width: 600px;
+}
