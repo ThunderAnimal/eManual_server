@@ -79,6 +79,7 @@ router.get('/dir_recent_products', productManager.getRecentlyCreatedProducts);
 
 //API ServiceProvider
 router.get('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.getAllServiceProviders);
+router.post('/service_provider/message', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.sendMessagesToConsumers);
 
 /*
 Currently the top categories are:
