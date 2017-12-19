@@ -95,7 +95,7 @@ footer {
 }
 
 #profile .title h2 {
-    font-size: 28px;
+    font-size: 1.4em;
     font-weight: 300;
     color: #fff;
     margin: 20px 0 10px 0;
@@ -174,9 +174,9 @@ div#welcome{
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
 }
 p.welcome{
-    padding: 3% 0;
+    padding: 2% 0;
     color: #25a2c3;
-    font-size:40px;
+    font-size:2em;
     margin: auto;
 }
 div#info{
@@ -194,7 +194,7 @@ div#info div{
 }
 div#info p{
     margin: 10px;
-    font-size: 20px;
+    font-size: 1.1em;
     text-align: center;
 }
 div#info p.N{
@@ -203,7 +203,7 @@ div#info p.N{
 div#createRepr{
     padding-right: 10%;
     padding-left: 10%;
-    padding-top: 8%;
+    padding-top: 40px;
     text-align: right;
 }
 div#separateContext{
