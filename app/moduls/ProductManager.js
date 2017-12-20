@@ -592,9 +592,13 @@ exports.getProductsSearch = function (req, res) {
 
 
     const startTime = new Date().getTime();
+
     //First find all Products where the title, manual description
     //or other text match
-    productModel.find({$text: {$search: searchText}})
+    productModel.find(
+        {$text: {$search: searchText, $language: "en" }},
+        {score: { $meta: "textScore" } })
+        .sort( { score: { $meta: "textScore" } } )
         .exec(function(err,products){
             if(err){
                 handleError(err);
@@ -610,13 +614,13 @@ exports.getProductsSearch = function (req, res) {
                 .populate({
                     path: 'company_id',
                     match: {
-                        $text: {$search: searchText}
+                        $text: {$search: searchText, $language: "en"}
                     }
                 })
                 .populate({
                     path: 'categories',
                     match: {
-                        $text: {$search: searchText}
+                        $text: {$search: searchText, $language: "en"}
                     }
                 })
                 .exec(function(err,productsPopulate){
