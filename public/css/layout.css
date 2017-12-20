@@ -178,13 +178,28 @@ button.alt:active,
 
 #btn_cat{
     background-color: #4d4d4d;
-    min-width: 100px;
+    min-width: 108px;
     font-size: 0.80rem;
     padding: 0 10px;
     border-radius: 3px 0 0 3px;
     box-shadow: none;
     height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
+
+#btn_cat p {
+    margin: 0;
+    font-size: 0.80rem;
+}
+
+#btn_cat i {
+    font-size: 100%;
+    line-height: 64px;
+    height: 64px;
+}
+
 #dropdown1{
     margin-top: 40px;
     min-width: 200px;
