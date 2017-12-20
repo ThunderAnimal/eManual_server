@@ -585,8 +585,58 @@ exports.getRecentlyCreatedProducts = (req, res) => {
 exports.getProductsSearch = function (req, res) {
     const searchText = req.query.search;
 
-    console.log(searchText);
+    const handleError = function (err) {
+        console.log(err);
+        res.status(500).send({_error: true, error: err});
+    };
 
-    //TODO IMPLEMENT SEARCH ENGINE
-    res.status(200).send([]);
+
+    const startTime = new Date().getTime();
+    //First find all Products where the title, manual description
+    //or other text match
+    productModel.find({$text: {$search: searchText}})
+        .exec(function(err,products){
+            if(err){
+                handleError(err);
+                return
+            }
+            let exclude_list = [];
+            for(let i = 0; i < products.length; i++){
+                exclude_list.push(products[i]._id);
+            }
+
+            //Then find other documents over populate from brand, and categorie
+            productModel.find({ '_id': { '$nin': exclude_list }})
+                .populate({
+                    path: 'company_id',
+                    match: {
+                        $text: {$search: searchText}
+                    }
+                })
+                .populate({
+                    path: 'categories',
+                    match: {
+                        $text: {$search: searchText}
+                    }
+                })
+                .exec(function(err,productsPopulate){
+                    if(err){
+                        handleError(err);
+                        return
+                    }
+                    productsPopulate = productsPopulate.filter(function(product) {
+                        return product.company_id || product.categories.length > 0;
+                    });
+
+                    res.status(200).send(products.concat(productsPopulate));
+                    const endTime = new Date().getTime();
+
+                    console.log("Search Results--------");
+                    console.log("   Number of Products: " + (products.length + productsPopulate.length));
+                    console.log("   Found by Product Name/Materials: " + products.length);
+                    console.log("   Found by Population of Product - Company/Categorie: " + productsPopulate.length);
+                    console.log("   Time needed for Search Enging: " + (endTime - startTime) + "ms");
+                });
+        });
+
 };
