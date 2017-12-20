@@ -180,17 +180,17 @@ p.welcome{
     margin: auto;
 }
 div#info{
-    padding-top: 5%;
+    margin-top: 5%;
     padding-right: 10%;
     padding-left: 10%;
     overflow: auto;
+    height: 100px;
+    box-sizing: border-box;
 }
 div#info div{
-    padding-left: 5%;
-    padding-right: 5%;
     float:left;
-    height:25%;
-    width: 25%;
+    height: 100%;
+    width: 24%;
 }
 div#info p{
     margin: 10px;
@@ -200,6 +200,15 @@ div#info p{
 div#info p.N{
     color: #25a2c3;
 }
+
+.separate-line {
+    height: 100%!important;
+    width: 1px!important;
+    padding: 0!important;
+    background-color: #717171;
+    opacity: 0.3;
+}
+
 div#createRepr{
     padding-right: 10%;
     padding-left: 10%;
@@ -216,7 +225,7 @@ div#separateContext div#line{
     height: 0;
     padding-right: 10%;
     padding-left: 10%;
-    border: 1px solid red;
+    border: 1px solid #f6755f;
 }
 div#separateContext div#textContent{
     margin-top: -35px;
