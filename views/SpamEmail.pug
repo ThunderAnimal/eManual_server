@@ -1,0 +1,30 @@
+extends layout
+
+block append stylesheet
+    link(rel="stylesheet", href="/assets/css/SpamEmail.css")
+
+block header
+      #wrapper
+            #top-space
+                nav#top-space-nav-bar
+                    a.homepage-link(href='#')
+                        img.logo-pic(src='/assets/img/logo.png', alt='dash')
+                    .header-search-container
+                        a#btn_cat.dropdown-button.btn(data-activates='dropdown1') categories
+                        ul(id='dropdown1' class='dropdown-content')
+                        input#header-search-field.input(type='text' name='search-field' placeholder="What is your brand or product?")
+                        a#header-search-button.waves-effect.waves-light.btn
+                            i.fa.fa-search
+                            p Search
+
+.form-style-8
+    h2 Send E-mail
+    form
+        select(name='text', placeholder='List of Companies')
+            option(name='text') List of Companies
+        input(type='text', name='field2', placeholder='Subject')
+        br
+        textarea(placeholder='Message', onkeyup='adjust_textarea(this)')
+        br
+        br
+        input(type='button', value='Send Message')
