@@ -6,22 +6,25 @@ block main
             .company-logo
 
         #manuals-list-header
-            #manuals-list-title List of products
+            #manuals-list-title List of Products
+
             #createProd
-                a.waves-effect.waves-circle.waves-light.btn-floating.secondary-content(href='/representatives/createProduct')
+                a.waves-square.waves-light.btn.secondary-content(href='/representatives/createProduct')
                     i.material-icons add
 
-        .container
-            a(id="btn_cat" class='dropdown-button btn' data-activates='dropdown1') sort by
-            ul(id='dropdown1' class='dropdown-content')
-                li(id='count')
-                    a Most selected
-                li(id='countR')
-                    a Least selected
-                li(id='name')
-                    a Ascending:A-Z
-                li(id='nameR')
-                    a Ascending:Z-A
+                .container
+                    a(id="btn_cat" class='dropdown-button btn' data-activates='dropdown1') sort by
+                        i.material-icons keyboard_arrow_down
+
+                    ul(id='dropdown1' class='dropdown-content')
+                        li(id='count')
+                            a Most selected
+                        li(id='countR')
+                            a Least selected
+                        li(id='name')
+                            a Ascending:A-Z
+                        li(id='nameR')
+                            a Descending:Z-A
         #separateContext
             #line
         #LOM

@@ -215,9 +215,10 @@ div#manuals-list-header #manuals-list-title{
 }
 
 div#createProd{
-    padding: 3px;
-    font-size: 150%;
+    padding: 1px;
+    font-size: 90%;
 }
+
 div#separateContext{
     padding-right: 10%;
     padding-left: 10%;
