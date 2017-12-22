@@ -72,12 +72,17 @@ router.get('/representatives/updateProduct', policy.isLoggedIn, function (req,re
     }
 });
 
+//DASHBOARD - ServiceProvider Spam Email
+router.get('/service_provider', policy.isLoggedIn, function (req,res) {
+    res.render('Spam Email', {user: req.user});
+});
+
 //Consumer
 router.get('/consumer', policy.isLoggedIn, function (req,res) {
     res.render('ConsumerPage', {user: req.user});
 });
 
-//ServiceProvider
+//ServiceProvider Rep list
 router.get('/service_provider', policy.isLoggedIn, function (req,res) {
     res.render('ServiceProviderPage', {user: req.user});
 });
