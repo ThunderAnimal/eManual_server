@@ -198,12 +198,30 @@ div#company-logo{
     background-size: cover;
 }
 div#manuals-list-header{
-    padding: 3% 10% 0.5% 10%;
-    overflow: auto;
+    padding: 0 10%;
+}
+
+div#manuals-list-header .row {
+    margin: 0;
+}
+
+div#manuals-list-header .sort-container {
+    width: auto;
+}
+div#manuals-list-header .control-panel {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
 }
+
+div#manuals-list-header .control-panel div{
+    width: 50%;
+}
+
+div#manuals-list-header .control-panel #sort-dropdown {
+    margin-top: 40px;
+}
+
 div#manuals-list-header #manuals-list-title{
     width: 100%;
     text-align: center;

@@ -6,17 +6,14 @@ block main
             .company-logo
 
         #manuals-list-header
-            #manuals-list-title List of Products
-
-            #createProd
-                a.waves-square.waves-light.btn.secondary-content(href='/representatives/createProduct')
-                    i.material-icons add
-
-                .container
-                    a(id="btn_cat" class='dropdown-button btn' data-activates='dropdown1') sort by
+            .row
+                #manuals-list-title List of Products
+            .row.control-panel
+                .sort-container
+                    a(id="btn_cat" class='dropdown-button btn' data-activates='sort-dropdown') sort by
                         i.material-icons keyboard_arrow_down
 
-                    ul(id='dropdown1' class='dropdown-content')
+                    ul(id='sort-dropdown' class='dropdown-content')
                         li(id='count')
                             a Most selected
                         li(id='countR')
@@ -25,6 +22,9 @@ block main
                             a Ascending:A-Z
                         li(id='nameR')
                             a Descending:Z-A
+                .add-product-button
+                    a.waves-square.waves-light.btn.secondary-content(href='/representatives/createProduct')
+                        i.material-icons add
         #separateContext
             #line
         #LOM
