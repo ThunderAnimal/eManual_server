@@ -34,12 +34,9 @@ block header
                             a(href="/logout" style="color: #f6755f") Logout
 
 block main
+
     div#product_id(data-id=id)
-    if isRepresantive
-        div.container
-            div.right
-                a.btn-floating.waves-effect.waves-light.materialize-red(href='/representatives/updateProduct?id=' + id)
-                    i.small.material-icons mode_edit
+
     .row.content
         #cat-list-wrapper.col.s3
             div#cat_list.collection.with-header
@@ -77,6 +74,12 @@ block main
                         li
                             img(src='/assets/img/product-placeholder.png')
 
+                if isRepresantive
+                  div.container
+                     div.right
+                        a.btn-floating.waves-effect.waves-light.materialize-red(href='/representatives/updateProduct?id=' + id)
+                           i.small.material-icons mode_edit
+
                 .product-details-left-column.col.s7
                     h5#manuals-header Manuals
                     div#manual-links
@@ -87,6 +90,7 @@ block main
                         //    li.collection-item.avatar
                         //        img.circle(src='images/yuna.jpg', alt='')
                         //        p title
+
     a#send-message-button.modal-trigger.fixed-action-btn(href='#send-message-modal')
         .waves-effect.waves-circle.waves-light.btn-floating.btn-large
             i.fa.fa-envelope-o

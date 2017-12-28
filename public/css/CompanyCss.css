@@ -256,9 +256,8 @@ div#LOR ul li{
     float: left;
 }
 div#LOR ul li #pic{
-    text-align: right;
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 0 8px rgba(82, 168, 236, 0.6);
     background-color: #e1e1e1;
     border-radius: 3px;
@@ -266,7 +265,6 @@ div#LOR ul li #pic{
 }
 
 div#LOR ul li p{
-    text-align: center;
-    margin: 0;
-    height: auto;
+    text-align: justify;
+    margin: 2%;
 }
