@@ -90,10 +90,10 @@ block main
                         //    li.collection-item.avatar
                         //        img.circle(src='images/yuna.jpg', alt='')
                         //        p title
-
-    a#send-message-button.modal-trigger.fixed-action-btn(href='#send-message-modal')
-        .waves-effect.waves-circle.waves-light.btn-floating.btn-large
-            i.fa.fa-envelope-o
+    if isCustomer
+        a#send-message-button.modal-trigger.fixed-action-btn(href='#send-message-modal')
+            .waves-effect.waves-circle.waves-light.btn-floating.btn-large
+                i.fa.fa-envelope-o
     #send-message-modal.modal
         .modal-content
             .row
