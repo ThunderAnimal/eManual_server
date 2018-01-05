@@ -6,15 +6,18 @@ const RepresentativeModel = require('../app/models/Representative');
 const CategoryModel = require('../app/models/Category');
 const ProductModel = require('../app/models/Product');
 const ConsumerModel = require('../app/models/Consumer');
+const ServiceProviderModel = require('../app/models/ServiceProvider');
 
 const dropData = function (done) {
     CompanyModel.remove({}, function () {
         RepresentativeModel.remove({}, function () {
-            CategoryModel.remove({}, function () {
-                ProductModel.remove({}, function () {
-                    ConsumerModel.remove({}, done);
+            ServiceProviderModel.remove({}, function () {
+                CategoryModel.remove({}, function () {
+                    ProductModel.remove({}, function () {
+                        ConsumerModel.remove({}, done);
+                    });
                 });
-            });
+            })
         });
     });
 };
@@ -208,6 +211,24 @@ const createCompanys = function (done) {
              });
          });
    };
+
+const createServiceProvider = function (done) {
+    const serviceProvider1 = new ServiceProviderModel({
+        login: "admin@repair24.com",
+        password: "1234",
+        name: "repair24"
+    });
+
+    const serviceProvider2 = new ServiceProviderModel({
+        login: "admin@abcservice.com",
+        password: "1234",
+        name: "abcservice"
+    });
+
+    serviceProvider1.save(function () {
+        serviceProvider2.save(done);
+    })
+};
 
 const createRepresentas = function (company, done) {
     const represent1 = new RepresentativeModel({
@@ -1372,16 +1393,18 @@ dropData(function () {
 
             });
         }
-        createCategories(function (categories) {
-            createProducts(companies, categories, function () {
-                createConsumer(function () {
-                    console.log("---");
-                    console.log("Finished");
-                    setTimeout(function () {
-                        process.exit(0);
-                    }, 2000);
-                });
+        createServiceProvider(function () {
+            createCategories(function (categories) {
+                createProducts(companies, categories, function () {
+                    createConsumer(function () {
+                        console.log("---");
+                        console.log("Finished");
+                        setTimeout(function () {
+                            process.exit(0);
+                        }, 2000);
+                    });
 
+                });
             });
         });
     });
