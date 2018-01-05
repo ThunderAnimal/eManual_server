@@ -71,20 +71,17 @@ router.get('/representatives/updateProduct', policy.isLoggedIn, function (req,re
             });
     }
 });
-
+router.get('/representatives/serviceprovider', policy.isLoggedIn, function(req,res){
+    res.render('RepresentativeServiceProviders', {name: req.user.name});
+});
 //DASHBOARD - ServiceProvider Spam Email
 router.get('/service_provider', policy.isLoggedIn, function (req,res) {
-    res.render('Spam Email', {user: req.user});
+    res.render('SpamEmail', {user: req.user});
 });
 
 //Consumer
 router.get('/consumer', policy.isLoggedIn, function (req,res) {
     res.render('ConsumerPage', {user: req.user});
-});
-
-//ServiceProvider Rep list
-router.get('/service_provider', policy.isLoggedIn, function (req,res) {
-    res.render('ServiceProviderPage', {user: req.user});
 });
 
 //Browse Category
