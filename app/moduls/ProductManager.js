@@ -632,14 +632,17 @@ exports.getProductsSearch = function (req, res) {
                         return product.company_id || product.categories.length > 0;
                     });
 
-                    res.status(200).send(products.concat(productsPopulate));
                     const endTime = new Date().getTime();
+
+                    fillProductFavorite(products.concat(productsPopulate),req.user,function (product_list) {
+                        res.status(200).send(product_list);
+                    });
 
                     console.log("Search Results--------");
                     console.log("   Number of Products: " + (products.length + productsPopulate.length));
                     console.log("   Found by Product Name/Materials: " + products.length);
                     console.log("   Found by Population of Product - Company/Categorie: " + productsPopulate.length);
-                    console.log("   Time needed for Search Enging: " + (endTime - startTime) + "ms");
+                    console.log("   Time needed for Search Engine: " + (endTime - startTime) + "ms");
                 });
         });
 
