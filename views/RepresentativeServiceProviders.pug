@@ -3,8 +3,14 @@ extends RepresentativesPage
 block main
     #main
         #company-logo
-            .company-logo
 
+        #manuals-list-header
+            .row
+                #manuals-list-title List of Service Providers
+            .row.control-panel
+
+        #separateContext
+            #line
 
         #LOM
             template#serviceProviderTemp
@@ -17,7 +23,7 @@ block main
                         .product-select
                             a.btn-floating.waves-effect.waves-light.add-selection
                                 i.material-icons add
-                            a.btn-floating.waves-effect.waves-light.remove-selection(style="display:none")
+                            a.btn-floating.grey.darken-3.waves-effect.waves-light.remove-selection(style="display:none")
                                 i.material-icons remove
                             p.servicProviderID(style="display:none") something something
             ul#serviceUl
