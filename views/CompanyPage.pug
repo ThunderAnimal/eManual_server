@@ -21,37 +21,20 @@ block sidebar
                             h2 Member Since
                             h3 2017
                     ul#navigation
-                        li
+                        li.sidebar-active
                             a(href='#Dashboard')
                                 .icon.icon-dashboard
-                                    img(src='/assets/img/dashboard.png', alt='dash', height='35', width='35')
+                                    .fa.fa-address-card-o
                                 .text Dashboard
                         li
-                            a(href='#Manual')
-                                .icon.icon-manual
-                                    img(src='/assets/img/manuals.png', alt='dash', height='35', width='35')
-                                .text Manual
-                        li
-                            a(href='#......')
-                                .icon.icon-edit
-                                .text ......
-                        li
-                            a(href='#......')
-                                .icon.icon-time
-                                .text ......
-                        li
-                            a(href='#......')
-                                .icon.icon-picture
-                                .text ......
-                        li
-                            a(href='#Settings')
-                                .icon.icon-setting
-                                    img(src= '/assets/img/settings.png', alt='dash', height='35', width='35')
-                                .text Settings
+                            a(href='#ServiceProviders')
+                                .icon.icon-providers
+                                    .fa.fa-wrench
+                                .text Service providers
                         li.external
                             a(href='/logout')
                                 .icon.icon-logout
-                                    img(src='/assets/img/logout.png', alt='dash', height='35', width='35')
+                                    .fa.fa-sign-out
                                 .text Logout
 
 block main

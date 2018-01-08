@@ -1,8 +1,57 @@
+var spamAddressValue = "";
+var isSubscribed = false;
+
 $(document).ready(function(){
     getData(renderData);
-    $('.modal').modal();
-});
 
+    $('.modal').modal({
+        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            getSpamData();
+        }
+    });
+
+    $("#update-spam-address").click(function(){
+        if(spamAddressValue != document.querySelector('#email').value) {
+            spamAddressValue = document.querySelector('#email').value;
+            $.ajax({
+                url: '/api/v1/spam_address',
+                type: 'PUT',
+                data: {spamAddress: spamAddressValue},
+                success: function (res) {
+                    console.log(res);
+                    Materialize.toast('New address for notifications saved! ' + spamAddressValue, 4000);
+                    $('.modal').modal('close');
+                },
+                error: function (err) {
+                    console.log(err);
+                    alert("error");
+                }
+            });
+        }
+        var checkBoxValue = $('#receive-mail').is(':checked')
+        if(!(isSubscribed && checkBoxValue)) {
+            $.ajax({
+                url: '/api/v1/toggle_optin',
+                type: 'PUT',
+                data: {optin: checkBoxValue},
+                success: function (res) {
+                    if (res === true) {
+                        Materialize.toast('You will now receive notifications', 4000);
+                    } else if (res === false) {
+                        Materialize.toast('You unsubscribed from notifications', 4000);
+                    }
+                    $('.modal').modal('close');
+                },
+                error: function (err) {
+                    console.log(err);
+                    alert("error");
+                }
+            });
+        }
+        getSpamData();
+        $('.modal').modal('close');
+    });
+});
 
 
 var getData = function(callback){
@@ -31,8 +80,6 @@ var renderData = function(data){
         clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id;
         clonedTemplate.querySelector('.pic').src = products[k].profilePicture;
         clonedTemplate.querySelector('li').setAttribute('data-id', products[k]._id);
-
-
         clonedTemplate.querySelector('.product-delete a.remove-selection').addEventListener("click",function () {
             console.log(this);
             var that = this;
@@ -58,3 +105,21 @@ var renderData = function(data){
         ul.appendChild(clonedTemplate);
     }
 };
+
+var getSpamData = function(){
+    $.get('api/v1/spam_address', function(result){
+        document.querySelector('#email').value = result;
+        spamAddressValue = result;
+    }).fail(function(e) {
+        alert('Woops! Error to get Data'); // or whatever
+        console.log(e);
+    });
+
+    $.get('api/v1/get_subscription_status', function(result){
+        $('#receive-mail').prop('checked', result);
+        isSubscribed = result;
+    }).fail(function(e) {
+        alert('Woops! Error to get Data'); // or whatever
+        console.log(e);
+    });
+}

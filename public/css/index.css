@@ -23,18 +23,6 @@ main {
     padding: 0 7vw;
 }
 
-#btn_cat{
-    position: absolute;
-    top: 90px;
-    margin-left: 60px;
-    min-width: 200px;
-}
-#dropdown1{
-    margin-left: 60px;
-    margin-top: 40px;
-    min-width: 150px;
-}
-
 #search-widget {
     background: url(../img/bg/main_page_bg.jpg) no-repeat center center scroll;
     max-height: 730px;
@@ -76,6 +64,8 @@ main {
     font-weight: normal;
 }
 
+/* search field
+*****************************/
 #search-field-wrapper {
     margin-top: 30px;
 }
@@ -101,6 +91,7 @@ main {
     border: 0;
     height:100%;
     box-sizing: border-box;
+    width: 100%;
 }
 
 #search-button {
@@ -111,7 +102,7 @@ main {
     flex-direction: row;
     align-items: center;
     padding: 0 20px;
-    background: #e7434e;
+    background: #f6755f;
 }
 
 #search-button > i{
@@ -252,7 +243,8 @@ ul#categories-list .category-name {
 
 ul#categories-list .category-amount {
     color: #a4a3a3;
-    padding-left: 4px;
+    padding-left: 2px;
+    font-family: Raleway;
 }
 /*   recent products block
 *************************************************/

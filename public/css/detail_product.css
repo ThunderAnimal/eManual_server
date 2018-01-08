@@ -40,12 +40,13 @@
 }
 
 #cat_list .collection-header h4{
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     color: #25a2c3;
     margin: 0.1em 0;
 }
 .collection.with-header .collection-header{
-    border-bottom: 2px solid #4D4D4D;
+    border-bottom: 2px solid #4d4d4d;
+    border-top: 2px solid #f6755f;
 }
 #cat_list .collection-item{
     background-color: #f7f6f6;
@@ -53,8 +54,8 @@
 }
 
 #cat_list .collection-item:hover{
-    background-color: #f6755f;
-    color: #fff
+    background-color: #d0cfcf;
+    color: #f6755e
 }
 
 #cat_list a.collection-item{
@@ -154,4 +155,20 @@ ul#product-gallery li img{
 
 .remove-selection{
     background-color: #4D4D4D;
+}
+
+/* send message block
+*********************************/
+a#send-message-button div{
+    display: flex;
+    align-items: center;
+}
+
+a#send-message-button i{
+    font-size: 1.6em;
+    line-height: 100%;
+}
+
+#send-message-modal {
+    max-width: 600px;
 }

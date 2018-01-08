@@ -1,12 +1,11 @@
-//import
-"use strict"
-
-var mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
 //category schema
-
-var categorySchema=mongoose.Schema({
-    name:{ type:String, unique:true, require:true }
+const categorySchema = mongoose.Schema({
+    name: {type: String, unique: true, require: true, text: true}
 });
+
+//SEARCH INDEX for FULL TEXT
+categorySchema.index({name: 'text'});
 
 module.exports=mongoose.model("Category",categorySchema);

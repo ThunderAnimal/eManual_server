@@ -17,6 +17,7 @@ const serviceProvicderManager = require('../app/moduls/ServiceProviderManager');
 
 //API Company
 router.get('/company/:id', companyManager.getOne);
+router.get('/company/:id/service_provider', policy.isAuthorized, serviceProvicderManager.getListFromCompany);
 
 //API representatives
 router.route('/representatives')
@@ -59,13 +60,23 @@ router.delete('/product/:id',policy.isAuthorized, policy.onlyRepresentativeAllow
 router.post('/product/:id/material', policy.isAuthorized, policy.onlyRepresentativeAllowed, upload.fields([{ name: 'image'}, { name: 'resources'}]), productManager.addMaterials);
 router.delete('/product/:id/material', policy.isAuthorized, policy.onlyRepresentativeAllowed, productManager.deleteMaterials);
 
+router.get('/product_search', productManager.getProductsSearch);
+
+
+router.get('/product/:id/service_provider', policy.isAuthorized, serviceProvicderManager.getListFromProduct);
+
 //API Categories
 router.get('/categories', categoryManager.getAll);
 router.get('/category/:id', categoryManager.getOne);
 
+
+//API Consumers
+router.put('/toggle_optin', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.toggleOptIn); //Toggle subscribed or not subscribed
+router.get('/get_subscription_status', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.getSubscriptionStatus); //Sends info, whether subscribed or not
 router.get('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.getSelectedProduct);
 router.put('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.changeProducts);
 //TODO use this api when update spam address
+router.get('/spam_address',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.getSpamAddress);
 router.put('/spam_address',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.updateSpamAddress);
 //router.get('/consumerProducts', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.getConsumerProducts);
 
@@ -74,9 +85,8 @@ router.get('/dir_recent_products', productManager.getRecentlyCreatedProducts);
 
 //API ServiceProvider
 router.get('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.getAllServiceProviders);
-//API Consumers
-router.put('/toggle_optin', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.toggleOptIn); //Toggle subscribed or not subscribed
-router.get('/get_subscription_status', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.getSubscriptionStatus); //Sends info, whether subscribed or not
+router.post('/service_provider/message', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.sendMessagesToConsumers);
+
 /*
 Currently the top categories are:
 1. Televisions

@@ -6,6 +6,15 @@ block header
             div.nav-wrapper
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
+                .header-search-container
+                    a#btn_cat.dropdown-button.btn(data-activates='dropdown1')
+                        p categories
+                        i.material-icons arrow_drop_down
+                    ul(id='dropdown1' class='dropdown-content')
+                    input#header-search-field.input(type='text' name='search-field' placeholder="What is your brand or product?")
+                    a#header-search-button.waves-effect.waves-light.btn
+                        i.fa.fa-search
+                        p Search
                 #user-nav-ul
                     ul.right.user-login
                         if isLoggedIn
@@ -23,9 +32,6 @@ block header
                         li.divider
                         li
                             a(href="/logout" style="color: #f6755f") Logout
-            .container
-                a(id="btn_cat" class='dropdown-button btn materialize-red' data-activates='dropdown1') categories
-                ul(id='dropdown1' class='dropdown-content')
 block main
     #search-widget
         #search-wrapper
@@ -35,7 +41,7 @@ block main
             #search-field-wrapper
                 .search-container
                     div#search-field
-                        input.input(type='text' name='search-field' placeholder="Search manuals")
+                        input.input(type='text' name='search-field' placeholder="What is your brand or product?")
                     div#search-button.waves-effect.waves-light.btn
                         i.fa.fa-search
                         input(type='button' name='search-button' value='search')
@@ -68,9 +74,11 @@ block main
                             a(href="#")
                                 i.fa.fa-tv.category-name-icon
                                 p.category-name name
+                                |(
                                 p.category-amount (1234)
+                                |)
         #recent-manuals
-            h4#recent-products-header Recently added manuals
+            h4#recent-products-header Recently Added Products
             #recent-products-list-wrapper
                 ul#recent-products-list
                    template#productTemp

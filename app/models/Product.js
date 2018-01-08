@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const productsSchema = mongoose.Schema({
-    productName: String,
+    productName: {type: String, text:true},
     company_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Company'
@@ -16,13 +16,13 @@ const productsSchema = mongoose.Schema({
     productDescription:{type:String},
     favorites: {type: Number, default: 0},
     productResources: [{
-        description: String,
-        originalName: String,
+        description: {type: String, text:true},
+        originalName: {type: String, text:true},
         dataType: String,
         url: {type: String, requires: true}
     }],
     productLinks: [{
-        description: String,
+        description: {type: String, text:true},
         url: {type: String, requires: true}
     }]
 }, {
@@ -33,5 +33,13 @@ const productsSchema = mongoose.Schema({
 
 productsSchema.index({"createdAt": 1});
 productsSchema.index({"updatedAt": 1});
+
+//SEARCH INDEX for FULL TEXT
+productsSchema.index({
+    productName: 'text',
+    'productResources.description': 'text',
+    'productResources.originalName': 'text',
+    'productLinks.description': 'text'
+});
 
 module.exports = mongoose.model("product", productsSchema);

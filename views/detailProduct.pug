@@ -6,6 +6,15 @@ block header
             nav#top-space-nav-bar
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
+                .header-search-container
+                    a#btn_cat.dropdown-button.btn(data-activates='dropdown1')
+                        p categories
+                        i.material-icons arrow_drop_down
+                    ul(id='dropdown1' class='dropdown-content')
+                    input#header-search-field.input(type='text' name='search-field' placeholder="What is your brand or product?")
+                    a#header-search-button.waves-effect.waves-light.btn
+                        i.fa.fa-search
+                        p Search
                 #user-nav-ul
                     ul.right.user-login
                         if isLoggedIn
@@ -25,12 +34,9 @@ block header
                             a(href="/logout" style="color: #f6755f") Logout
 
 block main
+
     div#product_id(data-id=id)
-    if isRepresantive
-        div.container
-            div.right
-                a.btn-floating.waves-effect.waves-light.materialize-red(href='/representatives/updateProduct?id=' + id)
-                    i.small.material-icons mode_edit
+
     .row.content
         #cat-list-wrapper.col.s3
             div#cat_list.collection.with-header
@@ -41,7 +47,7 @@ block main
             div.divider
             if isCustomer
                 .row
-                    .col.offset-s4.s7.right-align
+                    .col.s7.right-align.offset-s4
                         a.btn.waves-effect.waves-light.add-selection Add Selection
                         a.btn.waves-effect.waves-light.remove-selection(style="display:none") Remove Selection
             .row
@@ -68,6 +74,12 @@ block main
                         li
                             img(src='/assets/img/product-placeholder.png')
 
+                if isRepresantive
+                  div.container
+                     div.right
+                        a.btn-floating.waves-effect.waves-light.materialize-red(href='/representatives/updateProduct?id=' + id)
+                           i.small.material-icons mode_edit
+
                 .product-details-left-column.col.s7
                     h5#manuals-header Manuals
                     div#manual-links
@@ -78,7 +90,30 @@ block main
                         //    li.collection-item.avatar
                         //        img.circle(src='images/yuna.jpg', alt='')
                         //        p title
-
+    if isCustomer
+        a#send-message-button.modal-trigger.fixed-action-btn(href='#send-message-modal')
+            .waves-effect.waves-circle.waves-light.btn-floating.btn-large
+                i.fa.fa-envelope-o
+    #send-message-modal.modal
+        .modal-content
+            .row
+                .input-field.col.s12
+                    input.validate(placeholder="Title" id="message-title" type="text")
+                    label(for="message-title") Title
+            .row
+                .input-field.col.s12
+                    select(name="providers" id="providers" required="true" multiple="true")
+                        option(value="" disabled) Choose your categories
+                        option(value="1") Option 1
+                    label Providers
+            .row
+                .input-field.col.s12
+                    textarea#textarea1.materialize-textarea
+                    label(for="textarea1") Textarea
+            .row
+                p.modal-buttons
+                    a.waves-effect.waves-light.btn Update
+                    a.waves-effect.waves-light.btn.materialize-red.modal-close Cancel
 block stylesheet
     link(rel="stylesheet" href="assets/css/detail_product.css")
 

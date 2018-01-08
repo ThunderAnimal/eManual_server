@@ -6,15 +6,18 @@ const RepresentativeModel = require('../app/models/Representative');
 const CategoryModel = require('../app/models/Category');
 const ProductModel = require('../app/models/Product');
 const ConsumerModel = require('../app/models/Consumer');
+const ServiceProviderModel = require('../app/models/ServiceProvider');
 
 const dropData = function (done) {
     CompanyModel.remove({}, function () {
         RepresentativeModel.remove({}, function () {
-            CategoryModel.remove({}, function () {
-                ProductModel.remove({}, function () {
-                    ConsumerModel.remove({}, done);
+            ServiceProviderModel.remove({}, function () {
+                CategoryModel.remove({}, function () {
+                    ProductModel.remove({}, function () {
+                        ConsumerModel.remove({}, done);
+                    });
                 });
-            });
+            })
         });
     });
 };
@@ -37,6 +40,7 @@ const createConsumer = function (done) {
                         password: "1234",
                         email: "don@godfather.com",
                         spamAddress:"don@godfather.com",
+                        optin: false,
                         image: "https://duckduckgo.com/i/6351f747.jpg",
                         products: [data2._id]
                     });
@@ -46,13 +50,39 @@ const createConsumer = function (done) {
                         password: "1234",
                         email: "whysoserious@gotham.com",
                         spamAddress:"whysoserious@gotham.com",
+                        optin: false,
                         image: "https://vignette.wikia.nocookie.net/batman/images/7/79/Heath_ledger_joker.jpg",
                         products: [data2._id]
                     });
 
+                    const consumer3 = new ConsumerModel({
+                       username: "eyuel",
+                       password: "1234",
+                       email: "eyueltb@gmail.com",
+                       spamAddress:"eyueltb@gmail.com",
+                       optin: false,
+                       image: " ",
+                       products: [data2._id]
+                       });
+                     const consumer4 = new ConsumerModel({
+                       username: "eyuel",
+                       password: "1234",
+                       email: "eyuel.tesfaye13@gmail.com",
+                       spamAddress:"eyuel.tesfaye13@gmail.com",
+                       optin: false,
+                       image: " ",
+                       products: [data2._id]
+                       });
+
+
+
                     consumer1.save(function () {
                         consumer2.save(function (){
+                         consumer3.save(function (){
+                          consumer4.save(function (){
                             done(consumer1, consumer2);
+                          });
+                         });
                         });
                     });
                 }
@@ -181,6 +211,27 @@ const createCompanys = function (done) {
              });
          });
    };
+
+const createServiceProvider = function (company,done) {
+    const serviceProvider1 = new ServiceProviderModel({
+        login: "admin@repair24.com",
+        password: "1234",
+        name: "repair24"
+    });
+
+    const serviceProvider2 = new ServiceProviderModel({
+        login: "admin@abcservice.com",
+        password: "1234",
+        name: "abcservice"
+    });
+
+    serviceProvider1.save(function () {
+        company.serviceProvider_id.push(serviceProvider1);
+        company.save(function(){
+            serviceProvider2.save(done);
+        });
+    })
+};
 
 const createRepresentas = function (company, done) {
     const represent1 = new RepresentativeModel({
@@ -1345,16 +1396,18 @@ dropData(function () {
 
             });
         }
-        createCategories(function (categories) {
-            createProducts(companies, categories, function () {
-                createConsumer(function () {
-                    console.log("---");
-                    console.log("Finished");
-                    setTimeout(function () {
-                        process.exit(0);
-                    }, 2000);
-                });
+        createServiceProvider(companies[0],function () {
+            createCategories(function (categories) {
+                createProducts(companies, categories, function () {
+                    createConsumer(function () {
+                        console.log("---");
+                        console.log("Finished");
+                        setTimeout(function () {
+                            process.exit(0);
+                        }, 2000);
+                    });
 
+                });
             });
         });
     });

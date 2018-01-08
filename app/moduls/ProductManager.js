@@ -582,3 +582,68 @@ exports.getRecentlyCreatedProducts = (req, res) => {
     });
 };
 
+exports.getProductsSearch = function (req, res) {
+    const searchText = req.query.search;
+
+    const handleError = function (err) {
+        console.log(err);
+        res.status(500).send({_error: true, error: err});
+    };
+
+
+    const startTime = new Date().getTime();
+
+    //First find all Products where the title, manual description
+    //or other text match
+    productModel.find(
+        {$text: {$search: searchText, $language: "en" }},
+        {score: { $meta: "textScore" } })
+        .sort( { score: { $meta: "textScore" } } )
+        .exec(function(err,products){
+            if(err){
+                handleError(err);
+                return
+            }
+            let exclude_list = [];
+            for(let i = 0; i < products.length; i++){
+                exclude_list.push(products[i]._id);
+            }
+
+            //Then find other documents over populate from brand, and categorie
+            productModel.find({ '_id': { '$nin': exclude_list }})
+                .populate({
+                    path: 'company_id',
+                    match: {
+                        $text: {$search: searchText, $language: "en"}
+                    }
+                })
+                .populate({
+                    path: 'categories',
+                    match: {
+                        $text: {$search: searchText, $language: "en"}
+                    }
+                })
+                .exec(function(err,productsPopulate){
+                    if(err){
+                        handleError(err);
+                        return
+                    }
+                    productsPopulate = productsPopulate.filter(function(product) {
+                        return product.company_id || product.categories.length > 0;
+                    });
+
+                    const endTime = new Date().getTime();
+
+                    fillProductFavorite(products.concat(productsPopulate),req.user,function (product_list) {
+                        res.status(200).send(product_list);
+                    });
+
+                    console.log("Search Results--------");
+                    console.log("   Number of Products: " + (products.length + productsPopulate.length));
+                    console.log("   Found by Product Name/Materials: " + products.length);
+                    console.log("   Found by Population of Product - Company/Categorie: " + productsPopulate.length);
+                    console.log("   Time needed for Search Engine: " + (endTime - startTime) + "ms");
+                });
+        });
+
+};

@@ -1,4 +1,5 @@
-extends  layout
+extends layout
+
 
 block header
     #wrapper
@@ -35,14 +36,8 @@ block header
 
 block main
     .row.content
-        #cat-list-wrapper.col.s3
-            div#cat_list.collection.with-header
-
-        .col.s9
-            div.category-header.center-align.section
-                h2#current_cat
-                div#category_breadcrumb.left-align
-
+          .col.s10.offset-s1
+            div.category-header.left-align.section
             div.divider
             div#product_block.section
                 #LOM
@@ -62,9 +57,7 @@ block main
                                     a(href='#')
                                         h3 Product Title - Model
                                     p lorem ipsum dolor sit amet. lorem ipsum dolor sit amet, ipsum dolor sit amet, lorem ipsum dolor sit amet
-
-
 block stylesheet
-    link(rel="stylesheet" href="assets/css/category.css")
+    link(rel="stylesheet" href="assets/css/SearchPage.css")
 block javascript
-    script(src='/assets/js/category.js')
+    script(src='/assets/js/search.js')

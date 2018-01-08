@@ -87,7 +87,7 @@ footer {
 
 #welcome-repr h2{
     font-weight: 300;
-    color: #f6755e;
+    color: #f6755f;
     font-family: Raleway;
     font-size: 2em;
     text-align: center;
@@ -198,26 +198,45 @@ div#company-logo{
     background-size: cover;
 }
 div#manuals-list-header{
-    padding: 3% 10% 0.5% 10%;
-    overflow: auto;
+    padding: 0 10%;
+}
+
+div#manuals-list-header .row {
+    margin: 0;
+}
+
+div#manuals-list-header .sort-container {
+    width: auto;
+}
+div#manuals-list-header .control-panel {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
 }
+
+div#manuals-list-header .control-panel div{
+    width: 50%;
+}
+
+div#manuals-list-header .control-panel #sort-dropdown {
+    margin-top: 40px;
+}
+
 div#manuals-list-header #manuals-list-title{
     width: 100%;
     text-align: center;
     float: left;
     font-size: 22px;
-    color: #e7434e;
+    color: #f6755f;
     font-weight: 300;
     font-family: 'Raleway', 'Open Sans', sans-serif;
 }
 
 div#createProd{
-    padding: 3px;
-    font-size: 150%;
+    padding: 1px;
+    font-size: 90%;
 }
+
 div#separateContext{
     padding-right: 10%;
     padding-left: 10%;

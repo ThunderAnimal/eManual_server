@@ -12,7 +12,7 @@ main > div.row.content {
 }
 
 .category-header .breadcrumb{
-     color: #25a2c3;
+    color: #25a2c3;
 }
 
 .category-header .breadcrumb:before{
@@ -43,8 +43,7 @@ main > div.row.content {
     margin: 0.1em 0;
 }
 .collection.with-header .collection-header{
-    border-bottom: 2px solid #4d4d4d;
-    border-top: 2px solid #f6755f;
+    border-bottom: 1px solid #9b9a9a;
 }
 #cat_list .collection-item{
     background-color: #f7f6f6;
@@ -52,8 +51,8 @@ main > div.row.content {
 }
 
 #cat_list .collection-item:hover{
-    background-color: #d0cfcf;
-    color: #f6755e
+    background-color: #f6755f;
+    color: #fff
 }
 
 #cat_list a.collection-item{

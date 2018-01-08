@@ -9,12 +9,15 @@ block main
                 #Manual
                     p.N 0
                     p.T Product Manuals
+                .separate-line
                 #Repr
                     p.N 0
                     p.T Representatives
+                .separate-line
                 #View
                     p.N 0
                     p.T Total Views
+                .separate-line
                 #Com
                     p.N 0
                     p.T Total Comments
@@ -27,12 +30,13 @@ block main
                 #textContent
                     p.LOR List of Representatives
             #LOR
+
                 template#RepNameTemp
                     li
                         #pic
-                            #editPic
+                            //#editPic
                                 img.edit(src='../assets/img/Edit.png', alt='edit', height='20', width='20')
-                            #deletePic
+                            //#deletePic
                                 img.delete(src='../assets/img/delete.png', alt='delete', height='20', width='20')
 
                         p
