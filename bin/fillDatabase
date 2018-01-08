@@ -212,7 +212,7 @@ const createCompanys = function (done) {
          });
    };
 
-const createServiceProvider = function (done) {
+const createServiceProvider = function (company,done) {
     const serviceProvider1 = new ServiceProviderModel({
         login: "admin@repair24.com",
         password: "1234",
@@ -226,7 +226,10 @@ const createServiceProvider = function (done) {
     });
 
     serviceProvider1.save(function () {
-        serviceProvider2.save(done);
+        company.serviceProvider_id.push(serviceProvider1);
+        company.save(function(){
+            serviceProvider2.save(done);
+        });
     })
 };
 
@@ -1393,7 +1396,7 @@ dropData(function () {
 
             });
         }
-        createServiceProvider(function () {
+        createServiceProvider(companies[0],function () {
             createCategories(function (categories) {
                 createProducts(companies, categories, function () {
                     createConsumer(function () {

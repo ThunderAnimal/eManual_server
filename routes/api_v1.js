@@ -17,6 +17,7 @@ const serviceProvicderManager = require('../app/moduls/ServiceProviderManager');
 
 //API Company
 router.get('/company/:id', companyManager.getOne);
+router.get('/company/:id/service_provider', policy.isAuthorized, serviceProvicderManager.getListFromCompany);
 
 //API representatives
 router.route('/representatives')
@@ -60,6 +61,9 @@ router.post('/product/:id/material', policy.isAuthorized, policy.onlyRepresentat
 router.delete('/product/:id/material', policy.isAuthorized, policy.onlyRepresentativeAllowed, productManager.deleteMaterials);
 
 router.get('/product_search', productManager.getProductsSearch);
+
+
+router.get('/product/:id/service_provider', policy.isAuthorized, serviceProvicderManager.getListFromProduct);
 
 //API Categories
 router.get('/categories', categoryManager.getAll);
