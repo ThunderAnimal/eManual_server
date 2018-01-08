@@ -5,6 +5,10 @@ const productModel = require(MODEL_PATH + 'Product');
 const companyManager = require(MODUL_PATH+'CompanyManager');
 const productManager = require(MODUL_PATH+'ProductManager');
 
+const serviceProviderModel = require(MODEL_PATH + 'ServiceProvider');
+const mailManager = require('./MailManager');
+
+
 
 exports.create = function (req, res, next) {
 
@@ -294,5 +298,32 @@ exports.getSubscriptionStatus = (req, res) => {
         else {
             res.status(200).send(data.optin);
         }
+    });
+};
+
+exports.messagesToServiceProviders=function (req,res) {
+    const subject = req.body.subject;
+    const message = req.body.message;
+    let serviceProviders_list = req.body.serviceProviders;
+    if (!subject || !message || serviceProviders_list) {
+        return res.status(400).send({_error: true, error: "Wrong Parameters"});
+    }
+
+    if (!Array.isArray(serviceProviders_list)) {
+        serviceProviders_list = [serviceProviders_list];
+    }
+    serviceProviderModel.find({
+        '_id': {$in: serviceProviders_list},
+    }, function (err, serviceProviders) {
+        if (err) {
+            console.log(err);
+            return res.status(500).send({_error: true, error: err});
+        }
+
+        for (let i = 0; i < serviceProviders.length; i++) {
+            mailManager.sendMessage("info@manualpik.com", serviceProviders.login, subject, message);
+        }
+
+        res.status(200).send({send: true, count: serviceProviders.length});
     });
 };
