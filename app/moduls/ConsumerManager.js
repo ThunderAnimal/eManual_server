@@ -321,7 +321,7 @@ exports.messagesToServiceProviders=function (req,res) {
         }
 
         for (let i = 0; i < serviceProviders.length; i++) {
-            mailManager.sendMessage("info@manualpik.com", serviceProviders.login, subject, message);
+            mailManager.sendMessage("info@manualpik.com", serviceProviders[i].login, subject, message);
         }
 
         res.status(200).send({send: true, count: serviceProviders.length});
