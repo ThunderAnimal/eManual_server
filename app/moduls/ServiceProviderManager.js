@@ -5,6 +5,7 @@ const consumerModel = require(MODEL_PATH + 'Consumer');
 const productModel =  require(MODEL_PATH + 'Product');
 
 const authManager = require("./authManager");
+const mailManager = require("./MailManager");
 
 const fillServiceProviderAuthorization = function(service_list, user, done){
     if(!user){
@@ -124,8 +125,9 @@ exports.sendMessagesToConsumers = function(req, res){
                 '_id': { $in : user_list},
                 'optin': true
             }, function (err, consumers) {
-                //TODO SEND MESSAGES --> have a look at the MailManager
-
+                for(let i = 0; i < consumers.length; i++){
+                    mailManager.sendMessage("info@manualpik.com", consumers[i].spamAddress, subject, message);
+                }
 
                 res.status(200).send({send: true, count: consumers.length});
             });
