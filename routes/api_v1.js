@@ -75,7 +75,6 @@ router.put('/toggle_optin', policy.isAuthorized, policy.onlyCustomerAllowed, con
 router.get('/get_subscription_status', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.getSubscriptionStatus); //Sends info, whether subscribed or not
 router.get('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.getSelectedProduct);
 router.put('/selected_product',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.changeProducts);
-//TODO use this api when update spam address
 router.get('/spam_address',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.getSpamAddress);
 router.put('/spam_address',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.updateSpamAddress);
 //router.get('/consumerProducts', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.getConsumerProducts);
@@ -85,6 +84,8 @@ router.get('/dir_recent_products', productManager.getRecentlyCreatedProducts);
 
 //API ServiceProvider
 router.get('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.getAllServiceProviders);
+router.put('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.addServiceProvider);
+router.delete('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.deleteServiceProvider);
 router.post('/service_provider/message', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.sendMessagesToConsumers);
 
 /*

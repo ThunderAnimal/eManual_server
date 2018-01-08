@@ -81,6 +81,64 @@ exports.getListFromCompany = function (req, res) {
         });
 };
 
+exports.addServiceProvider = function(req,res){
+    const company_id = authManager.getCompanyId(req.user);
+    const serviceProvider_id = req.body.spID;
+
+    serviceProviderModel.findById(serviceProvider_id,function (err, sp) {
+        sp.company_id.push(company_id);
+        sp.save(function (err) {
+            if(err){
+                console.log(err);
+                res.status(500).send(err);
+            }else {
+                companyModel.findById(company_id,function (err, c) {
+                    c.serviceProvider_id.push(serviceProvider_id);
+                    c.save(function (err) {
+                        if(err){
+                            console.log(err);
+                            res.status(500).send(err);
+                        }else {
+
+                            res.status(200).send("success");
+                        }
+                    });
+                });
+            }
+        });
+    });
+
+
+};
+
+exports.deleteServiceProvider = function(req,res){
+    const company_id = authManager.getCompanyId(req.user);
+    const serviceProvider_id = req.body.spID;
+
+    serviceProviderModel.findById(serviceProvider_id,function (err, sp) {
+        sp.company_id.splice(sp.company_id.indexOf(company_id), 1);
+        sp.save(function (err) {
+            if(err){
+                console.log(err);
+                res.status(500).send(err);
+            }else {
+                companyModel.findById(company_id,function (err, c) {
+                    c.serviceProvider_id.splice(c.serviceProvider_id.indexOf(serviceProvider_id), 1);
+                    c.save(function (err) {
+                        if(err){
+                            console.log(err);
+                            res.status(500).send(err);
+                        }else {
+                            res.status(200).send("success");
+                        }
+                    });
+                })
+            }
+        });
+    });
+
+
+};
 
 exports.sendMessagesToConsumers = function(req, res){
     const subject = req.body.subject;

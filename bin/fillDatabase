@@ -225,6 +225,7 @@ const createServiceProvider = function (company,done) {
         name: "abcservice"
     });
 
+    serviceProvider1.company_id.push(company);
     serviceProvider1.save(function () {
         company.serviceProvider_id.push(serviceProvider1);
         company.save(function(){
