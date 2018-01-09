@@ -305,7 +305,8 @@ exports.messagesToServiceProviders=function (req,res) {
     const subject = req.body.subject;
     const message = req.body.message;
     let serviceProviders_list = req.body.serviceProviders;
-    if (!subject || !message || serviceProviders_list) {
+
+    if (!subject || !message || !serviceProviders_list) {
         return res.status(400).send({_error: true, error: "Wrong Parameters"});
     }
 
