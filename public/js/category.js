@@ -78,6 +78,7 @@ var renderData = function(data){
         var clonedTemplate = temp.content.cloneNode(true);
         clonedTemplate.querySelector("h3").innerText = products[k].productName;
         clonedTemplate.querySelector(".product-info a").href = href='/product?id=' + products[k]._id + productLinkEnd;
+        clonedTemplate.querySelector(".product-info p").innerText = products[k].productDescription;
         clonedTemplate.querySelector('.product-pic img').src = products[k].profilePicture;
         clonedTemplate.querySelector('.product-select p').textContent = products[k]._id;
         if(products[k].isFavorite){

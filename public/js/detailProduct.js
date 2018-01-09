@@ -163,6 +163,8 @@ var renderProductData = function(data){
     var links = data.productLinks;
 
     $('#product_name').text(data.productName);
+    $('#product_description').text(data.productDescription);
+
     $('#product_image').attr('src', data.profilePicture);
 
     if(data.isFavorite){
