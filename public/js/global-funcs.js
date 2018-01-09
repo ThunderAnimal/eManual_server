@@ -14,8 +14,12 @@ $('#send-message-modal').modal({
     }
 });
 
+$('#send-message-button').click(function(){
+    getProvidersData();
+});
+
 var getProvidersData = function(){
-    $.get('api/v1/categories', function(result){
+    $.get('product/'+ $('#product_id').data('id') +'/service_provider', function(result){
         renderProvidersData(result);
     });
 };
