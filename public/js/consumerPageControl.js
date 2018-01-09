@@ -4,12 +4,11 @@ var isSubscribed = false;
 $(document).ready(function(){
     getData(renderData);
 
-    $('.modal').modal({
+    $('#modal-spam-address-popup').modal({
         ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
             getSpamData();
         }
     });
-
     $("#update-spam-address").click(function(){
         if(spamAddressValue != document.querySelector('#email').value) {
             spamAddressValue = document.querySelector('#email').value;
@@ -53,6 +52,7 @@ $(document).ready(function(){
     });
 });
 
+$('select').material_select();
 
 var getData = function(callback){
     $.get('api/v1/selected_product', function(result){

@@ -94,28 +94,28 @@ block main
                                         i.material-icons remove
                                 .product-send-mess
                                     a.btn-floating.waves-effect.waves-light.cyan-text.text-lighten-1.fa.fa-envelope.modal-trigger(href="#send-message-modal")
-                    #send-message-modal.modal
-                        .modal-content
-                            .row
-                                .input-field.col.s12
-                                    input.validate(placeholder="Title" id="message-title" type="text")
-                                    label(for="message-title") Title
-                            .row
-                                .input-field.col.s12
-                                    select(name="providers" id="providers" required="true" multiple="true")
-                                        option(value="" disabled) Choose your categories
-                                        option(value="1") Option 1
-                                    label Providers
-                            .row
-                                .input-field.col.s12
-                                    textarea#textarea1.materialize-textarea
-                                    label(for="textarea1") Textarea
-                            .row
-                                p.modal-buttons
-                                    a.waves-effect.waves-light.btn Update
-                                    a.waves-effect.waves-light.btn.materialize-red.modal-close Cancel
             #uploaded.col.s12 Uploaded
             #comments.col.s12 Comments
 
+        #send-message-modal.modal
+            .modal-content
+                .row
+                    .input-field.col.s12
+                        input.validate(placeholder="Title" id="message-title" type="text")
+                        label(for="message-title") Title
+                .row
+                    .input-field.col.s12
+                        select(name="providers" id="providers" required="true" multiple="true")
+                            option(value="" disabled) Choose your categories
+                            option(value="1") Option 1
+                        label Providers
+                .row
+                    .input-field.col.s12
+                        textarea#textarea1.materialize-textarea
+                        label(for="textarea1") Textarea
+                .row
+                    p.modal-buttons
+                        a.waves-effect.waves-light.btn Update
+                        a.waves-effect.waves-light.btn.materialize-red.modal-close Cancel
 block append javascript
     script(src='/assets/js/consumerPageControl.js')
