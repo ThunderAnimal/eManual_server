@@ -35,32 +35,35 @@ exports.changeProducts=function (req,res,next) {
     const clientAdd = req.body.add;
     const clientDelete = req.body.delete;
 
-    consumerModel.find({}, function (err, data) {
-        if (err) {
-            console.log(err);
-        }
-    });
     let updateConsumerModel = function (userId, done) {
         consumerModel.findOne({_id: userId}, function (err, consumer) {
             if (clientAdd) {
                 consumer.products.push(product_id);
-                consumer.save();
+                consumer.save(function (err, result) {
+                    if(err){
+                        console.log(err);
+                        res.status(500).send(err);
+                        return;
+                    }
 
-
-                // res.send("successfully added");
-                done(true);
+                    done(true);
+                });
             } else if (clientDelete) {
                 if (consumer.products.indexOf(product_id) !== -1) {
                     consumer.products.splice(consumer.products.indexOf(product_id), 1)
                 }
 
-                consumer.save();
-                // res.send("success deleted");
-                done(false);
-
+                consumer.save(function (err, save) {
+                    if(err){
+                        console.log(err);
+                        res.status(500).send(err);
+                        return;
+                    }
+                    done(false);
+                });
             }
             else {
-                res.status(400).send("no input")
+                res.status(400).send("Wrong Parameters!");
             }
         });
 
