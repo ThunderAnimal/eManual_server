@@ -91,29 +91,30 @@ block main
                         //        img.circle(src='images/yuna.jpg', alt='')
                         //        p title
     if isCustomer
-        a#send-message-button.modal-trigger.fixed-action-btn(href='#send-message-modal')
+        a#btnRequestHelp.modal-trigger.fixed-action-btn
             .waves-effect.waves-circle.waves-light.btn-floating.btn-large
                 i.fa.fa-envelope-o
+
     #send-message-modal.modal
         .modal-content
-            .row
-                .input-field.col.s12
-                    input.validate(placeholder="Title" id="message-title" type="text")
-                    label(for="message-title") Title
-            .row
-                .input-field.col.s12
-                    select(name="providers" id="providers" required="true" multiple="true")
-                        option(value="" disabled) Choose your categories
-                        option(value="1") Option 1
-                    label Providers
-            .row
-                .input-field.col.s12
-                    textarea#textarea1.materialize-textarea
-                    label(for="textarea1") Textarea
-            .row
-                p.modal-buttons
-                    a.waves-effect.waves-light.btn Update
-                    a.waves-effect.waves-light.btn.materialize-red.modal-close Cancel
+            h4 Request Help
+            form#sendMailProvider(method="POST" action='/api/v1/consumer/contact/service_provider')
+                div.row
+                    div.col.s12(class="input-field")
+                        select(name="serviceProviders" id="provider_select" required="true" multiple="true")
+                            option(value="" disabled) Choose Service Providers
+                        label Customers to send E-Mail
+                    div.col.s12(class="input-field")
+                        input(name="subject" id="subject" type="text" required="true")
+                        label Subject
+
+                    div.col.s12(class="input-field")
+                        textarea#textarea1.materialize-textarea(name="message")
+                        label(for="textarea1") Message
+                .row
+                    p.modal-buttons
+                        button(type="submit" class="waves-effect waves-light btn") Send
+                        a.waves-effect.waves-light.btn.materialize-red.modal-close Cancel
 block stylesheet
     link(rel="stylesheet" href="assets/css/detail_product.css")
 

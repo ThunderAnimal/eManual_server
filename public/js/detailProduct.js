@@ -2,18 +2,13 @@ var choosenCategories = [];
 
 $(document).ready(function(){
 
+    $('#provider_select').material_select();
+
     var category_list = getParams(window.location.href)['category_id[]'];
     var id = $('#product_id').data('id');
 
-    $(document).ready(function() {
-        $('select').material_select();
-    });
 
-    $('.modal').modal({
-        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
 
-        }
-    });
 
     getProductData(id, renderProductData);
     if(category_list){
@@ -25,6 +20,30 @@ $(document).ready(function(){
     }else{
         getCatData([], renderCatData);
     }
+
+    $("form#sendMailProvider").ajaxForm({
+        url: '/api/v1/consumer/contact/service_provider',
+        success: function (res) {
+            console.log(res);
+            $('#send-message-modal').modal('close');
+            Materialize.toast('Request send!');
+
+        },
+        error: function (err) {
+            console.log(err);
+            if(err.responseJSON._error){
+                alert("Woops! Something went wrong: \n\n" + err.responseJSON.error);
+            }else{
+                alert("error");
+            }
+        }
+    });
+
+    $('#btnRequestHelp').click(function () {
+        var productId = $('#product_id').data('id');
+        getProvidersData(productId);
+        $('#send-message-modal').modal('open');
+    });
 
     $('.add-selection').click(function () {
         var that = $(this);
@@ -75,6 +94,11 @@ $(document).ready(function(){
             }
         });
     });
+});
+
+$('#send-message-modal').modal({
+    ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+    }
 });
 
 var fillCategories = function(cat_list, callback){
@@ -257,6 +281,25 @@ var renderNaviagtion = function(choosenCategories){
     }
 
     catBreadCrump.show();
+};
+
+var getProvidersData = function(product_id){
+    $.get('api/v1/product/' + product_id + '/service_provider', function(result){
+        renderProvidersData(result);
+    });
+};
+
+var renderProvidersData = function(data){
+    var list = $('#provider_select');
+
+    list.empty();
+    list.append('<option value="" disabled> Choose Service Providers</option>');
+
+    for(var i = 0; i < data.length; i++){
+        list.append("<option value='" + data[i]._id + "' id='" + data[i]._id + "'>" + data[i].name  + "</option>");
+    }
+    list.material_select();
+
 };
 
 function getParams(url) {

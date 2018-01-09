@@ -79,6 +79,8 @@ router.get('/spam_address',policy.isAuthorized,policy.onlyCustomerAllowed,consum
 router.put('/spam_address',policy.isAuthorized,policy.onlyCustomerAllowed,consumerManager.updateSpamAddress);
 //router.get('/consumerProducts', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.getConsumerProducts);
 
+router.post('/consumer/contact/service_provider', policy.isAuthorized, policy.onlyCustomerAllowed, consumerManager.messagesToServiceProviders);
+
 //Get recently created products:c
 router.get('/dir_recent_products', productManager.getRecentlyCreatedProducts);
 
