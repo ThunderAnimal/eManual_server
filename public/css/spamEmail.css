@@ -1,0 +1,112 @@
+
+p.welcome {
+    padding: 1% 0;
+    color: #f6755e;
+    font-size: 2em;
+    margin: 0px 0px 10px 0px;;
+    text-align: center;
+    background-color: #e1e1e1;
+}
+
+.content{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 1%;
+}
+
+.h2{
+    background: #4D4D4D;
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 100;
+    margin: 0px 0px 0px 195px;
+    padding-left: 1%;
+    padding-right: 40%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.buttons{
+    padding-top: 20px;
+}
+
+form .buttons button,
+form .buttons a{
+    width: 150px;
+    margin-right: 40px;
+}
+form .buttons button:last-child,
+form .buttons a:last-child{
+    margin-right: 0;
+}
+
+/*.form-style-8 textarea{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    resize:none;
+    overflow: hidden;
+    padding: 7px;
+    outline: none;
+    display: block;
+    border: none;
+    width: 50%;
+    border-bottom: 1px solid #ddd;
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 125px;
+}
+
+.form-style-8 input[type="text"],
+.form-style-8 select
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 50%;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+
+}
+.form-style-8 option{
+    background: transparent;
+    font: 16px Arial, Helvetica, sans-serif;
+}
+
+.form-style-8 input[type=text]:focus,
+.form-style-8 textarea:focus,
+.form-style-8 select:focus{
+    border-bottom: 2px solid #F755;
+}
+
+.form-style-8 input[type="button"],
+.form-style-8 input[type="submit"]{
+    -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    background-color: #25A2C3;
+    border: 1px solid #27A0A0;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.form-style-8 input[type="button"]:hover,
+.form-style-8 input[type="submit"]:hover {
+    background:linear-gradient(to bottom, #25A2C3 5%, #30C9C9 100%);
+    background-color:#25A2C3;
+}
