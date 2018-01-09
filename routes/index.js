@@ -76,7 +76,7 @@ router.get('/representatives/serviceprovider', policy.isLoggedIn, function(req,r
 });
 //DASHBOARD - ServiceProvider Spam Email
 router.get('/service_provider', policy.isLoggedIn, function (req,res) {
-    res.render('SpamEmail', {user: req.user});
+    res.render('SpamEmail', {user: getUserViewObj(req.user)});
 });
 
 //Consumer

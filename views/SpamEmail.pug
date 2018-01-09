@@ -16,7 +16,18 @@ block header
                     a#header-search-button.waves-effect.waves-light.btn
                         i.fa.fa-search
                         p Search
+                ul.right.user-login
+                    li
+                        img.profile-pic(src=user.image class="circle responsive-img")
+                    li
+                        a.button.alt.dropdown-button.profile-btn(data-activates='dropdown_user')="Welcome, " + user.name
 
+                ul(id='dropdown_user' class='dropdown-content')
+                    li
+                        a(href='#') Homepage
+                    li.divider
+                    li
+                        a(href="/logout" style="color: #f6755f") Logout
 
 
 block main
