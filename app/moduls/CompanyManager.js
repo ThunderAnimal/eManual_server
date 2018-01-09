@@ -53,3 +53,24 @@ exports.changeCustomerOptIn = (product_id, user_id, bool, done) => {
     });
 };
 
+exports.listAllAuthorizedCompanies = (req, res) => {
+    const serviceProviderID = req.user._id;
+    // const serviceProviderID = "5a549057bf7c0110ec859597";
+    let returnList = [];
+    companyModel.find({}, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            for (let i=0; i<data.length; i++){
+                for (let j=0; i<data[i].serviceProvider_id.length; j++){
+                    if (serviceProviderID.toString() === data[i].serviceProvider_id[j].toString()){
+                        returnList.push(data[i]._id);
+                        break;
+                    }
+                }
+            }
+            res.send(returnList);
+        }
+    });
+};
