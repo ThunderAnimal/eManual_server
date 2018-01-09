@@ -26,8 +26,7 @@ $(document).ready(function(){
 });
 
 var getCompanyData = function(){
-    //TODO GET REAL COMPANY LIST OF SERVICE PROVIDER
-    $.get('api/v1/categories', function(result){
+    $.get('api/v1/all_allowed_companies', function(result){
         renderCompanyData(result);
     });
 };
