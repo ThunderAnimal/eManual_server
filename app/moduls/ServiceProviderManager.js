@@ -145,7 +145,7 @@ exports.sendMessagesToConsumers = function(req, res){
     const message = req.body.message;
     let company_list = req.body.companies;
 
-    if(!subject || !message || company_list){
+    if(!subject || !message || !company_list){
         return res.status(400).send({_error: true, error: "Wrong Parameters"});
     }
 
