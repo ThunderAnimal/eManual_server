@@ -17,15 +17,46 @@ block header
                         i.fa.fa-search
                         p Search
 
+
+
 block main
-    .form-style-8
-        h2 Send E-mail
-        form
-            select(name='text', placeholder='List of Companies')
-                option(name='text') List of Companies
-            input(type='text', name='field2', placeholder='Subject')
-            br
-            textarea(placeholder='Message', onkeyup='adjust_textarea(this)')
-            br
-            br
-            input(type='button', value='Send Message')
+
+    block main
+
+            #welcome
+                p.welcome WELCOME
+
+                .row
+                .row
+                a.h2 Send E-mail
+
+            .content
+
+
+                form(action='/api/v1/company', method='POST')
+                    div.row
+                        div.col.l7.s12
+                            div(class="input-field")
+                                select(name="company" id="company" required="true" multiple="true")
+                                option(value="" disabled) Choose your companies
+                                label
+
+                            div(class="input-field")
+                                input(name="subject" id="subject" type="text" required="true")
+                                label Subject
+
+                            div(class="input-field")
+                                textarea#textarea1.materialize-textarea
+                                label(for="textarea1") Message
+
+
+                    div.row
+                        div.col.l7.s12
+                            div.buttons.center
+                                button(type="submit" class="waves-effect waves-light btn") Send
+
+
+
+
+
+
