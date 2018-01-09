@@ -161,7 +161,7 @@ exports.sendMessagesToConsumers = function(req, res){
 
         //Check if the Service Provider has really access to these companys customers
         const checked_company_list = company_list.filter(function (value) {
-            return serviceProvider.company_id.indexOf(value) === 1;
+            return serviceProvider.company_id.indexOf(value) !== -1;
         });
 
         if(checked_company_list.length <= 0){
@@ -175,8 +175,9 @@ exports.sendMessagesToConsumers = function(req, res){
             }
 
             let user_list = [];
+
             for(let i = 0; i < companies.length; i++){
-                user_list = user_list.concat(companies.isConsumerOptIn);
+                user_list = user_list.concat(companies[i].isConsumerOptIn);
             }
 
             consumerModel.find({
