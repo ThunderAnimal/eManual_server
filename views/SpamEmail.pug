@@ -3,6 +3,9 @@ extends layout
 block append stylesheet
     link(rel="stylesheet", href="/assets/css/spamEmail.css")
 
+block append javascript
+    script(src='/assets/js/spamEmail.js')
+
 block header
     #wrapper
         #top-space
@@ -30,40 +33,33 @@ block header
                         a(href="/logout" style="color: #f6755f") Logout
 
 
+
 block main
+    #welcome
+        p.welcome WELCOME
 
-    block main
+        .row
+        .row
+        a.h2 Send E-mail
 
-            #welcome
-                p.welcome WELCOME
+    .content
+        form#sendMail(method="POST" action='/api/v1/service_provider/message')
+            div.row
+                div.col.s12(class="input-field")
+                    select(name="companies" id="company" required="true" multiple="true")
+                        option(value="" disabled) Choose your companies
+                    label Customers to send E-Mail
+                div.col.s12(class="input-field")
+                    input(name="subject" id="subject" type="text" required="true")
+                    label Subject
 
-                .row
-                .row
-                a.h2 Send E-mail
-
-            .content
-
-
-                form(action='/api/v1/company', method='POST')
-                    div.row
-                        div.col.l7.s12
-                            div(class="input-field")
-                                select(name="company" id="company" placeholder="Choose your companies" required="true" multiple="true")
-                                option(value="" disabled) Choose your companies
-                                label
-
-                            div(class="input-field")
-                                input(name="subject" id="subject" type="text" required="true")
-                                label Subject
-
-                            div(class="input-field")
-                                textarea#textarea1.materialize-textarea
-                                label(for="textarea1") Message
-
-                    div.row
-                        div.col.l7.s12
-                            div.buttons.center
-                                button(type="submit" class="waves-effect waves-light btn") Send
+                div.col.s12(class="input-field")
+                    textarea#textarea1.materialize-textarea(name="message")
+                    label(for="textarea1") Message
+            div.row
+                div.col.s12
+                    div.buttons.center
+                        button(type="submit" class="waves-effect waves-light btn") Send
 
 
 
