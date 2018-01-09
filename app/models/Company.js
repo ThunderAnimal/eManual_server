@@ -12,7 +12,7 @@ const companySchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ServiceProvider'
     }]
-});
+}, {usePushEach: true});
 
 //SEARCH INDEX for FULL TEXT
 companySchema.index({name: 'text'}, {name: "company.search_index"});

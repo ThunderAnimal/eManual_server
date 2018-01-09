@@ -10,6 +10,6 @@ var representativeSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Company'
     }
-});
+}, {usePushEach: true});
 
 module.exports = mongoose.model("Representative", representativeSchema);

@@ -27,7 +27,8 @@ const productsSchema = mongoose.Schema({
     }]
 }, {
 
-    timestamps: true
+    timestamps: true,
+    usePushEach: true
 
 });
 

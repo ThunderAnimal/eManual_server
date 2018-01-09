@@ -29,6 +29,6 @@ var consumerSchema = mongoose.Schema({
         ref: 'Product'
     }]
 
-});
+}, {usePushEach: true});
 
 module.exports = mongoose.model("Consumer", consumerSchema);
