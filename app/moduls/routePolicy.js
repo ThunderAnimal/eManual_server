@@ -63,6 +63,16 @@ exports.onlyRepresentativeAllowed = function(req, res, next){
     });
 };
 
+exports.onlyServiceProviderAllowed = function(req, res, next){
+    if(authManager.isUserServiceProvider(req.user))
+        return next();
+
+    return res.status(403).send({
+        status: 403,
+        message: "Forbidden! Only Service Provider is allowed to access."
+    });
+};
+
 exports.onlyCustomerAllowed = function(req, res, next){
     if(authManager.isUserConsumer(req.user))
         return next();

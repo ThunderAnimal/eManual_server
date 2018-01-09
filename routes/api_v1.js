@@ -86,7 +86,8 @@ router.get('/dir_recent_products', productManager.getRecentlyCreatedProducts);
 router.get('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.getAllServiceProviders);
 router.put('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.addServiceProvider);
 router.delete('/service_providers', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.deleteServiceProvider);
-router.post('/service_provider/message', policy.isAuthorized, policy.onlyRepresentativeAllowed,serviceProvicderManager.sendMessagesToConsumers);
+
+router.post('/service_provider/message', policy.isAuthorized, policy.onlyServiceProviderAllowed,serviceProvicderManager.sendMessagesToConsumers);
 
 /*
 Currently the top categories are:
