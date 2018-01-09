@@ -58,8 +58,8 @@ const createConsumer = function (done) {
                     const consumer3 = new ConsumerModel({
                        username: "eyuel",
                        password: "1234",
-                       email: "eyueltb@gmail.com",
-                       spamAddress:"eyueltb@gmail.com",
+                       email: "eyuel12@gmail.com",
+                       spamAddress:"eyuel12@gmail.com",
                        optin: false,
                        image: " ",
                        products: [data2._id]
@@ -67,8 +67,8 @@ const createConsumer = function (done) {
                      const consumer4 = new ConsumerModel({
                        username: "eyuel",
                        password: "1234",
-                       email: "eyuel.tesfaye13@gmail.com",
-                       spamAddress:"eyuel.tesfaye13@gmail.com",
+                       email: "eyuel@gmail.com",
+                       spamAddress:"eyuel@gmail.com",
                        optin: false,
                        image: " ",
                        products: [data2._id]
@@ -626,7 +626,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySamsung._id,
         categories: [categoryTv, categoryOLED, categoryFLAT, categoryBestsellers],
         profilePicture:["https://storage.googleapis.com/product_resources/4075311e-353f-4fd6-81a4-85b62e64df5a_616+K6M825L._SL1000_.jpg"],
-        productDescription:["The Samsung TV screen of 55 inch"],
+        productDescription:["The Samsung TV screen of 55 inch. With four times higher resolution than standard Full HD TV, the small details come alive. You can ensure true 4K UHD resolution when your TV is wearing Digital Europe's Ultra HD logo. "],
         productImages: [
             "https://storage.googleapis.com/product_resources/5c379607-0992-4b86-bf2e-baf9c3f5aada_41fcmkyAH8L._SL1000_.jpg",
             "https://storage.googleapis.com/product_resources/e8246037-bf21-4dae-98ad-8749fa968080_61O-zVbQEyL._SL1000_.jpg"
@@ -651,7 +651,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySamsung._id,
         categories: [categoryTv, categoryCabel, categoryTVAccessories],
         profilePicture:["https://i.ebayimg.com/images/g/QiUAAOSwjL5ZL5CY/s-l500.jpg"],
-        productDescription:["The Samsung HDMI cable"],
+        productDescription:["The Samsung HDMI cable . A brand-new HDMI that Connect 4K/HD TV to Blu-Ray/DVD Player,Multi-functional support with High Speed & Transmission stability"],
         productImages: [
             "https://i.ebayimg.com/images/g/i8YAAOSwCQZZL5Ca/s-l500.jpg",
             "https://i.ebayimg.com/images/g/VNcAAOSwjqVZL5Cc/s-l500.jpg",
@@ -681,7 +681,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryTv, categoryLED],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/71aoslUBdhL._SX770_.jpg"],
-        productDescription:["Full HD |LED| Smart  SONY TELEVISIONS "],
+        productDescription:["Full HD |LED| Smart  SONY TELEVISIONS.You experience an exceptionally clear and detailed picture, you Sharp image and good sound qualities "],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/71FDTYs2kYL._SX770_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/61%2BoO5RZE1L._SX770_.jpg",
@@ -705,7 +705,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySamsung._id,
         categories: [categoryProjector, categoryBusinessProjectors],
         profilePicture:["https://storage.googleapis.com/product_resources/12c09990-50d7-4f38-b76f-364627fc53df_908sama800.1.jpg"],
-        productDescription:["Samsung SP-A800B DLP Projector"],
+        productDescription:["Samsung SP-A800B DLP Projector. The Samsung SP-A800B delivers the most accurate color of any projector we've tested, and as a whole it outperforms every projector in its price range"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/41Nsq67t2jL.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/41-hx5vlzmL.jpg",
@@ -730,7 +730,7 @@ const createProducts = function (companies, categories, done) {
         productName: "3x1 HDMI Auto Switch with 6ft HDMI|AT-HAD-V31",
         company_id: companySamsung._id,
         categories: [categoryProjector, categoryCabel, categoryProjectorAcc],
-        productDescription:["HDMI Auto Switch  AT-HAD-V13 is a high performance HDMI Switcher"],
+        productDescription:["HDMI Auto Switch  AT-HAD-V13 is a high performance HDMI Switcher. It has a high performance HDMI Switcher. It can easily switch between three sources to one display up to 6ft.  has many features that support HDMI1.3b,High performance up to 2.5Gbps, Multifunctional on switching and many more"],
         profilePicture:["https://s7d2.scene7.com/is/image/SamsungUS/Pdpgallery-cy-shc5020d-za-600x600-C4-052016?$product-details-jpg$"],
         productImages: [
             "https://s7d2.scene7.com/is/image/SamsungUS/Pdpdefault-cy-shc5020d-za-600x600-C1-052016?$product-details-jpg$",
@@ -758,7 +758,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyGoogle._id,
         categories: [categoryTVAccessories, categoryCastDevices, categoryBestsellers],
         profilePicture:["https://i.ebayimg.com/images/g/~5AAAOSw44BYFsnR/s-l500.jpg"],
-        productDescription:["Google Chromecast Stream media from phone, tablet or laptop|Cast your favorite apps"],
+        productDescription:["Google Chromecast Stream media from phone, tablet or laptop|Cast your favorite apps. Chromecast is a media streaming device that plugs into the HDMI port on your TV. It Stream with up to 4K Ultra HD and HDR image quality via the Wi-Fi network with Chromecast Ultra, a streaming device that you connect to your TV's HDMI port"],
         productImages: [
             "https://i.ebayimg.com/images/g/WHUAAOSwal5YFsnU/s-l500.jpg",
             "https://i.ebayimg.com/images/g/Sf8AAOSwcLxYFsnZ/s-l500.jpg",
@@ -805,7 +805,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySamsung._id,
         categories: [categoryTv, categoryLED, categorySmart, categoryFLAT],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51R7%2ByL8UUL.jpg"],
-        productDescription:["Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV"],
+        productDescription:["Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV. It Supported Audio & Video Format and connect to HDMI and USB "],
         productImages: [
                  "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
         ],
@@ -827,7 +827,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryTv, categoryOLED, categorySmart, categoryFLAT],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/712rZWrEs8L._SX522_.jpg"],
-        productDescription:["Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Smart Signage LED TV"],
+        productDescription:["Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Smart Signage LED TV. It Supported Audio & Video Format and connect to HDMI and USB "],
         productImages: [
                "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
         ],
@@ -848,7 +848,7 @@ const createProducts = function (companies, categories, done) {
         productName: "DBPOWER T20 1500 Lumens LCD Mini Projector",
         company_id: companyDBPower._id,
         categories: [categoryProjector, categoryGamingProjectors],
-        productDescription:["DBPOWER T20 1500 Lumens LCD Mini Projector"],
+        productDescription:["DBPOWER T20 1500 Lumens LCD Mini Projector. 50% brighter than ordinary led projector. It equipped with an innovative cooling system with heat dispersion, as well as the fan sound cut in half with noise suppression.It can be connected with the phone "],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61FtfuuaQxL._SL1000_.jpg"],
         productImages: [
                   "https://images-na.ssl-images-amazon.com/images/I/61IiZ4WIt1L._SX522_.jpg",
@@ -873,7 +873,7 @@ const createProducts = function (companies, categories, done) {
         productName: "LG Electronics PF1000UW Ultra Short Throw Smart Home Theater Projector",
         company_id: companyLG._id,
         categories: [categoryProjector, categoryHomeTheater],
-        productDescription:["Samsung LG Electronics Smart Home Theater Projector"],
+        productDescription:["Samsung LG Electronics Smart Home Theater Projector. Its Ultra Short Throw Projection, Full HD, Smart TV Enabled"],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/91trLemmjSL._SX522_.jpg"],
         productImages: [
              "https://images-na.ssl-images-amazon.com/images/I/91LFsCxqr%2BL._SX522_.jpg",
@@ -896,7 +896,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryProjector, categoryPortable],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81gv14OZo5L._SX522_.jpg"],
-        productDescription:["Sony VPLHW65ES 1080p 3D SXRD Home Theater Projector (2015 Model)"],
+        productDescription:["Sony VPLHW65ES 1080p 3D SXRD Home Theater Projector (2015 Model). Features are High brightness and contrast,Long-lasting lamp, Spectacular Full HD pictures with Reality Creation, USB updates and many more"],
         productImages: [
              "https://images-na.ssl-images-amazon.com/images/I/81alhav1aYL._SX522_.jpg",
         ],
@@ -918,7 +918,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyLG._id,
         categories: [categoryProjector, categoryGamingProjectors, categoryPortable],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81rD%2BfKHZ1L._SX522_.jpg"],
-        productDescription:["LG Electronics HF80JA Laser Smart Home Theater Projector (2017 Model)"],
+        productDescription:["LG Electronics HF80JA Laser Smart Home Theater Projector (2017 Model). Its features are Up to 120-Inch Screen, LG Smart TV Compatible, Laser Projection Source, 2,000 Lumens, Full HD (1920 x 1080) and Bluetooth Sound Out "],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/81gOetrqSNL._SX522_.jpg",
         ],
@@ -942,7 +942,7 @@ const createProducts = function (companies, categories, done) {
         //,Business & Education Projectors
         categories: [categoryProjector],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61VZdTVJaWL._SL1300_.jpg"],
-        productDescription:["Apollo Horizon 2 Overhead Projector Open Head (V16000M). 2000 lumens of brightness provides crystal clear projections in even the lightest rooms"],
+        productDescription:["Apollo Horizon 2 Overhead Projector Open Head (V16000M). Popular, reliable, easy-to-use tabletop projector with 2000 lumen light output features high-efficiency cooling system and thermal shutoff safety switch. 2000 lumens of brightness provides crystal clear projections in even the lightest rooms"],
         productImages: [
             "https://ssli.ebayimg.com/images/g/SGUAAOSwYeRaI2WF/s-l1600.jpg",
             "https://i.ebayimg.com/images/g/L04AAOSwNuxXa4yH/s-l500.jpg",
@@ -966,7 +966,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyApollo._id,
         //,Business & Education Projectors
         categories: [categoryProjector],
-        productDescription:["Apollo Overhead Projector, 15 x 14 x 27 Inches, Closed Head (V16002M)"],
+        productDescription:["Apollo Overhead Projector, 15 x 14 x 27 Inches, Closed Head (V16002M). Ideal for use in medium-sized classrooms or dusty or difficult environments with up to 20 people"],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/31H2gnShkiL.jpg"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/31H2gnShkiL.jpg",
@@ -991,7 +991,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyAmazon._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryBluetoothSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51xareNhn3L._SX522_.jpg"],
-        productDescription:["Echo Dot - Voice control your music, Get news, weather & more"],
+        productDescription:["Echo Dot - Voice control your music, Get news, weather & more. Echo Dot is a hands-free, voice-controlled device. Connects to speakers or headphones through Bluetooth and Includes a built-in speaker"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/61snM2%2B59SL._SX522_.jpg",
         ],
@@ -1036,7 +1036,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCeilingSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/8129s7pyEYL._SX522_.jpg"],
-        productDescription:["Boston Acoustics HSi 250 In-Ceiling Speaker (White). the second generation CRC is a compact, versatile, high performance center channel speaker designed to deliver accurate, natural reproduction. "],
+        productDescription:["Boston Acoustics HSi 250 In-Ceiling Speaker (White). The second generation CRC is a compact, versatile, high performance center channel speaker designed to deliver accurate, natural reproduction. "],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/8129s7pyEYL._SX522_.jpg",
         ],
@@ -1058,7 +1058,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCentreSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/818lK-Re8sL._SX522_.jpg"],
-        productDescription:["Boston Acoustics A 225C Dual. Woofer 2-Way Center Channel Speaker - Gloss Black"],
+        productDescription:["Boston Acoustics A 225C Dual. Woofer 2-Way Center Channel Speaker - Gloss Black. Boston's new A-Series offers legendary sound, exceptional quality, modern styling, and enduring value.Features Providing enhanced vocal imaging, the center channel speaker is ideal for music and home theater systems. View larger.Center Channel Speaker Provides Enhanced Vocal Imaging,Innovative Cabinet Shape Improves Stereo Imaging and many more"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/81SgApJskvL._SX522_.jpg"
         ],
@@ -1080,7 +1080,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryOutdoorSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/91ZrgKSDdIL._SY679_.jpg"],
-        productDescription:["ECHO 10W outdoor Bluetooth speaker"],
+        productDescription:["ECHO 10W outdoor Bluetooth speaker. Few Features are NEW EDGE TCHNOLOGIES,DEVICE-FREE USE Play straight,POWERFUL 10W OUTPUT etc"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/919CoKR3fbL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/81d-KYE6IEL._SX522_.jpg",
@@ -1104,7 +1104,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryHomeEntertainmentSystems, categorySoundBars],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61A5aYmKtfL._SX522_.jpg"],
-        productDescription:["Sony HT-RT3 Sound Bar Home Theatre System (Black)"],
+        productDescription:["Sony HT-RT3 Sound Bar Home Theatre System (Black). Few Product features,Wired subwoofer,Bluetooth with NFC and Digital connection: optical & HDMI "],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/71Ui6dzgBBL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71EXF1ltkHL._SX522_.jpg",
@@ -1128,7 +1128,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companySony._id,
         categories: [categoryTVAccessories, categoryCabel, categoryProjectorAcc],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/717ACbKJ44L._SX522_.jpg"],
-        productDescription:["WireSwipe HDMI Male to HDMI Male Cable (Black)"],
+        productDescription:["WireSwipe HDMI Male to HDMI Male Cable (Black). Supports Ethernet, 3D, 4K video and Audio Return Channel (ARC). Connect your Blu-Ray player, Cable Box, Apple TV, Roku, PS4, XBox One, Computer or other HDMI-compatible device to your HDTV, display or projector"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/41bTZR4-SuL.jpg"
         ],
@@ -1152,7 +1152,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyDell._id,
         categories: [categoryHeadphones],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61KmB2THvpL._SX522_.jpg"],
-        productDescription:["Dell Performance USB Headset (AE2) "],
+        productDescription:["Dell Performance USB Headset (AE2).Lightweight design provides hours of comfortable wear, Easy to use omni-directional microphone and Customize your headset with personalized lighting effects "],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/511JRZ3pXeL._SX522_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/61wAYkiXPqL._SX522_.jpg"
@@ -1176,7 +1176,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyTwinStar._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61aUx2rts4L._SX522_.jpg"],
-        productDescription:["Compact Refractor AstroVenture Telescope"],
+        productDescription:["Compact Refractor AstroVenture Telescope. Easy to use, just point and look, 6mm Eyepiece, 20mm Eyepiece included,Altazimuth Mount and Full-Size Tripod are Included"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/71wV1Z1aE2L._SL1500_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71OKYFIu1RL._SL1500_.jpg"
@@ -1200,7 +1200,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyMicrosoft._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61YZvhIV2dL._SL1000_.jpg"],
-        productDescription:["Microsoft LifeCam HD-3000 "],
+        productDescription:["Microsoft LifeCam HD-3000. True 720p HD Video, Clear & High Quality Video, Noise Cancelling Microphone and Universal Attachment Base"],
         productImages: [
              "https://images-na.ssl-images-amazon.com/images/I/61xOYeUSN8L._SL1000_.jpg"
         ],
@@ -1222,7 +1222,7 @@ const createProducts = function (companies, categories, done) {
         productName: "Logitech HD Webcam C310",
         company_id: companyLogitech._id,
         categories: [categoryCamera],  //the category variable
-        productDescription:[" "],
+        productDescription:["Logitech HD Webcam C310 with 5-megapixel snapshots,Built-in mic with noise reduction, Automatic Light Correction,Works with Skype, Yahoo Messenger, Microsoft Live Messenger etc "],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81RWpOQo1qL._SL1500_.jpg"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/41QNcbkM9OL.jpg"
@@ -1245,7 +1245,7 @@ const createProducts = function (companies, categories, done) {
         productName: "Bushnell Legend Ultra HD Monocular, Black, 10 x 42-mm",
         company_id: companyBushnell._id,
         categories: [categoryCamera],  //the category variable
-        productDescription:[" "],
+        productDescription:["Bushnell Legend Ultra HD Monocular with Quality optics with stunning HD clarity,Beautiful design and durability built to last,Comfortable twist-up eyecups; includes Picatinny rail and carry clip"],
         profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/910uWOypCIL._SL1500_.jpg"],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/519NW5HTB4L.jpg"
@@ -1269,7 +1269,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyMiluoTech._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/61I%2Bbr1Cs5L._SL1500_.jpg"],
-        productDescription:["Monocular Scope for Hunting, Camping, Surveillance "],
+        productDescription:["Monocular Scope for Hunting, Camping, Surveillance. Multicoated optics guarantee superior light transmission and brightness, Dual focus capability . It is Good for sporting events, concerts, bird watching, camping, fishing, golf, scope and travelling."],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/61Kc-4iIGiL._SL1308_.jpg"
         ],
@@ -1277,8 +1277,7 @@ const createProducts = function (companies, categories, done) {
             description:"An HTML review of Miluo Tech 16x52 Dual Focus Monocular Telescope",
             originalName:"Miluo Tech 16x52 Dual Focus Monocular Telescope /Monocular Scope for Hunting, Camping, Surveillance",
             dataType:"HTML",
-            url: "http://www.aftermarketplanet.com/shop/miluo-tech-16x52-dual-focus-monocular-telescope-monocular-scope-for-hunting-camping-surveillance/"
-            },
+            url: "http://www.aftermarketplanet.com/shop/miluo-tech-16x52-dual-focus-monocular-telescope-monocular-scope-for-hunting-camping-surveillance" },
         ],
         productLinks: [{
             description: "16x52 HD 16x Magnification Zoom Monocular by ARCHEER review",
@@ -1292,7 +1291,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyBushnell._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/51E9DNupkJL.jpg"],
-        productDescription:["Bushnell Trophy Cam HD Essential E2 12MP Trail Camera"],
+        productDescription:["Bushnell Trophy Cam HD Essential E2 12MP Trail Camera. Features are Adjustable images per trigger, Takes 720p Video, 3, 8, or 12 MP resolution"],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/81OtXblbltL._SL1500_.jpg"
         ],
@@ -1315,7 +1314,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyBushnell._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/A1RUKRdLlKL._SL1500_.jpg"],
-        productDescription:["Bushnell Trophy Cam HD Aggressor 14MP Wireless Trail Camera "],
+        productDescription:["Bushnell Trophy Cam HD Aggressor 14MP Wireless Trail Camera. Features are 14.0 Megapixel,1280 x 720 HD video,Gps data tag,Day/night auto sensor"],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/A1WFrUtuO1L._SL1500_.jpg"
         ],
@@ -1338,7 +1337,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyTeslong._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/61vPWse8ZvL._SL1001_.jpg"],
-        productDescription:["Barrel Borescope, Teslong Rifle Barrel Endoscope Inspection Camera "],
+        productDescription:["Barrel Borescope, Teslong Rifle Barrel Endoscope Inspection Camera. It is HANDY AND COOL,SHORT-FOCUS CAMERA,BRAND-NEW UPGRADE "],
         productImages: [
            "https://images-na.ssl-images-amazon.com/images/I/61vTpdQZNOL._SL1001_.jpg"
         ],
@@ -1361,7 +1360,7 @@ const createProducts = function (companies, categories, done) {
         company_id: companyTeslong._id,
         categories: [categoryCamera],  //the category variable
         profilePicture:[ "https://images-na.ssl-images-amazon.com/images/I/71RIP0D9uPL._SL1500_.jpg"],
-        productDescription:["Digital Endoscope, Teslong Semi Rigid Industrial Endoscope "],
+        productDescription:["Digital Endoscope, Teslong Semi Rigid Industrial Endoscope . The classic industrial endoscope of Teslong brand pioneer to improve the diameter of probe camera,Equipped with a 3.5-inch QVGA color LCD display, "],
         productImages: [
             "https://images-na.ssl-images-amazon.com/images/I/818KXU7RtaL._SL1500_.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/71--F%2B2RtHL._SL1500_.jpg"
