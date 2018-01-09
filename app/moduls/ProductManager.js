@@ -291,6 +291,7 @@ exports.create = function (req, res) {
     const companyId = authManager.getCompanyId(req.user);
     const profilePicture = req.files.profilePicture;
     const images = req.files.image;
+    let description = req.body.description;
     let resources = req.files.resources;
     const resourcesDescription = req.body.resources_description;
 

@@ -31,6 +31,10 @@ block main
                         div.file-path-wrapper
                             input(class="file-path validate" type="text" placeholder="Upload one or more images")
 
+                    div.col.s12(class="input-field")
+                        textarea#description.materialize-textarea(name="description" required="true")
+                        label(for="description") Description
+
                     div#ResourcesList
                         div.col.s5(class="input-field file-field")
                             div.btn
