@@ -98,11 +98,21 @@ router.get('/homepage_numbers', homeManager.getTotalCount);
 
 /*
 Currently the top categories are:
-1. Televisions
-2. Bestsellers
-3. Projectors
-4. Home Entertainment Systems
-5. Cameras
+1.	Televisions
+2.	Home Entertainment Systems
+3.	Home Theater
+4.	LED
+5.	Speakers
+6.	DVD Players and Recorders
+7.	Cast Devices
+8.	Projectors
+9.	Headphones
+10.	MP3 & MP4 Players
+11.	TV Accessories
+12.	Cables
+13.	Cameras
+14.	Audio & Video Accessories
+15.	Batteries & Charges
  */
 router.get('/categories_top', homeManager.getTopWithCounter);
 
