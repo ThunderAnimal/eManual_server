@@ -6,7 +6,7 @@ $(document).ready(function(){
     var id = $('#product_id').data('id');
 
     $('select').material_select();
-    getCategorieData(function(cat_list){;
+    getCategorieData(function(cat_list){
         getProductData(id, function (product_data) {
             renderProductData(product_data, cat_list)
         });
