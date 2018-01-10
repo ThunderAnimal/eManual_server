@@ -6,6 +6,9 @@ const categoryModel = require(MODEL_PATH + 'Category');
 const companyManager = require(MODUL_PATH+'CompanyManager');
 const productManager = require(MODUL_PATH+'ProductManager');
 const companyModel = require(MODEL_PATH + 'Company');
+const categoryManager = require('../moduls/CategoryManager');
+const consumerManager = require('../moduls/ConsumerManager');
+const homeManager = require('../moduls/HomeManager');
 
 
 const serviceProviderModel = require(MODEL_PATH + 'ServiceProvider');
@@ -39,10 +42,21 @@ exports.productDirectory = (req, res) => {
 exports.getTopWithCounter = function(req, res, next){
     let topCatList = [
         "Televisions",
-        "Bestsellers",
-        "Projectors",
         "Home Entertainment Systems",
-        "Cameras"
+        "Home Theater",
+        "LED",
+        "Speakers",
+        "DVD Players and Recorders",
+        "Cast Devices",
+        "Projectors",
+        "Headphones",
+        "MP3 & MP4 Players",
+        "TV Accessories",
+        "Cables",
+        "Cameras",
+        "Audio & Video Accessories",
+        "Batteries & Charges",
+        "Speakers",
     ];
 
 

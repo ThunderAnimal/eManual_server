@@ -106,9 +106,7 @@ Currently the top categories are:
  */
 router.get('/categories_top', homeManager.getTopWithCounter);
 
-
 //API Combined
-router.get('dir_products', homeManager.productDirectory);
-
+router.get('/dir_products', homeManager.productDirectory);
 
 module.exports = router;
