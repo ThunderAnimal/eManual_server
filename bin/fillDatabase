@@ -176,7 +176,16 @@ const createCompanys = function (done) {
         password: "1234",
         name: "LG"
     });
-
+    const company16 = new CompanyModel({
+        login: "admin@bostonAcoustics.com",
+        password: "1234",
+        name: "BostonAcoustic"
+    });
+    const company17 = new CompanyModel({
+            login: "admin@Offbeat.com",
+            password: "1234",
+            name: "Offbeat"
+        });
 
     company1.save(function () {
         company2.save(function () {
@@ -193,10 +202,13 @@ const createCompanys = function (done) {
                                                     company13.save(function () {
                                                         company14.save(function () {
                                                             company15.save(function () {
-
-                                                                    done([company1, company2, company3, company4, company5, company6, company7, company8, company9, company10, company11, company12, company13,company14,company15 ]);
+                                                             company16.save(function () {
+                                                                company17.save(function () {
+                                                                    done([company1, company2, company3, company4, company5, company6, company7, company8, company9, company10, company11, company12, company13,company14,company15,company16,company17 ]);
                                                                  });
+                                                                });
                                                              });
+                                                            });
                                                         });
                                                     });
                                                 });
@@ -486,7 +498,7 @@ const createProducts = function (companies, categories, done) {
     let companySamsung;
     let companySony;
     let companyGoogle, companyAmazon, companyDell, companyTwinStar, companyMicrosoft, companyLogitech, companyBushnell,
-        companyMiluoTech, companyTeslong, companyApollo,companyLG,companyDBPower;
+        companyMiluoTech, companyTeslong, companyApollo,companyLG,companyDBPower,companyBostonAcoustic,companyOffbeat;
     for (let i = 0; i < companies.length; i++) {
         if (companies[i].name === "Samsung") {
             companySamsung = companies[i];
@@ -529,7 +541,12 @@ const createProducts = function (companies, categories, done) {
         else if (companies[i].name === "DBPower") {
                    companyDBPower = companies[i];
         }
-
+        else if (companies[i].name === "BostonAcoustic") {
+             companyBostonAcoustic = companies[i];
+        }
+        else if (companies[i].name === "Offbeat") {
+                     companyOffbeat = companies[i];
+         }
 
     }
 
@@ -711,8 +728,7 @@ const createProducts = function (companies, categories, done) {
             "https://images-na.ssl-images-amazon.com/images/I/41-hx5vlzmL.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/416cZ9SXAcL.jpg",
             "https://images-na.ssl-images-amazon.com/images/I/41Rdh0XX4vL.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/51%2BbEt4Bz3L.jpg",
-        ],
+            ],
         productResources: [{
              description:"A pdf Manual Samsung SP-A800B DLP Projector 1080p",
              originalName:"Samsung SP-A800B DLP Projector 1080p",
@@ -824,9 +840,9 @@ const createProducts = function (companies, categories, done) {
 
     const productSonyTV2 = new ProductModel({
         productName: "Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Signage LED TV",
-        company_id: companySony._id,
+        company_id: companySamsung._id,
         categories: [categoryTv, categoryOLED, categorySmart, categoryFLAT],
-        profilePicture:["https://images-na.ssl-images-amazon.com/images/I/712rZWrEs8L._SX522_.jpg"],
+        profilePicture:["https://lscdn.blob.core.windows.net/products/tv/images/Samsung-HD-Ready-40-inch-LED-TV-EB40D.jpg"],
         productDescription:["Samsung EB40D 101.6 cm (40-Inches) HD Ready Smart Smart Signage LED TV. It Supported Audio & Video Format and connect to HDMI and USB "],
         productImages: [
                "https://images-na.ssl-images-amazon.com/images/I/41Ot%2BYJVCkL.jpg"
@@ -873,13 +889,13 @@ const createProducts = function (companies, categories, done) {
         productName: "LG Electronics PF1000UW Ultra Short Throw Smart Home Theater Projector",
         company_id: companyLG._id,
         categories: [categoryProjector, categoryHomeTheater],
-        productDescription:["Samsung LG Electronics Smart Home Theater Projector. Its Ultra Short Throw Projection, Full HD, Smart TV Enabled"],
+        productDescription:["LG Electronics Smart Home Theater Projector. Its Ultra Short Throw Projection, Full HD, Smart TV Enabled"],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/91trLemmjSL._SX522_.jpg"],
         productImages: [
              "https://images-na.ssl-images-amazon.com/images/I/91LFsCxqr%2BL._SX522_.jpg",
         ],
         productResources: [ {
-            description:"A pdf review of Samsung LG Electronics Smart Home Theater Projector",
+            description:"A pdf review of LG Electronics Smart Home Theater Projector",
             originalName:"Owner's Manual LG Minibeam UST DLP Projector",
             dataType:"PDF",
             url: "http://www.projectorcentral.com/pdf/projector_manual_9726.pdf"
@@ -951,8 +967,8 @@ const createProducts = function (companies, categories, done) {
         productResources: [ {
             description:"An HTML review Apollo Horizon 2 Overhead Projector(V16000M)",
             originalName:"Apollo Horizon 2 Overhead Projector, 15 x 14 x 27 Inches, Open Head (V16000M)",
-            dataType:"HTML",
-            url: "http://www.cscc.edu/mediaservices/knowledgebase/overhead.htm"
+            dataType:"PDF",
+            url: "https://data2.manualslib.com/pdf3/74/7321/732092-apollo/lighting_projector.pdf?6e4f7873e258b9dfb0e690b1575def75"
             },
         ],
          productLinks: [{
@@ -975,9 +991,9 @@ const createProducts = function (companies, categories, done) {
         productResources: [{
            description:"An HTML review Apollo Horizon 2 Overhead Projector(V16000M)",
            originalName:"APOLLOLIGHTING PROJECTOR",
-           dataType:"HTML",
-           url: "https://www.manualslib.com/manual/732092/Apollo-Lighting-Projector.html#manual"
-                    },
+           dataType:"PDF",
+           url: "https://data2.manualslib.com/pdf6/123/12210/1220935-apollo/3000_series.pdf?3cec29273433a0ae14b8d0f4b578ef35"
+           },
         ],
         productLinks: [{
             description: "Apollo Concept Overhead Projector Open Doublet",
@@ -1011,7 +1027,7 @@ const createProducts = function (companies, categories, done) {
 
     const productSpeaker2 = new ProductModel({
         productName: "Logitech Z120 Stereo Speaker (Black and White)",
-        company_id: companySony._id,
+        company_id: companyLogitech._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryBookshelfSpeakers],
         productDescription:["Logitech Z120 Stereo Speaker (Black and White).Your speakers get power from the USB port on your laptop or netbook, so no wall plug is required"],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/81VfSYq1dwL._SX522_.jpg"],
@@ -1033,7 +1049,7 @@ const createProducts = function (companies, categories, done) {
 
     const productSpeaker3 = new ProductModel({
         productName: "Boston Acoustics HSi 250 In-Ceiling Speaker (White)",
-        company_id: companySony._id,
+        company_id: companyBostonAcoustic._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCeilingSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/8129s7pyEYL._SX522_.jpg"],
         productDescription:["Boston Acoustics HSi 250 In-Ceiling Speaker (White). The second generation CRC is a compact, versatile, high performance center channel speaker designed to deliver accurate, natural reproduction. "],
@@ -1055,7 +1071,7 @@ const createProducts = function (companies, categories, done) {
 
     const productSpeaker4 = new ProductModel({
         productName: "Boston Acoustics A 225C Dual 5.25\" Woofer 2-Way Center Channel Speaker - Gloss Black",
-        company_id: companySony._id,
+        company_id: companyBostonAcoustic._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryCentreSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/818lK-Re8sL._SX522_.jpg"],
         productDescription:["Boston Acoustics A 225C Dual. Woofer 2-Way Center Channel Speaker - Gloss Black. Boston's new A-Series offers legendary sound, exceptional quality, modern styling, and enduring value.Features Providing enhanced vocal imaging, the center channel speaker is ideal for music and home theater systems. View larger.Center Channel Speaker Provides Enhanced Vocal Imaging,Innovative Cabinet Shape Improves Stereo Imaging and many more"],
@@ -1077,7 +1093,7 @@ const createProducts = function (companies, categories, done) {
 
     const productSpeaker5 = new ProductModel({
         productName: "OFFBEAT ® - ECHO 10W outdoor Bluetooth speaker",
-        company_id: companySony._id,
+        company_id: companyOffbeat._id,
         categories: [categoryHomeEntertainmentSystems, categorySpeakers, categoryOutdoorSpeakers],
         profilePicture:["https://images-na.ssl-images-amazon.com/images/I/91ZrgKSDdIL._SY679_.jpg"],
         productDescription:["ECHO 10W outdoor Bluetooth speaker. Few Features are NEW EDGE TCHNOLOGIES,DEVICE-FREE USE Play straight,POWERFUL 10W OUTPUT etc"],
@@ -1277,7 +1293,8 @@ const createProducts = function (companies, categories, done) {
             description:"An HTML review of Miluo Tech 16x52 Dual Focus Monocular Telescope",
             originalName:"Miluo Tech 16x52 Dual Focus Monocular Telescope /Monocular Scope for Hunting, Camping, Surveillance",
             dataType:"HTML",
-            url: "http://www.aftermarketplanet.com/shop/miluo-tech-16x52-dual-focus-monocular-telescope-monocular-scope-for-hunting-camping-surveillance" },
+            url: "http://www.aftermarketplanet.com/shop/miluo-tech-16x52-dual-focus-monocular-telescope-monocular-scope-for-hunting-camping-surveillance"
+            },
         ],
         productLinks: [{
             description: "16x52 HD 16x Magnification Zoom Monocular by ARCHEER review",
