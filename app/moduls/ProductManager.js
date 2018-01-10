@@ -304,6 +304,7 @@ exports.create = function (req, res) {
                     const product = new productModel({
                         productName: req.body.name,
                         profilePicture: profilePicURL[0],
+                        productDescription: description,
                         company_id: companyId,
                         categories: req.body.categories,
                         productImages: imageUrls,
@@ -366,6 +367,7 @@ exports.update = function(req, res){
                         product.categories = req.body.categories;
                         product.productImages = product.productImages.concat(imageUrls);
                         product.productResources = product.productResources.concat(productResourcesArray);
+                        product.description = description;
                         product.save(function (err, result) {
                             if (err) {
                                 console.log(err);
