@@ -115,9 +115,7 @@ var renderProductData = function(data, cat_list){
 };
 
 var getCategorieData = function(callback){
-    $.get('api/v1/categories', function(result){
-        callback(result);
-    });
+    $.get('api/v1/categories', callback);
 };
 
 var renderCategorieData = function(data, chooseCategories){
