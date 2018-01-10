@@ -12,6 +12,7 @@ const productManager = require('../app/moduls/ProductManager');
 const categoryManager = require('../app/moduls/CategoryManager');
 const consumerManager = require('../app/moduls/ConsumerManager');
 const companyManager = require('../app/moduls/CompanyManager');
+const homeManager = require('../app/moduls/HomeManager');
 //import serviceProductManager module
 const serviceProvicderManager = require('../app/moduls/ServiceProviderManager');
 
@@ -92,6 +93,9 @@ router.delete('/service_providers', policy.isAuthorized, policy.onlyRepresentati
 router.post('/service_provider/message', policy.isAuthorized, policy.onlyServiceProviderAllowed,serviceProvicderManager.sendMessagesToConsumers);
 router.get('/all_allowed_companies', policy.isAuthorized, policy.onlyServiceProviderAllowed, companyManager.listAllAuthorizedCompanies);
 
+//API Homepage
+// router.get('/homepage_numbers')
+
 /*
 Currently the top categories are:
 1. Televisions
@@ -100,34 +104,11 @@ Currently the top categories are:
 4. Home Entertainment Systems
 5. Cameras
  */
-router.get('/categories_top', categoryManager.getTopWithCounter);
+router.get('/categories_top', homeManager.getTopWithCounter);
 
 
 //API Combined
-router.get('/dir_products', function(req, res){
-    let cat_list;
-
-    if(!req.query.categorie_list){
-        cat_list = [];
-    }else{
-        cat_list = req.query.categorie_list;
-    }
-
-    productManager.getAllInCategories(req, cat_list, function (err, product_result) {
-        if (err) {
-            console.log(err);
-            res.status(500).send(err);
-        }
-        categoryManager.getAllFromProducts(product_result, function (cat_result) {
-            //REMOVE CATEGORIES FROM CALL
-            cat_result = cat_result.filter(function(value){
-                return cat_list.indexOf(value._id.toString()) === -1;
-            });
-
-            res.status(200).send({productList: product_result, categoryList: cat_result});
-        });
-    });
-});
+router.get('dir_products', homeManager.productDirectory);
 
 
 module.exports = router;
