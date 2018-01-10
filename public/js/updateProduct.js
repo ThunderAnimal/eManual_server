@@ -67,6 +67,7 @@ $(document).ready(function(){
         $(this).closest('li').remove();
     });
 
+
 });
 var getProductData = function(id, callback){
     $.get('api/v1/product/' + id,function (result) {
@@ -88,6 +89,8 @@ var renderProductData = function(data, cat_list){
     var remove_list = $('#remove_list');
 
     $('#formUpdateProduct').find('#name').val(data.productName);
+    $('#formUpdateProduct').find('#description').val(data.productDescription);
+    Materialize.updateTextFields();
     renderCategorieData(cat_list, data.categories);
 
     remove_list.empty();

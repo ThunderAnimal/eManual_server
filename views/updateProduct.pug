@@ -19,6 +19,9 @@ block main
                         select(name="categories" id="categories" required="true" multiple="true")
                             option(value="" disabled) Choose your categories
                         label Category
+                    div.col.s12(class="input-field")
+                        textarea#description.materialize-textarea(name="description" required="true")
+                        label.active(for="description") Description
                     div.col.s12(class="input-field file-field")
                         div.btn
                             span Update Profile Image
