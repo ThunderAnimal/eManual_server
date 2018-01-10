@@ -5,6 +5,8 @@ const productModel = require(MODEL_PATH + 'Product');
 const categoryModel = require(MODEL_PATH + 'Category');
 const companyManager = require(MODUL_PATH+'CompanyManager');
 const productManager = require(MODUL_PATH+'ProductManager');
+const companyModel = require(MODEL_PATH + 'Company');
+
 
 const serviceProviderModel = require(MODEL_PATH + 'ServiceProvider');
 
@@ -100,5 +102,65 @@ exports.getTopWithCounter = function(req, res, next){
             }
             res.status(200).send(finalCatArray);
         })
+    });
+};
+
+exports.getTotalCount = (req, res) => {
+    //Sequence: Products, Manuals, Brands, Users
+    let returnList = [];
+    let doOne = (done) => {
+        productModel.find({}, (err, data)=>{
+            if (err) {
+                console.log("Error in getting homepage count "+err);
+            }
+            else {
+                console.log("XXX "+data.length);
+                returnList.push(data.length);
+                let totalManuals = 0;
+                function countManuals (currentLength){
+                    if (currentLength === 0)
+                        returnList.push(totalManuals);
+                    else{
+                        totalManuals = totalManuals + data[currentLength-1].productResources.length;
+                        totalManuals = totalManuals + data[currentLength-1].productLinks.length;
+                        countManuals(currentLength-1);
+                    }
+                }
+                countManuals(data.length);
+            }
+            done();
+        });
+    };
+
+    let doTwo = (done) => {
+        companyModel.count({}, (err, data) => {
+            if (err) {
+                console.log("Error in getting homepage count "+err);
+            }
+            else {
+                returnList.push(data);
+            }
+            done();
+        });
+    };
+
+    let doThree = (done) => {
+        consumerModel.count({}, (err, data) => {
+            if (err) {
+                console.log("Error in getting homepage count "+err);
+            }
+            else {
+                returnList.push(data);
+            }
+            done();
+        });
+    };
+
+    doOne(()=>{
+        doTwo(()=>{
+            doThree(()=>{
+                res.send(returnList);
+            });
+        });
     });
 };

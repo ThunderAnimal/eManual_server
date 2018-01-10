@@ -94,7 +94,7 @@ router.post('/service_provider/message', policy.isAuthorized, policy.onlyService
 router.get('/all_allowed_companies', policy.isAuthorized, policy.onlyServiceProviderAllowed, companyManager.listAllAuthorizedCompanies);
 
 //API Homepage
-// router.get('/homepage_numbers')
+router.get('/homepage_numbers', homeManager.getTotalCount);
 
 /*
 Currently the top categories are:
