@@ -70,8 +70,6 @@ $(document).ready(function(){
             }
         }
     });
-
-    $('#btnRequestHelp').tooltip();
 });
 
 $('#send-message-modal').modal({
@@ -137,8 +135,10 @@ var renderData = function(data){
             $('#send-message-modal').modal('open');
 
         });
+        //$('#btnRequestHelp').tooltip();
         ul.appendChild(clonedTemplate);
     }
+    $('.tooltipped').tooltip({delay:50});
 };
 
 var getSpamData = function(){
