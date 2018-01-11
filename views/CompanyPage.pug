@@ -9,6 +9,26 @@ block header
             nav#top-space-nav-bar
                 a.homepage-link(href='#')
                     img.logo-pic(src='/assets/img/logo.png', alt='dash')
+                .header-search-container
+                    a#btn_cat.dropdown-button.btn(data-activates='dropdown1')
+                        p categories
+                        i.material-icons arrow_drop_down
+                    ul(id='dropdown1' class='dropdown-content')
+                    input#header-search-field.input(type='text' name='search-field' placeholder="What is your brand or product?")
+                    a#header-search-button.waves-effect.waves-light.btn
+                        i.fa.fa-search
+                        p Search
+                #user-nav-ul
+                    ul.right.user-login
+                        li
+                            a.button.alt.dropdown-button.profile-btn(data-activates='dropdown_user')="Welcome, " + name
+
+                    ul(id='dropdown_user' class='dropdown-content')
+                        li
+                            a(href='#') Homepage
+                        li.divider
+                        li
+                            a(href="/logout" style="color: #f6755f") Logout
 block sidebar
         a.mobilemenu(href='#sidebar')
             i.icon-reorder

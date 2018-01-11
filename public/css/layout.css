@@ -176,7 +176,7 @@ button.alt:active,
     flex-direction: row;
 }
 
-#btn_cat{
+.header-search-container #btn_cat{
     background-color: #4d4d4d;
     min-width: 108px;
     font-size: 0.80rem;
@@ -187,20 +187,21 @@ button.alt:active,
     display: flex;
     flex-direction: row;
     align-items: center;
+    color: white;
 }
 
-#btn_cat p {
+.header-search-container #btn_cat p {
     margin: 0;
     font-size: 0.80rem;
 }
 
-#btn_cat i {
+.header-search-container #btn_cat i {
     font-size: 100%;
     line-height: 64px;
     height: 64px;
 }
 
-#dropdown1{
+.header-search-container #dropdown1{
     margin-top: 40px;
     min-width: 200px;
 }
