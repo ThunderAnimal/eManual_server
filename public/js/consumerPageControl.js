@@ -70,6 +70,8 @@ $(document).ready(function(){
             }
         }
     });
+
+    $('#btnRequestHelp').tooltip();
 });
 
 $('#send-message-modal').modal({
