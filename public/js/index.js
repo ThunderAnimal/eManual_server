@@ -11,7 +11,7 @@ $(document).ready(function(){
         e.preventDefault();
     });
 
-    $('##search-button').click(function () {
+    $('#search-button').click(function () {
         var search = $('#search-field-input').val();
         if(search === ""){
             return;
