@@ -330,7 +330,6 @@ exports.update = function(req, res){
     const profilePicture = req.files.profilePicture;
     const productId = req.params.id;
     const images = req.files.image;
-    let description = req.body.description;
     let resources = req.files.resources;
     const resourcesDescription = req.body.resources_description;
 
@@ -367,7 +366,7 @@ exports.update = function(req, res){
                         product.categories = req.body.categories;
                         product.productImages = product.productImages.concat(imageUrls);
                         product.productResources = product.productResources.concat(productResourcesArray);
-                        product.description = description;
+                        product.productDescription = req.body.description;
                         product.save(function (err, result) {
                             if (err) {
                                 console.log(err);
