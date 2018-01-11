@@ -1,6 +1,7 @@
 var offset = 0;
 var temp = document.getElementById('productTemp');
 var catTemp = document.getElementById('category-template');
+var catTempAll = document.getElementById('category-template-all');
 
 $(document).ready(function(){
     getStatistics();
@@ -17,6 +18,29 @@ $(document).ready(function(){
             return;
         }
         window.location.href = "/search?search=" + search;
+    });
+
+    // Add smooth scrolling to all links
+    $("a").on('click', function(event) {
+
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+            });
+        } // End if
     });
 });
 
@@ -66,9 +90,8 @@ var renderTopCategoriesData = function(data){
 
         ul.appendChild(clonedTemplate);
     }
-    var clonedTemplate = catTemp.content.cloneNode(true);
+    var clonedTemplate = catTempAll.content.cloneNode(true);
     clonedTemplate.querySelector('.category-name').innerText = "Show all";
-    clonedTemplate.querySelector('.category-amount').innerText = "";
     clonedTemplate.querySelector('a').href = href='/category';
 
     ul.appendChild(clonedTemplate);
