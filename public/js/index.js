@@ -3,6 +3,7 @@ var temp = document.getElementById('productTemp');
 var catTemp = document.getElementById('category-template');
 
 $(document).ready(function(){
+    getStatistics();
     getTopCategorieData();
     getRecentProductsData();
     $('#load-more-button').click(function(e){
@@ -31,6 +32,20 @@ var getRecentProductsData = function () {
         renderRecentProductsData(recentProductsData);
         delete recentProductsData;
     });
+};
+
+var getStatistics = function(){
+    $.get('api/v1/homepage_numbers', function(result){
+        renderStatisticsData(result);
+    });
+};
+
+var renderStatisticsData = function(data){
+    var statistics = data;
+    document.querySelector("#stats-products p.number").innerText = statistics[0];
+    document.querySelector("#stats-manuals p.number").innerText = statistics[1];
+    document.querySelector("#stats-brands p.number").innerText = statistics[2];
+    document.querySelector("#stats-users p.number").innerText = statistics[3];
 };
 
 var renderTopCategoriesData = function(data){
