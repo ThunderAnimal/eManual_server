@@ -340,3 +340,6 @@ ul#recent-products-list li a.remove-selection{
     background-color: #4D4D4D;
 }
 
+.header-search-container {
+    display:none;
+}

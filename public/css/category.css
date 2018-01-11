@@ -49,6 +49,9 @@ main > div.row.content {
 #cat_list .collection-item{
     background-color: #f7f6f6;
     border-color: rgba(0,0,0,0.1);
+    font-size: 0.9em;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #cat_list .collection-item:hover{
@@ -62,6 +65,12 @@ main > div.row.content {
 
 #cat_list a.collection-item:hover{
     cursor: pointer;
+}
+
+#cat_list span.badge {
+    margin-left: 1px;
+    padding: 0 1px;
+    min-width: 2em;
 }
 
 

@@ -9,6 +9,14 @@ $(document).ready(function(){
         getRecentProductsData();
         e.preventDefault();
     });
+
+    $('##search-button').click(function () {
+        var search = $('#search-field-input').val();
+        if(search === ""){
+            return;
+        }
+        window.location.href = "/search?search=" + search;
+    });
 });
 
 var getTopCategorieData = function(){
@@ -43,6 +51,12 @@ var renderTopCategoriesData = function(data){
 
         ul.appendChild(clonedTemplate);
     }
+    var clonedTemplate = catTemp.content.cloneNode(true);
+    clonedTemplate.querySelector('.category-name').innerText = "Show all";
+    clonedTemplate.querySelector('.category-amount').innerText = "";
+    clonedTemplate.querySelector('a').href = href='/category';
+
+    ul.appendChild(clonedTemplate);
 };
 
 var renderRecentProductsData = function(data){
