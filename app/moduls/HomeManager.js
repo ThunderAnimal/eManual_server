@@ -56,7 +56,6 @@ exports.getTopWithCounter = function(req, res, next){
         "Cameras",
         "Audio & Video Accessories",
         "Batteries & Charges",
-        "Speakers",
     ];
 
 
