@@ -40,7 +40,7 @@ router.route('/representatives')
             company: req.user._id
         });
 
-        NewRep.save().then(function (err, result) {
+        NewRep.save(function (err, result) {
             if (err) {
                 console.log(err);
                 res.status(500).send(err);
